@@ -11,7 +11,7 @@
     "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message",
-    "start": "npm-run-all --parallel test:watch open:src lint:watch",
+    "start": "npm run open:src",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
     "lint": "esw webpack.config.* src tools --color",
@@ -31,14 +31,16 @@
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
+    "@ieremeev/table": "^2.1.2",
     "object-assign": "4.1.0",
-    "react": "15.4.1",
-    "react-dom": "15.4.1",
+    "react": "15.4.2",
+    "react-dom": "15.4.2",
     "react-redux": "5.0.1",
     "react-router": "3.0.0",
     "react-router-redux": "4.0.7",
     "redux": "3.6.0",
-    "redux-thunk": "2.1.0"
+    "redux-thunk": "2.1.0",
+    "semantic-ui-css": "^2.2.9"
   },
   "devDependencies": {
     "autoprefixer": "6.5.4",
