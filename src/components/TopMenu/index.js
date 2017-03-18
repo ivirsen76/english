@@ -4,17 +4,20 @@ import { Dropdown, Menu } from 'semantic-ui-react';
 
 const TopMenu = () => (
     <Menu inverted>
-        <Menu.Item>Home</Menu.Item>
-        <Dropdown item text="Shopping">
+        <Menu.Item>Главная</Menu.Item>
+        <Menu.Item>Возможности</Menu.Item>
+        <Menu.Item>Базы слов</Menu.Item>
+        <Dropdown item text="Помощники">
             <Dropdown.Menu>
-                <Dropdown.Item>Home Goods</Dropdown.Item>
-                <Dropdown.Item>Bedroom</Dropdown.Item>
-                <Dropdown.Item>Status</Dropdown.Item>
-                <Dropdown.Item>Cancellations</Dropdown.Item>
+                <Dropdown.Item>Матрица Simple</Dropdown.Item>
+                <Dropdown.Item>Матрица Continuous</Dropdown.Item>
+                <Dropdown.Item>Выделение слов</Dropdown.Item>
+                <Dropdown.Item>Числа на слух</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
-        <Menu.Item>Forums</Menu.Item>
-        <Menu.Item>Contact Us</Menu.Item>
+        <Menu.Menu position="right">
+            <Menu.Item>Логин</Menu.Item>
+        </Menu.Menu>
     </Menu>
 );
 
