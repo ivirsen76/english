@@ -1,13 +1,15 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
+import MenuLink from './MenuLink';
+
 
 const SideMenu = () => (
-    <Menu vertical fluid>
+    <Menu vertical fluid size="large">
         <Menu.Item>
             <Menu.Header>Словарь</Menu.Header>
 
             <Menu.Menu>
-                <Menu.Item name="Мои слова" />
+                <MenuLink to="/user/words">Мои слова</MenuLink>
             </Menu.Menu>
         </Menu.Item>
 
@@ -15,9 +17,17 @@ const SideMenu = () => (
             <Menu.Header>Изучение</Menu.Header>
 
             <Menu.Menu>
-                <Menu.Item name="Запоминание" />
-                <Menu.Item name="Написание" />
-                <Menu.Item name="Скачать MP3" />
+                <MenuLink to="/user/remember">
+                    Запоминание
+                    <div className="ui label">12</div>
+                </MenuLink>
+                <MenuLink to="/write">
+                    Написание
+                    <div className="ui label">7</div>
+                </MenuLink>
+                <MenuLink to="/mp3">
+                    Скачать MP3
+                </MenuLink>
             </Menu.Menu>
         </Menu.Item>
 
