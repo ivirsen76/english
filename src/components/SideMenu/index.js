@@ -9,7 +9,10 @@ const SideMenu = () => (
             <Menu.Header>Словарь</Menu.Header>
 
             <Menu.Menu>
-                <MenuLink to="/user/words">Мои слова</MenuLink>
+                <MenuLink to="/user/words">
+                    Мои слова
+                    <div className="ui label">123</div>
+                </MenuLink>
             </Menu.Menu>
         </Menu.Item>
 
@@ -21,11 +24,11 @@ const SideMenu = () => (
                     Запоминание
                     <div className="ui label">12</div>
                 </MenuLink>
-                <MenuLink to="/write">
+                <MenuLink to="/user/write">
                     Написание
                     <div className="ui label">7</div>
                 </MenuLink>
-                <MenuLink to="/mp3">
+                <MenuLink to="/user/mp3">
                     Скачать MP3
                 </MenuLink>
             </Menu.Menu>
@@ -35,7 +38,9 @@ const SideMenu = () => (
             <Menu.Header>Справочно</Menu.Header>
 
             <Menu.Menu>
-                <Menu.Item name="Статистика" />
+                <MenuLink to="/user/statistics">
+                    Статистика
+                </MenuLink>
             </Menu.Menu>
         </Menu.Item>
 
@@ -43,8 +48,12 @@ const SideMenu = () => (
             <Menu.Header>Настройки</Menu.Header>
 
             <Menu.Menu>
-                <Menu.Item name="Задачи" />
-                <Menu.Item name="База слов" />
+                <MenuLink to="/user/tasks">
+                    Задачи
+                </MenuLink>
+                <MenuLink to="/user/base">
+                    База слов
+                </MenuLink>
             </Menu.Menu>
         </Menu.Item>
     </Menu>
