@@ -6,6 +6,10 @@ import path from 'path';
 export default {
     resolve: {
         extensions: ['*', '.js', '.jsx', '.json'],
+        modules: [
+            'node_modules',
+            path.resolve(__dirname, 'src'),
+        ],
     },
 
     // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps

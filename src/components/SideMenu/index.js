@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
-import MenuLink from './MenuLink';
+import MenuLink from 'components/MenuLink';
 
 
 const SideMenu = () => (

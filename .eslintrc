@@ -1,3 +1,8 @@
 {
-    "extends": "ieremeev"
+    "extends": "ieremeev",
+    "rules": {
+        "import/no-unresolved": ["error", { ignore: ["^components", "^containers"] }],
+        "import/extensions": ["off"],
+        "import/no-extraneous-dependencies": ["off"]
+    }
 }

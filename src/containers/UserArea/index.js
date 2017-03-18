@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import SideMenu from '../../components/SideMenu';
+import SideMenu from 'components/SideMenu';
 
 
 export default class Component extends React.Component {

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Dropdown, Menu } from 'semantic-ui-react';
+import MenuLink from 'components/MenuLink';
 
 
 const TopMenu = () => (
     <Menu inverted>
-        <Menu.Item>Главная</Menu.Item>
-        <Menu.Item>Возможности</Menu.Item>
+        <MenuLink to="/" onlyActiveOnIndex>Главная</MenuLink>
+        <MenuLink to="/features">Возможности</MenuLink>
         <Menu.Item>Базы слов</Menu.Item>
         <Dropdown item text="Помощники">
             <Dropdown.Menu>
@@ -16,6 +17,7 @@ const TopMenu = () => (
             </Dropdown.Menu>
         </Dropdown>
         <Menu.Menu position="right">
+            <MenuLink to="/user">Dashboard</MenuLink>
             <Menu.Item>Логин</Menu.Item>
         </Menu.Menu>
     </Menu>

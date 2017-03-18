@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import TopMenu from '../TopMenu';
+import TopMenu from 'components/TopMenu';
 
 
 // This is a class-based component because the current
