@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SideMenu = () => (
-    <div className="ui vertical pointing menu">
+    <div className="ui vertical pointing fluid menu">
         <a className="active item">
             Home
           </a>
