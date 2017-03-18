@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Words from '../components/Words';
+import Words from '../../components/Words';
 
 export const Component = props => (
     <Words
