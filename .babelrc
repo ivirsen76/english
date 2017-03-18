@@ -1,12 +1,12 @@
 {
   "presets": [
+    "stage-1",
     "react"
   ],
   "env": {
     "development": {
       "presets": [
         "latest",
-        "stage-1",
         "react-hmre"
       ]
     },
@@ -16,8 +16,7 @@
           "es2015": {
             "modules": false
           }
-        }],
-        "stage-1"
+        }]
       ],
       "plugins": [
         "transform-react-constant-elements",
@@ -26,8 +25,7 @@
     },
     "test": {
       "presets": [
-        "latest",
-        "stage-1"
+        "latest"
       ]
     }
   }
