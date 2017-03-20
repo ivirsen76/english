@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TopMenu /> Should render menu 1`] = `
+<Menu
+  inverted={true}
+>
+  <withProps(Link)
+    onlyActiveOnIndex={true}
+    to="/"
+  >
+    Главная
+  </withProps(Link)>
+  <withProps(Link)
+    to="/features"
+  >
+    Возможности
+  </withProps(Link)>
+  <MenuItem>
+    Базы слов
+  </MenuItem>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    icon="dropdown"
+    item={true}
+    noResultsMessage="No results found."
+    openOnFocus={true}
+    renderLabel={[Function]}
+    selectOnBlur={true}
+    text="Помощники"
+  >
+    <DropdownMenu>
+      <DropdownItem>
+        Матрица Simple
+      </DropdownItem>
+      <DropdownItem>
+        Матрица Continuous
+      </DropdownItem>
+      <DropdownItem>
+        Выделение слов
+      </DropdownItem>
+      <DropdownItem>
+        Числа на слух
+      </DropdownItem>
+    </DropdownMenu>
+  </Dropdown>
+  <MenuMenu
+    position="right"
+  >
+    <withProps(Link)
+      to="/user"
+    >
+      Dashboard
+    </withProps(Link)>
+    <MenuItem>
+      Логин
+    </MenuItem>
+  </MenuMenu>
+</Menu>
+`;

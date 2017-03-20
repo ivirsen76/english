@@ -1,0 +1,10 @@
+{
+  "moduleNameMapper": {
+    "^.+\\.(css|scss|less)$": "identity-obj-proxy",
+    "^react$": "<rootDir>/node_modules/react"
+  },
+  "moduleDirectories": ["node_modules", "src"],
+  "testMatch": [
+    "**/?(*.)(spec|test).js?(x)"
+  ]
+}

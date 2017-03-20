@@ -20,7 +20,7 @@
     "remove-dist": "rimraf ./dist",
     "prebuild": "npm run clean-dist && npm run lint && npm run test",
     "build": "babel-node tools/build.js && npm run open:dist",
-    "test": "node_modules/jest/bin/jest.js --config node_modules/@ieremeev/jest-setup/config.json --silent",
+    "test": "node_modules/jest/bin/jest.js --config jestconfig.json --silent",
     "cover": "npm test -- --coverage",
     "snap": "npm test -- -u",
     "test:CI": "babel-node tools/testCi.js",
@@ -84,21 +84,6 @@
     "webpack-hot-middleware": "2.13.2",
     "webpack-md5-hash": "0.0.5"
   },
-  "keywords": [
-    "react",
-    "reactjs",
-    "react-router",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack",
-    "redux",
-    "flux",
-    "boilerplate",
-    "starter"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/coryhouse/react-slingshot"
