@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react';
 import Table from '@ieremeev/table';
 
 
-const Words = ({ data }) => {
+export const Words = ({ data }) => {
     const columns = [
         { name: 'id', label: 'ID' },
-        { name: 'name', label: 'Name', filter: true, sort: true },
-        { name: 'email', label: 'Email' },
+        { name: 'text', label: 'Текст', filter: true, sort: true },
+        { name: 'translate', label: 'Перевод', filter: true, sort: true },
     ];
 
     return (

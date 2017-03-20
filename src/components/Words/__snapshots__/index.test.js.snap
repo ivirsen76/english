@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Words /> Should render table 1`] = `
+<Table
+  className="ui compact table"
+  columns={Object {}}
+  data={Object {}}
+  hideBottomPaginator={false}
+  perPage={50}
+  showRowNumber={false}
+/>
+`;

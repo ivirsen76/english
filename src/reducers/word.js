@@ -4,9 +4,9 @@ import { handleActions, createAction } from 'redux-actions';
 // Initial state
 export const initialState = {
     list: [
-        { id: 1, name: 'Mike', email: 'mike@gmail.com' },
-        { id: 2, name: 'Helen', email: 'helen@gmail.com' },
-        { id: 3, name: 'Bob', email: 'bob@gmail.com' },
+        { id: 1, text: 'Tree', translate: 'Дерево' },
+        { id: 2, text: 'Core', translate: 'Ядро' },
+        { id: 3, text: 'Ball', translate: 'Мяч' },
     ],
 };
 
