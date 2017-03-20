@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SideMenu /> Should render menu 1`] = `
+<Menu
+  fluid={true}
+  size="large"
+  vertical={true}
+>
+  <MenuItem>
+    <MenuHeader>
+      Словарь
+    </MenuHeader>
+    <MenuMenu>
+      <withProps(Link)
+        to="/user/words"
+      >
+        Мои слова
+        <div
+          className="ui label"
+        >
+          123
+        </div>
+      </withProps(Link)>
+    </MenuMenu>
+  </MenuItem>
+  <MenuItem>
+    <MenuHeader>
+      Изучение
+    </MenuHeader>
+    <MenuMenu>
+      <withProps(Link)
+        to="/user/remember"
+      >
+        Запоминание
+        <div
+          className="ui label"
+        >
+          12
+        </div>
+      </withProps(Link)>
+      <withProps(Link)
+        to="/user/write"
+      >
+        Написание
+        <div
+          className="ui label"
+        >
+          7
+        </div>
+      </withProps(Link)>
+      <withProps(Link)
+        to="/user/mp3"
+      >
+        Скачать MP3
+      </withProps(Link)>
+    </MenuMenu>
+  </MenuItem>
+  <MenuItem>
+    <MenuHeader>
+      Справочно
+    </MenuHeader>
+    <MenuMenu>
+      <withProps(Link)
+        to="/user/statistics"
+      >
+        Статистика
+      </withProps(Link)>
+    </MenuMenu>
+  </MenuItem>
+  <MenuItem>
+    <MenuHeader>
+      Настройки
+    </MenuHeader>
+    <MenuMenu>
+      <withProps(Link)
+        to="/user/tasks"
+      >
+        Задачи
+      </withProps(Link)>
+      <withProps(Link)
+        to="/user/base"
+      >
+        База слов
+      </withProps(Link)>
+    </MenuMenu>
+  </MenuItem>
+</Menu>
+`;
