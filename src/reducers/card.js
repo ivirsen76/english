@@ -16,16 +16,16 @@ export const initialState = {
 
 
 // Actions
-const ADD_WORD = 'english/word/ADD_WORD';
+const ADD_CARD = 'english/card/ADD_CARD';
 
 
 // Action Creators
-export const addWord = createAction(ADD_WORD);
+export const addCard = createAction(ADD_CARD);
 
 
 // Reducer
 export default handleActions({
-    [ADD_WORD]: (state, action) => {
+    [ADD_CARD]: (state, action) => {
         const nextId = _max([...state.list.map(item => item.id + 1), minNewId]);
 
         return {

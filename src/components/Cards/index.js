@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Table from '@ieremeev/table';
 
 
-export const Words = ({ data }) => {
+export const Cards = ({ data }) => {
     const columns = [
         { name: 'text', label: 'Текст', filter: true, sort: true },
         { name: 'translate', label: 'Перевод', filter: true, sort: true },
@@ -14,8 +14,8 @@ export const Words = ({ data }) => {
     );
 };
 
-Words.propTypes = {
+Cards.propTypes = {
     data: PropTypes.array.isRequired,
 };
 
-export default Words;
+export default Cards;

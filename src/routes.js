@@ -5,7 +5,7 @@ import App from 'components/App';
 import HomePage from 'containers/HomePage';
 import FeaturesPage from 'containers/FeaturesPage';
 import UserArea from 'containers/UserArea';
-import WordsPage from 'containers/WordsPage';
+import CardsPage from 'containers/CardsPage';
 import RememberPage from 'containers/RememberPage';
 import NotFoundPage from 'components/NotFoundPage';
 
@@ -14,8 +14,8 @@ export default (
         <IndexRoute component={HomePage} />
         <Route path="features" component={FeaturesPage} />
         <Route path="user" component={UserArea}>
-            <IndexRedirect to="words" />
-            <Route path="words" component={WordsPage} />
+            <IndexRedirect to="cards" />
+            <Route path="cards" component={CardsPage} />
             <Route path="remember" component={RememberPage} />
         </Route>
         <Route path="*" component={NotFoundPage} />

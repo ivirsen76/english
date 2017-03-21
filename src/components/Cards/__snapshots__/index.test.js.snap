@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Words /> Should render table 1`] = `
+exports[`<Cards /> Should render table 1`] = `
 <Table
   className="ui compact table"
   columns={Object {}}

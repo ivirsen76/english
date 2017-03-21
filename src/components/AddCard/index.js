@@ -5,13 +5,13 @@ import Form from './form';
 
 export default class Component extends React.Component {
     static propTypes = {
-        addWord: PropTypes.func,
+        addCard: PropTypes.func,
         nextNewId: PropTypes.number,
         latestLabel: PropTypes.string,
     }
 
     handleSubmit = (values) => {
-        this.props.addWord(values);
+        this.props.addCard(values);
     }
 
     render() {
@@ -27,7 +27,7 @@ export default class Component extends React.Component {
                 <Modal.Content>
                     <div key={this.props.nextNewId}>
                         <Form
-                            form={'addWord' + this.props.nextNewId}
+                            form={'addCard' + this.props.nextNewId}
                             onSubmit={this.handleSubmit}
                             initialValues={{ label: this.props.latestLabel }}
                         />

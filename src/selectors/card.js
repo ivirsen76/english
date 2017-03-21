@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
-import { minNewId } from 'reducers/word';
+import { minNewId } from 'reducers/card';
 import _max from 'lodash/max';
 import _maxBy from 'lodash/maxBy';
 
 
-const getList = state => state.word.list;
+const getList = state => state.card.list;
 
 
 export const getNextNewId = createSelector(

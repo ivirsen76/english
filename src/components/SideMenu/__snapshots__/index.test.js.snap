@@ -12,7 +12,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
     </MenuHeader>
     <MenuMenu>
       <withProps(Link)
-        to="/user/words"
+        to="/user/cards"
       >
         Мои слова
         <div

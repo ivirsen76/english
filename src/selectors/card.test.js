@@ -1,16 +1,16 @@
 /* global describe, it, expect */
-import { minNewId } from 'reducers/word';
+import { minNewId } from 'reducers/card';
 import {
     getNextNewId,
     getLatestLabel,
-} from './word';
+} from './card';
 
 
-describe('Word selectors', () => {
+describe('Card selectors', () => {
     describe('getNextNewId()', () => {
         it('Should return next new id', () => {
             const state = {
-                word: {
+                card: {
                     list: [
                         { id: 1 },
                     ],
@@ -21,7 +21,7 @@ describe('Word selectors', () => {
 
         it('Should return next new id', () => {
             const state = {
-                word: {
+                card: {
                     list: [
                         { id: minNewId },
                     ],
@@ -34,7 +34,7 @@ describe('Word selectors', () => {
     describe('getLatestLabel()', () => {
         it('Should return empty string for empty list', () => {
             const state = {
-                word: {
+                card: {
                     list: [],
                 },
             };
@@ -43,7 +43,7 @@ describe('Word selectors', () => {
 
         it('Should return empty string for the list without label', () => {
             const state = {
-                word: {
+                card: {
                     list: [
                         { id: 1 },
                     ],
@@ -54,7 +54,7 @@ describe('Word selectors', () => {
 
         it('Should return latest label', () => {
             const state = {
-                word: {
+                card: {
                     list: [
                         { id: 2, label: 'second' },
                         { id: 1, label: 'first' },

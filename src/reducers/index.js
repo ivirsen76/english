@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
-import word from './word';
+import card from './card';
 
 const rootReducer = combineReducers({
-    word,
+    card,
     form: formReducer,
     routing: routerReducer,
 });

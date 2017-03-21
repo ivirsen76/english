@@ -9,7 +9,7 @@ const SideMenu = () => (
             <Menu.Header>Словарь</Menu.Header>
 
             <Menu.Menu>
-                <MenuLink to="/user/words">
+                <MenuLink to="/user/cards">
                     Мои слова
                     <div className="ui label">123</div>
                 </MenuLink>
