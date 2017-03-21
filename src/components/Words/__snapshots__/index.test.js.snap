@@ -7,6 +7,6 @@ exports[`<Words /> Should render table 1`] = `
   data={Object {}}
   hideBottomPaginator={false}
   perPage={50}
-  showRowNumber={false}
+  showRowNumber={true}
 />
 `;

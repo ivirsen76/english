@@ -14,9 +14,9 @@ describe('word reducer', () => {
                 list: [],
             };
             const expectedList = [
-                { id: minNewId, text: 'Tree', translate: 'Some' },
+                { id: minNewId, text: 'Tree', translate: 'Some', label: 'bla' },
             ];
-            const resultedState = reducer(state, addWord({ text: 'Tree', translate: 'Some' }));
+            const resultedState = reducer(state, addWord({ text: 'Tree', translate: 'Some', label: 'bla' }));
             expect(resultedState.list).toEqual(expectedList);
         });
 

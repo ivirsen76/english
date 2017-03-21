@@ -32,7 +32,7 @@ export default handleActions({
             ...state,
             list: [
                 ...state.list,
-                { id: nextId, ..._pick(action.payload, ['text', 'translate']) },
+                { id: nextId, ..._pick(action.payload, ['text', 'translate', 'label']) },
             ],
         };
     },
