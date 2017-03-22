@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Cards from 'components/Cards';
 import AddCard from 'components/AddCard';
-import { addCard, deleteCard } from 'reducers/card';
+import { addCard, deleteCard, updateCard } from 'reducers/card';
 import { getNextNewId, getLatestLabel } from 'selectors/card';
 
 
@@ -12,6 +12,7 @@ class Component extends React.Component {
         list: PropTypes.array.isRequired,
         addCard: PropTypes.func.isRequired,
         deleteCard: PropTypes.func.isRequired,
+        updateCard: PropTypes.func.isRequired,
         nextNewId: PropTypes.number.isRequired,
         latestLabel: PropTypes.string.isRequired,
     }
@@ -30,6 +31,7 @@ class Component extends React.Component {
                 <Cards
                     data={this.props.list}
                     deleteCard={this.props.deleteCard}
+                    updateCard={this.props.updateCard}
                 />
             </div>
         );
@@ -48,4 +50,5 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
     addCard,
     deleteCard,
+    updateCard,
 })(Component);

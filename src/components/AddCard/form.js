@@ -20,6 +20,7 @@ const validate = (values) => {
 class Component extends React.Component {
     static propTypes = {
         handleSubmit: PropTypes.func,
+        submitButtonTitle: PropTypes.string,
     }
 
     render() {
@@ -29,7 +30,9 @@ class Component extends React.Component {
                 <Field name="translate" component={Input} label="Перевод" />
                 <Field name="label" component={Input} label="Метка" />
 
-                <button className="ui compact button" type="submit">Add card</button>
+                <button className="ui compact button" type="submit">
+                    {this.props.submitButtonTitle}
+                </button>
             </form>
         );
     }

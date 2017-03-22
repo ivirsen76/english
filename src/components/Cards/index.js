@@ -4,14 +4,14 @@ import EditCard from 'components/EditCard';
 import DeleteCard from 'components/DeleteCard';
 
 
-export const Cards = ({ data, deleteCard }) => {
+export const Cards = ({ data, deleteCard, updateCard }) => {
     const columns = [{
         name: 'actions',
         label: '',
         render(value, row) {
             return (
                 <div>
-                    <EditCard />
+                    <EditCard updateCard={updateCard} initialValues={row} />
                     <DeleteCard deleteCard={deleteCard} id={row.id} />
                 </div>
             );
@@ -44,6 +44,7 @@ export const Cards = ({ data, deleteCard }) => {
 
 Cards.propTypes = {
     data: PropTypes.array.isRequired,
+    updateCard: PropTypes.func.isRequired,
     deleteCard: PropTypes.func.isRequired,
 };
 

@@ -3,6 +3,7 @@ import reducer, {
     initialState,
     addCard,
     deleteCard,
+    updateCard,
     minNewId,
 } from './card';
 
@@ -50,6 +51,22 @@ describe('card reducer', () => {
                 { id: 2, text: 'Tree', translate: 'Some' },
             ];
             expect(reducer(state, deleteCard(1)).list).toEqual(expectedList);
+        });
+    });
+
+    describe('updateCard()', () => {
+        it('Should update card', () => {
+            const state = {
+                ...initialState,
+                list: [
+                    { id: 1, text: 'Ball', translate: 'Some' },
+                ],
+            };
+            const expectedList = [
+                { id: 1, text: 'One', translate: 'Some' },
+            ];
+            const resultedState = reducer(state, updateCard({ id: 1, text: 'One' }));
+            expect(resultedState.list).toEqual(expectedList);
         });
     });
 });

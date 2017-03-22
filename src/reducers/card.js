@@ -18,11 +18,13 @@ export const initialState = {
 // Actions
 const ADD_CARD = 'english/card/ADD_CARD';
 const DELETE_CARD = 'english/card/DELETE_CARD';
+const UPDATE_CARD = 'english/card/UPDATE_CARD';
 
 
 // Action Creators
 export const addCard = createAction(ADD_CARD);
 export const deleteCard = createAction(DELETE_CARD);
+export const updateCard = createAction(UPDATE_CARD);
 
 
 // Reducer
@@ -41,5 +43,15 @@ export default handleActions({
     [DELETE_CARD]: (state, action) => ({
         ...state,
         list: state.list.filter(item => item.id !== action.payload),
+    }),
+    [UPDATE_CARD]: (state, action) => ({
+        ...state,
+        list: state.list.map((item) => {
+            if (item.id === action.payload.id) {
+                return { ...item, ...action.payload };
+            }
+
+            return item;
+        }),
     }),
 }, initialState);

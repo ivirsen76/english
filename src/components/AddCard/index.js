@@ -32,6 +32,7 @@ export default class Component extends React.Component {
                             form={'addCard' + this.props.nextNewId}
                             onSubmit={this.handleSubmit}
                             initialValues={{ label: this.props.latestLabel }}
+                            submitButtonTitle="Добавить"
                         />
                     </div>
                 </Modal.Content>
