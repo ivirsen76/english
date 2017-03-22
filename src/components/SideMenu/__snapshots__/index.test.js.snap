@@ -18,7 +18,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
         <div
           className="ui label"
         >
-          123
+          3
         </div>
       </withProps(Link)>
     </MenuMenu>

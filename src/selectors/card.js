@@ -19,3 +19,8 @@ export const getLatestLabel = createSelector(
         return (latest && latest.label) ? latest.label : '';
     },
 );
+
+export const getCardCount = createSelector(
+    getList,
+    list => list.length,
+);

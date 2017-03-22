@@ -3,6 +3,7 @@ import { minNewId } from 'reducers/card';
 import {
     getNextNewId,
     getLatestLabel,
+    getCardCount,
 } from './card';
 
 
@@ -62,6 +63,21 @@ describe('Card selectors', () => {
                 },
             };
             expect(getLatestLabel(state)).toBe('second');
+        });
+    });
+
+
+    describe('getCardCount()', () => {
+        it('Should return number of cards', () => {
+            const state = {
+                card: {
+                    list: [
+                        { id: 1 },
+                        { id: 2 },
+                    ],
+                },
+            };
+            expect(getCardCount(state)).toBe(2);
         });
     });
 });

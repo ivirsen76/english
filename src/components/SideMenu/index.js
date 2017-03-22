@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Menu } from 'semantic-ui-react';
 import MenuLink from 'components/MenuLink';
 
 
-const SideMenu = () => (
+const SideMenu = ({ cardTotal }) => (
     <Menu vertical fluid size="large">
         <Menu.Item>
             <Menu.Header>Словарь</Menu.Header>
@@ -11,7 +11,7 @@ const SideMenu = () => (
             <Menu.Menu>
                 <MenuLink to="/user/cards">
                     Мои слова
-                    <div className="ui label">123</div>
+                    <div className="ui label">{cardTotal}</div>
                 </MenuLink>
             </Menu.Menu>
         </Menu.Item>
@@ -58,5 +58,9 @@ const SideMenu = () => (
         </Menu.Item>
     </Menu>
 );
+
+SideMenu.propTypes = {
+    cardTotal: PropTypes.number,
+};
 
 export default SideMenu;

@@ -7,7 +7,7 @@ import SideMenu from './index';
 
 describe('<SideMenu />', () => {
     it('Should render menu', () => {
-        const wrapper = shallow(<SideMenu />);
+        const wrapper = shallow(<SideMenu cardTotal={3} />);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 });
