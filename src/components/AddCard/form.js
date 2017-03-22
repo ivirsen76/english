@@ -29,7 +29,7 @@ class Component extends React.Component {
                 <Field name="translate" component={Input} label="Перевод" />
                 <Field name="label" component={Input} label="Метка" />
 
-                <button className="ui button" type="submit">Add card</button>
+                <button className="ui compact button" type="submit">Add card</button>
             </form>
         );
     }
