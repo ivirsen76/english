@@ -29,7 +29,7 @@
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
-    "@ieremeev/table": "^2.1.5",
+    "@ieremeev/table": "^2.1.6",
     "object-assign": "4.1.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
