@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 
-const Component = () => (
-    <button className="ui compact icon button">
-        <i className="remove icon" />
-    </button>
-);
+export default class Component extends React.Component {
+    static propTypes = {
+        id: PropTypes.number,
+        deleteCard: PropTypes.func,
+    }
 
-export default Component;
+    onClick = () => {
+        this.props.deleteCard(this.props.id);
+    }
+
+    render() {
+        return (
+            <button className="ui compact icon button" onClick={this.onClick}>
+                <i className="remove icon" />
+            </button>
+        );
+    }
+}
