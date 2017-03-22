@@ -19,11 +19,13 @@ class Component extends React.Component {
         return (
             <div>
                 <h2>Мои слова</h2>
-                <AddCard
-                    addCard={this.props.addCard}
-                    nextNewId={this.props.nextNewId}
-                    latestLabel={this.props.latestLabel}
-                />
+                <div className="margin1">
+                    <AddCard
+                        addCard={this.props.addCard}
+                        nextNewId={this.props.nextNewId}
+                        latestLabel={this.props.latestLabel}
+                    />
+                </div>
                 <Cards
                     data={this.props.list}
                 />

@@ -19,6 +19,10 @@
     react-addons-test-utils "^15.4.2"
     react-dom "^15.4.2"
 
+"@ieremeev/notification@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/@ieremeev/notification/-/notification-2.0.2.tgz#022d52c1f688c5d6acb28a826ab07375929eac7c"
+
 "@ieremeev/paginator@^2.0.6":
   version "2.0.6"
   resolved "https://registry.npmjs.org/@ieremeev/paginator/-/paginator-2.0.6.tgz#85c6ffa22a31b6e8715fca44395d5de9b1cce251"
@@ -913,11 +917,19 @@ babel-plugin-transform-strict-mode@^6.22.0:
     babel-runtime "^6.22.0"
     babel-types "^6.22.0"
 
-babel-polyfill@6.20.0, babel-polyfill@^6.16.0:
+babel-polyfill@^6.16.0:
   version "6.20.0"
   resolved "https://registry.yarnpkg.com/babel-polyfill/-/babel-polyfill-6.20.0.tgz#de4a371006139e20990aac0be367d398331204e7"
   dependencies:
     babel-runtime "^6.20.0"
+    core-js "^2.4.0"
+    regenerator-runtime "^0.10.0"
+
+babel-polyfill@^6.23.0:
+  version "6.23.0"
+  resolved "https://registry.npmjs.org/babel-polyfill/-/babel-polyfill-6.23.0.tgz#8364ca62df8eafb830499f699177466c3b03499d"
+  dependencies:
+    babel-runtime "^6.22.0"
     core-js "^2.4.0"
     regenerator-runtime "^0.10.0"
 

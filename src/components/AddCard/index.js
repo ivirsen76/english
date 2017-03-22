@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Modal } from 'semantic-ui-react';
+import notification from '@ieremeev/notification';
 import Form from './form';
 
 
@@ -12,6 +13,7 @@ export default class Component extends React.Component {
 
     handleSubmit = (values) => {
         this.props.addCard(values);
+        notification('Карточка добавлена');
     }
 
     render() {
