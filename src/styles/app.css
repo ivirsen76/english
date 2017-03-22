@@ -1,3 +1,6 @@
 .margin1 {
     margin-bottom: 1em;
 }
+.text-nowrap {
+    white-space: nowrap;
+}
