@@ -13,7 +13,7 @@ export default class Component extends React.Component {
 
     render() {
         return (
-            <button className="ui compact icon button" onClick={this.onClick}>
+            <button className="ui red compact icon button" onClick={this.onClick}>
                 <i className="remove icon" />
             </button>
         );
