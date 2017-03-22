@@ -2,8 +2,8 @@ import React from 'react';
 
 
 const Component = () => (
-    <button className="ui green compact icon button">
-        <i className="write icon" />
+    <button className="ui green compact tiny icon button">
+        <i className="icon-pencil" />
     </button>
 );
 

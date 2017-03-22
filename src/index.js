@@ -8,6 +8,7 @@ import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import 'semantic-ui-css/semantic.css';
 import './styles/app.css';
+import './styles/icomoon.css';
 import routes from './routes';
 import configureStore from './store/configureStore';
 
