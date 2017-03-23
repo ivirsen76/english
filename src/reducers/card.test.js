@@ -60,10 +60,12 @@ describe('card reducer', () => {
                 ...initialState,
                 list: [
                     { id: 1, text: 'Ball', translate: 'Some' },
+                    { id: 2, text: 'Tree', translate: 'Some' },
                 ],
             };
             const expectedList = [
                 { id: 1, text: 'One', translate: 'Some' },
+                { id: 2, text: 'Tree', translate: 'Some' },
             ];
             const resultedState = reducer(state, updateCard({ id: 1, text: 'One', unknown: 1 }));
             expect(resultedState.list).toEqual(expectedList);
