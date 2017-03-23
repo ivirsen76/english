@@ -1,7 +1,7 @@
 {
     "extends": "ieremeev",
     "rules": {
-        "import/no-unresolved": ["error", { ignore: ["^selectors", "^reducers", "^components", "^containers"] }],
+        "import/no-unresolved": ["error", { ignore: ["^utils", "^selectors", "^reducers", "^components", "^containers"] }],
         "import/extensions": ["off"],
         "import/no-extraneous-dependencies": ["off"],
         "react/prefer-stateless-function": ["off"]
