@@ -18,7 +18,7 @@ describe('card reducer', () => {
             const expectedList = [
                 { id: minNewId, text: 'Tree', translate: 'Some', label: 'bla' },
             ];
-            const resultedState = reducer(state, addCard({ text: 'Tree', translate: 'Some', label: 'bla' }));
+            const resultedState = reducer(state, addCard({ text: 'Tree', translate: 'Some', label: 'bla', unknown: 1 }));
             expect(resultedState.list).toEqual(expectedList);
         });
 
@@ -65,7 +65,7 @@ describe('card reducer', () => {
             const expectedList = [
                 { id: 1, text: 'One', translate: 'Some' },
             ];
-            const resultedState = reducer(state, updateCard({ id: 1, text: 'One' }));
+            const resultedState = reducer(state, updateCard({ id: 1, text: 'One', unknown: 1 }));
             expect(resultedState.list).toEqual(expectedList);
         });
     });

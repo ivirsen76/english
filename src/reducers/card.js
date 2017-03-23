@@ -48,7 +48,10 @@ export default handleActions({
         ...state,
         list: state.list.map((item) => {
             if (item.id === action.payload.id) {
-                return { ...item, ...action.payload };
+                return {
+                    ...item,
+                    ..._pick(action.payload, ['text', 'translate', 'label']),
+                };
             }
 
             return item;
