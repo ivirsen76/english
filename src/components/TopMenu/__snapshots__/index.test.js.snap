@@ -48,11 +48,21 @@ exports[`<TopMenu /> Should render menu 1`] = `
   <MenuMenu
     position="right"
   >
-    <withProps(Link)
-      to="/login"
+    <Modal
+      closeIcon={true}
+      closeOnDimmerClick={true}
+      closeOnDocumentClick={false}
+      dimmer={true}
+      size="small"
+      trigger={Object {}}
     >
-      Войти
-    </withProps(Link)>
+      <ModalHeader>
+        Войти
+      </ModalHeader>
+      <ModalContent>
+        <ReduxForm />
+      </ModalContent>
+    </Modal>
   </MenuMenu>
 </Menu>
 `;

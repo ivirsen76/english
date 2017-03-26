@@ -11,7 +11,7 @@ export default class Component extends React.Component {
 
     render() {
         const { input, label, meta: { touched, error } } = this.props;
-        const props = _pick(this.props, ['autoFocus']);
+        const props = _pick(this.props, ['autoFocus', 'type']);
 
         return (
             <div className={'field ' + (touched && error && 'error')}>

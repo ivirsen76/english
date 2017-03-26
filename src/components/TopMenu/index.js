@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
-import { Dropdown, Menu } from 'semantic-ui-react';
+import { Dropdown, Menu, Modal } from 'semantic-ui-react';
 import MenuLink from 'components/MenuLink';
+import LoginForm from 'components/LoginForm';
 
 
 const TopMenu = ({ isLoggedIn, user }) => (
@@ -28,7 +29,16 @@ const TopMenu = ({ isLoggedIn, user }) => (
             </Menu.Menu>
         ) : (
             <Menu.Menu position="right">
-                <MenuLink to="/login">Войти</MenuLink>
+                <Modal
+                    size="small"
+                    closeIcon
+                    trigger={<a className="item">Войти</a>}
+                >
+                    <Modal.Header>Войти</Modal.Header>
+                    <Modal.Content>
+                        <LoginForm />
+                    </Modal.Content>
+                </Modal>
             </Menu.Menu>
         )}
     </Menu>
