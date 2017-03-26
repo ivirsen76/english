@@ -10,4 +10,9 @@ describe('<TopMenu />', () => {
         const wrapper = shallow(<TopMenu />);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
+
+    it('Should render menu for logged user', () => {
+        const wrapper = shallow(<TopMenu isLoggedIn user={{ email: 'some@one.com' }} />);
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
 });

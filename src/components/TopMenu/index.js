@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Dropdown, Menu } from 'semantic-ui-react';
 import MenuLink from 'components/MenuLink';
 
 
-const TopMenu = () => (
+const TopMenu = ({ isLoggedIn, user }) => (
     <Menu inverted>
         <MenuLink to="/" onlyActiveOnIndex>Главная</MenuLink>
         <MenuLink to="/features">Возможности</MenuLink>
@@ -16,11 +16,27 @@ const TopMenu = () => (
                 <Dropdown.Item>Числа на слух</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
-        <Menu.Menu position="right">
-            <MenuLink to="/user">Dashboard</MenuLink>
-            <Menu.Item>Логин</Menu.Item>
-        </Menu.Menu>
+        {isLoggedIn ? (
+            <Menu.Menu position="right">
+                <MenuLink to="/user">Dashboard</MenuLink>
+                <Dropdown item trigger={<span><i className="icon-user" /> {user.email}</span>}>
+                    <Dropdown.Menu>
+                        <Dropdown.Item>Сменить пароль</Dropdown.Item>
+                        <Dropdown.Item>Выйти</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+            </Menu.Menu>
+        ) : (
+            <Menu.Menu position="right">
+                <MenuLink to="/login">Войти</MenuLink>
+            </Menu.Menu>
+        )}
     </Menu>
 );
+
+TopMenu.propTypes = {
+    isLoggedIn: PropTypes.bool,
+    user: PropTypes.object,
+};
 
 export default TopMenu;
