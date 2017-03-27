@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import cookie from 'react-cookie';
-import { setToken } from 'reducers/auth';
+import { authenticate } from 'reducers/auth';
 import { loadCards } from 'reducers/card';
 import 'semantic-ui-css/semantic.css';
 import './styles/app.css';
@@ -20,7 +20,7 @@ require('./favicon.ico'); // Tell webpack to load favicon.ico
 const store = configureStore();
 const token = cookie.load('token');
 if (token) {
-    store.dispatch(setToken(token));
+    store.dispatch(authenticate(token));
     store.dispatch(loadCards());
 }
 

@@ -24,12 +24,18 @@ export const setToken = createAction(SET_TOKEN);
 export const discardToken = createAction(DISCARD_TOKEN);
 export const setUser = createAction(SET_USER);
 
+export const authenticate = token => async (dispatch, getState) => {
+    dispatch(setToken(token));
+    axios.defaults.headers.common.Authorization = token;
+};
+
+
 // This is not exactly an action creator
 export const login = async (dispatch, { email, password }) => {
     try {
         const res = await axios.post('/auth/local', { email, password });
         cookie.save('token', res.data.token, { path: '/' });
-        dispatch(setToken(res.data.token));
+        dispatch(authenticate(res.data.token));
         dispatch(setUser(res.data.data));
         browserHistory.push('/user/cards');
     } catch (e) {

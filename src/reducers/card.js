@@ -26,21 +26,12 @@ export const updateCard = createAction(UPDATE_CARD);
 export const setCards = createAction(SET_CARDS);
 
 export const addCard = cardInfo => async (dispatch, getState) => {
-    const state = getState().auth;
     dispatch(addCardWithoutSaving(cardInfo));
-
-    await axios.post('/cards', cardInfo, {
-        headers: { Authorization: 'Bearer ' + state.token },
-    });
+    await axios.post('/cards', cardInfo);
 };
 
 export const loadCards = () => async (dispatch, getState) => {
-    const state = getState().auth;
-
-    const res = await axios.get('/cards', {
-        headers: { Authorization: 'Bearer ' + state.token },
-    });
-
+    const res = await axios.get('/cards');
     dispatch(setCards(res.data.data));
 };
 
