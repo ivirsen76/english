@@ -3,6 +3,7 @@ import _pick from 'lodash/pick';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import { SubmissionError } from 'redux-form';
+import cookie from 'react-cookie';
 
 const apiEndpoint = 'http://localhost:3030';
 
@@ -29,6 +30,7 @@ export const setUser = createAction(SET_USER);
 export const login = async (dispatch, { email, password }) => {
     try {
         const res = await axios.post(`${apiEndpoint}/auth/local`, { email, password });
+        cookie.save('token', res.data.token, { path: '/' });
         dispatch(setToken(res.data.token));
         dispatch(setUser(res.data.data));
         browserHistory.push('/user/cards');
