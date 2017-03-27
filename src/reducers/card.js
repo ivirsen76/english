@@ -1,10 +1,9 @@
 import { handleActions, createAction } from 'redux-actions';
 import _max from 'lodash/max';
 import _pick from 'lodash/pick';
-import axios from 'axios';
+import axios from 'utils/axios';
 
 export const minNewId = 1000000000;
-const apiEndpoint = 'http://localhost:3030';
 
 
 // Initial state
@@ -30,7 +29,7 @@ export const addCard = cardInfo => async (dispatch, getState) => {
     const state = getState().auth;
     dispatch(addCardWithoutSaving(cardInfo));
 
-    await axios.post(`${apiEndpoint}/cards`, cardInfo, {
+    await axios.post('/cards', cardInfo, {
         headers: { Authorization: 'Bearer ' + state.token },
     });
 };
@@ -38,7 +37,7 @@ export const addCard = cardInfo => async (dispatch, getState) => {
 export const loadCards = () => async (dispatch, getState) => {
     const state = getState().auth;
 
-    const res = await axios.get(`${apiEndpoint}/cards`, {
+    const res = await axios.get('/cards', {
         headers: { Authorization: 'Bearer ' + state.token },
     });
 

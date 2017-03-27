@@ -1,11 +1,9 @@
 import { handleActions, createAction } from 'redux-actions';
 import _pick from 'lodash/pick';
-import axios from 'axios';
+import axios from 'utils/axios';
 import { browserHistory } from 'react-router';
 import { SubmissionError } from 'redux-form';
 import cookie from 'react-cookie';
-
-const apiEndpoint = 'http://localhost:3030';
 
 
 // Initial state
@@ -29,7 +27,7 @@ export const setUser = createAction(SET_USER);
 // This is not exactly an action creator
 export const login = async (dispatch, { email, password }) => {
     try {
-        const res = await axios.post(`${apiEndpoint}/auth/local`, { email, password });
+        const res = await axios.post('/auth/local', { email, password });
         cookie.save('token', res.data.token, { path: '/' });
         dispatch(setToken(res.data.token));
         dispatch(setUser(res.data.data));
