@@ -36,7 +36,7 @@ const TopMenu = ({ isLoggedIn, user }) => (
                 >
                     <Modal.Header>Войти</Modal.Header>
                     <Modal.Content>
-                        <LoginForm onSubmit={result => console.log('Submitted')} />
+                        <LoginForm />
                     </Modal.Content>
                 </Modal>
             </Menu.Menu>

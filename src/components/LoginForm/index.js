@@ -1,40 +1,21 @@
 import React, { PropTypes } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import Input from 'components/SemanticInput';
-import isEmail from 'validator/lib/isEmail';
+import { connect } from 'react-redux';
+import { login } from 'reducers/auth';
+import Form from './form';
 
 
-export const validate = (values) => {
-    const errors = {};
-
-    if (!values.email) {
-        errors.email = 'Email is required';
-    } else if (!isEmail(values.email)) {
-        errors.email = 'Email is invalid';
+class Component extends React.Component {
+    static propTypes = {
+        dispatch: PropTypes.func,
     }
 
-    return errors;
-};
-
-
-class LoginForm extends React.Component {
-    static propTypes = {
-        handleSubmit: PropTypes.func,
-    };
+    login = values => login(this.props.dispatch, values)
 
     render() {
         return (
-            <form onSubmit={this.props.handleSubmit} className="ui form">
-                <Field name="email" component={Input} label="Email" autoFocus />
-                <Field name="password" component={Input} label="Пароль" type="password" />
-
-                <button className="ui compact button" type="submit">Войти</button>
-            </form>
+            <Form onSubmit={this.login} />
         );
     }
 }
 
-export default reduxForm({
-    form: 'LoginForm',
-    validate,
-})(LoginForm);
+export default connect()(Component);

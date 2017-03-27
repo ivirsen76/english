@@ -60,9 +60,7 @@ exports[`<TopMenu /> Should render menu 1`] = `
         Войти
       </ModalHeader>
       <ModalContent>
-        <ReduxForm
-          onSubmit={[Function]}
-        />
+        <Connect(Component) />
       </ModalContent>
     </Modal>
   </MenuMenu>
