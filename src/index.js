@@ -8,6 +8,7 @@ import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import cookie from 'react-cookie';
 import { setToken } from 'reducers/auth';
+import { loadCards } from 'reducers/card';
 import 'semantic-ui-css/semantic.css';
 import './styles/app.css';
 import './styles/icomoon.css';
@@ -20,6 +21,7 @@ const store = configureStore();
 const token = cookie.load('token');
 if (token) {
     store.dispatch(setToken(token));
+    store.dispatch(loadCards());
 }
 
 // Create an enhanced history that syncs navigation events with the store

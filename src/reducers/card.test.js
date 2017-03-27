@@ -1,10 +1,11 @@
 /* global describe, it, expect */
 import reducer, {
     initialState,
-    addCard,
+    addCardWithoutSaving as addCard,
     deleteCard,
     updateCard,
     minNewId,
+    setCards,
 } from './card';
 
 
@@ -68,6 +69,26 @@ describe('card reducer', () => {
                 { id: 2, text: 'Tree', translate: 'Some' },
             ];
             const resultedState = reducer(state, updateCard({ id: 1, text: 'One', unknown: 1 }));
+            expect(resultedState.list).toEqual(expectedList);
+        });
+    });
+
+    describe('setCards()', () => {
+        it('Should add cards', () => {
+            const state = {
+                ...initialState,
+                list: [
+                    { id: 1, text: 'Ball', translate: 'Some' },
+                ],
+            };
+            const expectedList = [
+                { id: 3, text: 'One', translate: 'Some', label: '123' },
+                { id: 4, text: 'Tree', translate: 'Some', label: '456' },
+            ];
+            const resultedState = reducer(state, setCards([
+                { id: 3, text: 'One', translate: 'Some', label: '123', 'another': 33 },
+                { id: 4, text: 'Tree', translate: 'Some', label: '456', 'some': 55 },
+            ]));
             expect(resultedState.list).toEqual(expectedList);
         });
     });
