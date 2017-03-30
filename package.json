@@ -22,7 +22,7 @@
     "lint": "eslint .",
     "lint:watch": "npm run lint -- --watch",
     "clean-dist": "rimraf ./dist && mkdir dist",
-    "build": "npm run clean-dist && babel-node tools/build.js",
+    "build": "npm run clean-dist && node tools/build.js",
     "test": "node_modules/jest/bin/jest.js --config jestconfig.json --silent",
     "cover": "npm test -- --coverage",
     "snap": "npm test -- -u",
