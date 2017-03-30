@@ -1,6 +1,6 @@
 import axios from 'axios';
 import notification from '@ieremeev/notification';
-import { discardToken } from 'reducers/auth';
+// import { discardToken } from 'reducers/auth';
 // import { store } from '../index';
 
 
