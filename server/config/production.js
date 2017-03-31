@@ -1,5 +1,5 @@
 module.exports = {
-    'host': process.env.ENGLISH_API_HOST,
+    'host': process.env.ENGLISH_HOST,
     'port': process.env.PORT,
     'mysql': process.env.JAWSDB_URL,
     'public': '../../dist/',

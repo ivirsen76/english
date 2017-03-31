@@ -5,7 +5,7 @@ import notification from '@ieremeev/notification';
 
 
 const instance = axios.create({
-    baseURL: 'http://localhost:3030',
+    baseURL: process.env.ENGLISH_HOST || 'http://localhost:3030',
 });
 
 instance.interceptors.response.use(null, (error) => {

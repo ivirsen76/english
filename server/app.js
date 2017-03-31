@@ -16,11 +16,6 @@ const app = feathers();
 
 app.configure(configuration(path.join(__dirname, '.')));
 
-app.get('/hello', (req, res) => {
-    res.contentType('application/json');
-    res.send(process.env);
-});
-
 app.use(compress())
   .options('*', cors())
   .use(cors())
