@@ -1,1 +1,1 @@
-web: node tools/prodServer.js
+web: node server/index.js
