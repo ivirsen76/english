@@ -1,5 +1,3 @@
-
-
 const path = require('path');
 const serveStatic = require('feathers').static;
 const favicon = require('serve-favicon');

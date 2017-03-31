@@ -18,7 +18,7 @@
     "start:server": "nodemon server/",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
-    "open:prod": "node tools/prodServer.js",
+    "open:prod": "node server/index.js",
     "lint": "eslint .",
     "lint:watch": "npm run lint -- --watch",
     "clean-dist": "rimraf ./dist && mkdir dist",
