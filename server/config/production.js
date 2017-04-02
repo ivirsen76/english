@@ -1,5 +1,5 @@
 module.exports = {
-    'host': process.env.ENGLISH_HOST,
+    'host': 'word-word.herokuapp.com',
     'port': process.env.PORT,
     'mysql': process.env.JAWSDB_URL,
     'public': '../../dist/',

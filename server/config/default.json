@@ -2,7 +2,7 @@
   "host": "localhost",
   "port": 3030,
   "mysql": "mysql://root:root@localhost:3306/feather",
-  "public": "../public/",
+  "public": "../../dist/",
   "auth": {
     "idField": "id",
     "token": {
