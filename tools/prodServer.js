@@ -6,7 +6,11 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 app.use(compression());
-app.use(express.static(path.join(__dirname, '../dist/')));
+app.use(express.static(path.resolve(__dirname, '..', 'dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
+});
 
 // Heroku bydefault set an ENV variable called PORT=443
 //  so that you can access your site with https default port.
