@@ -15,7 +15,7 @@ class Component extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{ maxWidth: '300px' }}>
                 <LoginForm />
             </div>
         );
