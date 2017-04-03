@@ -10,7 +10,9 @@ const instance = axios.create({
 instance.interceptors.response.use(null, (error) => {
     switch (error.response.status) {
         case 401:
-            browserHistory.push('/login');
+            if (!/auth\/local$/.test(error.response.config.url)) {
+                browserHistory.push('/login');
+            }
             break;
 
         default:
