@@ -4,6 +4,7 @@ import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import App from 'components/App';
 import HomePage from 'containers/HomePage';
 import LoginPage from 'containers/LoginPage';
+import LogoutPage from 'containers/LogoutPage';
 import FeaturesPage from 'containers/FeaturesPage';
 import UserArea from 'containers/UserArea';
 import CardsPage from 'containers/CardsPage';
@@ -15,6 +16,7 @@ export default (
         <IndexRoute component={HomePage} />
         <Route path="features" component={FeaturesPage} />
         <Route path="login" component={LoginPage} />
+        <Route path="logout" component={LogoutPage} />
         <Route path="user" component={UserArea}>
             <IndexRedirect to="cards" />
             <Route path="cards" component={CardsPage} />

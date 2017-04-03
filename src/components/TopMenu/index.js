@@ -23,7 +23,7 @@ const TopMenu = ({ isLoggedIn, user }) => (
                 <Dropdown item trigger={<span><i className="icon-user" /> {user.email}</span>}>
                     <Dropdown.Menu>
                         <Dropdown.Item>Сменить пароль</Dropdown.Item>
-                        <Dropdown.Item>Выйти</Dropdown.Item>
+                        <MenuLink to="/logout">Выйти</MenuLink>
                     </Dropdown.Menu>
                 </Dropdown>
             </Menu.Menu>

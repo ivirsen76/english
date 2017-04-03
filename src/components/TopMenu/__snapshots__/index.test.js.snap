@@ -136,9 +136,11 @@ exports[`<TopMenu /> Should render menu for logged user 1`] = `
         <DropdownItem>
           Сменить пароль
         </DropdownItem>
-        <DropdownItem>
+        <withProps(Link)
+          to="/logout"
+        >
           Выйти
-        </DropdownItem>
+        </withProps(Link)>
       </DropdownMenu>
     </Dropdown>
   </MenuMenu>
