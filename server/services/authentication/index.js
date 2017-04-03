@@ -1,5 +1,3 @@
-
-
 const authentication = require('feathers-authentication');
 
 
