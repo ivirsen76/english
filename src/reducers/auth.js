@@ -24,6 +24,13 @@ export const setToken = createAction(SET_TOKEN);
 export const discardToken = createAction(DISCARD_TOKEN);
 export const setUser = createAction(SET_USER);
 
+
+export const logout = token => (dispatch, getState) => {
+    dispatch(discardToken(token));
+    cookie.remove('token', { path: '/' });
+};
+
+
 export const authenticate = token => async (dispatch, getState) => {
     dispatch(setToken(token));
     axios.defaults.headers.common.Authorization = token;

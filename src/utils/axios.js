@@ -1,7 +1,6 @@
 import axios from 'axios';
 import notification from '@ieremeev/notification';
-// import { discardToken } from 'reducers/auth';
-// import { store } from '../index';
+import { browserHistory } from 'react-router';
 
 
 const instance = axios.create({
@@ -11,7 +10,7 @@ const instance = axios.create({
 instance.interceptors.response.use(null, (error) => {
     switch (error.response.status) {
         case 401:
-            // store.dispatch(discardToken());
+            browserHistory.push('/login');
             break;
 
         default:
