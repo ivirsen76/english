@@ -1,7 +1,3 @@
-coverage
-node_modules
-dist
-yarn-error.log
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
