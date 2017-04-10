@@ -6,7 +6,6 @@
         "import/no-extraneous-dependencies": ["off"],
         "react/prefer-stateless-function": ["off"],
         "func-names": ["off"],
-        "semi": ["error", "never"],
-        "no-unexpected-multiline": 2
+        "semi": ["error", "never"]
     }
 }
