@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react';
-import SideMenu from 'components/SideMenu';
-import { connect } from 'react-redux';
-import { getCardCount } from 'selectors/card';
-import { loadCards } from 'reducers/card';
+import React, { PropTypes } from 'react'
+import SideMenu from 'components/SideMenu'
+import { connect } from 'react-redux'
+import { getCardCount } from 'selectors/card'
+import { loadCards } from 'reducers/card'
 
 
 class Component extends React.Component {
@@ -13,7 +13,7 @@ class Component extends React.Component {
     }
 
     componentDidMount() {
-        this.props.loadCards();
+        this.props.loadCards()
     }
 
     render() {
@@ -28,7 +28,7 @@ class Component extends React.Component {
                     {this.props.children}
                 </div>
             </div>
-        );
+        )
     }
 }
 
@@ -36,9 +36,9 @@ class Component extends React.Component {
 function mapStateToProps(state) {
     return {
         cardTotal: getCardCount(state),
-    };
+    }
 }
 
 export default connect(mapStateToProps, {
     loadCards,
-})(Component);
+})(Component)

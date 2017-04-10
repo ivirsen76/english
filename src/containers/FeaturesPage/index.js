@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -9,13 +9,13 @@ class Component extends React.Component {
             <div>
                 <h2>Возможности</h2>
             </div>
-        );
+        )
     }
 }
 
 
 function mapStateToProps(state) {
-    return {};
+    return {}
 }
 
-export default connect(mapStateToProps)(Component);
+export default connect(mapStateToProps)(Component)

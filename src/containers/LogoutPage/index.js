@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { logout } from 'reducers/auth';
-import { browserHistory } from 'react-router';
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { logout } from 'reducers/auth'
+import { browserHistory } from 'react-router'
 
 
 class Component extends React.Component {
@@ -10,13 +10,13 @@ class Component extends React.Component {
     }
 
     componentDidMount() {
-        this.props.logout();
-        browserHistory.push('/');
+        this.props.logout()
+        browserHistory.push('/')
     }
 
     render() {
-        return null;
+        return null
     }
 }
 
-export default connect(null, { logout })(Component);
+export default connect(null, { logout })(Component)

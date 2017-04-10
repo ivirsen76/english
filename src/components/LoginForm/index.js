@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { login } from 'reducers/auth';
-import Form from './form';
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { login } from 'reducers/auth'
+import Form from './form'
 
 
 class Component extends React.Component {
@@ -14,8 +14,8 @@ class Component extends React.Component {
     render() {
         return (
             <Form onSubmit={this.login} />
-        );
+        )
     }
 }
 
-export default connect()(Component);
+export default connect()(Component)

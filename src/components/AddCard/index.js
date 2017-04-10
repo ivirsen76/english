@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
-import { Modal } from 'semantic-ui-react';
-import notification from '@ieremeev/notification';
-import Form from './form';
+import React, { PropTypes } from 'react'
+import { Modal } from 'semantic-ui-react'
+import notification from '@ieremeev/notification'
+import Form from './form'
 
 
 export default class Component extends React.Component {
@@ -12,12 +12,12 @@ export default class Component extends React.Component {
     }
 
     handleSubmit = (values) => {
-        this.props.addCard(values);
-        notification('Карточка добавлена');
+        this.props.addCard(values)
+        notification('Карточка добавлена')
     }
 
     render() {
-        const trigger = <button className="ui compact primary button">Добавить слово</button>;
+        const trigger = <button className="ui compact primary button">Добавить слово</button>
 
         return (
             <Modal
@@ -37,6 +37,6 @@ export default class Component extends React.Component {
                     </div>
                 </Modal.Content>
             </Modal>
-        );
+        )
     }
 }

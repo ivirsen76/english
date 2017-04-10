@@ -1,32 +1,32 @@
 /* eslint-disable import/default */
 
-import 'babel-polyfill';
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import cookie from 'react-cookie';
-import { authenticate } from 'reducers/auth';
-import 'semantic-ui-css/semantic.css';
-import './styles/app.css';
-import './styles/icomoon.css';
-import routes from './routes';
-import configureStore from './store/configureStore';
+import 'babel-polyfill'
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { Router, browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
+import cookie from 'react-cookie'
+import { authenticate } from 'reducers/auth'
+import 'semantic-ui-css/semantic.css'
+import './styles/app.css'
+import './styles/icomoon.css'
+import routes from './routes'
+import configureStore from './store/configureStore'
 
-require('./favicon.ico'); // Tell webpack to load favicon.ico
+require('./favicon.ico') // Tell webpack to load favicon.ico
 
-const store = configureStore();
-const token = cookie.load('token');
+const store = configureStore()
+const token = cookie.load('token')
 if (token) {
-    store.dispatch(authenticate(token));
+    store.dispatch(authenticate(token))
 }
 
 // Create an enhanced history that syncs navigation events with the store
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store)
 
 render(
     <Provider store={store}>
         <Router history={history} routes={routes} />
     </Provider>, document.getElementById('app')
-);
+)

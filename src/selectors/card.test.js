@@ -1,10 +1,10 @@
 /* global describe, it, expect */
-import { minNewId } from 'reducers/card';
+import { minNewId } from 'reducers/card'
 import {
     getNextNewId,
     getLatestLabel,
     getCardCount,
-} from './card';
+} from './card'
 
 
 describe('Card selectors', () => {
@@ -16,9 +16,9 @@ describe('Card selectors', () => {
                         { id: 1 },
                     ],
                 },
-            };
-            expect(getNextNewId(state)).toBe(minNewId);
-        });
+            }
+            expect(getNextNewId(state)).toBe(minNewId)
+        })
 
         it('Should return next new id', () => {
             const state = {
@@ -27,10 +27,10 @@ describe('Card selectors', () => {
                         { id: minNewId },
                     ],
                 },
-            };
-            expect(getNextNewId(state)).toBe(minNewId + 1);
-        });
-    });
+            }
+            expect(getNextNewId(state)).toBe(minNewId + 1)
+        })
+    })
 
     describe('getLatestLabel()', () => {
         it('Should return empty string for empty list', () => {
@@ -38,9 +38,9 @@ describe('Card selectors', () => {
                 card: {
                     list: [],
                 },
-            };
-            expect(getLatestLabel(state)).toBe('');
-        });
+            }
+            expect(getLatestLabel(state)).toBe('')
+        })
 
         it('Should return empty string for the list without label', () => {
             const state = {
@@ -49,9 +49,9 @@ describe('Card selectors', () => {
                         { id: 1 },
                     ],
                 },
-            };
-            expect(getLatestLabel(state)).toBe('');
-        });
+            }
+            expect(getLatestLabel(state)).toBe('')
+        })
 
         it('Should return latest label', () => {
             const state = {
@@ -61,10 +61,10 @@ describe('Card selectors', () => {
                         { id: 1, label: 'first' },
                     ],
                 },
-            };
-            expect(getLatestLabel(state)).toBe('second');
-        });
-    });
+            }
+            expect(getLatestLabel(state)).toBe('second')
+        })
+    })
 
 
     describe('getCardCount()', () => {
@@ -76,8 +76,8 @@ describe('Card selectors', () => {
                         { id: 2 },
                     ],
                 },
-            };
-            expect(getCardCount(state)).toBe(2);
-        });
-    });
-});
+            }
+            expect(getCardCount(state)).toBe(2)
+        })
+    })
+})

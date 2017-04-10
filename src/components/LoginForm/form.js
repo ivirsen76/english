@@ -1,20 +1,20 @@
-import React, { PropTypes } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import Input from 'components/SemanticInput';
-import isEmail from 'validator/lib/isEmail';
+import React, { PropTypes } from 'react'
+import { Field, reduxForm } from 'redux-form'
+import Input from 'components/SemanticInput'
+import isEmail from 'validator/lib/isEmail'
 
 
 export const validate = (values) => {
-    const errors = {};
+    const errors = {}
 
     if (!values.email) {
-        errors.email = 'Email is required';
+        errors.email = 'Email is required'
     } else if (!isEmail(values.email)) {
-        errors.email = 'Email is invalid';
+        errors.email = 'Email is invalid'
     }
 
-    return errors;
-};
+    return errors
+}
 
 
 class LoginForm extends React.Component {
@@ -24,7 +24,7 @@ class LoginForm extends React.Component {
     };
 
     render() {
-        const { handleSubmit, submitting } = this.props;
+        const { handleSubmit, submitting } = this.props
 
         return (
             <form onSubmit={handleSubmit} className="ui form">
@@ -38,11 +38,11 @@ class LoginForm extends React.Component {
                     Войти
                 </button>
             </form>
-        );
+        )
     }
 }
 
 export default reduxForm({
     form: 'LoginForm',
     validate,
-})(LoginForm);
+})(LoginForm)

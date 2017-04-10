@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import Input from 'components/SemanticInput';
-import { stripBrackets } from 'utils/card.js';
+import React, { PropTypes } from 'react'
+import { Field, reduxForm } from 'redux-form'
+import Input from 'components/SemanticInput'
+import { stripBrackets } from 'utils/card.js'
 
 
 export const errorMessages = {
@@ -9,38 +9,38 @@ export const errorMessages = {
     invalidText: 'Текст должен быть написан по-английски',
     noTranslate: 'Вы должны ввести перевод',
     invalidTranslate: 'Текст должен быть написан по-русски',
-};
+}
 
 
 export const validate = (values) => {
-    const errors = {};
+    const errors = {}
 
     if (!values.text) {
-        errors.text = errorMessages.noText;
+        errors.text = errorMessages.noText
     } else {
-        const text = stripBrackets(values.text);
+        const text = stripBrackets(values.text)
 
         if (text === '') {
-            errors.text = errorMessages.noText;
+            errors.text = errorMessages.noText
         } else if (!/^[\s\da-zA-Z.,\-!?;:]+$/.test(text)) {
-            errors.text = errorMessages.invalidText;
+            errors.text = errorMessages.invalidText
         }
     }
 
     if (!values.translate) {
-        errors.translate = errorMessages.noTranslate;
+        errors.translate = errorMessages.noTranslate
     } else {
-        const translate = stripBrackets(values.translate);
+        const translate = stripBrackets(values.translate)
 
         if (translate === '') {
-            errors.translate = errorMessages.noTranslate;
+            errors.translate = errorMessages.noTranslate
         } else if (!/^[\s\dа-яА-Я.,\-!?;:]+$/.test(translate)) {
-            errors.translate = errorMessages.invalidTranslate;
+            errors.translate = errorMessages.invalidTranslate
         }
     }
 
-    return errors;
-};
+    return errors
+}
 
 
 class Component extends React.Component {
@@ -60,10 +60,10 @@ class Component extends React.Component {
                     {this.props.submitButtonTitle}
                 </button>
             </form>
-        );
+        )
     }
 }
 
 export default reduxForm({
     validate,
-})(Component);
+})(Component)

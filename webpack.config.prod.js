@@ -1,17 +1,17 @@
 // For info about this file refer to webpack and webpack-hot-middleware documentation
 // For info on how we're generating bundles with hashed filenames for cache busting:
 // https://medium.com/@okonetchnikov/long-term-caching-of-static-assets-with-webpack-1ecb139adb95#.w99i89nsz
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const WebpackMd5Hash = require('webpack-md5-hash');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const path = require('path');
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const WebpackMd5Hash = require('webpack-md5-hash')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const autoprefixer = require('autoprefixer')
+const path = require('path')
 
 const GLOBALS = {
     'process.env.NODE_ENV': JSON.stringify('production'),
     __DEV__: false,
-};
+}
 
 module.exports = {
     resolve: {
@@ -106,4 +106,4 @@ module.exports = {
             },
         ],
     },
-};
+}

@@ -1,30 +1,30 @@
-import axios from 'axios';
-import notification from '@ieremeev/notification';
-import { browserHistory } from 'react-router';
+import axios from 'axios'
+import notification from '@ieremeev/notification'
+import { browserHistory } from 'react-router'
 
 
 const instance = axios.create({
     baseURL: process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3030',
-});
+})
 
 instance.interceptors.response.use(null, (error) => {
     switch (error.response.status) {
         case 401:
             if (!/auth\/local$/.test(error.response.config.url)) {
-                browserHistory.push('/login');
+                browserHistory.push('/login')
             }
-            break;
+            break
 
         default:
             notification({
                 message: error.response.status + ': ' + error.message,
                 type: 'negative',
                 duration: 0,
-            });
-            break;
+            })
+            break
     }
 
-    return Promise.reject(error);
-});
+    return Promise.reject(error)
+})
 
-export default instance;
+export default instance

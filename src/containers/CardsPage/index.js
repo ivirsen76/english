@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import Cards from 'components/Cards';
-import AddCard from 'components/AddCard';
-import { addCard, deleteCard, updateCard } from 'reducers/card';
-import { getNextNewId, getLatestLabel } from 'selectors/card';
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import Cards from 'components/Cards'
+import AddCard from 'components/AddCard'
+import { addCard, deleteCard, updateCard } from 'reducers/card'
+import { getNextNewId, getLatestLabel } from 'selectors/card'
 
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -34,7 +34,7 @@ class Component extends React.Component {
                     updateCard={this.props.updateCard}
                 />
             </div>
-        );
+        )
     }
 }
 
@@ -44,11 +44,11 @@ function mapStateToProps(state) {
         list: state.card.list,
         nextNewId: getNextNewId(state),
         latestLabel: getLatestLabel(state),
-    };
+    }
 }
 
 export default connect(mapStateToProps, {
     addCard,
     deleteCard,
     updateCard,
-})(Component);
+})(Component)

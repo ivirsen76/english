@@ -1,15 +1,15 @@
-import React from 'react';
-import { Route, IndexRoute, IndexRedirect } from 'react-router';
+import React from 'react'
+import { Route, IndexRoute, IndexRedirect } from 'react-router'
 
-import App from 'components/App';
-import HomePage from 'containers/HomePage';
-import LoginPage from 'containers/LoginPage';
-import LogoutPage from 'containers/LogoutPage';
-import FeaturesPage from 'containers/FeaturesPage';
-import UserArea from 'containers/UserArea';
-import CardsPage from 'containers/CardsPage';
-import RememberPage from 'containers/RememberPage';
-import NotFoundPage from 'components/NotFoundPage';
+import App from 'components/App'
+import HomePage from 'containers/HomePage'
+import LoginPage from 'containers/LoginPage'
+import LogoutPage from 'containers/LogoutPage'
+import FeaturesPage from 'containers/FeaturesPage'
+import UserArea from 'containers/UserArea'
+import CardsPage from 'containers/CardsPage'
+import RememberPage from 'containers/RememberPage'
+import NotFoundPage from 'components/NotFoundPage'
 
 export default (
     <Route path="/" component={App}>
@@ -24,4 +24,4 @@ export default (
         </Route>
         <Route path="*" component={NotFoundPage} />
     </Route>
-);
+)

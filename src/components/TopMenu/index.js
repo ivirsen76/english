@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
-import { Dropdown, Menu, Modal } from 'semantic-ui-react';
-import MenuLink from 'components/MenuLink';
-import LoginForm from 'components/LoginForm';
+import React, { PropTypes } from 'react'
+import { Dropdown, Menu, Modal } from 'semantic-ui-react'
+import MenuLink from 'components/MenuLink'
+import LoginForm from 'components/LoginForm'
 
 
 const TopMenu = ({ isLoggedIn, user }) => (
@@ -42,11 +42,11 @@ const TopMenu = ({ isLoggedIn, user }) => (
             </Menu.Menu>
         )}
     </Menu>
-);
+)
 
 TopMenu.propTypes = {
     isLoggedIn: PropTypes.bool,
     user: PropTypes.object,
-};
+}
 
-export default TopMenu;
+export default TopMenu

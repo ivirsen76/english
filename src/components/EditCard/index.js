@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
-import { Modal } from 'semantic-ui-react';
-import notification from '@ieremeev/notification';
-import Form from 'components/AddCard/form';
+import React, { PropTypes } from 'react'
+import { Modal } from 'semantic-ui-react'
+import notification from '@ieremeev/notification'
+import Form from 'components/AddCard/form'
 
 
 export default class Component extends React.Component {
@@ -11,9 +11,9 @@ export default class Component extends React.Component {
     }
 
     handleSubmit = (values) => {
-        this.props.updateCard(values);
-        notification('Карточка обновлена');
-        this.modal.handleClose();
+        this.props.updateCard(values)
+        notification('Карточка обновлена')
+        this.modal.handleClose()
     }
 
     render() {
@@ -21,14 +21,14 @@ export default class Component extends React.Component {
             <button className="ui green compact tiny icon button">
                 <i className="icon-pencil" />
             </button>
-        );
+        )
 
         return (
             <Modal
                 size="small"
                 closeIcon
                 trigger={trigger}
-                ref={(modal) => { this.modal = modal; }}
+                ref={(modal) => { this.modal = modal }}
             >
                 <Modal.Header>Изменить слово</Modal.Header>
                 <Modal.Content>
@@ -40,6 +40,6 @@ export default class Component extends React.Component {
                     />
                 </Modal.Content>
             </Modal>
-        );
+        )
     }
 }

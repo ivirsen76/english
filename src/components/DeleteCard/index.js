@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
 
 
 export default class Component extends React.Component {
@@ -8,7 +8,7 @@ export default class Component extends React.Component {
     }
 
     onClick = () => {
-        this.props.deleteCard(this.props.id);
+        this.props.deleteCard(this.props.id)
     }
 
     render() {
@@ -16,6 +16,6 @@ export default class Component extends React.Component {
             <button className="ui red compact tiny icon button" onClick={this.onClick}>
                 <i className="icon-cross" />
             </button>
-        );
+        )
     }
 }

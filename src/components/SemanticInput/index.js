@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import _pick from 'lodash/pick';
+import React, { PropTypes } from 'react'
+import _pick from 'lodash/pick'
 
 
 export default class Component extends React.Component {
@@ -10,8 +10,8 @@ export default class Component extends React.Component {
     }
 
     render() {
-        const { input, label, meta: { touched, error } } = this.props;
-        const props = _pick(this.props, ['autoFocus', 'type']);
+        const { input, label, meta: { touched, error } } = this.props
+        const props = _pick(this.props, ['autoFocus', 'type'])
 
         return (
             <div className={'field ' + (touched && error && 'error')}>
@@ -21,6 +21,6 @@ export default class Component extends React.Component {
                     <div className="ui pointing red basic label">{error}</div>
                 )}
             </div>
-        );
+        )
     }
 }

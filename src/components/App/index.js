@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
-import TopMenu from 'components/TopMenu';
-import { connect } from 'react-redux';
+import React, { PropTypes } from 'react'
+import TopMenu from 'components/TopMenu'
+import { connect } from 'react-redux'
 
 
 // This is a class-based component because the current
@@ -20,7 +20,7 @@ class App extends React.Component {
                 <TopMenu isLoggedIn={this.props.isLoggedIn} user={this.props.user} />
                 {this.props.children}
             </div>
-        );
+        )
     }
 }
 
@@ -28,7 +28,7 @@ function mapStateToProps(state) {
     return {
         isLoggedIn: !!state.auth.token,
         user: state.auth.user,
-    };
+    }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)

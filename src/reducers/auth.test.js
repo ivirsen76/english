@@ -4,16 +4,16 @@ import reducer, {
     setToken,
     discardToken,
     setUser,
-} from './auth';
+} from './auth'
 
 
 describe('auth reducer', () => {
     describe('setToken()', () => {
         it('Should set token', () => {
-            const token = 'sjdfklsdjklfjlsd';
-            expect(reducer(initialState, setToken(token)).token).toBe(token);
-        });
-    });
+            const token = 'sjdfklsdjklfjlsd'
+            expect(reducer(initialState, setToken(token)).token).toBe(token)
+        })
+    })
 
     describe('discardToken()', () => {
         it('Should discard token', () => {
@@ -23,25 +23,25 @@ describe('auth reducer', () => {
                 user: {
                     email: 'some@one.com',
                 },
-            };
-            const resultedState = reducer(state, discardToken());
-            expect(resultedState.token).toBeNull();
-            expect(resultedState.user).toEqual({});
-        });
-    });
+            }
+            const resultedState = reducer(state, discardToken())
+            expect(resultedState.token).toBeNull()
+            expect(resultedState.user).toEqual({})
+        })
+    })
 
     describe('setUser()', () => {
         it('Should set user', () => {
             const state = {
                 ...initialState,
                 user: {},
-            };
+            }
             const user = {
                 email: 'some@one.com',
                 info: 'dfkfdl',
-            };
-            const resultedState = reducer(state, setUser(user));
-            expect(resultedState.user).toEqual({ email: 'some@one.com' });
-        });
-    });
-});
+            }
+            const resultedState = reducer(state, setUser(user))
+            expect(resultedState.user).toEqual({ email: 'some@one.com' })
+        })
+    })
+})

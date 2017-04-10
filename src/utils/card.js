@@ -1,1 +1,1 @@
-export const stripBrackets = text => text.replace(/\([^)]*\)/g, '').trim();
+export const stripBrackets = text => text.replace(/\([^)]*\)/g, '').trim()

@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import LoginForm from 'components/LoginForm';
-import { logout } from 'reducers/auth';
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import LoginForm from 'components/LoginForm'
+import { logout } from 'reducers/auth'
 
 
 class Component extends React.Component {
@@ -10,7 +10,7 @@ class Component extends React.Component {
     }
 
     componentDidMount() {
-        this.props.logout();
+        this.props.logout()
     }
 
     render() {
@@ -18,15 +18,15 @@ class Component extends React.Component {
             <div style={{ maxWidth: '300px' }}>
                 <LoginForm />
             </div>
-        );
+        )
     }
 }
 
 
 function mapStateToProps(state) {
-    return {};
+    return {}
 }
 
 export default connect(mapStateToProps, {
     logout,
-})(Component);
+})(Component)

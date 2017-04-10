@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
-import Table from '@ieremeev/table';
-import EditCard from 'components/EditCard';
-import DeleteCard from 'components/DeleteCard';
+import React, { PropTypes } from 'react'
+import Table from '@ieremeev/table'
+import EditCard from 'components/EditCard'
+import DeleteCard from 'components/DeleteCard'
 
 
 export const Cards = ({ data, deleteCard, updateCard }) => {
@@ -14,7 +14,7 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
                     <EditCard updateCard={updateCard} initialValues={row} />
                     <DeleteCard deleteCard={deleteCard} id={row.id} />
                 </div>
-            );
+            )
         },
     }, {
         name: 'text',
@@ -31,7 +31,7 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
         label: 'Метка',
         filter: true,
         sort: true,
-    }];
+    }]
 
     return (
         <Table
@@ -39,13 +39,13 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
             columns={columns}
             showRowNumber
         />
-    );
-};
+    )
+}
 
 Cards.propTypes = {
     data: PropTypes.array.isRequired,
     updateCard: PropTypes.func.isRequired,
     deleteCard: PropTypes.func.isRequired,
-};
+}
 
-export default Cards;
+export default Cards
