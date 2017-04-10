@@ -1,7 +1,7 @@
 coverage
 node_modules
 dist
-yarn-error.log
+/*.log
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
