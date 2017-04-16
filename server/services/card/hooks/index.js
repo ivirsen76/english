@@ -1,6 +1,7 @@
 // const globalHooks = require('../../../hooks');
 // const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks
+const generateMp3 = require('./generateMp3')
 
 exports.before = {
     all: [
@@ -24,7 +25,9 @@ exports.after = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [
+        generateMp3(),
+    ],
     update: [],
     patch: [],
     remove: [],
