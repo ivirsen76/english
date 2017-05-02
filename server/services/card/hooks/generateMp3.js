@@ -99,3 +99,4 @@ module.exports = options => async (hook) => {
         console.log(err) // eslint-disable-line no-console
     }
 }
+module.exports.generateMp3 = generateMp3

@@ -63,6 +63,8 @@
     "redux-actions": "^2.0.1",
     "redux-form": "^6.5.0",
     "redux-thunk": "2.1.0",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.3",
     "reselect": "^2.5.4",
     "semantic-ui-css": "^2.2.9",
     "semantic-ui-react": "^0.67.1",
