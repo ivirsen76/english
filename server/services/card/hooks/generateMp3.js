@@ -13,7 +13,7 @@ AWS.config.update({
 const polly = new AWS.Polly()
 const s3 = new AWS.S3()
 const voices = {
-    en: 'Emma',
+    uk: 'Emma',
     us: 'Salli',
     ru: 'Tatyana',
 }
@@ -77,6 +77,7 @@ const generateMp3 = async (id, userId, text, language) => {
     ])
 
     return {
+        language,
         filename,
         duration,
     }
@@ -87,13 +88,19 @@ module.exports = options => async (hook) => {
     try {
         const { id, text, translate, userId } = hook.result.dataValues
 
-        const result = await Promise.all([
-            generateMp3(id, userId, text, 'en'),
+        const results = await Promise.all([
+            generateMp3(id, userId, text, 'uk'),
             generateMp3(id, userId, text, 'us'),
             generateMp3(id, userId, translate, 'ru'),
         ])
-        console.log(result)
 
+        const audioData = {}
+        results.forEach((result) => {
+            audioData[`${result.language}SoundFile`] = result.filename
+            audioData[`${result.language}SoundLength`] = result.duration
+        })
+
+        // await hook.service.patch(id, audioData)
         console.log('The files have been saved') // eslint-disable-line no-console
     } catch (err) {
         console.log(err) // eslint-disable-line no-console
