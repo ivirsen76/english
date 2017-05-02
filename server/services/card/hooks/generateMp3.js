@@ -71,8 +71,10 @@ const generateMp3 = async (id, userId, text, language) => {
     }).promise()
 
     // Remove temp files
-    await fsp.unlink(tmpFilename)
-    await fsp.unlink(encodedTmpFilename)
+    await Promise.all([
+        fsp.unlink(tmpFilename),
+        fsp.unlink(encodedTmpFilename),
+    ])
 
     return {
         filename,
