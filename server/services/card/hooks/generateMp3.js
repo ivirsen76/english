@@ -60,11 +60,11 @@ const generateMp3 = async (id, userId, text, language) => {
     }))
 
     // Write file to the AWS S3 bucket
-    const filename = `${id}_${language}_${randomstring.generate(6)}.mp3`
+    const filename = `users/${userId}/${id}_${language}_${randomstring.generate(6)}.mp3`
     const content = await fsp.readFile(encodedTmpFilename)
     await s3.putObject({
         Bucket: process.env.AWS_S3_BUCKET,
-        Key: `public/${userId}/${filename}`,
+        Key: `public/sounds/${filename}`,
         ACL: 'public-read',
         Body: content,
         ContentType: data.ContentType,
@@ -99,9 +99,10 @@ module.exports = options => async (hook) => {
             audioData[`${result.language}SoundFile`] = result.filename
             audioData[`${result.language}SoundLength`] = result.duration
         })
+        audioData.statusUpdatedAt = new Date()
 
-        // await hook.service.patch(id, audioData)
-        console.log('The files have been saved') // eslint-disable-line no-console
+        // Update audio data
+        await hook.service.patch(id, audioData)
     } catch (err) {
         console.log(err) // eslint-disable-line no-console
     }

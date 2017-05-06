@@ -28,30 +28,12 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            ukSoundFile: {
-                type: Sequelize.STRING,
-                allowNull: false,
-            },
-            ukSoundLength: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-            },
-            usSoundFile: {
-                type: Sequelize.STRING,
-                allowNull: false,
-            },
-            usSoundLength: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-            },
-            ruSoundFile: {
-                type: Sequelize.STRING,
-                allowNull: false,
-            },
-            ruSoundLength: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-            },
+            ukSoundFile: Sequelize.STRING,
+            ukSoundLength: Sequelize.INTEGER,
+            usSoundFile: Sequelize.STRING,
+            usSoundLength: Sequelize.INTEGER,
+            ruSoundFile: Sequelize.STRING,
+            ruSoundLength: Sequelize.INTEGER,
             status: {
                 type: Sequelize.INTEGER,
                 allowNull: false,

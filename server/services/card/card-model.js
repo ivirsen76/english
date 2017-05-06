@@ -18,6 +18,18 @@ module.exports = function (sequelize) {
             type: Sequelize.STRING,
             allowNull: false,
         },
+        ukSoundFile: Sequelize.STRING,
+        ukSoundLength: Sequelize.INTEGER,
+        usSoundFile: Sequelize.STRING,
+        usSoundLength: Sequelize.INTEGER,
+        ruSoundFile: Sequelize.STRING,
+        ruSoundLength: Sequelize.INTEGER,
+        status: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        },
+        statusUpdatedAt: Sequelize.DATE,
     }, {
         freezeTableName: true,
     })

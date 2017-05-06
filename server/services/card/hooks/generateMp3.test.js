@@ -17,7 +17,7 @@ describe('generate mp3', () => {
         expect(result.duration).toBeLessThan(1050)
 
         const response = await request({
-            uri: `${process.env.AWS_S3_PUBLIC_URL}${100}/${result.filename}`,
+            uri: `${process.env.AWS_S3_PUBLIC_URL}sounds/${result.filename}`,
             resolveWithFullResponse: true,
         })
         expect(response.statusCode).toBe(200)
