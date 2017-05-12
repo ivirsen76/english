@@ -103,6 +103,9 @@ module.exports = options => async (hook) => {
 
         // Update audio data
         await hook.service.patch(id, audioData)
+
+        // Update result object
+        hook.result.dataValues = Object.assign({}, hook.result.dataValues, audioData)
     } catch (err) {
         console.log(err) // eslint-disable-line no-console
     }
