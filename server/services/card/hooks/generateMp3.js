@@ -46,10 +46,6 @@ const generateMp3 = async (id, userId, text, language) => {
     const tmpFilename = await getTmpFile(data.AudioStream)
     const encodedTmpFilename = tmpFilename + '.mp3'
 
-    // Get the duration
-    const info = await exec(template(process.env.SOUND_GET_MP3_DURATION_COMMAND, { filename: tmpFilename }))
-    const duration = Math.round(/Length[^\d]*([\d.]*)/g.exec(info.stdout)[1] * 1000)
-
     // Normalize the volume
     await exec(template(process.env.SOUND_NORMALIZE_COMMAND, { filename: tmpFilename }))
 
@@ -58,6 +54,10 @@ const generateMp3 = async (id, userId, text, language) => {
         filein: tmpFilename,
         fileout: encodedTmpFilename,
     }))
+
+    // Get the duration
+    const info = await exec(template(process.env.SOUND_GET_MP3_DURATION_COMMAND, { filename: tmpFilename }))
+    const duration = parseInt(info.stdout, 10)
 
     // Write file to the AWS S3 bucket
     const filename = `users/${userId}/${id}_${language}_${randomstring.generate(6)}.mp3`
