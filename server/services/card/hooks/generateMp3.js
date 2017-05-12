@@ -57,7 +57,7 @@ const generateMp3 = async (id, userId, text, language) => {
 
     // Get the duration
     const info = await exec(template(process.env.SOUND_GET_MP3_DURATION_COMMAND, { filename: encodedTmpFilename }))
-    const duration = parseInt(info.stdout, 10)
+    const duration = +/###(\d+)###/g.exec(info.stdout)[1]
 
     // Write file to the AWS S3 bucket
     const filename = `users/${userId}/${id}_${language}_${randomstring.generate(6)}.mp3`
