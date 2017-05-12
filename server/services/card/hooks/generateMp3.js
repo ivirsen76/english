@@ -47,7 +47,7 @@ const generateMp3 = async (id, userId, text, language) => {
     const encodedTmpFilename = tmpFilename + '.mp3'
 
     // Normalize the volume
-    await exec(template(process.env.SOUND_NORMALIZE_COMMAND, { filename: tmpFilename }))
+    // await exec(template(process.env.SOUND_NORMALIZE_COMMAND, { filename: tmpFilename }))
 
     // Encode with standard bitrate
     await exec(template(process.env.SOUND_ENCODE_MP3_COMMAND, {
