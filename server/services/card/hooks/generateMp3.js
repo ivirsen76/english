@@ -46,14 +46,14 @@ const generateMp3 = async (id, userId, text, language) => {
     const tmpFilename = await getTmpFile(data.AudioStream)
     const encodedTmpFilename = tmpFilename + '.mp3'
 
-    // Normalize the volume
-    // await exec(template(process.env.SOUND_NORMALIZE_COMMAND, { filename: tmpFilename }))
-
     // Encode with standard bitrate
     await exec(template(process.env.SOUND_ENCODE_MP3_COMMAND, {
         filein: tmpFilename,
         fileout: encodedTmpFilename,
     }))
+
+    // Normalize the volume
+    await exec(template(process.env.SOUND_NORMALIZE_COMMAND, { filename: encodedTmpFilename }))
 
     // Get the duration
     const info = await exec(template(process.env.SOUND_GET_MP3_DURATION_COMMAND, { filename: encodedTmpFilename }))
