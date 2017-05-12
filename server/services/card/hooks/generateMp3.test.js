@@ -13,8 +13,8 @@ describe('generate mp3', () => {
         expect(result.language).toBe('uk')
 
         // Duration can vary
-        expect(result.duration).toBeGreaterThan(950)
-        expect(result.duration).toBeLessThan(1050)
+        expect(result.duration).toBeGreaterThan(900)
+        expect(result.duration).toBeLessThan(1100)
 
         const response = await request({
             uri: `${process.env.AWS_S3_PUBLIC_URL}sounds/${result.filename}`,
