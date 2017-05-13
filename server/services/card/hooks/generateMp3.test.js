@@ -3,7 +3,7 @@ import _keys from 'lodash/keys'
 import request from 'request-promise-native'
 
 require('dotenv').config()
-const { generateMp3 } = require('./generateMp3.js')
+const generateMp3 = require('./generateMp3.js')
 
 
 describe('generate mp3', () => {
