@@ -27,6 +27,7 @@ export const initialState = {
 const ADD_CARD = 'english/card/ADD_CARD'
 const DELETE_CARD = 'english/card/DELETE_CARD'
 const UPDATE_CARD = 'english/card/UPDATE_CARD'
+const UPDATE_CARD_DATA = 'english/card/UPDATE_CARD_DATA'
 const SET_CARDS = 'english/card/SET_CARDS'
 
 
@@ -34,11 +35,13 @@ const SET_CARDS = 'english/card/SET_CARDS'
 export const addCardWithoutSaving = createAction(ADD_CARD)
 export const deleteCard = createAction(DELETE_CARD)
 export const updateCard = createAction(UPDATE_CARD)
+export const updateCardData = createAction(UPDATE_CARD_DATA)
 export const setCards = createAction(SET_CARDS)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(cardInfo))
-    await axios.post('/cards', cardInfo)
+    const response = await axios.post('/cards', cardInfo)
+    dispatch(updateCardData(response.data))
 }
 
 export const loadCards = () => async (dispatch, getState) => {
@@ -71,6 +74,23 @@ export default handleActions({
                 return {
                     ...item,
                     ..._pick(action.payload, acceptedFields),
+                }
+            }
+
+            return item
+        }),
+    }),
+    [UPDATE_CARD_DATA]: (state, action) => ({
+        ...state,
+        list: state.list.map((item) => {
+            if (
+                item.id >= minNewId &&
+                action.payload.text === item.text &&
+                action.payload.translate === item.translate
+            ) {
+                return {
+                    ...item,
+                    ..._pick(action.payload, ['id', ...acceptedFields]),
                 }
             }
 
