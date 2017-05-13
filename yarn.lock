@@ -6827,6 +6827,10 @@ sort-keys@^1.0.0:
   dependencies:
     is-plain-obj "^1.0.0"
 
+soundmanager2@^2.97.20150601-a:
+  version "2.97.20150601-a"
+  resolved "http://npm.3cisd.corp/soundmanager2/-/soundmanager2-2.97.20150601-a.tgz#d1a2f61bb2cd38f7a7209fbf456de20e5eaef74f"
+
 source-list-map@^0.1.4, source-list-map@~0.1.7:
   version "0.1.8"
   resolved "https://registry.npmjs.org/source-list-map/-/source-list-map-0.1.8.tgz#c550b2ab5427f6b3f21f5afead88c4f5587b2106"

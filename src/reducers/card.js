@@ -5,6 +5,17 @@ import axios from 'utils/axios'
 
 export const minNewId = 1000000000
 
+export const acceptedFields = [
+    'text',
+    'translate',
+    'label',
+    'ruSoundFile',
+    'ruSoundLength',
+    'usSoundFile',
+    'usSoundLength',
+    'ukSoundFile',
+    'ukSoundLength',
+]
 
 // Initial state
 export const initialState = {
@@ -45,7 +56,7 @@ export default handleActions({
             ...state,
             list: [
                 ...state.list,
-                { id: nextId, ..._pick(action.payload, ['text', 'translate', 'label']) },
+                { id: nextId, ..._pick(action.payload, acceptedFields) },
             ],
         }
     },
@@ -59,7 +70,7 @@ export default handleActions({
             if (item.id === action.payload.id) {
                 return {
                     ...item,
-                    ..._pick(action.payload, ['text', 'translate', 'label']),
+                    ..._pick(action.payload, acceptedFields),
                 }
             }
 
@@ -68,6 +79,6 @@ export default handleActions({
     }),
     [SET_CARDS]: (state, action) => ({
         ...state,
-        list: action.payload.map(item => _pick(item, ['id', 'text', 'translate', 'label'])),
+        list: action.payload.map(item => _pick(item, ['id', ...acceptedFields])),
     }),
 }, initialState)

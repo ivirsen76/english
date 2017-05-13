@@ -3,6 +3,9 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import autoprefixer from 'autoprefixer'
 import path from 'path'
 
+require('dotenv').config()
+
+
 export default {
     resolve: {
         extensions: ['*', '.js', '.jsx', '.json'],
@@ -34,7 +37,10 @@ export default {
         new webpack.DefinePlugin({
             // Tells React to build in either dev or prod modes.
             // https://facebook.github.io/react/downloads.html (See bottom)
-            'process.env.NODE_ENV': JSON.stringify('development'),
+            'process.env': {
+                NODE_ENV: JSON.stringify('development'),
+                AWS_S3_PUBLIC_URL: JSON.stringify(process.env.AWS_S3_PUBLIC_URL),
+            },
 
             __DEV__: true,
         }),

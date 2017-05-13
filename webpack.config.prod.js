@@ -8,10 +8,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 const path = require('path')
 
-const GLOBALS = {
-    'process.env.NODE_ENV': JSON.stringify('production'),
-    __DEV__: false,
-}
 
 module.exports = {
     resolve: {
@@ -38,7 +34,13 @@ module.exports = {
         new WebpackMd5Hash(),
 
         // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
-        new webpack.DefinePlugin(GLOBALS),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production'),
+                AWS_S3_PUBLIC_URL: JSON.stringify('https://s3.amazonaws.com/english-production-us-east-1/public/'),
+            },
+            __DEV__: false,
+        }),
 
         // Generate an external css file with a hash in the filename
         new ExtractTextPlugin('[name].[contenthash].css'),

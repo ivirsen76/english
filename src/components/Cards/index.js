@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import Table from '@ieremeev/table'
 import EditCard from 'components/EditCard'
 import DeleteCard from 'components/DeleteCard'
+import AudioLink from './AudioLink'
 
 
 export const Cards = ({ data, deleteCard, updateCard }) => {
@@ -21,11 +22,17 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
         label: 'Текст',
         filter: true,
         sort: true,
+        render(value, row) {
+            return <AudioLink text={value} audioUrl={row.usSoundFile} />
+        },
     }, {
         name: 'translate',
         label: 'Перевод',
         filter: true,
         sort: true,
+        render(value, row) {
+            return <AudioLink text={value} audioUrl={row.ruSoundFile} />
+        },
     }, {
         name: 'label',
         label: 'Метка',

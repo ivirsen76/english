@@ -78,16 +78,39 @@ describe('card reducer', () => {
             const state = {
                 ...initialState,
                 list: [
-                    { id: 1, text: 'Ball', translate: 'Some' },
+                    { id: 1, text: 'Ball', translate: 'Some', label: '1' },
                 ],
             }
             const expectedList = [
                 { id: 3, text: 'One', translate: 'Some', label: '123' },
-                { id: 4, text: 'Tree', translate: 'Some', label: '456' },
+                {
+                    id: 4,
+                    text: 'Tree',
+                    translate: 'Some',
+                    label: '456',
+                    ruSoundFile: '1',
+                    ruSoundLength: 100,
+                    usSoundFile: '1',
+                    usSoundLength: 100,
+                    ukSoundFile: '1',
+                    ukSoundLength: 100,
+                },
             ]
             const resultedState = reducer(state, setCards([
                 { id: 3, text: 'One', translate: 'Some', label: '123', 'another': 33 },
-                { id: 4, text: 'Tree', translate: 'Some', label: '456', 'some': 55 },
+                {
+                    id: 4,
+                    text: 'Tree',
+                    translate: 'Some',
+                    label: '456',
+                    ruSoundFile: '1',
+                    ruSoundLength: 100,
+                    usSoundFile: '1',
+                    usSoundLength: 100,
+                    ukSoundFile: '1',
+                    ukSoundLength: 100,
+                    some: 55,
+                },
             ]))
             expect(resultedState.list).toEqual(expectedList)
         })
