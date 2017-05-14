@@ -2,6 +2,7 @@
 // const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks
 const afterCreate = require('./afterCreate')
+const beforePatch = require('./beforePatch')
 
 exports.before = {
     all: [
@@ -17,7 +18,9 @@ exports.before = {
         auth.associateCurrentUser(),
     ],
     update: [],
-    patch: [],
+    patch: [
+        beforePatch(),
+    ],
     remove: [],
 }
 

@@ -1,6 +1,7 @@
 import { handleActions, createAction } from 'redux-actions'
 import _max from 'lodash/max'
 import _pick from 'lodash/pick'
+import _omit from 'lodash/omit'
 import axios from 'utils/axios'
 
 export const minNewId = 1000000000
@@ -34,13 +35,20 @@ const SET_CARDS = 'english/card/SET_CARDS'
 // Action Creators
 export const addCardWithoutSaving = createAction(ADD_CARD)
 export const deleteCard = createAction(DELETE_CARD)
-export const updateCard = createAction(UPDATE_CARD)
+export const updateCardWithoutSaving = createAction(UPDATE_CARD)
 export const updateCardData = createAction(UPDATE_CARD_DATA)
 export const setCards = createAction(SET_CARDS)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(cardInfo))
     const response = await axios.post('/cards', cardInfo)
+    dispatch(updateCardData(response.data))
+}
+
+export const updateCard = cardInfo => async (dispatch, getState) => {
+    const result = _pick(cardInfo, ['text', 'translate', 'label'])
+    dispatch(updateCardWithoutSaving({ id: cardInfo.id, ...result }))
+    const response = await axios.patch(`/cards/${cardInfo.id}`, result)
     dispatch(updateCardData(response.data))
 }
 
@@ -71,10 +79,26 @@ export default handleActions({
         ...state,
         list: state.list.map((item) => {
             if (item.id === action.payload.id) {
-                return {
+                let result = {
                     ...item,
-                    ..._pick(action.payload, acceptedFields),
+                    ..._pick(action.payload, ['text', 'translate', 'label']),
                 }
+                if (item.text !== result.text) {
+                    result = _omit(result, [
+                        'ukSoundFile',
+                        'ukSoundLength',
+                        'usSoundFile',
+                        'usSoundLength',
+                    ])
+                }
+                if (item.translate !== result.translate) {
+                    result = _omit(result, [
+                        'ruSoundFile',
+                        'ruSoundLength',
+                    ])
+                }
+
+                return result
             }
 
             return item
@@ -83,6 +107,13 @@ export default handleActions({
     [UPDATE_CARD_DATA]: (state, action) => ({
         ...state,
         list: state.list.map((item) => {
+            if (item.id === action.payload.id) {
+                return {
+                    ...item,
+                    ..._pick(action.payload, acceptedFields),
+                }
+            }
+
             if (
                 item.id >= minNewId &&
                 action.payload.text === item.text &&
