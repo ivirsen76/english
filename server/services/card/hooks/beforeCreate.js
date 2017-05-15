@@ -1,7 +1,7 @@
 const generateMp3 = require('./generateMp3')
 
 
-module.exports = options => async (hook) => {
+module.exports = options => async hook => {
     try {
         const { text, translate, userId } = hook.data
 
@@ -11,7 +11,7 @@ module.exports = options => async (hook) => {
             generateMp3(userId, translate, 'ru'),
         ])
 
-        results.forEach((result) => {
+        results.forEach(result => {
             hook.data[`${result.language}SoundFile`] = result.filename
             hook.data[`${result.language}SoundLength`] = result.duration
         })

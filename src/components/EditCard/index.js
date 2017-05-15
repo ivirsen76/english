@@ -10,7 +10,7 @@ export default class Component extends React.Component {
         updateCard: PropTypes.func,
     }
 
-    handleSubmit = (values) => {
+    handleSubmit = values => {
         this.props.updateCard(values)
         notification('Карточка обновлена')
         this.modal.handleClose()
@@ -28,7 +28,7 @@ export default class Component extends React.Component {
                 size="small"
                 closeIcon
                 trigger={trigger}
-                ref={(modal) => { this.modal = modal }}
+                ref={modal => { this.modal = modal }}
             >
                 <Modal.Header>Изменить слово</Modal.Header>
                 <Modal.Content>

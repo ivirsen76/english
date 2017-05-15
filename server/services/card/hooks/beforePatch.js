@@ -2,7 +2,7 @@ const generateMp3 = require('./generateMp3')
 const removeMp3 = require('./removeMp3')
 
 
-module.exports = options => async (hook) => {
+module.exports = options => async hook => {
     try {
         const id = hook.id
         const { text, translate } = hook.data
@@ -27,7 +27,7 @@ module.exports = options => async (hook) => {
             await Promise.all(removes)
             const results = await Promise.all(generates)
 
-            results.forEach((result) => {
+            results.forEach(result => {
                 hook.data[`${result.language}SoundFile`] = result.filename
                 hook.data[`${result.language}SoundLength`] = result.duration
             })

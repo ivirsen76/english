@@ -6,6 +6,7 @@
         "import/no-extraneous-dependencies": ["off"],
         "react/prefer-stateless-function": ["off"],
         "func-names": ["off"],
-        "semi": ["error", "never"]
+        "semi": ["error", "never"],
+        "arrow-parens": ["error", "as-needed"]
     }
 }

@@ -77,7 +77,7 @@ export default handleActions({
     }),
     [UPDATE_CARD]: (state, action) => ({
         ...state,
-        list: state.list.map((item) => {
+        list: state.list.map(item => {
             if (item.id === action.payload.id) {
                 let result = {
                     ...item,
@@ -106,7 +106,7 @@ export default handleActions({
     }),
     [UPDATE_CARD_DATA]: (state, action) => ({
         ...state,
-        list: state.list.map((item) => {
+        list: state.list.map(item => {
             if (item.id === action.payload.id) {
                 return {
                     ...item,

@@ -11,7 +11,7 @@ export default class Component extends React.Component {
         latestLabel: PropTypes.string,
     }
 
-    handleSubmit = (values) => {
+    handleSubmit = values => {
         this.props.addCard(values)
         notification('Карточка добавлена')
     }

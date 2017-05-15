@@ -4,7 +4,7 @@ import Input from 'components/SemanticInput'
 import isEmail from 'validator/lib/isEmail'
 
 
-export const validate = (values) => {
+export const validate = values => {
     const errors = {}
 
     if (!values.email) {

@@ -14,7 +14,7 @@ export const getNextNewId = createSelector(
 
 export const getLatestLabel = createSelector(
     getList,
-    (list) => {
+    list => {
         const latest = _maxBy(list, item => item.id)
         return (latest && latest.label) ? latest.label : ''
     },

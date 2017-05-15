@@ -8,7 +8,7 @@ export default class Component extends React.Component {
         audioUrl: PropTypes.string,
     }
 
-    play = (e) => {
+    play = e => {
         e.preventDefault()
         mp3.play(process.env.AWS_S3_PUBLIC_URL + 'sounds/' + this.props.audioUrl)
     }

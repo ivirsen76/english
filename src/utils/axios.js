@@ -7,7 +7,7 @@ const instance = axios.create({
     baseURL: process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3030',
 })
 
-instance.interceptors.response.use(null, (error) => {
+instance.interceptors.response.use(null, error => {
     switch (error.response.status) {
         case 401:
             if (!/auth\/local$/.test(error.response.config.url)) {
