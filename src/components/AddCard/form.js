@@ -22,7 +22,7 @@ export const validate = (values) => {
 
         if (text === '') {
             errors.text = errorMessages.noText
-        } else if (!/^[\s\da-zA-Z.,\-!?;:]+$/.test(text)) {
+        } else if (!/^[\s\da-zA-Z.,\-!?;:'"]+$/.test(text)) {
             errors.text = errorMessages.invalidText
         }
     }
@@ -34,7 +34,7 @@ export const validate = (values) => {
 
         if (translate === '') {
             errors.translate = errorMessages.noTranslate
-        } else if (!/^[\s\dа-яА-Я.,\-!?;:]+$/.test(translate)) {
+        } else if (!/^[\s\dа-яА-Я.,\-!?;:'"]+$/.test(translate)) {
             errors.translate = errorMessages.invalidTranslate
         }
     }

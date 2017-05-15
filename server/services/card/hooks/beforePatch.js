@@ -1,4 +1,5 @@
 const generateMp3 = require('./generateMp3')
+const removeMp3 = require('./removeMp3')
 
 
 module.exports = options => async (hook) => {
@@ -8,18 +9,23 @@ module.exports = options => async (hook) => {
         const { dataValues: currentData } = await hook.service.get(id)
 
         // Check if we need new sound
-        const promises = []
+        const generates = []
+        const removes = []
         if (currentData.text !== text) {
-            promises.push(generateMp3(id, currentData.userId, text, 'uk'))
-            promises.push(generateMp3(id, currentData.userId, text, 'us'))
+            removes.push(removeMp3(currentData.ukSoundFile))
+            removes.push(removeMp3(currentData.usSoundFile))
+            generates.push(generateMp3(currentData.userId, text, 'uk'))
+            generates.push(generateMp3(currentData.userId, text, 'us'))
         }
         if (currentData.translate !== translate) {
-            promises.push(generateMp3(id, currentData.userId, translate, 'ru'))
+            removes.push(removeMp3(currentData.ruSoundFile))
+            generates.push(generateMp3(currentData.userId, translate, 'ru'))
         }
 
         // Add new sounds
-        if (promises.length > 0) {
-            const results = await Promise.all(promises)
+        if (generates.length > 0) {
+            await Promise.all(removes)
+            const results = await Promise.all(generates)
 
             results.forEach((result) => {
                 hook.data[`${result.language}SoundFile`] = result.filename

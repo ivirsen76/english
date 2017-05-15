@@ -1,7 +1,7 @@
 // const globalHooks = require('../../../hooks');
 // const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks
-const afterCreate = require('./afterCreate')
+const beforeCreate = require('./beforeCreate')
 const beforePatch = require('./beforePatch')
 
 exports.before = {
@@ -16,6 +16,7 @@ exports.before = {
     get: [],
     create: [
         auth.associateCurrentUser(),
+        beforeCreate(),
     ],
     update: [],
     patch: [
@@ -28,9 +29,7 @@ exports.after = {
     all: [],
     find: [],
     get: [],
-    create: [
-        afterCreate(),
-    ],
+    create: [],
     update: [],
     patch: [],
     remove: [],

@@ -29,7 +29,7 @@ const getTmpFile = content => new Promise((resolve, reject) => {
     })
 })
 
-module.exports = async (id, userId, text, language) => {
+module.exports = async (userId, text, language) => {
     const voice = voices[language]
     if (!voice) {
         throw new Error(`There is no voice for "${language}" language`)
@@ -60,7 +60,7 @@ module.exports = async (id, userId, text, language) => {
     const duration = +/###(\d+)###/g.exec(info.stdout)[1]
 
     // Write file to the AWS S3 bucket
-    const filename = `users/${userId}/${id}_${language}_${randomstring.generate(6)}.mp3`
+    const filename = `users/${userId}/${language}_${randomstring.generate(10)}.mp3`
     const content = await fsp.readFile(encodedTmpFilename)
     await s3.putObject({
         Bucket: process.env.AWS_S3_BUCKET,
