@@ -5,6 +5,7 @@
         "import/extensions": ["off"],
         "import/no-extraneous-dependencies": ["off"],
         "react/prefer-stateless-function": ["off"],
-        "func-names": ["off"]
+        "func-names": ["off"],
+        "react/jsx-indent": ["off"]
     }
 }
