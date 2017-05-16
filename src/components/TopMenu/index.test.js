@@ -4,7 +4,6 @@ import { shallow } from 'enzyme'
 import { toJson } from '@ieremeev/jest-setup'
 import TopMenu from './index'
 
-
 describe('<TopMenu />', () => {
     it('Should render menu', () => {
         const wrapper = shallow(<TopMenu />)

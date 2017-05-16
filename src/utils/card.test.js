@@ -1,7 +1,6 @@
 /* global describe, it, expect */
 import { stripBrackets } from './card'
 
-
 describe('stripBrackets()', () => {
     it('Should strip brackets', () => {
         expect(stripBrackets('some (one)')).toBe('some')

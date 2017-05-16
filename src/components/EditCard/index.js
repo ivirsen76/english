@@ -3,7 +3,6 @@ import { Modal } from 'semantic-ui-react'
 import notification from '@ieremeev/notification'
 import Form from 'components/AddCard/form'
 
-
 export default class Component extends React.Component {
     static propTypes = {
         initialValues: PropTypes.object,
@@ -28,7 +27,9 @@ export default class Component extends React.Component {
                 size="small"
                 closeIcon
                 trigger={trigger}
-                ref={modal => { this.modal = modal }}
+                ref={modal => {
+                    this.modal = modal
+                }}
             >
                 <Modal.Header>Изменить слово</Modal.Header>
                 <Modal.Content>

@@ -5,7 +5,6 @@ import AddCard from 'components/AddCard'
 import { addCard, deleteCard, updateCard } from 'reducers/card'
 import { getNextNewId, getLatestLabel } from 'selectors/card'
 
-
 // eslint-disable-next-line react/prefer-stateless-function
 class Component extends React.Component {
     static propTypes = {
@@ -28,16 +27,11 @@ class Component extends React.Component {
                         latestLabel={this.props.latestLabel}
                     />
                 </div>
-                <Cards
-                    data={this.props.list}
-                    deleteCard={this.props.deleteCard}
-                    updateCard={this.props.updateCard}
-                />
+                <Cards data={this.props.list} deleteCard={this.props.deleteCard} updateCard={this.props.updateCard} />
             </div>
         )
     }
 }
-
 
 function mapStateToProps(state) {
     return {

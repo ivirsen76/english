@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 import { Menu } from 'semantic-ui-react'
 import MenuLink from 'components/MenuLink'
 
-
 const SideMenu = ({ cardTotal }) => (
     <Menu vertical fluid size="large">
         <Menu.Item>

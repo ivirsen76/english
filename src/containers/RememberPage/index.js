@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-
 // eslint-disable-next-line react/prefer-stateless-function
 class Component extends React.Component {
     render() {
@@ -12,7 +11,6 @@ class Component extends React.Component {
         )
     }
 }
-
 
 function mapStateToProps(state) {
     return {}

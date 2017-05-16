@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 import _pick from 'lodash/pick'
 
-
 export default class Component extends React.Component {
     static propTypes = {
         input: PropTypes.object,
@@ -17,9 +16,7 @@ export default class Component extends React.Component {
             <div className={'field ' + (touched && error && 'error')}>
                 <label htmlFor={input.name}>{label}</label>
                 <input {...input} {...props} />
-                {touched && error && (
-                    <div className="ui pointing red basic label">{error}</div>
-                )}
+                {touched && error && <div className="ui pointing red basic label">{error}</div>}
             </div>
         )
     }

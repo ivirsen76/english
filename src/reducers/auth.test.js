@@ -1,12 +1,5 @@
 /* global describe, it, expect */
-import reducer, {
-    initialState,
-    setToken,
-    discardToken,
-    setUser,
-    restoreState,
-} from './auth'
-
+import reducer, { initialState, setToken, discardToken, setUser, restoreState } from './auth'
 
 describe('auth reducer', () => {
     describe('setToken()', () => {

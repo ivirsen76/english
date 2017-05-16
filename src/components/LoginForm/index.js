@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { login } from 'reducers/auth'
 import Form from './form'
 
-
 class Component extends React.Component {
     static propTypes = {
         dispatch: PropTypes.func,
@@ -12,9 +11,7 @@ class Component extends React.Component {
     login = values => login(this.props.dispatch, values)
 
     render() {
-        return (
-            <Form onSubmit={this.login} />
-        )
+        return <Form onSubmit={this.login} />
     }
 }
 

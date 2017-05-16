@@ -5,23 +5,12 @@ const beforeCreate = require('./beforeCreate')
 const beforePatch = require('./beforePatch')
 
 exports.before = {
-    all: [
-        auth.verifyToken(),
-        auth.populateUser(),
-        auth.restrictToAuthenticated(),
-    ],
-    find: [
-        auth.queryWithCurrentUser(),
-    ],
+    all: [auth.verifyToken(), auth.populateUser(), auth.restrictToAuthenticated()],
+    find: [auth.queryWithCurrentUser()],
     get: [],
-    create: [
-        auth.associateCurrentUser(),
-        beforeCreate(),
-    ],
+    create: [auth.associateCurrentUser(), beforeCreate()],
     update: [],
-    patch: [
-        beforePatch(),
-    ],
+    patch: [beforePatch()],
     remove: [],
 }
 

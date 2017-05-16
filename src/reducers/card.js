@@ -23,14 +23,12 @@ export const initialState = {
     list: [],
 }
 
-
 // Actions
 const ADD_CARD = 'english/card/ADD_CARD'
 const DELETE_CARD = 'english/card/DELETE_CARD'
 const UPDATE_CARD = 'english/card/UPDATE_CARD'
 const UPDATE_CARD_DATA = 'english/card/UPDATE_CARD_DATA'
 const SET_CARDS = 'english/card/SET_CARDS'
-
 
 // Action Creators
 export const addCardWithoutSaving = createAction(ADD_CARD)
@@ -57,79 +55,70 @@ export const loadCards = () => async (dispatch, getState) => {
     dispatch(setCards(res.data.data))
 }
 
-
 // Reducer
-export default handleActions({
-    [ADD_CARD]: (state, action) => {
-        const nextId = _max([...state.list.map(item => item.id + 1), minNewId])
+export default handleActions(
+    {
+        [ADD_CARD]: (state, action) => {
+            const nextId = _max([...state.list.map(item => item.id + 1), minNewId])
 
-        return {
+            return {
+                ...state,
+                list: [...state.list, { id: nextId, ..._pick(action.payload, acceptedFields) }],
+            }
+        },
+        [DELETE_CARD]: (state, action) => ({
             ...state,
-            list: [
-                ...state.list,
-                { id: nextId, ..._pick(action.payload, acceptedFields) },
-            ],
-        }
+            list: state.list.filter(item => item.id !== action.payload),
+        }),
+        [UPDATE_CARD]: (state, action) => ({
+            ...state,
+            list: state.list.map(item => {
+                if (item.id === action.payload.id) {
+                    let result = {
+                        ...item,
+                        ..._pick(action.payload, ['text', 'translate', 'label']),
+                    }
+                    if (item.text !== result.text) {
+                        result = _omit(result, ['ukSoundFile', 'ukSoundLength', 'usSoundFile', 'usSoundLength'])
+                    }
+                    if (item.translate !== result.translate) {
+                        result = _omit(result, ['ruSoundFile', 'ruSoundLength'])
+                    }
+
+                    return result
+                }
+
+                return item
+            }),
+        }),
+        [UPDATE_CARD_DATA]: (state, action) => ({
+            ...state,
+            list: state.list.map(item => {
+                if (item.id === action.payload.id) {
+                    return {
+                        ...item,
+                        ..._pick(action.payload, acceptedFields),
+                    }
+                }
+
+                if (
+                    item.id >= minNewId &&
+                    action.payload.text === item.text &&
+                    action.payload.translate === item.translate
+                ) {
+                    return {
+                        ...item,
+                        ..._pick(action.payload, ['id', ...acceptedFields]),
+                    }
+                }
+
+                return item
+            }),
+        }),
+        [SET_CARDS]: (state, action) => ({
+            ...state,
+            list: action.payload.map(item => _pick(item, ['id', ...acceptedFields])),
+        }),
     },
-    [DELETE_CARD]: (state, action) => ({
-        ...state,
-        list: state.list.filter(item => item.id !== action.payload),
-    }),
-    [UPDATE_CARD]: (state, action) => ({
-        ...state,
-        list: state.list.map(item => {
-            if (item.id === action.payload.id) {
-                let result = {
-                    ...item,
-                    ..._pick(action.payload, ['text', 'translate', 'label']),
-                }
-                if (item.text !== result.text) {
-                    result = _omit(result, [
-                        'ukSoundFile',
-                        'ukSoundLength',
-                        'usSoundFile',
-                        'usSoundLength',
-                    ])
-                }
-                if (item.translate !== result.translate) {
-                    result = _omit(result, [
-                        'ruSoundFile',
-                        'ruSoundLength',
-                    ])
-                }
-
-                return result
-            }
-
-            return item
-        }),
-    }),
-    [UPDATE_CARD_DATA]: (state, action) => ({
-        ...state,
-        list: state.list.map(item => {
-            if (item.id === action.payload.id) {
-                return {
-                    ...item,
-                    ..._pick(action.payload, acceptedFields),
-                }
-            }
-
-            if (
-                item.id >= minNewId &&
-                action.payload.text === item.text &&
-                action.payload.translate === item.translate
-            ) {
-                return {
-                    ...item,
-                    ..._pick(action.payload, ['id', ...acceptedFields]),
-                }
-            }
-
-            return item
-        }),
-    }),
-    [SET_CARDS]: (state, action) => ({
-        ...state,
-        list: action.payload.map(item => _pick(item, ['id', ...acceptedFields])),
-    }),
-}, initialState)
+    initialState
+)

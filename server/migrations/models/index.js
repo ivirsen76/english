@@ -6,7 +6,10 @@ const sequelize = app.get('sequelize')
 
 // The export object must be a dictionary of model names -> models
 // It must also include sequelize (instance) and Sequelize (constructor) properties
-module.exports = Object.assign({
-    Sequelize,
-    sequelize,
-}, models)
+module.exports = Object.assign(
+    {
+        Sequelize,
+        sequelize,
+    },
+    models
+)

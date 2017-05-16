@@ -9,10 +9,12 @@ export default {
             return
         }
 
-        sm.createSound({
-            id: filename,
-            url: filename,
-        }).load()
+        sm
+            .createSound({
+                id: filename,
+                url: filename,
+            })
+            .load()
 
         this.sounds.push(filename)
         if (this.sounds.length > this.limit) {

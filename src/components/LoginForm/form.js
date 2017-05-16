@@ -3,7 +3,6 @@ import { Field, reduxForm } from 'redux-form'
 import Input from 'components/SemanticInput'
 import isEmail from 'validator/lib/isEmail'
 
-
 export const validate = values => {
     const errors = {}
 
@@ -16,12 +15,11 @@ export const validate = values => {
     return errors
 }
 
-
 class LoginForm extends React.Component {
     static propTypes = {
         handleSubmit: PropTypes.func,
         submitting: PropTypes.bool,
-    };
+    }
 
     render() {
         const { handleSubmit, submitting } = this.props
@@ -31,10 +29,7 @@ class LoginForm extends React.Component {
                 <Field name="email" component={Input} label="Email" autoFocus />
                 <Field name="password" component={Input} label="Пароль" type="password" />
 
-                <button
-                    className={'ui ' + (submitting && 'loading') + ' compact button'}
-                    type="submit"
-                >
+                <button className={'ui ' + (submitting && 'loading') + ' compact button'} type="submit">
                     Войти
                 </button>
             </form>

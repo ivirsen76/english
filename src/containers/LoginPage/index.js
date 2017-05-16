@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import LoginForm from 'components/LoginForm'
 import { logout } from 'reducers/auth'
 
-
 class Component extends React.Component {
     static propTypes = {
         logout: PropTypes.func,
@@ -21,7 +20,6 @@ class Component extends React.Component {
         )
     }
 }
-
 
 function mapStateToProps(state) {
     return {}

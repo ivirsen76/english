@@ -12,9 +12,7 @@ function configureStoreProd(initialState) {
         thunk,
     ]
 
-    return createStore(rootReducer, initialState, compose(
-        applyMiddleware(...middlewares)
-    ))
+    return createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)))
 }
 
 function configureStoreDev(initialState) {
@@ -33,9 +31,7 @@ function configureStoreDev(initialState) {
     // eslint-disable-next-line no-underscore-dangle
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-    const store = createStore(rootReducer, initialState, composeEnhancers(
-        applyMiddleware(...middlewares)
-    ))
+    const store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(...middlewares)))
 
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers

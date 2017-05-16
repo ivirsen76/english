@@ -1,7 +1,6 @@
 /* global describe, it, expect */
 import { validate, errorMessages } from './form'
 
-
 describe('validate', () => {
     function invalidText(text, message) {
         expect(validate({ text, translate: 'Текст' }).text).toBe(message)

@@ -9,7 +9,6 @@ import reducer, {
     setCards,
 } from './card'
 
-
 describe('card reducer', () => {
     describe('addCard()', () => {
         it('Should add first new card', () => {
@@ -17,9 +16,7 @@ describe('card reducer', () => {
                 ...initialState,
                 list: [],
             }
-            const expectedList = [
-                { id: minNewId, text: 'Tree', translate: 'Some', label: 'bla' },
-            ]
+            const expectedList = [{ id: minNewId, text: 'Tree', translate: 'Some', label: 'bla' }]
             const resultedState = reducer(state, addCard({ text: 'Tree', translate: 'Some', label: 'bla', unknown: 1 }))
             expect(resultedState.list).toEqual(expectedList)
         })
@@ -27,9 +24,7 @@ describe('card reducer', () => {
         it('Should add second new card', () => {
             const state = {
                 ...initialState,
-                list: [
-                    { id: minNewId, text: 'Ball', translate: 'Some' },
-                ],
+                list: [{ id: minNewId, text: 'Ball', translate: 'Some' }],
             }
             const expectedList = [
                 { id: minNewId, text: 'Ball', translate: 'Some' },
@@ -44,14 +39,9 @@ describe('card reducer', () => {
         it('Should delete card', () => {
             const state = {
                 ...initialState,
-                list: [
-                    { id: 1, text: 'Ball', translate: 'Some' },
-                    { id: 2, text: 'Tree', translate: 'Some' },
-                ],
+                list: [{ id: 1, text: 'Ball', translate: 'Some' }, { id: 2, text: 'Tree', translate: 'Some' }],
             }
-            const expectedList = [
-                { id: 2, text: 'Tree', translate: 'Some' },
-            ]
+            const expectedList = [{ id: 2, text: 'Tree', translate: 'Some' }]
             expect(reducer(state, deleteCard(1)).list).toEqual(expectedList)
         })
     })
@@ -126,9 +116,7 @@ describe('card reducer', () => {
         it('Should update card using text', () => {
             const state = {
                 ...initialState,
-                list: [
-                    { id: 1000000000, text: 'Ball', translate: 'Some' },
-                ],
+                list: [{ id: 1000000000, text: 'Ball', translate: 'Some' }],
             }
             const expectedList = [
                 {
@@ -143,55 +131,56 @@ describe('card reducer', () => {
                     ukSoundLength: 100,
                 },
             ]
-            const resultedState = reducer(state, updateCardData({
-                id: 4,
-                text: 'Ball',
-                translate: 'Some',
-                ruSoundFile: '1',
-                ruSoundLength: 100,
-                usSoundFile: '1',
-                usSoundLength: 100,
-                ukSoundFile: '1',
-                ukSoundLength: 100,
-            }))
+            const resultedState = reducer(
+                state,
+                updateCardData({
+                    id: 4,
+                    text: 'Ball',
+                    translate: 'Some',
+                    ruSoundFile: '1',
+                    ruSoundLength: 100,
+                    usSoundFile: '1',
+                    usSoundLength: 100,
+                    ukSoundFile: '1',
+                    ukSoundLength: 100,
+                })
+            )
             expect(resultedState.list).toEqual(expectedList)
         })
 
         it('Should update the same card', () => {
             const state = {
                 ...initialState,
-                list: [
-                    { id: 1, text: 'Ball', translate: 'Some' },
-                ],
+                list: [{ id: 1, text: 'Ball', translate: 'Some' }],
             }
-            const expectedList = [
-                { id: 1, text: 'Ball', translate: 'Another' },
-            ]
-            const resultedState = reducer(state, updateCardData({
-                id: 1,
-                text: 'Ball',
-                translate: 'Another',
-            }))
+            const expectedList = [{ id: 1, text: 'Ball', translate: 'Another' }]
+            const resultedState = reducer(
+                state,
+                updateCardData({
+                    id: 1,
+                    text: 'Ball',
+                    translate: 'Another',
+                })
+            )
             expect(resultedState.list).toEqual(expectedList)
         })
 
         it('Should not update card', () => {
             const state = {
                 ...initialState,
-                list: [
-                    { id: 3, text: 'Ball', translate: 'Some' },
-                ],
+                list: [{ id: 3, text: 'Ball', translate: 'Some' }],
             }
-            const expectedList = [
-                { id: 3, text: 'Ball', translate: 'Some' },
-            ]
-            const resultedState = reducer(state, updateCardData({
-                id: 4,
-                text: 'Ball',
-                translate: 'Some',
-                ruSoundFile: '1',
-                ruSoundLength: 100,
-            }))
+            const expectedList = [{ id: 3, text: 'Ball', translate: 'Some' }]
+            const resultedState = reducer(
+                state,
+                updateCardData({
+                    id: 4,
+                    text: 'Ball',
+                    translate: 'Some',
+                    ruSoundFile: '1',
+                    ruSoundLength: 100,
+                })
+            )
             expect(resultedState.list).toEqual(expectedList)
         })
     })
@@ -200,9 +189,7 @@ describe('card reducer', () => {
         it('Should add cards', () => {
             const state = {
                 ...initialState,
-                list: [
-                    { id: 1, text: 'Ball', translate: 'Some', label: '1' },
-                ],
+                list: [{ id: 1, text: 'Ball', translate: 'Some', label: '1' }],
             }
             const expectedList = [
                 { id: 3, text: 'One', translate: 'Some', label: '123' },
@@ -219,22 +206,25 @@ describe('card reducer', () => {
                     ukSoundLength: 100,
                 },
             ]
-            const resultedState = reducer(state, setCards([
-                { id: 3, text: 'One', translate: 'Some', label: '123', 'another': 33 },
-                {
-                    id: 4,
-                    text: 'Tree',
-                    translate: 'Some',
-                    label: '456',
-                    ruSoundFile: '1',
-                    ruSoundLength: 100,
-                    usSoundFile: '1',
-                    usSoundLength: 100,
-                    ukSoundFile: '1',
-                    ukSoundLength: 100,
-                    some: 55,
-                },
-            ]))
+            const resultedState = reducer(
+                state,
+                setCards([
+                    { id: 3, text: 'One', translate: 'Some', label: '123', another: 33 },
+                    {
+                        id: 4,
+                        text: 'Tree',
+                        translate: 'Some',
+                        label: '456',
+                        ruSoundFile: '1',
+                        ruSoundLength: 100,
+                        usSoundFile: '1',
+                        usSoundLength: 100,
+                        ukSoundFile: '1',
+                        ukSoundLength: 100,
+                        some: 55,
+                    },
+                ])
+            )
             expect(resultedState.list).toEqual(expectedList)
         })
     })

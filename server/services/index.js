@@ -3,7 +3,7 @@ const card = require('./card')
 const authentication = require('./authentication')
 const user = require('./user')
 
-module.exports = function () {
+module.exports = function() {
     const app = this
 
     const sequelize = new Sequelize(app.get('mysql'), {

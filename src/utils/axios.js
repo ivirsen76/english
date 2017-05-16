@@ -2,7 +2,6 @@ import axios from 'axios'
 import notification from '@ieremeev/notification'
 import { browserHistory } from 'react-router'
 
-
 const instance = axios.create({
     baseURL: process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3030',
 })

@@ -4,7 +4,6 @@ import { shallow } from 'enzyme'
 import { toJson } from '@ieremeev/jest-setup'
 import SideMenu from './index'
 
-
 describe('<SideMenu />', () => {
     it('Should render menu', () => {
         const wrapper = shallow(<SideMenu cardTotal={3} />)

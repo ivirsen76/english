@@ -3,7 +3,6 @@ import { Modal } from 'semantic-ui-react'
 import notification from '@ieremeev/notification'
 import Form from './form'
 
-
 export default class Component extends React.Component {
     static propTypes = {
         addCard: PropTypes.func,
@@ -20,11 +19,7 @@ export default class Component extends React.Component {
         const trigger = <button className="ui compact primary button">Добавить слово</button>
 
         return (
-            <Modal
-                size="small"
-                closeIcon
-                trigger={trigger}
-            >
+            <Modal size="small" closeIcon trigger={trigger}>
                 <Modal.Header>Добавить слово</Modal.Header>
                 <Modal.Content>
                     <div key={this.props.nextNewId}>

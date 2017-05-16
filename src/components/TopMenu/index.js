@@ -3,7 +3,6 @@ import { Dropdown, Menu, Modal } from 'semantic-ui-react'
 import MenuLink from 'components/MenuLink'
 import LoginForm from 'components/LoginForm'
 
-
 const TopMenu = ({ isLoggedIn, user }) => (
     <Menu inverted>
         <MenuLink to="/" onlyActiveOnIndex>Главная</MenuLink>
@@ -17,30 +16,24 @@ const TopMenu = ({ isLoggedIn, user }) => (
                 <Dropdown.Item>Числа на слух</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
-        {isLoggedIn ? (
-            <Menu.Menu position="right">
-                <MenuLink to="/user">Dashboard</MenuLink>
-                <Dropdown item trigger={<span><i className="icon-user" /> {user.email}</span>}>
-                    <Dropdown.Menu>
-                        <Dropdown.Item>Сменить пароль</Dropdown.Item>
-                        <MenuLink to="/logout">Выйти</MenuLink>
-                    </Dropdown.Menu>
-                </Dropdown>
-            </Menu.Menu>
-        ) : (
-            <Menu.Menu position="right">
-                <Modal
-                    size="small"
-                    closeIcon
-                    trigger={<a className="item">Войти</a>}
-                >
-                    <Modal.Header>Войти</Modal.Header>
-                    <Modal.Content>
-                        <LoginForm />
-                    </Modal.Content>
-                </Modal>
-            </Menu.Menu>
-        )}
+        {isLoggedIn
+            ? <Menu.Menu position="right">
+                  <MenuLink to="/user">Dashboard</MenuLink>
+                  <Dropdown item trigger={<span><i className="icon-user" /> {user.email}</span>}>
+                      <Dropdown.Menu>
+                          <Dropdown.Item>Сменить пароль</Dropdown.Item>
+                          <MenuLink to="/logout">Выйти</MenuLink>
+                      </Dropdown.Menu>
+                  </Dropdown>
+              </Menu.Menu>
+            : <Menu.Menu position="right">
+                  <Modal size="small" closeIcon trigger={<a className="item">Войти</a>}>
+                      <Modal.Header>Войти</Modal.Header>
+                      <Modal.Content>
+                          <LoginForm />
+                      </Modal.Content>
+                  </Modal>
+              </Menu.Menu>}
     </Menu>
 )
 

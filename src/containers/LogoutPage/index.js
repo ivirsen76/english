@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { logout } from 'reducers/auth'
 import { browserHistory } from 'react-router'
 
-
 class Component extends React.Component {
     static propTypes = {
         logout: PropTypes.func,

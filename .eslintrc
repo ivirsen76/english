@@ -6,6 +6,7 @@
         "import/no-extraneous-dependencies": ["off"],
         "react/prefer-stateless-function": ["off"],
         "func-names": ["off"],
-        "react/jsx-indent": ["off"]
+        "react/jsx-indent": ["off"],
+        "space-before-function-paren": ["error", "never"]
     }
 }

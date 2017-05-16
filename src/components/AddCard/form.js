@@ -3,14 +3,12 @@ import { Field, reduxForm } from 'redux-form'
 import Input from 'components/SemanticInput'
 import { stripBrackets } from 'utils/card.js'
 
-
 export const errorMessages = {
     noText: 'Вы должны ввести текст',
     invalidText: 'Текст должен быть написан по-английски',
     noTranslate: 'Вы должны ввести перевод',
     invalidTranslate: 'Текст должен быть написан по-русски',
 }
-
 
 export const validate = values => {
     const errors = {}
@@ -41,7 +39,6 @@ export const validate = values => {
 
     return errors
 }
-
 
 class Component extends React.Component {
     static propTypes = {

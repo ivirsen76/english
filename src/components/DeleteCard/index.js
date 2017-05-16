@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 
-
 export default class Component extends React.Component {
     static propTypes = {
         id: PropTypes.number,

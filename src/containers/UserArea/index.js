@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { getCardCount } from 'selectors/card'
 import { loadCards } from 'reducers/card'
 
-
 class Component extends React.Component {
     static propTypes = {
         children: PropTypes.element,
@@ -20,9 +19,7 @@ class Component extends React.Component {
         return (
             <div className="ui grid">
                 <div className="four wide column">
-                    <SideMenu
-                        cardTotal={this.props.cardTotal}
-                    />
+                    <SideMenu cardTotal={this.props.cardTotal} />
                 </div>
                 <div className="twelve wide column">
                     {this.props.children}
@@ -31,7 +28,6 @@ class Component extends React.Component {
         )
     }
 }
-
 
 function mapStateToProps(state) {
     return {

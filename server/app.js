@@ -15,7 +15,8 @@ const app = feathers()
 
 app.configure(configuration(path.join(__dirname, '.')))
 
-app.use(compress())
+app
+    .use(compress())
     .options('*', cors())
     .use(cors())
     .use(favicon(path.join(app.get('public'), 'favicon.ico')))
