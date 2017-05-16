@@ -6,8 +6,10 @@ AWS.config.update({
 const s3 = new AWS.S3()
 
 module.exports = async filename => {
-    await s3.deleteObject({
-        Bucket: process.env.AWS_S3_BUCKET,
-        Key: `public/sounds/${filename}`,
-    }).promise()
+    await s3
+        .deleteObject({
+            Bucket: process.env.AWS_S3_BUCKET,
+            Key: `public/sounds/${filename}`,
+        })
+        .promise()
 }

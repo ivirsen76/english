@@ -1,7 +1,6 @@
 const generateMp3 = require('./generateMp3')
 const removeMp3 = require('./removeMp3')
 
-
 module.exports = options => async hook => {
     try {
         const id = hook.id

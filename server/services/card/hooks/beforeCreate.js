@@ -1,6 +1,5 @@
 const generateMp3 = require('./generateMp3')
 
-
 module.exports = options => async hook => {
     try {
         const { text, translate, userId } = hook.data
