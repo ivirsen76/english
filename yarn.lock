@@ -29,9 +29,9 @@
   dependencies:
     classnames "^2.2.5"
 
-"@ieremeev/table@^2.1.6":
-  version "2.1.7"
-  resolved "https://registry.npmjs.org/@ieremeev/table/-/table-2.1.7.tgz#65e67c05c520d96a5056b7c40dab90ce89fe09bc"
+"@ieremeev/table@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.npmjs.org/@ieremeev/table/-/table-2.1.8.tgz#6529602155a62bd0e0e3396486d311c49d5ab15c"
   dependencies:
     "@ieremeev/paginator" "^2.0.6"
     lodash "^4.17.4"

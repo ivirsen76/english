@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@ieremeev/notification": "^2.0.2",
-    "@ieremeev/table": "^2.1.6",
+    "@ieremeev/table": "^2.1.8",
     "aws-sdk": "^2.41.0",
     "axios": "^0.15.3",
     "body-parser": "^1.17.1",
