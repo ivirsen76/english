@@ -1,0 +1,33 @@
+$margin: .8em;
+
+.wrapper {
+    width: 100%;
+}
+.counter {
+    margin-bottom: $margin;
+    text-align: center;
+}
+.mainButtons {
+    margin-bottom: $margin;
+    text-align: center;
+}
+.otherButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $margin;
+}
+.otherButtons > div {
+    flex: 1;
+}
+.doneButton {
+    text-align: center;
+}
+.label {
+    text-align: right;
+}
+.panelWrapper {
+    position: relative;
+}
+.panelWrapper > div:not(:last-child) {
+    margin-bottom: .8em;
+}

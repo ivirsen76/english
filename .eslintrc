@@ -7,6 +7,7 @@
         "react/prefer-stateless-function": ["off"],
         "func-names": ["off"],
         "react/jsx-indent": ["off"],
-        "space-before-function-paren": ["error", "never"]
+        "space-before-function-paren": ["error", "never"],
+        "jsx-a11y/label-has-for": ["off"]
     }
 }

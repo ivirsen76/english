@@ -1,0 +1,76 @@
+.panel {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #7c7c15;
+    border-radius: 10px;
+    position: relative;
+    background: linear-gradient(to bottom, #fcfcdd 0%, #fdfd82 100%);
+}
+
+.word {
+    font-size: 1.2em;
+    padding: 0 3em;
+}
+
+.language {
+    position: absolute;
+    left: .5em;
+    width: 1.6em;
+    height: 1.2em;
+    background-size: 1.6em 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-sizing: content-box;
+
+    &.uk {
+        background-image: url('./flags/uk.svg');
+    }
+
+    &.ru {
+        background-image: url('./flags/ru.svg');
+    }
+
+    &.us {
+        background-image: url('./flags/us.svg');
+    }
+
+    &.top {
+        top: .5em;
+    }
+
+    &.bottom {
+        bottom: .5em;
+    }
+}
+
+.sound {
+    position: absolute;
+    right: .5em;
+    font-family: 'icomoon';
+    font-size: 1.2em;
+    cursor: pointer;
+    width: 1em;
+
+    &:hover {
+        color: #666;
+    }
+
+    &.on::before {
+        content: '\ea26';
+    }
+
+    &.off::before {
+        content: '\ea2a';
+    }
+
+    &.top {
+        top: .4em;
+    }
+
+    &.bottom {
+        bottom: .4em;
+    }
+}

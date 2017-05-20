@@ -1,0 +1,12 @@
+.switchButton {
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    margin-top: -10px;
+    width: 20px;
+    height: 20px;
+    background-image: url('./arrow.svg');
+    background-size: 20px 20px;
+    z-index: 99;
+    cursor: pointer;
+}
