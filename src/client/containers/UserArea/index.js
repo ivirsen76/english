@@ -29,7 +29,11 @@ class Component extends React.Component {
         return (
             <div className="ui grid">
                 <div className="four wide column">
-                    <SideMenu cardTotal={this.props.cardTotal} />
+                    <SideMenu
+                        cardTotal={this.props.cardTotal}
+                        cardRememberTotal={12}
+                        cardWriteTotal={3}
+                    />
                 </div>
                 <div className="twelve wide column">
                     {this.props.children}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Menu } from 'semantic-ui-react'
 import MenuLink from 'components/MenuLink'
 
-const SideMenu = ({ cardTotal }) => (
+const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
     <Menu vertical fluid size="large">
         <Menu.Item>
             <Menu.Header>Словарь</Menu.Header>
@@ -22,11 +22,11 @@ const SideMenu = ({ cardTotal }) => (
             <Menu.Menu>
                 <MenuLink to="/user/remember">
                     Запоминание
-                    <div className="ui label">12</div>
+                    <div className="ui label">{cardRememberTotal}</div>
                 </MenuLink>
                 <MenuLink to="/user/write">
                     Написание
-                    <div className="ui label">7</div>
+                    <div className="ui label">{cardWriteTotal}</div>
                 </MenuLink>
                 <MenuLink to="/user/mp3">
                     Скачать MP3
@@ -61,6 +61,8 @@ const SideMenu = ({ cardTotal }) => (
 
 SideMenu.propTypes = {
     cardTotal: PropTypes.number,
+    cardRememberTotal: PropTypes.number,
+    cardWriteTotal: PropTypes.number,
 }
 
 export default SideMenu
