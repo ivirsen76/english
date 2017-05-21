@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Table from '@ieremeev/table'
-import EditCard from 'components/EditCard'
-import DeleteCard from 'components/DeleteCard'
 import format from 'date-fns/format'
+import EditCard from '../EditCard'
+import DeleteCard from '../DeleteCard'
 import AudioLink from './AudioLink'
 
 export const Cards = ({ data, deleteCard, updateCard }) => {

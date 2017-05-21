@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Cards from 'components/Cards'
-import AddCard from 'components/AddCard'
 import { addCard, deleteCard, updateCard } from 'reducers/card'
 import { getNextNewId, getLatestLabel } from 'selectors/card'
+import List from './List'
+import AddCard from './AddCard'
 
 class Component extends React.Component {
     static propTypes = {
@@ -27,7 +27,7 @@ class Component extends React.Component {
                         latestLabel={this.props.latestLabel}
                     />
                 </div>
-                <Cards
+                <List
                     data={this.props.list}
                     deleteCard={this.props.deleteCard}
                     updateCard={this.props.updateCard}

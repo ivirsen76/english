@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SideMenu from 'components/SideMenu'
 import { connect } from 'react-redux'
 import { getCardTotal, getRememberTotalCards } from 'selectors/card'
 import { loadCards } from 'reducers/card'
+import SideMenu from './SideMenu'
 
 class Component extends React.Component {
     static propTypes = {

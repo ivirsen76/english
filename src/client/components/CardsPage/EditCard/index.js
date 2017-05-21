@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Modal } from 'semantic-ui-react'
 import notification from '@ieremeev/notification'
-import Form from 'components/AddCard/form'
+import Form from '../AddCard/form'
 
 export default class Component extends React.Component {
     static propTypes = {
