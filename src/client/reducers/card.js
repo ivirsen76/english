@@ -32,7 +32,7 @@ export const initialState = {
             isRuSound: false,
             label: '',
         },
-        currentCardId: 0,
+        currentCardIndex: 0,
         step: 1,
     },
 }
@@ -142,7 +142,7 @@ export default handleActions(
                 remember: {
                     ...state.remember,
                     list: rememberList,
-                    currentCardId: rememberList[0],
+                    currentCardIndex: 0,
                 },
             }
         },

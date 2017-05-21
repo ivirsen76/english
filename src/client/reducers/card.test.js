@@ -236,10 +236,14 @@ describe('card reducer', () => {
             const state = {
                 ...initialState,
                 list: [{ id: 1, status: 0 }, { id: 2, status: 1 }, { id: 3, status: 0 }],
+                remember: {
+                    ...initialState.remember,
+                    currentCardIndex: 1,
+                },
             }
             const resultedState = reducer(state, setCardsToRemember())
             expect(resultedState.remember.list).toEqual([1, 3])
-            expect(resultedState.remember.currentCardId).toBe(1)
+            expect(resultedState.remember.currentCardIndex).toBe(0)
         })
     })
 })
