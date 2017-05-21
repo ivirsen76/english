@@ -11,32 +11,26 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
         {
             name: 'actions',
             label: '',
-            render(value, row) {
-                return (
-                    <div>
-                        <EditCard updateCard={updateCard} initialValues={row} />
-                        <DeleteCard deleteCard={deleteCard} id={row.id} />
-                    </div>
-                )
-            },
+            render: (value, row) => (
+                <div>
+                    <EditCard updateCard={updateCard} initialValues={row} />
+                    <DeleteCard deleteCard={deleteCard} id={row.id} />
+                </div>
+            ),
         },
         {
             name: 'text',
             label: 'Текст',
             filter: true,
             sort: true,
-            render(value, row) {
-                return <AudioLink text={value} audioUrl={row.usSoundFile} />
-            },
+            render: (value, row) => <AudioLink text={value} audioUrl={row.usSoundFile} />,
         },
         {
             name: 'translate',
             label: 'Перевод',
             filter: true,
             sort: true,
-            render(value, row) {
-                return <AudioLink text={value} audioUrl={row.ruSoundFile} />
-            },
+            render: (value, row) => <AudioLink text={value} audioUrl={row.ruSoundFile} />,
         },
         {
             name: 'label',
@@ -48,9 +42,7 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
             name: 'createdAt',
             label: 'Добавлена',
             sort: true,
-            render(value, row) {
-                return format(new Date(value), 'DD.MM.YYYY')
-            },
+            render: (value, row) => format(new Date(value), 'DD.MM.YYYY'),
         },
     ]
 
