@@ -1,5 +1,5 @@
 import { minNewId } from 'reducers/card'
-import { getNextNewId, getLatestLabel, getCardCount, getListForRemember, getTotalCardsToRemember } from './card'
+import { getNextNewId, getLatestLabel, getCardCount, getRememberTotalCards } from './card'
 
 describe('Card selectors', () => {
     it('Should return total cards to remember', () => {
@@ -10,7 +10,7 @@ describe('Card selectors', () => {
                 },
             },
         }
-        expect(getTotalCardsToRemember(state)).toBe(3)
+        expect(getRememberTotalCards(state)).toBe(3)
     })
 
     describe('getNextNewId()', () => {
@@ -70,18 +70,6 @@ describe('Card selectors', () => {
                 },
             }
             expect(getCardCount(state)).toBe(2)
-        })
-    })
-
-    describe('getListForRemember()', () => {
-        it('Should return list of remembering cards', () => {
-            const state = {
-                card: {
-                    list: [{ id: 1, status: 0 }, { id: 2, status: 0 }, { id: 3, status: 1 }],
-                },
-            }
-            const expectedList = [{ id: 1, status: 0 }, { id: 2, status: 0 }]
-            expect(getListForRemember(state)).toEqual(expectedList)
         })
     })
 })
