@@ -2,13 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SideMenu from 'components/SideMenu'
 import { connect } from 'react-redux'
-import { getCardCount } from 'selectors/card'
+import { getCardTotal, getRememberTotalCards } from 'selectors/card'
 import { loadCards } from 'reducers/card'
 
 class Component extends React.Component {
     static propTypes = {
         children: PropTypes.element,
         cardTotal: PropTypes.number,
+        cardRememberTotal: PropTypes.number,
         loadCards: PropTypes.func,
         loading: PropTypes.bool,
     }
@@ -31,7 +32,7 @@ class Component extends React.Component {
                 <div className="four wide column">
                     <SideMenu
                         cardTotal={this.props.cardTotal}
-                        cardRememberTotal={12}
+                        cardRememberTotal={this.props.cardRememberTotal}
                         cardWriteTotal={3}
                     />
                 </div>
@@ -45,7 +46,8 @@ class Component extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        cardTotal: getCardCount(state),
+        cardTotal: getCardTotal(state),
+        cardRememberTotal: getRememberTotalCards(state),
         loading: state.card.loading,
     }
 }

@@ -17,7 +17,7 @@ export const getLatestLabel = createSelector(getList, list => {
     return latest && latest.label ? latest.label : ''
 })
 
-export const getCardCount = createSelector(getList, list => list.length)
+export const getCardTotal = createSelector(getList, list => list.length)
 
 export const getRememberTotalCards = createSelector(getRememberList, list => list.length)
 

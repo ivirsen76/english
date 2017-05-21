@@ -2,7 +2,7 @@ import { minNewId } from 'reducers/card'
 import {
     getNextNewId,
     getLatestLabel,
-    getCardCount,
+    getCardTotal,
     getRememberTotalCards,
     getRememberCurrentCard,
 } from './card'
@@ -100,14 +100,14 @@ describe('Card selectors', () => {
         })
     })
 
-    describe('getCardCount()', () => {
+    describe('getCardTotal()', () => {
         it('Should return number of cards', () => {
             const state = {
                 card: {
                     list: [{ id: 1 }, { id: 2 }],
                 },
             }
-            expect(getCardCount(state)).toBe(2)
+            expect(getCardTotal(state)).toBe(2)
         })
     })
 })
