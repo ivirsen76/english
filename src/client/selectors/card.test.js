@@ -5,18 +5,26 @@ import {
     getCardTotal,
     getRememberTotalCards,
     getRememberCurrentCard,
+    getRememberList,
 } from './card'
 
 describe('Card selectors', () => {
     it('Should return total cards to remember', () => {
         const state = {
             card: {
-                remember: {
-                    list: [1, 2, 3],
-                },
+                list: [{ id: 1, status: 0 }, { id: 2, status: 1 }, { id: 3, status: 0 }],
             },
         }
-        expect(getRememberTotalCards(state)).toBe(3)
+        expect(getRememberTotalCards(state)).toBe(2)
+    })
+
+    it('Should get remember list', () => {
+        const state = {
+            card: {
+                list: [{ id: 1, status: 0 }, { id: 2, status: 1 }, { id: 3, status: 0 }],
+            },
+        }
+        expect(getRememberList(state)).toEqual([{ id: 1, status: 0 }, { id: 3, status: 0 }])
     })
 
     describe('getRememberCurrentCard()', () => {

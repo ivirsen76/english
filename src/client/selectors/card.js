@@ -5,8 +5,12 @@ import _maxBy from 'lodash/maxBy'
 import _find from 'lodash/find'
 
 const getList = state => state.card.list
-const getRememberList = state => state.card.remember.list
+const getRememberSortedList = state => state.card.remember.list
 const getRememberCurrentCardIndex = state => state.card.remember.currentCardIndex
+
+export const getRememberList = createSelector(getList, list =>
+    list.filter(item => item.status === 0)
+)
 
 export const getNextNewId = createSelector(getList, list =>
     _max([...list.map(item => item.id + 1), minNewId])
@@ -23,10 +27,11 @@ export const getRememberTotalCards = createSelector(getRememberList, list => lis
 
 export const getRememberCurrentCard = createSelector(
     getList,
-    getRememberList,
+    getRememberSortedList,
     getRememberCurrentCardIndex,
-    (list, rememberList, index) => {
-        const id = rememberList[index] || 0
+    (list, rememberSortedList, index) => {
+        const id = rememberSortedList[index] || 0
         return _find(list, { id }) || {}
     }
 )
+
