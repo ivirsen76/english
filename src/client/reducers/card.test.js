@@ -223,6 +223,7 @@ describe('card reducer', () => {
                     ukSoundFile: '1',
                     ukSoundLength: 100,
                     status: 0,
+                    createdAt: '2017-05-12 19:31:05',
                 },
             ]
             const resultedState = reducer(
@@ -242,6 +243,7 @@ describe('card reducer', () => {
                         ukSoundLength: 100,
                         some: 55,
                         status: 0,
+                        createdAt: '2017-05-12 19:31:05',
                     },
                 ])
             )

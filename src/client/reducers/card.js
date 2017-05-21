@@ -17,6 +17,7 @@ export const acceptedFields = [
     'ukSoundFile',
     'ukSoundLength',
     'status',
+    'createdAt',
 ]
 
 // Initial state
