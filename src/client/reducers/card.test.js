@@ -6,10 +6,21 @@ import reducer, {
     updateCardData,
     minNewId,
     setCards,
-    setCardsToRemember,
+    setRememberCards,
+    setLoadingCardsState,
 } from './card'
 
 describe('card reducer', () => {
+    describe('setLoadingCardsState()', () => {
+        it('Should set loading cards state', () => {
+            const state = {
+                ...initialState,
+                loading: false,
+            }
+            expect(reducer(state, setLoadingCardsState(true)).loading).toBe(true)
+        })
+    })
+
     describe('addCard()', () => {
         it('Should add first new card', () => {
             const state = {
@@ -237,7 +248,7 @@ describe('card reducer', () => {
         })
     })
 
-    describe('setCardsToRemember()', () => {
+    describe('setRememberCards()', () => {
         it('Should set list of cards', () => {
             const state = {
                 ...initialState,
@@ -247,7 +258,7 @@ describe('card reducer', () => {
                     currentCardIndex: 1,
                 },
             }
-            const resultedState = reducer(state, setCardsToRemember())
+            const resultedState = reducer(state, setRememberCards())
             expect(resultedState.remember.list).toEqual([1, 3])
             expect(resultedState.remember.currentCardIndex).toBe(0)
         })

@@ -21,6 +21,7 @@ export const acceptedFields = [
 
 // Initial state
 export const initialState = {
+    loading: true,
     list: [],
     remember: {
         list: [],
@@ -43,7 +44,8 @@ const DELETE_CARD = 'english/card/DELETE_CARD'
 const UPDATE_CARD = 'english/card/UPDATE_CARD'
 const UPDATE_CARD_DATA = 'english/card/UPDATE_CARD_DATA'
 const SET_CARDS = 'english/card/SET_CARDS'
-const SET_CARDS_TO_REMEMBER = 'english/card/SET_CARDS_TO_REMEMBER'
+const SET_LOADING_CARDS_STATE = 'english/card/SET_LOADING_CARDS_STATE'
+const SET_REMEMBER_CARDS = 'english/card/SET_REMEMBER_CARDS'
 
 // Action Creators
 export const addCardWithoutSaving = createAction(ADD_CARD)
@@ -51,7 +53,8 @@ export const deleteCard = createAction(DELETE_CARD)
 export const updateCardWithoutSaving = createAction(UPDATE_CARD)
 export const updateCardData = createAction(UPDATE_CARD_DATA)
 export const setCards = createAction(SET_CARDS)
-export const setCardsToRemember = createAction(SET_CARDS_TO_REMEMBER)
+export const setLoadingCardsState = createAction(SET_LOADING_CARDS_STATE)
+export const setRememberCards = createAction(SET_REMEMBER_CARDS)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(cardInfo))
@@ -67,8 +70,10 @@ export const updateCard = cardInfo => async (dispatch, getState) => {
 }
 
 export const loadCards = () => async (dispatch, getState) => {
+    dispatch(setLoadingCardsState(true))
     const res = await axios.get('/cards')
     dispatch(setCards(res.data.data))
+    dispatch(setLoadingCardsState(false))
 }
 
 // Reducer
@@ -140,7 +145,7 @@ export default handleActions(
             ...state,
             list: action.payload.map(item => _pick(item, ['id', ...acceptedFields])),
         }),
-        [SET_CARDS_TO_REMEMBER]: (state, action) => {
+        [SET_REMEMBER_CARDS]: (state, action) => {
             const rememberList = state.list.filter(card => card.status === 0).map(card => card.id)
             return {
                 ...state,
@@ -151,6 +156,10 @@ export default handleActions(
                 },
             }
         },
+        [SET_LOADING_CARDS_STATE]: (state, action) => ({
+            ...state,
+            loading: !!action.payload,
+        }),
     },
     initialState
 )

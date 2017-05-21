@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { getRememberTotalCards, getRememberCurrentCard } from 'selectors/card'
+import { setRememberCards } from 'reducers/card'
 import Counter from './Counter'
 import EditButton from './EditButton'
 import NextButton from './NextButton'
@@ -13,7 +16,7 @@ import Label from './label.js'
 import Panel from './Panel'
 import style from './index.module.scss'
 
-export default class Component extends React.Component {
+class Component extends React.Component {
     static propTypes = {
         totalCards: PropTypes.number,
         currentCardIndex: PropTypes.number,
@@ -25,7 +28,7 @@ export default class Component extends React.Component {
         isEnSound: PropTypes.bool,
         isRuSound: PropTypes.bool,
         label: PropTypes.string,
-        setCardsToRemember: PropTypes.func,
+        setRememberCards: PropTypes.func,
         updateParams: PropTypes.func,
         rememberWord: PropTypes.func,
         goToNextCard: PropTypes.func,
@@ -46,12 +49,14 @@ export default class Component extends React.Component {
         },
         step: 2,
         enLanguage: 'us',
-        isTextFirst: true,
-        isPlayMode: false,
-        isEnSound: false,
-        isRuSound: false,
-        label: 'lesson',
-        setCardsToRemember() {},
+        params: {
+            isEnFirst: true,
+            isAutoPlayMode: false,
+            isEnSound: true,
+            isRuSound: false,
+            label: '',
+        },
+        setRememberCards() {},
         updateParams() {},
         rememberWord() {},
         goToNextCard() {},
@@ -62,7 +67,7 @@ export default class Component extends React.Component {
     }
 
     componentDidMount() {
-        this.props.setCardsToRemember()
+        this.props.setRememberCards()
     }
 
     getFirstWord = () => ({
@@ -153,3 +158,18 @@ export default class Component extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        totalCards: getRememberTotalCards(state),
+        currentCardIndex: state.card.remember.currentCardIndex,
+        currentCard: getRememberCurrentCard(state),
+        step: state.card.remember.step,
+        enLanguage: 'us',
+        params: state.card.params,
+    }
+}
+
+export default connect(mapStateToProps, {
+    setRememberCards,
+})(Component)

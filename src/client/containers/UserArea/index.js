@@ -10,6 +10,7 @@ class Component extends React.Component {
         children: PropTypes.element,
         cardTotal: PropTypes.number,
         loadCards: PropTypes.func,
+        loading: PropTypes.bool,
     }
 
     componentDidMount() {
@@ -17,6 +18,14 @@ class Component extends React.Component {
     }
 
     render() {
+        if (this.props.loading) {
+            return (
+                <div className="ui active inverted dimmer">
+                    <div className="ui big text loader">Loading</div>
+                </div>
+            )
+        }
+
         return (
             <div className="ui grid">
                 <div className="four wide column">
@@ -33,6 +42,7 @@ class Component extends React.Component {
 function mapStateToProps(state) {
     return {
         cardTotal: getCardCount(state),
+        loading: state.card.loading,
     }
 }
 

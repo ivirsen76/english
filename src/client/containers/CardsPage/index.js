@@ -6,7 +6,6 @@ import AddCard from 'components/AddCard'
 import { addCard, deleteCard, updateCard } from 'reducers/card'
 import { getNextNewId, getLatestLabel } from 'selectors/card'
 
-// eslint-disable-next-line react/prefer-stateless-function
 class Component extends React.Component {
     static propTypes = {
         list: PropTypes.array.isRequired,
