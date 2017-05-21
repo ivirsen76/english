@@ -1,5 +1,11 @@
 import { minNewId } from 'reducers/card'
-import { getNextNewId, getLatestLabel, getCardCount, getRememberTotalCards } from './card'
+import {
+    getNextNewId,
+    getLatestLabel,
+    getCardCount,
+    getRememberTotalCards,
+    getRememberCurrentCard,
+} from './card'
 
 describe('Card selectors', () => {
     it('Should return total cards to remember', () => {
@@ -11,6 +17,38 @@ describe('Card selectors', () => {
             },
         }
         expect(getRememberTotalCards(state)).toBe(3)
+    })
+
+    describe('getRememberCurrentCard()', () => {
+        it('Should return current card to remember', () => {
+            const state = {
+                card: {
+                    list: [{ id: 2, text: 'Some', translate: 'Another' }],
+                    remember: {
+                        list: [1, 2, 3],
+                        currentCardIndex: 1,
+                    },
+                },
+            }
+            expect(getRememberCurrentCard(state)).toEqual({
+                id: 2,
+                text: 'Some',
+                translate: 'Another',
+            })
+        })
+
+        it('Should return empty object', () => {
+            const state = {
+                card: {
+                    list: [{ id: 2, text: 'Some', translate: 'Another' }],
+                    remember: {
+                        list: [1, 2, 3],
+                        currentCardIndex: 0,
+                    },
+                },
+            }
+            expect(getRememberCurrentCard(state)).toEqual({})
+        })
     })
 
     describe('getNextNewId()', () => {
