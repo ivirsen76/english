@@ -95,7 +95,12 @@ export default handleActions(
                         ..._pick(action.payload, ['text', 'translate', 'label']),
                     }
                     if (item.text !== result.text) {
-                        result = _omit(result, ['ukSoundFile', 'ukSoundLength', 'usSoundFile', 'usSoundLength'])
+                        result = _omit(result, [
+                            'ukSoundFile',
+                            'ukSoundLength',
+                            'usSoundFile',
+                            'usSoundLength',
+                        ])
                     }
                     if (item.translate !== result.translate) {
                         result = _omit(result, ['ruSoundFile', 'ruSoundLength'])

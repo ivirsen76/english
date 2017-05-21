@@ -52,7 +52,11 @@ export default class Component extends React.Component {
     }
 
     render() {
-        let flagClass = classnames(style.language, style[this.props.language], style[this.props.iconPosition])
+        let flagClass = classnames(
+            style.language,
+            style[this.props.language],
+            style[this.props.iconPosition]
+        )
 
         let soundClass = classnames(
             style.sound,

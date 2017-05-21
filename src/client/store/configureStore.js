@@ -31,7 +31,11 @@ function configureStoreDev(initialState) {
     // eslint-disable-next-line no-underscore-dangle
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-    const store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(...middlewares)))
+    const store = createStore(
+        rootReducer,
+        initialState,
+        composeEnhancers(applyMiddleware(...middlewares))
+    )
 
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers
@@ -44,6 +48,8 @@ function configureStoreDev(initialState) {
     return store
 }
 
-const configureStore = process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev
+const configureStore = process.env.NODE_ENV === 'production'
+    ? configureStoreProd
+    : configureStoreDev
 
 export default configureStore

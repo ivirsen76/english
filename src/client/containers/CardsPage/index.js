@@ -28,7 +28,11 @@ class Component extends React.Component {
                         latestLabel={this.props.latestLabel}
                     />
                 </div>
-                <Cards data={this.props.list} deleteCard={this.props.deleteCard} updateCard={this.props.updateCard} />
+                <Cards
+                    data={this.props.list}
+                    deleteCard={this.props.deleteCard}
+                    updateCard={this.props.updateCard}
+                />
             </div>
         )
     }

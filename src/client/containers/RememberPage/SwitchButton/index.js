@@ -8,6 +8,12 @@ export default class Component extends React.Component {
     }
 
     render() {
-        return <div id="remember-switch-button" className={style.switchButton} onClick={this.props.onClick} />
+        return (
+            <div
+                id="remember-switch-button"
+                className={style.switchButton}
+                onClick={this.props.onClick}
+            />
+        )
     }
 }

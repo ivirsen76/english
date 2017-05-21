@@ -17,7 +17,10 @@ describe('card reducer', () => {
                 list: [],
             }
             const expectedList = [{ id: minNewId, text: 'Tree', translate: 'Some', label: 'bla' }]
-            const resultedState = reducer(state, addCard({ text: 'Tree', translate: 'Some', label: 'bla', unknown: 1 }))
+            const resultedState = reducer(
+                state,
+                addCard({ text: 'Tree', translate: 'Some', label: 'bla', unknown: 1 })
+            )
             expect(resultedState.list).toEqual(expectedList)
         })
 
@@ -39,7 +42,10 @@ describe('card reducer', () => {
         it('Should delete card', () => {
             const state = {
                 ...initialState,
-                list: [{ id: 1, text: 'Ball', translate: 'Some' }, { id: 2, text: 'Tree', translate: 'Some' }],
+                list: [
+                    { id: 1, text: 'Ball', translate: 'Some' },
+                    { id: 2, text: 'Tree', translate: 'Some' },
+                ],
             }
             const expectedList = [{ id: 2, text: 'Tree', translate: 'Some' }]
             expect(reducer(state, deleteCard(1)).list).toEqual(expectedList)
