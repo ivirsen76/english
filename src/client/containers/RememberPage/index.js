@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getRememberTotalCards, getRememberCurrentCard } from 'selectors/card'
-import { setRememberCards } from 'reducers/card'
+import { setRememberCards, goNextRememberCard } from 'reducers/card'
 import Counter from './Counter'
 import EditButton from './EditButton'
 import NextButton from './NextButton'
@@ -19,7 +19,7 @@ import style from './index.module.scss'
 class Component extends React.Component {
     static propTypes = {
         totalCards: PropTypes.number,
-        currentCardIndex: PropTypes.number,
+        currentCardNumber: PropTypes.number,
         currentCard: PropTypes.object,
         step: PropTypes.number,
         enLanguage: PropTypes.string,
@@ -31,7 +31,7 @@ class Component extends React.Component {
         setRememberCards: PropTypes.func,
         updateParams: PropTypes.func,
         rememberWord: PropTypes.func,
-        goToNextCard: PropTypes.func,
+        goNext: PropTypes.func,
         switchOrder: PropTypes.func,
         togglePlayMode: PropTypes.func,
         toggleSound: PropTypes.func,
@@ -39,27 +39,9 @@ class Component extends React.Component {
     }
 
     static defaultProps = {
-        totalCards: 123,
-        currentCardIndex: 13,
-        currentCard: {
-            text: 'Something',
-            translate: 'Что-то такое',
-            textSoundFile: '',
-            translateSoundFile: '',
-        },
-        step: 2,
-        enLanguage: 'us',
-        params: {
-            isEnFirst: true,
-            isAutoPlayMode: false,
-            isEnSound: true,
-            isRuSound: false,
-            label: '',
-        },
         setRememberCards() {},
         updateParams() {},
         rememberWord() {},
-        goToNextCard() {},
         switchOrder() {},
         togglePlayMode() {},
         toggleSound() {},
@@ -84,14 +66,18 @@ class Component extends React.Component {
         toggleSound() {},
     })
 
+    goNext = e => {
+        e && e.preventDefault()
+        this.props.goNext()
+    }
+
     render() {
         const {
             isTextFirst,
             currentCard,
-            currentCardIndex,
+            currentCardNumber,
             totalCards,
             updateCard,
-            goToNextCard,
             step,
             isPlayMode,
             switchOrder,
@@ -108,12 +94,12 @@ class Component extends React.Component {
                 <h2>Запоминание</h2>
                 <div className={style.wrapper}>
                     <div className={style.counter}>
-                        <Counter current={currentCardIndex} total={totalCards} />
+                        <Counter current={currentCardNumber} total={totalCards} />
                     </div>
 
                     <div className={style.mainButtons}>
                         <EditButton card={currentCard} onSuccess={updateCard} />
-                        <NextButton onClick={goToNextCard} />
+                        <NextButton onClick={this.goNext} />
                         <DeleteButton />
                     </div>
 
@@ -152,7 +138,7 @@ class Component extends React.Component {
                         />
                     </div>
 
-                    <GoNextPanel onClick={goToNextCard} />
+                    <GoNextPanel onClick={this.goNext} />
                 </div>
             </div>
         )
@@ -162,7 +148,7 @@ class Component extends React.Component {
 function mapStateToProps(state) {
     return {
         totalCards: getRememberTotalCards(state),
-        currentCardIndex: state.card.remember.currentCardIndex,
+        currentCardNumber: state.card.remember.currentCardIndex + 1,
         currentCard: getRememberCurrentCard(state),
         step: state.card.remember.step,
         enLanguage: 'us',
@@ -172,4 +158,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
     setRememberCards,
+    goNext: goNextRememberCard,
 })(Component)

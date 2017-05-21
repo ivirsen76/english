@@ -8,6 +8,7 @@ import reducer, {
     setCards,
     setRememberCards,
     setLoadingCardsState,
+    goNextRememberCard,
 } from './card'
 
 describe('card reducer', () => {
@@ -260,6 +261,56 @@ describe('card reducer', () => {
             }
             const resultedState = reducer(state, setRememberCards())
             expect(resultedState.remember.list).toEqual([1, 3])
+            expect(resultedState.remember.currentCardIndex).toBe(0)
+        })
+    })
+
+    describe('goNextRememberCard()', () => {
+        it('Should go to the next step', () => {
+            const state = {
+                ...initialState,
+                list: [{ id: 1, status: 0 }, { id: 2, status: 0 }, { id: 3, status: 0 }],
+                remember: {
+                    ...initialState.remember,
+                    list: [1, 2, 3],
+                    step: 1,
+                    currentCardIndex: 0,
+                },
+            }
+            const resultedState = reducer(state, goNextRememberCard())
+            expect(resultedState.remember.step).toBe(2)
+            expect(resultedState.remember.currentCardIndex).toBe(0)
+        })
+
+        it('Should go to the next card', () => {
+            const state = {
+                ...initialState,
+                list: [{ id: 1, status: 0 }, { id: 2, status: 0 }, { id: 3, status: 0 }],
+                remember: {
+                    ...initialState.remember,
+                    list: [1, 2, 3],
+                    step: 2,
+                    currentCardIndex: 0,
+                },
+            }
+            const resultedState = reducer(state, goNextRememberCard())
+            expect(resultedState.remember.step).toBe(1)
+            expect(resultedState.remember.currentCardIndex).toBe(1)
+        })
+
+        it('Should go back to the first card', () => {
+            const state = {
+                ...initialState,
+                list: [{ id: 1, status: 0 }, { id: 2, status: 0 }, { id: 3, status: 0 }],
+                remember: {
+                    ...initialState.remember,
+                    list: [1, 2, 3],
+                    step: 2,
+                    currentCardIndex: 2,
+                },
+            }
+            const resultedState = reducer(state, goNextRememberCard())
+            expect(resultedState.remember.step).toBe(1)
             expect(resultedState.remember.currentCardIndex).toBe(0)
         })
     })

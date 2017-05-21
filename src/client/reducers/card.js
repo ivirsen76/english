@@ -46,6 +46,7 @@ const UPDATE_CARD_DATA = 'english/card/UPDATE_CARD_DATA'
 const SET_CARDS = 'english/card/SET_CARDS'
 const SET_LOADING_CARDS_STATE = 'english/card/SET_LOADING_CARDS_STATE'
 const SET_REMEMBER_CARDS = 'english/card/SET_REMEMBER_CARDS'
+const GO_NEXT_REMEMBER_CARD = 'english/card/GO_NEXT_REMEMBER_CARD'
 
 // Action Creators
 export const addCardWithoutSaving = createAction(ADD_CARD)
@@ -55,6 +56,7 @@ export const updateCardData = createAction(UPDATE_CARD_DATA)
 export const setCards = createAction(SET_CARDS)
 export const setLoadingCardsState = createAction(SET_LOADING_CARDS_STATE)
 export const setRememberCards = createAction(SET_REMEMBER_CARDS)
+export const goNextRememberCard = createAction(GO_NEXT_REMEMBER_CARD)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(cardInfo))
@@ -160,6 +162,29 @@ export default handleActions(
             ...state,
             loading: !!action.payload,
         }),
+        [GO_NEXT_REMEMBER_CARD]: (state, action) => {
+            if (state.remember.step === 1) {
+                return {
+                    ...state,
+                    remember: {
+                        ...state.remember,
+                        step: 2,
+                    },
+                }
+            }
+
+            const currentCardIndex = state.remember.currentCardIndex
+            return {
+                ...state,
+                remember: {
+                    ...state.remember,
+                    step: 1,
+                    currentCardIndex: state.remember.list[currentCardIndex + 1]
+                        ? currentCardIndex + 1
+                        : 0,
+                },
+            }
+        },
     },
     initialState
 )
