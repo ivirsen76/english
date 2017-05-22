@@ -5595,9 +5595,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-app-rewired@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/react-app-rewired/-/react-app-rewired-1.0.1.tgz#26a4492fb0edd140d18cc22c9a0cb2cc8ec98016"
+react-app-rewired@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/react-app-rewired/-/react-app-rewired-1.0.2.tgz#7b4eff4fb974541efc50a77a2e05eb3f6e2e1744"
   dependencies:
     cross-spawn "^5.1.0"
     dotenv "^4.0.0"
