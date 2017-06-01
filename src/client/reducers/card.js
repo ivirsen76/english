@@ -3,6 +3,7 @@ import _max from 'lodash/max'
 import _pick from 'lodash/pick'
 import _keys from 'lodash/keys'
 import _omit from 'lodash/omit'
+import _find from 'lodash/find'
 import axios from 'utils/axios'
 
 export const minNewId = 1000000000
@@ -47,9 +48,11 @@ const UPDATE_CARD = 'english/card/UPDATE_CARD'
 const UPDATE_CARD_DATA = 'english/card/UPDATE_CARD_DATA'
 const SET_CARDS = 'english/card/SET_CARDS'
 const SET_LOADING_CARDS_STATE = 'english/card/SET_LOADING_CARDS_STATE'
+// Remember actions
 const SET_REMEMBER_CARDS = 'english/card/SET_REMEMBER_CARDS'
 const GO_NEXT_REMEMBER_CARD = 'english/card/GO_NEXT_REMEMBER_CARD'
 const UPDATE_REMEMBER_PARAMS = 'english/card/UPDATE_REMEMBER_PARAMS'
+const REMEMBER_CARD = 'english/card/REMEMBER_CARD'
 
 // Action Creators
 export const addCardWithoutSaving = createAction(ADD_CARD)
@@ -61,6 +64,7 @@ export const setLoadingCardsState = createAction(SET_LOADING_CARDS_STATE)
 export const setRememberCards = createAction(SET_REMEMBER_CARDS)
 export const goNextRememberCard = createAction(GO_NEXT_REMEMBER_CARD)
 export const updateRememberParams = createAction(UPDATE_REMEMBER_PARAMS)
+export const rememberCard = createAction(REMEMBER_CARD)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(cardInfo))
@@ -199,6 +203,27 @@ export default handleActions(
                 },
             },
         }),
+        [REMEMBER_CARD]: (state, action) => {
+            const card = _find(state.list, { status: 2, id: action.payload })
+            if (!card) {
+                return state
+            }
+
+            return {
+                ...state,
+                list: state.list.map(item => {
+                    if (item.id === action.payload && item.status === 2) {
+                        return { ...item, status: 3 }
+                    }
+
+                    return item
+                }),
+                remember: {
+                    ...state.remember,
+                    list: state.remember.list.filter(item => item !== action.payload),
+                },
+            }
+        },
     },
     initialState
 )

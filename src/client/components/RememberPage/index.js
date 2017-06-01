@@ -30,7 +30,7 @@ class Component extends React.Component {
         label: PropTypes.string,
         setRememberCards: PropTypes.func,
         updateParams: PropTypes.func,
-        rememberWord: PropTypes.func,
+        rememberCard: PropTypes.func,
         goNext: PropTypes.func,
         switchOrder: PropTypes.func,
         togglePlayMode: PropTypes.func,
@@ -41,7 +41,7 @@ class Component extends React.Component {
     static defaultProps = {
         setRememberCards() {},
         updateParams() {},
-        rememberWord() {},
+        rememberCard() {},
         switchOrder() {},
         togglePlayMode() {},
         toggleSound() {},
@@ -81,7 +81,7 @@ class Component extends React.Component {
             step,
             isPlayMode,
             switchOrder,
-            rememberWord,
+            rememberCard,
             togglePlayMode,
             label,
         } = this.props
@@ -110,7 +110,7 @@ class Component extends React.Component {
                         </div>
 
                         <div className={style.doneButton}>
-                            <DoneButton onClick={rememberWord} />
+                            <DoneButton onClick={rememberCard} />
                         </div>
 
                         <div className={style.label}>

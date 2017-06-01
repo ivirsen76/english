@@ -10,9 +10,34 @@ import reducer, {
     setLoadingCardsState,
     goNextRememberCard,
     updateRememberParams,
+    rememberCard,
 } from './card'
 
 describe('card reducer', () => {
+    describe('rememberCard()', () => {
+        it('Should remember one card', () => {
+            const state = {
+                list: [{ id: 1, text: 'Some', status: 2 }],
+                remember: {
+                    list: [1],
+                },
+            }
+            const resultedState = reducer(state, rememberCard(1))
+            expect(resultedState.list[0].status).toBe(3)
+            expect(resultedState.remember.list).toEqual([])
+        })
+
+        it('Should ignore already remembered card', () => {
+            const state = {
+                list: [{ id: 1, text: 'Some', status: 3 }],
+                remember: {
+                    list: [1],
+                },
+            }
+            expect(reducer(state, rememberCard(1))).toBe(state)
+        })
+    })
+
     describe('updateRememberParams()', () => {
         it('Should update only one param', () => {
             const state = {
