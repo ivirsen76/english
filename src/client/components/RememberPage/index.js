@@ -10,6 +10,7 @@ import {
     toggleRememberSound,
     toggleRememberPlayMode,
     switchRememberOrder,
+    updateRememberLabel,
 } from 'reducers/card'
 import Counter from './Counter'
 import EditButton from './EditButton'
@@ -43,6 +44,7 @@ class Component extends React.Component {
         togglePlayMode: PropTypes.func,
         toggleSound: PropTypes.func,
         updateCard: PropTypes.func,
+        updateLabel: PropTypes.func,
     }
 
     static defaultProps = {
@@ -130,7 +132,7 @@ class Component extends React.Component {
                         </div>
 
                         <div className={style.label}>
-                            <Label value={label} />
+                            <Label value={label} onChange={this.props.updateLabel} />
                         </div>
                     </div>
 
@@ -173,6 +175,7 @@ function mapStateToProps(state) {
             'isRuSound',
             'isEnFirst',
             'isAutoPlayMode',
+            'label',
         ]),
     }
 }
@@ -184,4 +187,5 @@ export default connect(mapStateToProps, {
     togglePlayMode: toggleRememberPlayMode,
     toggleSound: toggleRememberSound,
     switchOrder: switchRememberOrder,
+    updateLabel: updateRememberLabel,
 })(Component)

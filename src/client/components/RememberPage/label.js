@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class Component extends React.Component {
+export default class Label extends React.Component {
     static propTypes = {
         value: PropTypes.string,
         onChange: PropTypes.func,
     }
 
-    static defaultProps = {
-        onChange() {},
+    onChange = e => {
+        this.props.onChange(e.target.value)
     }
 
     render() {
@@ -20,7 +20,7 @@ export default class Component extends React.Component {
                         type="text"
                         style={{ width: '6em' }}
                         value={this.props.value}
-                        onChange={this.props.onChange}
+                        onChange={this.onChange}
                     />
                 </div>
             </div>
