@@ -240,6 +240,8 @@ export default handleActions(
                     ...state.remember.params,
                     label: action.payload,
                 },
+                currentCardIndex: 0,
+                step: 1,
             },
         }),
         [TOGGLE_REMEMBER_SOUND]: (state, action) => {

@@ -25,10 +25,14 @@ describe('card reducer', () => {
                     params: {
                         label: '',
                     },
+                    currentCardIndex: 1,
+                    step: 2,
                 },
             }
 
             expect(reducer(state, updateRememberLabel('new')).remember.params.label).toBe('new')
+            expect(reducer(state, updateRememberLabel('new')).remember.currentCardIndex).toBe(0)
+            expect(reducer(state, updateRememberLabel('new')).remember.step).toBe(1)
         })
     })
 

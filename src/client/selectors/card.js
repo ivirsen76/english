@@ -9,9 +9,13 @@ const getRememberParams = state => state.card.remember.params
 const getRememberSortedList = state => state.card.remember.list
 const getRememberCurrentCardIndex = state => state.card.remember.currentCardIndex
 
-export const getRememberList = createSelector(getList, list =>
-    list.filter(item => item.status === 0)
-)
+export const getRememberList = createSelector(getList, getRememberParams, (list, params) => {
+    if (params.label === '') {
+        return list.filter(item => item.status === 0)
+    }
+
+    return list.filter(item => item.status === 0 && item.label.includes(params.label))
+})
 
 export const getNextNewId = createSelector(getList, list =>
     _max([...list.map(item => item.id + 1), minNewId])
