@@ -54,6 +54,7 @@ const GO_NEXT_REMEMBER_CARD = 'english/card/GO_NEXT_REMEMBER_CARD'
 const UPDATE_REMEMBER_PARAMS = 'english/card/UPDATE_REMEMBER_PARAMS'
 const TOGGLE_REMEMBER_PLAY_MODE = 'english/card/TOGGLE_REMEMBER_PLAY_MODE'
 const TOGGLE_REMEMBER_SOUND = 'english/card/TOGGLE_REMEMBER_SOUND'
+const SWITCH_REMEMBER_ORDER = 'english/card/SWITCH_REMEMBER_ORDER'
 const REMEMBER_CARD = 'english/card/REMEMBER_CARD'
 
 // Action Creators
@@ -68,6 +69,7 @@ export const goNextRememberCard = createAction(GO_NEXT_REMEMBER_CARD)
 export const updateRememberParams = createAction(UPDATE_REMEMBER_PARAMS)
 export const toggleRememberPlayMode = createAction(TOGGLE_REMEMBER_PLAY_MODE)
 export const toggleRememberSound = createAction(TOGGLE_REMEMBER_SOUND)
+export const switchRememberOrder = createAction(SWITCH_REMEMBER_ORDER)
 export const rememberCard = createAction(REMEMBER_CARD)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
@@ -214,6 +216,16 @@ export default handleActions(
                 params: {
                     ...state.remember.params,
                     isAutoPlayMode: !state.remember.params.isAutoPlayMode,
+                },
+            },
+        }),
+        [SWITCH_REMEMBER_ORDER]: (state, action) => ({
+            ...state,
+            remember: {
+                ...state.remember,
+                params: {
+                    ...state.remember.params,
+                    isEnFirst: !state.remember.params.isEnFirst,
                 },
             },
         }),

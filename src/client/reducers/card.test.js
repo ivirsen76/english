@@ -13,6 +13,7 @@ import reducer, {
     rememberCard,
     toggleRememberPlayMode,
     toggleRememberSound,
+    switchRememberOrder,
 } from './card'
 
 describe('card reducer', () => {
@@ -29,6 +30,20 @@ describe('card reducer', () => {
             expect(reducer(state, toggleRememberPlayMode()).remember.params.isAutoPlayMode).toBe(
                 true
             )
+        })
+    })
+
+    describe('switchRememberOrder()', () => {
+        it('Should switch order', () => {
+            const state = {
+                remember: {
+                    params: {
+                        isEnFirst: true,
+                    },
+                },
+            }
+
+            expect(reducer(state, switchRememberOrder()).remember.params.isEnFirst).toBe(false)
         })
     })
 
