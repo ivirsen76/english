@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getRememberTotalCards, getRememberCurrentCard } from 'selectors/card'
-import { setRememberCards, goNextRememberCard } from 'reducers/card'
+import { setRememberCards, goNextRememberCard, rememberCard } from 'reducers/card'
 import Counter from './Counter'
 import EditButton from './EditButton'
 import NextButton from './NextButton'
@@ -71,6 +71,10 @@ class Component extends React.Component {
         this.props.goNext()
     }
 
+    rememberCard = () => {
+        this.props.rememberCard(this.props.currentCard.id)
+    }
+
     render() {
         const {
             isTextFirst,
@@ -81,7 +85,6 @@ class Component extends React.Component {
             step,
             isPlayMode,
             switchOrder,
-            rememberCard,
             togglePlayMode,
             label,
         } = this.props
@@ -110,7 +113,7 @@ class Component extends React.Component {
                         </div>
 
                         <div className={style.doneButton}>
-                            <DoneButton onClick={rememberCard} />
+                            <DoneButton onClick={this.rememberCard} />
                         </div>
 
                         <div className={style.label}>
@@ -159,4 +162,5 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
     setRememberCards,
     goNext: goNextRememberCard,
+    rememberCard,
 })(Component)

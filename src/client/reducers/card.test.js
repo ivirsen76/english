@@ -17,19 +17,35 @@ describe('card reducer', () => {
     describe('rememberCard()', () => {
         it('Should remember one card', () => {
             const state = {
-                list: [{ id: 1, text: 'Some', status: 2 }],
+                list: [{ id: 1, text: 'Some', status: 0 }, { id: 2, text: 'Another', status: 0 }],
                 remember: {
-                    list: [1],
+                    list: [1, 2],
+                    step: 2,
+                    currentCardIndex: 0,
                 },
             }
             const resultedState = reducer(state, rememberCard(1))
-            expect(resultedState.list[0].status).toBe(3)
-            expect(resultedState.remember.list).toEqual([])
+            expect(resultedState.list[0].status).toBe(1)
+            expect(resultedState.remember.list).toEqual([2])
+            expect(resultedState.remember.step).toBe(1)
+            expect(resultedState.remember.currentCardIndex).toBe(0)
+        })
+
+        it('Should remember the last card and move pointer to the first', () => {
+            const state = {
+                list: [{ id: 1, text: 'Some', status: 0 }, { id: 2, text: 'Another', status: 0 }],
+                remember: {
+                    list: [1, 2],
+                    currentCardIndex: 1,
+                },
+            }
+            const resultedState = reducer(state, rememberCard(2))
+            expect(resultedState.remember.currentCardIndex).toBe(0)
         })
 
         it('Should ignore already remembered card', () => {
             const state = {
-                list: [{ id: 1, text: 'Some', status: 3 }],
+                list: [{ id: 1, text: 'Some', status: 1 }],
                 remember: {
                     list: [1],
                 },

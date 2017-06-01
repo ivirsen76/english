@@ -204,23 +204,25 @@ export default handleActions(
             },
         }),
         [REMEMBER_CARD]: (state, action) => {
-            const card = _find(state.list, { status: 2, id: action.payload })
+            const card = _find(state.list, { status: 0, id: action.payload })
             if (!card) {
                 return state
             }
 
+            const newRememberList = state.remember.list.filter(item => item !== action.payload)
+
             return {
                 ...state,
-                list: state.list.map(item => {
-                    if (item.id === action.payload && item.status === 2) {
-                        return { ...item, status: 3 }
-                    }
-
-                    return item
-                }),
+                list: state.list.map(
+                    item => (item.id === action.payload ? { ...item, status: 1 } : item)
+                ),
                 remember: {
                     ...state.remember,
-                    list: state.remember.list.filter(item => item !== action.payload),
+                    list: newRememberList,
+                    step: 1,
+                    currentCardIndex: newRememberList.length < state.remember.currentCardIndex + 1
+                        ? 0
+                        : state.remember.currentCardIndex,
                 },
             }
         },
