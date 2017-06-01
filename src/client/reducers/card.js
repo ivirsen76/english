@@ -52,6 +52,7 @@ const SET_LOADING_CARDS_STATE = 'english/card/SET_LOADING_CARDS_STATE'
 const SET_REMEMBER_CARDS = 'english/card/SET_REMEMBER_CARDS'
 const GO_NEXT_REMEMBER_CARD = 'english/card/GO_NEXT_REMEMBER_CARD'
 const UPDATE_REMEMBER_PARAMS = 'english/card/UPDATE_REMEMBER_PARAMS'
+const TOGGLE_REMEMBER_PLAY_MODE = 'english/card/TOGGLE_REMEMBER_PLAY_MODE'
 const REMEMBER_CARD = 'english/card/REMEMBER_CARD'
 
 // Action Creators
@@ -64,6 +65,7 @@ export const setLoadingCardsState = createAction(SET_LOADING_CARDS_STATE)
 export const setRememberCards = createAction(SET_REMEMBER_CARDS)
 export const goNextRememberCard = createAction(GO_NEXT_REMEMBER_CARD)
 export const updateRememberParams = createAction(UPDATE_REMEMBER_PARAMS)
+export const toggleRememberPlayMode = createAction(TOGGLE_REMEMBER_PLAY_MODE)
 export const rememberCard = createAction(REMEMBER_CARD)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
@@ -200,6 +202,16 @@ export default handleActions(
                 params: {
                     ...state.remember.params,
                     ..._pick(action.payload, _keys(initialState.remember.params)),
+                },
+            },
+        }),
+        [TOGGLE_REMEMBER_PLAY_MODE]: (state, action) => ({
+            ...state,
+            remember: {
+                ...state.remember,
+                params: {
+                    ...state.remember.params,
+                    isAutoPlayMode: !state.remember.params.isAutoPlayMode,
                 },
             },
         }),

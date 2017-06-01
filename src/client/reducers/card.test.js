@@ -11,9 +11,26 @@ import reducer, {
     goNextRememberCard,
     updateRememberParams,
     rememberCard,
+    toggleRememberPlayMode,
 } from './card'
 
 describe('card reducer', () => {
+    describe('toggleRememberPlayMode()', () => {
+        it('Should toggle play mode', () => {
+            const state = {
+                remember: {
+                    params: {
+                        isAutoPlayMode: false,
+                    },
+                },
+            }
+
+            expect(reducer(state, toggleRememberPlayMode()).remember.params.isAutoPlayMode).toBe(
+                true
+            )
+        })
+    })
+
     describe('rememberCard()', () => {
         it('Should remember one card', () => {
             const state = {
