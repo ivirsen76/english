@@ -12,10 +12,19 @@ describe('Card selectors', () => {
     it('Should return total cards to remember', () => {
         const state = {
             card: {
-                list: [{ id: 1, status: 0 }, { id: 2, status: 1 }, { id: 3, status: 0 }],
+                list: [
+                    { id: 1, status: 0, label: 'some' },
+                    { id: 2, status: 1 },
+                    { id: 3, status: 0, label: 'testing' },
+                ],
+                remember: {
+                    params: {
+                        label: 'test',
+                    },
+                },
             },
         }
-        expect(getRememberTotalCards(state)).toBe(2)
+        expect(getRememberTotalCards(state)).toBe(1)
     })
 
     it('Should get remember list', () => {
