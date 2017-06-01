@@ -14,9 +14,24 @@ import reducer, {
     toggleRememberPlayMode,
     toggleRememberSound,
     switchRememberOrder,
+    updateRememberLabel,
 } from './card'
 
 describe('card reducer', () => {
+    describe('updateRememberLabel()', () => {
+        it('Should update remember label', () => {
+            const state = {
+                remember: {
+                    params: {
+                        label: '',
+                    },
+                },
+            }
+
+            expect(reducer(state, updateRememberLabel('new')).remember.params.label).toBe('new')
+        })
+    })
+
     describe('toggleRememberPlayMode()', () => {
         it('Should toggle play mode', () => {
             const state = {
