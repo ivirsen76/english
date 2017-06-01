@@ -12,6 +12,7 @@ import reducer, {
     updateRememberParams,
     rememberCard,
     toggleRememberPlayMode,
+    toggleRememberSound,
 } from './card'
 
 describe('card reducer', () => {
@@ -28,6 +29,37 @@ describe('card reducer', () => {
             expect(reducer(state, toggleRememberPlayMode()).remember.params.isAutoPlayMode).toBe(
                 true
             )
+        })
+    })
+
+    describe('toggleRememberSound()', () => {
+        it('Should toggle sound', () => {
+            const state = {
+                remember: {
+                    params: {
+                        isEnSound: false,
+                        isRuSound: false,
+                    },
+                },
+            }
+
+            expect(reducer(state, toggleRememberSound('En')).remember.params).toEqual({
+                isEnSound: true,
+                isRuSound: false,
+            })
+        })
+
+        it('Should ignore unknow language', () => {
+            const state = {
+                remember: {
+                    params: {
+                        isEnSound: false,
+                        isRuSound: false,
+                    },
+                },
+            }
+
+            expect(reducer(state, toggleRememberSound('en'))).toBe(state)
         })
     })
 
