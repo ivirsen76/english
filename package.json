@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ieremeev/button": "^2.0.2",
-    "@ieremeev/notification": "^2.0.3",
-    "@ieremeev/table": "^2.1.9",
+    "@ieremeev/button": "^2.0.3",
+    "@ieremeev/notification": "^2.0.5",
+    "@ieremeev/table": "^2.1.10",
     "aws-sdk": "^2.54.0",
     "axios": "^0.16.1",
     "babel-polyfill": "^6.23.0",
@@ -59,7 +59,7 @@
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.0.2",
     "react-app-rewired": "^1.0.2",
-    "react-scripts": "1.0.4",
+    "react-scripts": "1.0.7",
     "react-test-renderer": "^15.5.4",
     "sass-loader": "^6.0.5"
   },
