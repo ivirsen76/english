@@ -1,8 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import _pick from 'lodash/pick'
 import { getRememberTotalCards, getRememberCurrentCard } from 'selectors/card'
-import { setRememberCards, goNextRememberCard, rememberCard } from 'reducers/card'
+import {
+    setRememberCards,
+    goNextRememberCard,
+    rememberCard,
+    toggleRememberSound,
+} from 'reducers/card'
 import Counter from './Counter'
 import EditButton from './EditButton'
 import NextButton from './NextButton'
@@ -22,14 +28,13 @@ class Component extends React.Component {
         currentCardNumber: PropTypes.number,
         currentCard: PropTypes.object,
         step: PropTypes.number,
-        enLanguage: PropTypes.string,
+        // enLanguage: PropTypes.string,
         isTextFirst: PropTypes.bool,
         isPlayMode: PropTypes.bool,
         isEnSound: PropTypes.bool,
         isRuSound: PropTypes.bool,
         label: PropTypes.string,
         setRememberCards: PropTypes.func,
-        updateParams: PropTypes.func,
         rememberCard: PropTypes.func,
         goNext: PropTypes.func,
         switchOrder: PropTypes.func,
@@ -40,7 +45,6 @@ class Component extends React.Component {
 
     static defaultProps = {
         setRememberCards() {},
-        updateParams() {},
         rememberCard() {},
         switchOrder() {},
         togglePlayMode() {},
@@ -55,15 +59,13 @@ class Component extends React.Component {
     getFirstWord = () => ({
         word: this.props.currentCard.text,
         language: 'us',
-        isSound: false,
-        toggleSound() {},
+        isSound: this.props.isEnSound,
     })
 
     getSecondWord = () => ({
         word: this.props.currentCard.translate,
         language: 'ru',
-        isSound: false,
-        toggleSound() {},
+        isSound: this.props.isRuSound,
     })
 
     goNext = e => {
@@ -86,6 +88,7 @@ class Component extends React.Component {
             isPlayMode,
             switchOrder,
             togglePlayMode,
+            toggleSound,
             label,
         } = this.props
 
@@ -128,7 +131,7 @@ class Component extends React.Component {
                             language={firstWord.language}
                             isSound={firstWord.isSound}
                             soundFile={firstWord.soundFile}
-                            toggleSound={this.toggleSound}
+                            toggleSound={toggleSound}
                         />
                         <Panel
                             word={secondWord.word}
@@ -137,7 +140,7 @@ class Component extends React.Component {
                             soundFile={secondWord.soundFile}
                             show={step === 2}
                             iconPosition="top"
-                            toggleSound={this.toggleSound}
+                            toggleSound={toggleSound}
                         />
                     </div>
 
@@ -155,7 +158,7 @@ function mapStateToProps(state) {
         currentCard: getRememberCurrentCard(state),
         step: state.card.remember.step,
         enLanguage: 'us',
-        params: state.card.params,
+        ..._pick(state.card.remember.params, ['isEnSound', 'isRuSound']),
     }
 }
 
@@ -163,4 +166,5 @@ export default connect(mapStateToProps, {
     setRememberCards,
     goNext: goNextRememberCard,
     rememberCard,
+    toggleSound: toggleRememberSound,
 })(Component)

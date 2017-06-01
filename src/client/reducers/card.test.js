@@ -43,9 +43,17 @@ describe('card reducer', () => {
                 },
             }
 
-            expect(reducer(state, toggleRememberSound('En')).remember.params).toEqual({
+            expect(reducer(state, toggleRememberSound('us')).remember.params).toEqual({
                 isEnSound: true,
                 isRuSound: false,
+            })
+            expect(reducer(state, toggleRememberSound('uk')).remember.params).toEqual({
+                isEnSound: true,
+                isRuSound: false,
+            })
+            expect(reducer(state, toggleRememberSound('ru')).remember.params).toEqual({
+                isEnSound: false,
+                isRuSound: true,
             })
         })
 
@@ -59,7 +67,7 @@ describe('card reducer', () => {
                 },
             }
 
-            expect(reducer(state, toggleRememberSound('en'))).toBe(state)
+            expect(reducer(state, toggleRememberSound('bul'))).toBe(state)
         })
     })
 

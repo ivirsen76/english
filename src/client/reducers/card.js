@@ -218,8 +218,14 @@ export default handleActions(
             },
         }),
         [TOGGLE_REMEMBER_SOUND]: (state, action) => {
-            const key = `is${action.payload}Sound`
-            if (!_keys(state.remember.params).includes(key)) {
+            const languages = {
+                us: 'isEnSound',
+                uk: 'isEnSound',
+                ru: 'isRuSound',
+            }
+
+            const key = languages[action.payload]
+            if (!key) {
                 return state
             }
 
