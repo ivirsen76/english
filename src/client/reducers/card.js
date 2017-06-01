@@ -1,6 +1,7 @@
 import { handleActions, createAction } from 'redux-actions'
 import _max from 'lodash/max'
 import _pick from 'lodash/pick'
+import _keys from 'lodash/keys'
 import _omit from 'lodash/omit'
 import axios from 'utils/axios'
 
@@ -48,6 +49,7 @@ const SET_CARDS = 'english/card/SET_CARDS'
 const SET_LOADING_CARDS_STATE = 'english/card/SET_LOADING_CARDS_STATE'
 const SET_REMEMBER_CARDS = 'english/card/SET_REMEMBER_CARDS'
 const GO_NEXT_REMEMBER_CARD = 'english/card/GO_NEXT_REMEMBER_CARD'
+const UPDATE_REMEMBER_PARAMS = 'english/card/UPDATE_REMEMBER_PARAMS'
 
 // Action Creators
 export const addCardWithoutSaving = createAction(ADD_CARD)
@@ -58,6 +60,7 @@ export const setCards = createAction(SET_CARDS)
 export const setLoadingCardsState = createAction(SET_LOADING_CARDS_STATE)
 export const setRememberCards = createAction(SET_REMEMBER_CARDS)
 export const goNextRememberCard = createAction(GO_NEXT_REMEMBER_CARD)
+export const updateRememberParams = createAction(UPDATE_REMEMBER_PARAMS)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(cardInfo))
@@ -186,6 +189,16 @@ export default handleActions(
                 },
             }
         },
+        [UPDATE_REMEMBER_PARAMS]: (state, action) => ({
+            ...state,
+            remember: {
+                ...state.remember,
+                params: {
+                    ...state.remember.params,
+                    ..._pick(action.payload, _keys(initialState.remember.params)),
+                },
+            },
+        }),
     },
     initialState
 )

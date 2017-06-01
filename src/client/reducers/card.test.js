@@ -9,9 +9,51 @@ import reducer, {
     setRememberCards,
     setLoadingCardsState,
     goNextRememberCard,
+    updateRememberParams,
 } from './card'
 
 describe('card reducer', () => {
+    describe('updateRememberParams()', () => {
+        it('Should update only one param', () => {
+            const state = {
+                remember: {
+                    params: {
+                        isEnFirst: true,
+                        isAutoPlayMode: false,
+                        isEnSound: true,
+                        isRuSound: false,
+                        label: '',
+                    },
+                },
+            }
+            const expectedParams = {
+                isEnFirst: true,
+                isAutoPlayMode: false,
+                isEnSound: false,
+                isRuSound: false,
+                label: '',
+            }
+            expect(
+                reducer(state, updateRememberParams({ isEnSound: false })).remember.params
+            ).toEqual(expectedParams)
+        })
+
+        it('Should ignore non-acceptable params', () => {
+            const state = {
+                remember: {
+                    params: {
+                        isEnFirst: true,
+                        isAutoPlayMode: false,
+                        isEnSound: true,
+                        isRuSound: false,
+                        label: '',
+                    },
+                },
+            }
+            expect(reducer(state, updateRememberParams({ badOne: false }))).toEqual(state)
+        })
+    })
+
     describe('setLoadingCardsState()', () => {
         it('Should set loading cards state', () => {
             const state = {
