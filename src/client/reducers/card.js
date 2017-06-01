@@ -227,6 +227,7 @@ export default handleActions(
                     ...state.remember.params,
                     isEnFirst: !state.remember.params.isEnFirst,
                 },
+                step: 1,
             },
         }),
         [TOGGLE_REMEMBER_SOUND]: (state, action) => {

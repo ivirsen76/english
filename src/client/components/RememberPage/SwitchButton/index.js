@@ -1,19 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import style from './style.module.css'
+import style from './style.module.scss'
 
-export default class Component extends React.Component {
+export default class SwitchButton extends React.Component {
     static propTypes = {
         onClick: PropTypes.func,
     }
 
     render() {
-        return (
-            <div
-                id="remember-switch-button"
-                className={style.switchButton}
-                onClick={this.props.onClick}
-            />
-        )
+        return <div className={style.switchButton} onClick={this.props.onClick} />
     }
 }

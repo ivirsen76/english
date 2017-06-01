@@ -8,6 +8,7 @@ import {
     goNextRememberCard,
     rememberCard,
     toggleRememberSound,
+    switchRememberOrder,
 } from 'reducers/card'
 import Counter from './Counter'
 import EditButton from './EditButton'
@@ -29,7 +30,7 @@ class Component extends React.Component {
         currentCard: PropTypes.object,
         step: PropTypes.number,
         // enLanguage: PropTypes.string,
-        isTextFirst: PropTypes.bool,
+        isEnFirst: PropTypes.bool,
         isPlayMode: PropTypes.bool,
         isEnSound: PropTypes.bool,
         isRuSound: PropTypes.bool,
@@ -68,6 +69,11 @@ class Component extends React.Component {
         isSound: this.props.isRuSound,
     })
 
+    switchOrder = e => {
+        e && e.preventDefault()
+        this.props.switchOrder()
+    }
+
     goNext = e => {
         e && e.preventDefault()
         this.props.goNext()
@@ -79,21 +85,20 @@ class Component extends React.Component {
 
     render() {
         const {
-            isTextFirst,
+            isEnFirst,
             currentCard,
             currentCardNumber,
             totalCards,
             updateCard,
             step,
             isPlayMode,
-            switchOrder,
             togglePlayMode,
             toggleSound,
             label,
         } = this.props
 
-        let firstWord = isTextFirst ? this.getFirstWord() : this.getSecondWord()
-        let secondWord = isTextFirst ? this.getSecondWord() : this.getFirstWord()
+        let firstWord = isEnFirst ? this.getFirstWord() : this.getSecondWord()
+        let secondWord = isEnFirst ? this.getSecondWord() : this.getFirstWord()
 
         return (
             <div>
@@ -125,7 +130,7 @@ class Component extends React.Component {
                     </div>
 
                     <div className={style.panelWrapper}>
-                        <SwitchButton onClick={switchOrder} />
+                        <SwitchButton onClick={this.switchOrder} />
                         <Panel
                             word={firstWord.word}
                             language={firstWord.language}
@@ -158,7 +163,7 @@ function mapStateToProps(state) {
         currentCard: getRememberCurrentCard(state),
         step: state.card.remember.step,
         enLanguage: 'us',
-        ..._pick(state.card.remember.params, ['isEnSound', 'isRuSound']),
+        ..._pick(state.card.remember.params, ['isEnSound', 'isRuSound', 'isEnFirst']),
     }
 }
 
@@ -167,4 +172,5 @@ export default connect(mapStateToProps, {
     goNext: goNextRememberCard,
     rememberCard,
     toggleSound: toggleRememberSound,
+    switchOrder: switchRememberOrder,
 })(Component)

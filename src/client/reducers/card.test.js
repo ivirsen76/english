@@ -40,10 +40,12 @@ describe('card reducer', () => {
                     params: {
                         isEnFirst: true,
                     },
+                    step: 2,
                 },
             }
 
             expect(reducer(state, switchRememberOrder()).remember.params.isEnFirst).toBe(false)
+            expect(reducer(state, switchRememberOrder()).remember.step).toBe(1)
         })
     })
 
