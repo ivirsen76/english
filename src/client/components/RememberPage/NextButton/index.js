@@ -8,7 +8,7 @@ export default class Component extends React.Component {
 
     render() {
         return (
-            <a className="ui icon button" onClick={this.props.onClick}>
+            <a className="circular ui huge icon button" onClick={this.props.onClick}>
                 <i className="icon-arrow-right" />
             </a>
         )

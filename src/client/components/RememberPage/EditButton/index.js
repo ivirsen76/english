@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import EditCard from 'components/CardsPage/EditCard'
+// import EditCard from 'components/CardsPage/EditCard'
+import ClickButton from '@ieremeev/button'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -8,12 +9,13 @@ export default class Component extends React.Component {
         onSuccess: PropTypes.func,
     }
     render() {
-        let trigger = (
-            <button className="ui icon button">
-                <i className="icon-pencil" />
-            </button>
+        return (
+            <ClickButton
+                className="ui tiny green icon button"
+                title={<i className="icon-pencil" />}
+            />
         )
 
-        return <EditCard row={this.props.card} onSuccess={this.props.onSuccess} trigger={trigger} />
+        // return <EditCard row={this.props.card} onSuccess={this.props.onSuccess} />
     }
 }
