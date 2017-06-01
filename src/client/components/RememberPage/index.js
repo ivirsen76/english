@@ -8,6 +8,7 @@ import {
     goNextRememberCard,
     rememberCard,
     toggleRememberSound,
+    toggleRememberPlayMode,
     switchRememberOrder,
 } from 'reducers/card'
 import Counter from './Counter'
@@ -31,7 +32,7 @@ class Component extends React.Component {
         step: PropTypes.number,
         // enLanguage: PropTypes.string,
         isEnFirst: PropTypes.bool,
-        isPlayMode: PropTypes.bool,
+        isAutoPlayMode: PropTypes.bool,
         isEnSound: PropTypes.bool,
         isRuSound: PropTypes.bool,
         label: PropTypes.string,
@@ -74,6 +75,11 @@ class Component extends React.Component {
         this.props.switchOrder()
     }
 
+    togglePlayMode = e => {
+        e && e.preventDefault()
+        this.props.togglePlayMode()
+    }
+
     goNext = e => {
         e && e.preventDefault()
         this.props.goNext()
@@ -91,8 +97,7 @@ class Component extends React.Component {
             totalCards,
             updateCard,
             step,
-            isPlayMode,
-            togglePlayMode,
+            isAutoPlayMode,
             toggleSound,
             label,
         } = this.props
@@ -116,8 +121,8 @@ class Component extends React.Component {
 
                     <div className={style.otherButtons}>
                         <div className={style.playPauseButtons}>
-                            <PlayButton onClick={togglePlayMode} disabled={isPlayMode} />
-                            <PauseButton onClick={togglePlayMode} disabled={!isPlayMode} />
+                            <PlayButton onClick={this.togglePlayMode} disabled={isAutoPlayMode} />
+                            <PauseButton onClick={this.togglePlayMode} disabled={!isAutoPlayMode} />
                         </div>
 
                         <div className={style.doneButton}>
@@ -163,7 +168,12 @@ function mapStateToProps(state) {
         currentCard: getRememberCurrentCard(state),
         step: state.card.remember.step,
         enLanguage: 'us',
-        ..._pick(state.card.remember.params, ['isEnSound', 'isRuSound', 'isEnFirst']),
+        ..._pick(state.card.remember.params, [
+            'isEnSound',
+            'isRuSound',
+            'isEnFirst',
+            'isAutoPlayMode',
+        ]),
     }
 }
 
@@ -171,6 +181,7 @@ export default connect(mapStateToProps, {
     setRememberCards,
     goNext: goNextRememberCard,
     rememberCard,
+    togglePlayMode: toggleRememberPlayMode,
     toggleSound: toggleRememberSound,
     switchOrder: switchRememberOrder,
 })(Component)
