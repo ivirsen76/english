@@ -10,8 +10,16 @@ const Component = () => <Remember store={store} />
 
 describe('Remember page', () => {
     it('Should render right counter', () => {
-        const wrapper = mount(<Component />).find(Counter)
-        expect(wrapper.prop('current')).toBe(1)
-        expect(wrapper.prop('total')).toBe(2)
+        const counter = mount(<Component />).find(Counter)
+        expect(counter.html()).toContain('1 / 2')
+    })
+
+    it('Should filter list using existing label', () => {
+        const wrapper = mount(<Component />)
+        const input = wrapper.find('#remember_label_input')
+        const counter = wrapper.find(Counter)
+
+        input.simulate('change', { target: { value: 'test' } })
+        expect(counter.html()).toContain('1 / 1')
     })
 })
