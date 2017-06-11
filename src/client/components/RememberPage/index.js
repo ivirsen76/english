@@ -136,25 +136,27 @@ class Component extends React.Component {
                         </div>
                     </div>
 
-                    <div className={style.panelWrapper}>
-                        <SwitchButton onClick={this.switchOrder} />
-                        <Panel
-                            word={firstWord.word}
-                            language={firstWord.language}
-                            isSound={firstWord.isSound}
-                            soundFile={firstWord.soundFile}
-                            toggleSound={toggleSound}
-                        />
-                        <Panel
-                            word={secondWord.word}
-                            language={secondWord.language}
-                            isSound={secondWord.isSound}
-                            soundFile={secondWord.soundFile}
-                            show={step === 2}
-                            iconPosition="top"
-                            toggleSound={toggleSound}
-                        />
-                    </div>
+                    {totalCards === 0
+                        ? <div className={style.noCardsMessage}>No cards to show</div>
+                        : <div className={style.panelWrapper}>
+                              <SwitchButton onClick={this.switchOrder} />
+                              <Panel
+                                  word={firstWord.word}
+                                  language={firstWord.language}
+                                  isSound={firstWord.isSound}
+                                  soundFile={firstWord.soundFile}
+                                  toggleSound={toggleSound}
+                              />
+                              <Panel
+                                  word={secondWord.word}
+                                  language={secondWord.language}
+                                  isSound={secondWord.isSound}
+                                  soundFile={secondWord.soundFile}
+                                  show={step === 2}
+                                  iconPosition="top"
+                                  toggleSound={toggleSound}
+                              />
+                          </div>}
 
                     <GoNextPanel onClick={this.goNext} />
                 </div>
