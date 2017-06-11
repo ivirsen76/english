@@ -22,4 +22,12 @@ describe('Remember page', () => {
         input.simulate('change', { target: { value: 'test' } })
         expect(counter.html()).toContain('1 / 1')
     })
+
+    it('Should filter list using unknown label', () => {
+        const wrapper = mount(<Component />)
+        const input = wrapper.find('#remember_label_input')
+
+        input.simulate('change', { target: { value: 'unknown' } })
+        expect(wrapper.html()).toContain('No cards to show')
+    })
 })
