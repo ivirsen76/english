@@ -78,7 +78,7 @@ export default class Component extends React.Component {
             <div className={style.panel}>
                 <div className={flagClass} />
                 <SoundIcon classnames={soundClass} onClick={this.toggleSound} />
-                <div className={style.word}>
+                <div className={style.word} id={`panel_${this.props.language}_word`}>
                     {word}
                 </div>
             </div>
