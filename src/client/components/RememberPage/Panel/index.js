@@ -1,13 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import SoundIcon from '../soundIcon.js'
 import style from './style.module.scss'
-// import { play } from 'helpers/mp3.js'
-
-const play = () => {}
-// const App = window.znanium.app
-const App = {}
+import mp3 from 'utils/mp3.js'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -41,30 +36,36 @@ export default class Component extends React.Component {
         this.props.toggleSound(this.props.language)
     }
 
-    playSound = event => {
-        if (event) {
-            event.preventDefault()
-        }
+    playSound = e => {
+        if (e) e.preventDefault()
 
         if (this.props.soundFile) {
-            play(App.asset(this.props.soundFile))
+            mp3.play(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + this.props.soundFile)
         }
     }
 
-    render() {
-        let flagClass = classnames(
+    renderFlag = () => {
+        const className = classnames(
             style.language,
             style[this.props.language],
             style[this.props.iconPosition]
         )
 
-        let soundClass = classnames(
+        return <div className={className} />
+    }
+
+    renderSoundIcon = () => {
+        const className = classnames(
             style.sound,
             style[this.props.iconPosition],
             { [style.on]: this.props.isSound },
             { [style.off]: !this.props.isSound }
         )
 
+        return <div className={className} onClick={this.toggleSound} />
+    }
+
+    render() {
         let word
         if (!this.props.show) {
             word = null
@@ -76,8 +77,8 @@ export default class Component extends React.Component {
 
         return (
             <div className={style.panel}>
-                <div className={flagClass} />
-                <SoundIcon classnames={soundClass} onClick={this.toggleSound} />
+                {this.renderFlag()}
+                {this.renderSoundIcon()}
                 <div className={style.word} id={`panel_${this.props.language}_word`}>
                     {word}
                 </div>

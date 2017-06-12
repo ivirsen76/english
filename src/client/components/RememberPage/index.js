@@ -64,12 +64,14 @@ class Component extends React.Component {
         word: this.props.currentCard.text,
         language: 'us',
         isSound: this.props.isEnSound,
+        soundFile: this.props.currentCard.usSoundFile,
     })
 
     getSecondWord = () => ({
         word: this.props.currentCard.translate,
         language: 'ru',
         isSound: this.props.isRuSound,
+        soundFile: this.props.currentCard.ruSoundFile,
     })
 
     switchOrder = e => {
