@@ -3,6 +3,7 @@ import { mount } from 'enzyme'
 import Remember from './index'
 import Counter from './Counter'
 import NextButton from './NextButton'
+import DoneButton from './DoneButton'
 import { configureStoreProd } from 'store/configureStore'
 import { initialStore } from 'store/fixtures'
 
@@ -51,5 +52,18 @@ describe('Remember page', () => {
         nextButton.simulate('click')
         expect(usWord.html()).toContain('Block')
         expect(ruWord.html()).not.toContain('Block')
+    })
+
+    it('Should remember card', () => {
+        const wrapper = mount(<Component />)
+        const doneButton = wrapper.find(DoneButton)
+        const counter = wrapper.find(Counter)
+        const usWord = wrapper.find('#panel_us_word')
+
+        expect(usWord.html()).toContain('Text')
+
+        doneButton.simulate('click')
+        expect(usWord.html()).toContain('Block')
+        expect(counter.html()).toContain('1 / 1')
     })
 })
