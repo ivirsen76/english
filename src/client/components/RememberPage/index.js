@@ -2,7 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import _pick from 'lodash/pick'
-import { getRememberTotalCards, getRememberCurrentCard } from 'selectors/card'
+import mp3 from 'utils/mp3.js'
+import {
+    getRememberTotalCards,
+    getRememberCurrentCard,
+    getNextRememberCardSounds,
+} from 'selectors/card'
 import {
     setRememberCards,
     goNextRememberCard,
@@ -45,6 +50,7 @@ class Component extends React.Component {
         toggleSound: PropTypes.func,
         updateCard: PropTypes.func,
         updateLabel: PropTypes.func,
+        nextSounds: PropTypes.array,
     }
 
     static defaultProps = {
@@ -58,6 +64,13 @@ class Component extends React.Component {
 
     componentDidMount() {
         this.props.setRememberCards()
+    }
+
+    componentDidUpdate(prevProps) {
+        // Preload mp3 for the next card
+        this.props.nextSounds.map(soundFile =>
+            mp3.preload(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + soundFile)
+        )
     }
 
     getFirstWord = () => ({
@@ -174,6 +187,7 @@ function mapStateToProps(state) {
         currentCard: getRememberCurrentCard(state),
         step: state.card.remember.step,
         enLanguage: 'us',
+        nextSounds: getNextRememberCardSounds(state),
         ..._pick(state.card.remember.params, [
             'isEnSound',
             'isRuSound',

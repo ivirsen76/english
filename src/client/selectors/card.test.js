@@ -6,9 +6,26 @@ import {
     getRememberTotalCards,
     getRememberCurrentCard,
     getRememberList,
+    getNextRememberCardSounds,
 } from './card'
 
 describe('Card selectors', () => {
+    it('Should return next card sounds', () => {
+        const state = {
+            card: {
+                list: [
+                    { id: 1, status: 0 },
+                    { id: 2, status: 0, usSoundFile: '1.mp3', ruSoundFile: '2.mp3' },
+                ],
+                remember: {
+                    list: [1, 2],
+                    currentCardIndex: 0,
+                },
+            },
+        }
+        expect(getNextRememberCardSounds(state)).toEqual(['1.mp3', '2.mp3'])
+    })
+
     it('Should return total cards to remember', () => {
         const state = {
             card: {

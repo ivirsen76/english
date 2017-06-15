@@ -17,6 +17,21 @@ export const getRememberList = createSelector(getList, getRememberParams, (list,
     return list.filter(item => item.status === 0 && item.label.includes(params.label))
 })
 
+export const getNextRememberCardSounds = createSelector(
+    getList,
+    getRememberSortedList,
+    getRememberCurrentCardIndex,
+    (list, rememberSortedList, index) => {
+        const id = rememberSortedList[index + 1]
+        if (!id) {
+            return []
+        }
+
+        const nextCard = _find(list, { id })
+        return [nextCard.usSoundFile, nextCard.ruSoundFile]
+    }
+)
+
 export const getNextNewId = createSelector(getList, list =>
     _max([...list.map(item => item.id + 1), minNewId])
 )
