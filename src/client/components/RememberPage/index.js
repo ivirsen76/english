@@ -8,6 +8,8 @@ import {
     getRememberCurrentCard,
     getNextRememberCardSounds,
     getNextStepDelay,
+    getRememberFirstWord,
+    getRememberSecondWord,
 } from 'selectors/card'
 import {
     setRememberCards,
@@ -36,12 +38,11 @@ class Component extends React.Component {
         totalCards: PropTypes.number,
         currentCardNumber: PropTypes.number,
         currentCard: PropTypes.object,
+        firstWord: PropTypes.object,
+        secondWord: PropTypes.object,
         step: PropTypes.number,
         // enLanguage: PropTypes.string,
-        isEnFirst: PropTypes.bool,
         isAutoPlayMode: PropTypes.bool,
-        isEnSound: PropTypes.bool,
-        isRuSound: PropTypes.bool,
         label: PropTypes.string,
         setRememberCards: PropTypes.func,
         rememberCard: PropTypes.func,
@@ -85,20 +86,6 @@ class Component extends React.Component {
         )
     }
 
-    getFirstWord = () => ({
-        word: this.props.currentCard.text,
-        language: 'us',
-        isSound: this.props.isEnSound,
-        soundFile: this.props.currentCard.usSoundFile,
-    })
-
-    getSecondWord = () => ({
-        word: this.props.currentCard.translate,
-        language: 'ru',
-        isSound: this.props.isRuSound,
-        soundFile: this.props.currentCard.ruSoundFile,
-    })
-
     switchOrder = e => {
         e && e.preventDefault()
         this.props.switchOrder()
@@ -120,7 +107,6 @@ class Component extends React.Component {
 
     render() {
         const {
-            isEnFirst,
             currentCard,
             currentCardNumber,
             totalCards,
@@ -129,10 +115,9 @@ class Component extends React.Component {
             isAutoPlayMode,
             toggleSound,
             label,
+            firstWord,
+            secondWord,
         } = this.props
-
-        let firstWord = isEnFirst ? this.getFirstWord() : this.getSecondWord()
-        let secondWord = isEnFirst ? this.getSecondWord() : this.getFirstWord()
 
         return (
             <div>
@@ -201,13 +186,9 @@ function mapStateToProps(state) {
         enLanguage: 'us',
         nextSounds: getNextRememberCardSounds(state),
         nextStepDelay: getNextStepDelay(state),
-        ..._pick(state.card.remember.params, [
-            'isEnSound',
-            'isRuSound',
-            'isEnFirst',
-            'isAutoPlayMode',
-            'label',
-        ]),
+        firstWord: getRememberFirstWord(state),
+        secondWord: getRememberSecondWord(state),
+        ..._pick(state.card.remember.params, ['isAutoPlayMode', 'label']),
     }
 }
 
