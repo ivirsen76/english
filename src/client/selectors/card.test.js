@@ -6,10 +6,199 @@ import {
     getRememberTotalCards,
     getRememberCurrentCard,
     getRememberList,
+    getRememberFirstWord,
+    getRememberSecondWord,
     getNextRememberCardSounds,
+    getNextStepDelay,
 } from './card'
 
 describe('Card selectors', () => {
+    describe('Should return first word', () => {
+        it('Should return first word for en first', () => {
+            const state = {
+                card: {
+                    list: [
+                        { id: 1, status: 0, text: 'Some', usSoundFile: '1.mp3', usSoundLength: 1 },
+                    ],
+                    remember: {
+                        list: [1],
+                        currentCardIndex: 0,
+                        params: {
+                            isEnFirst: true,
+                            isEnSound: true,
+                            isRuSound: false,
+                        },
+                    },
+                },
+            }
+
+            expect(getRememberFirstWord(state)).toEqual({
+                word: 'Some',
+                language: 'us',
+                isSound: true,
+                soundFile: '1.mp3',
+                soundLength: 1,
+            })
+        })
+
+        it('Should return first word for ru first', () => {
+            const state = {
+                card: {
+                    list: [
+                        {
+                            id: 1,
+                            status: 0,
+                            translate: 'Some',
+                            ruSoundFile: '1.mp3',
+                            ruSoundLength: 1,
+                        },
+                    ],
+                    remember: {
+                        list: [1],
+                        currentCardIndex: 0,
+                        params: {
+                            isEnFirst: false,
+                            isEnSound: true,
+                            isRuSound: false,
+                        },
+                    },
+                },
+            }
+
+            expect(getRememberFirstWord(state)).toEqual({
+                word: 'Some',
+                language: 'ru',
+                isSound: false,
+                soundFile: '1.mp3',
+                soundLength: 1,
+            })
+        })
+    })
+
+    describe('Should return second word', () => {
+        it('Should return second word for ru first', () => {
+            const state = {
+                card: {
+                    list: [
+                        { id: 1, status: 0, text: 'Some', usSoundFile: '1.mp3', usSoundLength: 1 },
+                    ],
+                    remember: {
+                        list: [1],
+                        currentCardIndex: 0,
+                        params: {
+                            isEnFirst: false,
+                            isEnSound: true,
+                            isRuSound: false,
+                        },
+                    },
+                },
+            }
+
+            expect(getRememberSecondWord(state)).toEqual({
+                word: 'Some',
+                language: 'us',
+                isSound: true,
+                soundFile: '1.mp3',
+                soundLength: 1,
+            })
+        })
+
+        it('Should return second word for en first', () => {
+            const state = {
+                card: {
+                    list: [
+                        {
+                            id: 1,
+                            status: 0,
+                            translate: 'Some',
+                            ruSoundFile: '1.mp3',
+                            ruSoundLength: 1,
+                        },
+                    ],
+                    remember: {
+                        list: [1],
+                        currentCardIndex: 0,
+                        params: {
+                            isEnFirst: true,
+                            isEnSound: true,
+                            isRuSound: false,
+                        },
+                    },
+                },
+            }
+
+            expect(getRememberSecondWord(state)).toEqual({
+                word: 'Some',
+                language: 'ru',
+                isSound: false,
+                soundFile: '1.mp3',
+                soundLength: 1,
+            })
+        })
+    })
+
+    describe('Should return next step delay', () => {
+        it('Should return delay for first step', () => {
+            const state = {
+                card: {
+                    list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
+                    remember: {
+                        list: [1],
+                        currentCardIndex: 0,
+                        step: 1,
+                        params: {
+                            isEnFirst: true,
+                            isEnSound: true,
+                            isRuSound: false,
+                        },
+                    },
+                },
+            }
+
+            expect(getNextStepDelay(state)).toBe(1 + 2 + 500)
+        })
+
+        it('Should return delay for first step without sound on first word', () => {
+            const state = {
+                card: {
+                    list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
+                    remember: {
+                        list: [1],
+                        currentCardIndex: 0,
+                        step: 1,
+                        params: {
+                            isEnFirst: true,
+                            isEnSound: false,
+                            isRuSound: false,
+                        },
+                    },
+                },
+            }
+
+            expect(getNextStepDelay(state)).toBe(2 + 1000)
+        })
+
+        it('Should return delay for the second step', () => {
+            const state = {
+                card: {
+                    list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
+                    remember: {
+                        list: [1],
+                        currentCardIndex: 0,
+                        step: 2,
+                        params: {
+                            isEnFirst: true,
+                            isEnSound: true,
+                            isRuSound: false,
+                        },
+                    },
+                },
+            }
+
+            expect(getNextStepDelay(state)).toBe(2 + 3000)
+        })
+    })
+
     it('Should return next card sounds', () => {
         const state = {
             card: {

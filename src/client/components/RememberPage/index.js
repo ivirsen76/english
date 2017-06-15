@@ -7,6 +7,7 @@ import {
     getRememberTotalCards,
     getRememberCurrentCard,
     getNextRememberCardSounds,
+    getNextStepDelay,
 } from 'selectors/card'
 import {
     setRememberCards,
@@ -51,6 +52,7 @@ class Component extends React.Component {
         updateCard: PropTypes.func,
         updateLabel: PropTypes.func,
         nextSounds: PropTypes.array,
+        nextStepDelay: PropTypes.number,
     }
 
     static defaultProps = {
@@ -67,6 +69,16 @@ class Component extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+        // Schedule next step for autoplay mode
+        if (this.props.isAutoPlayMode) {
+            if (
+                prevProps.step !== this.props.step ||
+                prevProps.currentCard.id !== this.props.currentCard.id
+            ) {
+                setTimeout(this.goNext, this.props.nextStepDelay)
+            }
+        }
+
         // Preload mp3 for the next card
         this.props.nextSounds.map(soundFile =>
             mp3.preload(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + soundFile)
@@ -188,6 +200,7 @@ function mapStateToProps(state) {
         step: state.card.remember.step,
         enLanguage: 'us',
         nextSounds: getNextRememberCardSounds(state),
+        nextStepDelay: getNextStepDelay(state),
         ..._pick(state.card.remember.params, [
             'isEnSound',
             'isRuSound',

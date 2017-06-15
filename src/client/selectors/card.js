@@ -5,6 +5,7 @@ import _maxBy from 'lodash/maxBy'
 import _find from 'lodash/find'
 
 const getList = state => state.card.list
+const getRememberStep = state => state.card.remember.step
 const getRememberParams = state => state.card.remember.params
 const getRememberSortedList = state => state.card.remember.list
 const getRememberCurrentCardIndex = state => state.card.remember.currentCardIndex
@@ -62,5 +63,72 @@ export const getRememberCurrentCard = createSelector(
     (list, rememberSortedList, index) => {
         const id = rememberSortedList[index] || 0
         return _find(list, { id }) || {}
+    }
+)
+
+export const getRememberFirstWord = createSelector(
+    getRememberCurrentCard,
+    getRememberParams,
+    (currentCard, params) => {
+        if (params.isEnFirst) {
+            return {
+                word: currentCard.text,
+                language: 'us',
+                isSound: params.isEnSound,
+                soundFile: currentCard.usSoundFile,
+                soundLength: currentCard.usSoundLength,
+            }
+        }
+
+        return {
+            word: currentCard.translate,
+            language: 'ru',
+            isSound: params.isRuSound,
+            soundFile: currentCard.ruSoundFile,
+            soundLength: currentCard.ruSoundLength,
+        }
+    }
+)
+
+export const getRememberSecondWord = createSelector(
+    getRememberCurrentCard,
+    getRememberParams,
+    (currentCard, params) => {
+        if (!params.isEnFirst) {
+            return {
+                word: currentCard.text,
+                language: 'us',
+                isSound: params.isEnSound,
+                soundFile: currentCard.usSoundFile,
+                soundLength: currentCard.usSoundLength,
+            }
+        }
+
+        return {
+            word: currentCard.translate,
+            language: 'ru',
+            isSound: params.isRuSound,
+            soundFile: currentCard.ruSoundFile,
+            soundLength: currentCard.ruSoundLength,
+        }
+    }
+)
+
+export const getNextStepDelay = createSelector(
+    getRememberFirstWord,
+    getRememberSecondWord,
+    getRememberStep,
+    (firstWord, secondWord, step) => {
+        let delay
+        if (step === 1) {
+            delay = secondWord.soundLength + 1000
+            if (firstWord.isSound) {
+                delay += firstWord.soundLength - 500
+            }
+        } else {
+            delay = secondWord.soundLength + 3000
+        }
+
+        return delay
     }
 )
