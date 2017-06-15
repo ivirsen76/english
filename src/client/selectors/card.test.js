@@ -197,6 +197,46 @@ describe('Card selectors', () => {
 
             expect(getNextStepDelay(state)).toBe(2 + 3000)
         })
+
+        it('Should return delay for first step when ru is first', () => {
+            const state = {
+                card: {
+                    list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
+                    remember: {
+                        list: [1],
+                        currentCardIndex: 0,
+                        step: 1,
+                        params: {
+                            isEnFirst: false,
+                            isEnSound: true,
+                            isRuSound: false,
+                        },
+                    },
+                },
+            }
+
+            expect(getNextStepDelay(state)).toBe(1 + 1000)
+        })
+
+        it('Should return delay for the second step when ru is first', () => {
+            const state = {
+                card: {
+                    list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
+                    remember: {
+                        list: [1],
+                        currentCardIndex: 0,
+                        step: 2,
+                        params: {
+                            isEnFirst: false,
+                            isEnSound: true,
+                            isRuSound: true,
+                        },
+                    },
+                },
+            }
+
+            expect(getNextStepDelay(state)).toBe(1 + 3000)
+        })
     })
 
     it('Should return next card sounds', () => {
