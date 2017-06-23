@@ -435,11 +435,13 @@ describe('card reducer', () => {
                 remember: {
                     ...initialState.remember,
                     currentCardIndex: 1,
+                    step: 2,
                 },
             }
             const resultedState = reducer(state, setRememberCards())
             expect(resultedState.remember.list).toEqual([1, 3])
             expect(resultedState.remember.currentCardIndex).toBe(0)
+            expect(resultedState.remember.step).toBe(1)
         })
     })
 

@@ -183,6 +183,7 @@ export default handleActions(
                     ...state.remember,
                     list: rememberList,
                     currentCardIndex: 0,
+                    step: 1,
                 },
             }
         },
