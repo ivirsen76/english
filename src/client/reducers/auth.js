@@ -51,6 +51,9 @@ export default handleActions(
     {
         [REHYDRATE]: (state, action) => {
             const savedData = action.payload.auth
+            if (!savedData) {
+                return state
+            }
             return set(state, 'user', user => ({ ...user, ...savedData.user }))
         },
         [SET_TOKEN]: (state, action) => ({

@@ -101,6 +101,9 @@ export default handleActions(
     {
         [REHYDRATE]: (state, action) => {
             const savedData = action.payload.card
+            if (!savedData) {
+                return state
+            }
             return set(state, 'remember.params', params => ({
                 ...params,
                 ...savedData.remember.params,

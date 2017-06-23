@@ -82,10 +82,12 @@ class Component extends React.Component {
             this.scheduleNext(this.props.nextStepDelay)
         }
 
-        // Preload mp3 for the next card
-        this.props.nextSounds.map(soundFile =>
-            mp3.preload(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + soundFile)
-        )
+        if (process.env.NODE_ENV !== 'test') {
+            // Preload mp3 for the next card
+            this.props.nextSounds.map(soundFile =>
+                mp3.preload(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + soundFile)
+            )
+        }
     }
 
     scheduleNext = delay => {
