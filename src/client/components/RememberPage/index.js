@@ -19,6 +19,7 @@ import {
     toggleRememberPlayMode,
     switchRememberOrder,
     updateRememberLabel,
+    updateCard,
 } from 'reducers/card'
 import Counter from './Counter'
 import EditButton from './EditButton'
@@ -54,15 +55,6 @@ class Component extends React.Component {
         updateLabel: PropTypes.func,
         nextSounds: PropTypes.array,
         nextStepDelay: PropTypes.number,
-    }
-
-    static defaultProps = {
-        setRememberCards() {},
-        rememberCard() {},
-        switchOrder() {},
-        togglePlayMode() {},
-        toggleSound() {},
-        updateCard() {},
     }
 
     componentDidMount() {
@@ -119,7 +111,6 @@ class Component extends React.Component {
             currentCard,
             currentCardNumber,
             totalCards,
-            updateCard,
             step,
             isAutoPlayMode,
             toggleSound,
@@ -137,7 +128,7 @@ class Component extends React.Component {
                     </div>
 
                     <div className={style.mainButtons}>
-                        <EditButton card={currentCard} onSuccess={updateCard} />
+                        <EditButton card={currentCard} updateCard={this.props.updateCard} />
                         <NextButton onClick={this.goNext} />
                         <DeleteButton />
                     </div>
@@ -205,6 +196,7 @@ export default connect(mapStateToProps, {
     setRememberCards,
     goNext: goNextRememberCard,
     rememberCard,
+    updateCard,
     togglePlayMode: toggleRememberPlayMode,
     toggleSound: toggleRememberSound,
     switchOrder: switchRememberOrder,

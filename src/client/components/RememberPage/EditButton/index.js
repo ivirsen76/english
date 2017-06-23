@@ -1,21 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import EditCard from 'components/CardsPage/EditCard'
-import ClickButton from '@ieremeev/button'
+import EditCard from 'components/CardsPage/EditCard'
 
 export default class Component extends React.Component {
     static propTypes = {
         card: PropTypes.object,
-        onSuccess: PropTypes.func,
+        updateCard: PropTypes.func,
     }
     render() {
-        return (
-            <ClickButton
-                className="ui tiny green icon button"
-                title={<i className="icon-pencil" />}
-            />
+        const trigger = (
+            <button className="ui tiny green icon button">
+                <i className="icon-pencil" />
+            </button>
         )
 
-        // return <EditCard row={this.props.card} onSuccess={this.props.onSuccess} />
+        return (
+            <EditCard
+                trigger={trigger}
+                initialValues={this.props.card}
+                updateCard={this.props.updateCard}
+            />
+        )
     }
 }
