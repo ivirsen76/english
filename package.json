@@ -57,6 +57,7 @@
   "devDependencies": {
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
+    "husky": "^0.14.0",
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.0.2",
     "react-app-rewired": "^1.0.2",
