@@ -1,6 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
 import thunk from 'redux-thunk'
+import { persistStore } from 'redux-persist'
 import rootReducer from '../reducers'
 
 export const configureStoreProd = initialState => {
@@ -12,7 +13,9 @@ export const configureStoreProd = initialState => {
         thunk,
     ]
 
-    return createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)))
+    const store = createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)))
+    persistStore(store)
+    return store
 }
 
 export const configureStoreDev = initialState => {
@@ -45,6 +48,7 @@ export const configureStoreDev = initialState => {
         })
     }
 
+    persistStore(store)
     return store
 }
 

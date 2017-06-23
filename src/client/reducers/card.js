@@ -1,10 +1,12 @@
 import { handleActions, createAction } from 'redux-actions'
+import { REHYDRATE } from 'redux-persist/constants'
 import _max from 'lodash/max'
 import _pick from 'lodash/pick'
 import _keys from 'lodash/keys'
 import _omit from 'lodash/omit'
 import _find from 'lodash/find'
 import axios from 'utils/axios'
+import { set } from 'dot-prop-immutable'
 
 export const minNewId = 1000000000
 
@@ -97,6 +99,13 @@ export const loadCards = () => async (dispatch, getState) => {
 // Reducer
 export default handleActions(
     {
+        [REHYDRATE]: (state, action) => {
+            const savedData = action.payload.card
+            return set(state, 'remember.params', params => ({
+                ...params,
+                ...savedData.remember.params,
+            }))
+        },
         [ADD_CARD]: (state, action) => {
             const nextId = _max([...state.list.map(item => item.id + 1), minNewId])
 
