@@ -10,6 +10,7 @@ import {
     getRememberSecondWord,
     getNextRememberCardSounds,
     getNextStepDelay,
+    getWriteTotalCards,
 } from './card'
 
 describe('Card selectors', () => {
@@ -271,6 +272,15 @@ describe('Card selectors', () => {
             },
         }
         expect(getRememberTotalCards(state)).toBe(1)
+    })
+
+    it('Should return total cards to write', () => {
+        const state = {
+            card: {
+                list: [{ id: 1, status: 0 }, { id: 2, status: 1 }, { id: 3, status: 1 }],
+            },
+        }
+        expect(getWriteTotalCards(state)).toBe(2)
     })
 
     it('Should get remember list', () => {

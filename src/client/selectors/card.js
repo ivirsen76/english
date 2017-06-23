@@ -56,6 +56,11 @@ export const getRememberTotalCards = createSelector(
     }
 )
 
+export const getWriteTotalCards = createSelector(
+    getList,
+    list => list.filter(item => item.status === 1).length
+)
+
 export const getRememberCurrentCard = createSelector(
     getList,
     getRememberSortedList,
