@@ -121,9 +121,10 @@ export const getNextStepDelay = createSelector(
     (firstWord, secondWord, step) => {
         let delay
         if (step === 1) {
-            delay = secondWord.soundLength + 1000
             if (firstWord.isSound) {
-                delay += firstWord.soundLength - 500
+                delay = firstWord.soundLength + secondWord.soundLength + 500
+            } else {
+                delay = secondWord.soundLength + 1000
             }
         } else {
             delay = secondWord.soundLength + 3000

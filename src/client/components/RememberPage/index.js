@@ -70,20 +70,27 @@ class Component extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        // Schedule next step for autoplay mode
-        if (this.props.isAutoPlayMode) {
-            if (
-                prevProps.step !== this.props.step ||
-                prevProps.currentCard.id !== this.props.currentCard.id
-            ) {
-                setTimeout(this.goNext, this.props.nextStepDelay)
-            }
+        if (this.props.isAutoPlayMode && !prevProps.isAutoPlayMode) {
+            this.scheduleNext(500)
+        } else if (!this.props.isAutoPlayMode && prevProps.isAutoPlayMode) {
+            clearTimeout(this.timeout)
+        } else if (
+            this.props.isAutoPlayMode &&
+            (prevProps.step !== this.props.step ||
+                prevProps.currentCard.id !== this.props.currentCard.id)
+        ) {
+            this.scheduleNext(this.props.nextStepDelay)
         }
 
         // Preload mp3 for the next card
         this.props.nextSounds.map(soundFile =>
             mp3.preload(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + soundFile)
         )
+    }
+
+    scheduleNext = delay => {
+        clearTimeout(this.timeout)
+        this.timeout = setTimeout(this.goNext, delay)
     }
 
     switchOrder = e => {
