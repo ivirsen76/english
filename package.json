@@ -49,7 +49,6 @@
     "sequelize": "^3.30.4",
     "serve-favicon": "^2.4.3",
     "soundmanager2": "^2.97.20150601-a",
-    "store": "^2.0.4",
     "string-template": "^1.0.0",
     "temp": "^0.8.3",
     "validator": "^7.0.0",

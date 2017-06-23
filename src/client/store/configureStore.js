@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import { persistStore } from 'redux-persist'
 import rootReducer from '../reducers'
 
-const persistConfig = { whitelist: ['card'] }
+const persistConfig = { whitelist: ['card', 'auth'] }
 
 export const configureStoreProd = initialState => {
     const middlewares = [

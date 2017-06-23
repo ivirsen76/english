@@ -1,4 +1,4 @@
-import reducer, { initialState, setToken, discardToken, setUser, restoreState } from './auth'
+import reducer, { initialState, setToken, discardToken, setUser } from './auth'
 
 describe('auth reducer', () => {
     describe('setToken()', () => {
@@ -34,22 +34,6 @@ describe('auth reducer', () => {
                 info: 'dfkfdl',
             }
             const resultedState = reducer(state, setUser(user))
-            expect(resultedState.user).toEqual({ email: 'some@one.com' })
-        })
-    })
-
-    describe('restoreState()', () => {
-        it('Should restore state', () => {
-            const state = {
-                ...initialState,
-                user: {},
-            }
-            const savedState = {
-                user: {
-                    email: 'some@one.com',
-                },
-            }
-            const resultedState = reducer(state, restoreState(savedState))
             expect(resultedState.user).toEqual({ email: 'some@one.com' })
         })
     })
