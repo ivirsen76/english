@@ -4,6 +4,8 @@ import thunk from 'redux-thunk'
 import { persistStore } from 'redux-persist'
 import rootReducer from '../reducers'
 
+const persistConfig = { whitelist: ['card'] }
+
 export const configureStoreProd = initialState => {
     const middlewares = [
         // Add other middleware on this line...
@@ -14,7 +16,7 @@ export const configureStoreProd = initialState => {
     ]
 
     const store = createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)))
-    persistStore(store)
+    persistStore(store, persistConfig)
     return store
 }
 
@@ -48,7 +50,7 @@ export const configureStoreDev = initialState => {
         })
     }
 
-    persistStore(store)
+    persistStore(store, persistConfig)
     return store
 }
 
