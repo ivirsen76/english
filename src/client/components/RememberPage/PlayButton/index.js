@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-export default class Component extends React.Component {
+export default class PlayButton extends React.Component {
     static propTypes = {
         onClick: PropTypes.func,
         disabled: PropTypes.bool,

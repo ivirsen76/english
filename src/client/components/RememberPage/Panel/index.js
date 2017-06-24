@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import style from './style.module.scss'
 import mp3 from 'utils/mp3.js'
+import SoundIcon from './SoundIcon.js'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -54,17 +55,6 @@ export default class Component extends React.Component {
         return <div className={className} />
     }
 
-    renderSoundIcon = () => {
-        const className = classnames(
-            style.sound,
-            style[this.props.iconPosition],
-            { [style.on]: this.props.isSound },
-            { [style.off]: !this.props.isSound }
-        )
-
-        return <div className={className} onClick={this.toggleSound} />
-    }
-
     render() {
         let word
         if (!this.props.show) {
@@ -78,7 +68,11 @@ export default class Component extends React.Component {
         return (
             <div className={style.panel}>
                 {this.renderFlag()}
-                {this.renderSoundIcon()}
+                <SoundIcon
+                    iconPosition={this.props.iconPosition}
+                    isSound={this.props.isSound}
+                    toggleSound={this.toggleSound}
+                />
                 <div className={style.word} id={`panel_${this.props.language}_word`}>
                     {word}
                 </div>

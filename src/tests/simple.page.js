@@ -18,6 +18,8 @@ const PanelUs = Selector('#panel_us_word')
 const PanelRu = Selector('#panel_ru_word')
 const NextButton = ReactSelector('NextButton')
 const DoneButton = ReactSelector('DoneButton')
+const PlayButton = ReactSelector('PlayButton')
+const SwitchButton = ReactSelector('SwitchButton')
 
 test('Should render right counter', async t => {
     await t.expect(Counter.innerText).contains('1 / 5')
@@ -51,4 +53,21 @@ test('Should remember card', async t => {
     await t.click(DoneButton)
     await t.expect(PanelUs.innerText).contains('block')
     await t.expect(Counter.innerText).contains('1 / 4')
+})
+
+test('Should start playing', async t => {
+    await t.click(NextButton)
+    await t.expect(PanelRu.innerText).contains('текст')
+
+    await t.click(PlayButton)
+    await t.expect(PanelUs.innerText).contains('block')
+})
+
+test('Should switch panels', async t => {
+    await t.expect(PanelUs.innerText).contains('text')
+    await t.expect(PanelRu.innerText).notContains('текст')
+
+    await t.click(SwitchButton)
+    await t.expect(PanelUs.innerText).notContains('text')
+    await t.expect(PanelRu.innerText).contains('текст')
 })
