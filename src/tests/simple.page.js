@@ -46,6 +46,7 @@ test('Should go to the next card', async t => {
     await t.expect(PanelRu.innerText).contains('текст')
 
     await t.click(NextButton)
+    await t.expect(Counter.innerText).contains('2 / 5')
     await t.expect(PanelUs.innerText).contains('block')
     await t.expect(PanelRu.innerText).notContains('блок')
 })
