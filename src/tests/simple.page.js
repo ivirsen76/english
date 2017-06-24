@@ -1,13 +1,14 @@
 /* global fixture */
-import { Selector } from 'testcafe'
+import ReactSelector from 'testcafe-react-selectors'
 import { regularUser } from './roles.js'
+import restoreDb from './db/restoreDb.js'
 
 fixture('Hello world').beforeEach(async t => {
+    restoreDb()
     await t.useRole(regularUser)
+    await t.navigateTo('http://localhost:3000/user/remember')
 })
 
-test('My first test', async t => {
-    await t.page('http://localhost:3000')
-    await t.wait(2000)
-    await t.expect(Selector('h2').innerText).eql('Главная')
+test('Should render right counter', async t => {
+    await t.expect(ReactSelector('Counter').innerText).contains('1 / 5')
 })

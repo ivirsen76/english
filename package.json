@@ -60,11 +60,13 @@
     "husky": "^0.14.0",
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.0.2",
+    "parse-db-url": "0.0.0",
     "react-app-rewired": "^1.0.2",
     "react-scripts": "1.0.7",
     "react-test-renderer": "^15.5.4",
     "sass-loader": "^6.0.5",
-    "testcafe": "^0.16.1"
+    "testcafe": "^0.16.1",
+    "testcafe-react-selectors": "0.0.5"
   },
   "scripts": {
     "start": "npm-run-all --parallel start:client start:server",

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class Component extends React.Component {
+export default class Counter extends React.Component {
     static propTypes = {
         current: PropTypes.number,
         total: PropTypes.number,
