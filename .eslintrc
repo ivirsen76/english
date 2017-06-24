@@ -11,6 +11,6 @@
         "space-before-function-paren": ["error", "never"],
         "jsx-a11y/label-has-for": ["off"],
         "no-unused-expressions": ["off"],
-        "no-console": ["error", { allow: ["warn", "error"] }]
+        "no-console": ["error", { allow: ["info", "warn", "error"] }]
     }
 }
