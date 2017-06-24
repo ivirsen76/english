@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import EditCard from 'components/CardsPage/EditCard'
 
-export default class Component extends React.Component {
+export default class EditButton extends React.Component {
     static propTypes = {
         card: PropTypes.object,
         updateCard: PropTypes.func,

@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.14)
 # Database: feather
-# Generation Time: 2017-06-24 18:55:32 +0000
+# Generation Time: 2017-06-24 20:26:21 +0000
 # ************************************************************
 
 
@@ -75,7 +75,7 @@ LOCK TABLES `cards` WRITE;
 
 INSERT INTO `cards` (`id`, `userId`, `text`, `translate`, `label`, `ukSoundFile`, `ukSoundLength`, `usSoundFile`, `usSoundLength`, `ruSoundFile`, `ruSoundLength`, `status`, `statusUpdatedAt`, `createdAt`, `updatedAt`)
 VALUES
-	(18,1,'text','текст','','users/1/uk_3FiYH2caIp.mp3',600,'users/1/us_c6oeXJZFqZ.mp3',653,'users/1/ru_px8wf0Mqxp.mp3',600,0,'2017-05-12 19:31:05','2017-05-12 19:31:05','2017-06-24 18:49:36'),
+	(18,1,'text','текст','','users/1/uk_Z9tyWpFu4w.mp3',600,'users/1/us_nETDTNlTmJ.mp3',653,'users/1/ru_IcbQLHv0Zn.mp3',600,0,'2017-05-12 19:31:05','2017-05-12 19:31:05','2017-06-24 20:25:36'),
 	(19,1,'block','блок','','users/1/uk_Pt4dqBU60Z.mp3',548,'users/1/us_k8licgudb2.mp3',574,'users/1/ru_kCYimrEU9F.mp3',600,0,'2017-05-12 19:32:34','2017-05-12 19:32:33','2017-06-24 18:54:24'),
 	(20,1,'Ramble','бормотать','test','users/1/20_uk_eIwnhi.mp3',679,'users/1/20_us_Ysfslw.mp3',679,'users/1/20_ru_r9Ccez.mp3',835,0,'2017-05-12 19:33:40','2017-05-12 19:33:40','2017-06-01 21:37:58'),
 	(21,1,'One more time together','Еще один раз','test','users/1/21_uk_sKTDFP.mp3',1384,'users/1/21_us_3gJfPY.mp3',1593,'users/1/21_ru_EiPbqg.mp3',1123,0,'2017-05-12 19:34:49','2017-05-12 19:34:49','2017-05-14 01:22:27'),

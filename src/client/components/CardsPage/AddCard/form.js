@@ -41,7 +41,7 @@ export const validate = values => {
     return errors
 }
 
-class Component extends React.Component {
+class AddCardForm extends React.Component {
     static propTypes = {
         handleSubmit: PropTypes.func,
         submitButtonTitle: PropTypes.string,
@@ -64,4 +64,4 @@ class Component extends React.Component {
 
 export default reduxForm({
     validate,
-})(Component)
+})(AddCardForm)
