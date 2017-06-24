@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.14)
 # Database: feather
-# Generation Time: 2017-06-24 16:31:37 +0000
+# Generation Time: 2017-06-24 18:55:32 +0000
 # ************************************************************
 
 
@@ -37,8 +37,8 @@ LOCK TABLES `_migrations` WRITE;
 
 INSERT INTO `_migrations` (`name`)
 VALUES
-    ('20170502140022-add-users-table.js'),
-    ('20170503033121-add-cards-table.js');
+	('20170502140022-add-users-table.js'),
+	('20170503033121-add-cards-table.js');
 
 /*!40000 ALTER TABLE `_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -75,11 +75,11 @@ LOCK TABLES `cards` WRITE;
 
 INSERT INTO `cards` (`id`, `userId`, `text`, `translate`, `label`, `ukSoundFile`, `ukSoundLength`, `usSoundFile`, `usSoundLength`, `ruSoundFile`, `ruSoundLength`, `status`, `statusUpdatedAt`, `createdAt`, `updatedAt`)
 VALUES
-    (18,1,'slow green turtle','медленная зеленая черепаха','','users/1/18_uk_9pmcyG.mp3',1541,'users/1/18_us_QZe6tY.mp3',1097,'users/1/18_ru_SnlZHU.mp3',1880,0,'2017-05-12 19:31:05','2017-05-12 19:31:05','2017-05-14 02:07:47'),
-    (19,1,'temporary','временно','','users/1/19_uk_IFS0g5.mp3',757,'users/1/19_us_P4Iqd4.mp3',835,'users/1/19_ru_JykB8v.mp3',679,0,'2017-05-12 19:32:34','2017-05-12 19:32:33','2017-05-12 19:32:34'),
-    (20,1,'Ramble','бормотать','test','users/1/20_uk_eIwnhi.mp3',679,'users/1/20_us_Ysfslw.mp3',679,'users/1/20_ru_r9Ccez.mp3',835,0,'2017-05-12 19:33:40','2017-05-12 19:33:40','2017-06-01 21:37:58'),
-    (21,1,'One more time together','Еще один раз','test','users/1/21_uk_sKTDFP.mp3',1384,'users/1/21_us_3gJfPY.mp3',1593,'users/1/21_ru_EiPbqg.mp3',1123,0,'2017-05-12 19:34:49','2017-05-12 19:34:49','2017-05-14 01:22:27'),
-    (22,1,'Try it now immediately','Попробуй это немедленно','','users/1/22_uk_Fb6wFp.mp3',1515,'users/1/22_us_g4Fv9u.mp3',1358,'users/1/22_ru_hdqwkS.mp3',1410,0,'2017-05-12 19:35:48','2017-05-12 19:35:48','2017-05-14 01:57:19');
+	(18,1,'text','текст','','users/1/uk_3FiYH2caIp.mp3',600,'users/1/us_c6oeXJZFqZ.mp3',653,'users/1/ru_px8wf0Mqxp.mp3',600,0,'2017-05-12 19:31:05','2017-05-12 19:31:05','2017-06-24 18:49:36'),
+	(19,1,'block','блок','','users/1/uk_Pt4dqBU60Z.mp3',548,'users/1/us_k8licgudb2.mp3',574,'users/1/ru_kCYimrEU9F.mp3',600,0,'2017-05-12 19:32:34','2017-05-12 19:32:33','2017-06-24 18:54:24'),
+	(20,1,'Ramble','бормотать','test','users/1/20_uk_eIwnhi.mp3',679,'users/1/20_us_Ysfslw.mp3',679,'users/1/20_ru_r9Ccez.mp3',835,0,'2017-05-12 19:33:40','2017-05-12 19:33:40','2017-06-01 21:37:58'),
+	(21,1,'One more time together','Еще один раз','test','users/1/21_uk_sKTDFP.mp3',1384,'users/1/21_us_3gJfPY.mp3',1593,'users/1/21_ru_EiPbqg.mp3',1123,0,'2017-05-12 19:34:49','2017-05-12 19:34:49','2017-05-14 01:22:27'),
+	(22,1,'Try it now immediately','Попробуй это немедленно','','users/1/22_uk_Fb6wFp.mp3',1515,'users/1/22_us_g4Fv9u.mp3',1358,'users/1/22_ru_hdqwkS.mp3',1410,0,'2017-05-12 19:35:48','2017-05-12 19:35:48','2017-05-14 01:57:19');
 
 /*!40000 ALTER TABLE `cards` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -105,7 +105,7 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `email`, `password`, `createdAt`, `updatedAt`)
 VALUES
-    (1,'ivirsen@gmail.com','$2a$10$Hzeo5ERqYsjZck2VQa7IdOcPpfSTWmmlyaharv23vrE9FGHQjofj2','2017-05-06 02:46:39','2017-05-06 02:46:39');
+	(1,'ivirsen@gmail.com','$2a$10$Hzeo5ERqYsjZck2VQa7IdOcPpfSTWmmlyaharv23vrE9FGHQjofj2','2017-05-06 02:46:39','2017-05-06 02:46:39');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;

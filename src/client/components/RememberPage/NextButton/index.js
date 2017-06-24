@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class Component extends React.Component {
+export default class NextButton extends React.Component {
     static propTypes = {
         onClick: PropTypes.func,
     }

@@ -34,7 +34,7 @@ import Label from './label.js'
 import Panel from './Panel'
 import style from './index.module.scss'
 
-class Component extends React.Component {
+class RememberPage extends React.Component {
     static propTypes = {
         totalCards: PropTypes.number,
         currentCardNumber: PropTypes.number,
@@ -201,4 +201,4 @@ export default connect(mapStateToProps, {
     toggleSound: toggleRememberSound,
     switchOrder: switchRememberOrder,
     updateLabel: updateRememberLabel,
-})(Component)
+})(RememberPage)
