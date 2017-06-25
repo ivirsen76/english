@@ -4,19 +4,19 @@ const removeMp3 = require('./removeMp3')
 module.exports = options => async hook => {
     try {
         const id = hook.id
-        const { text, translate } = hook.data
+        const { text, translate, status } = hook.data
         const { dataValues: currentData } = await hook.service.get(id)
 
         // Check if we need new sound
         const generates = []
         const removes = []
-        if (currentData.text !== text) {
+        if (text && currentData.text !== text) {
             removes.push(removeMp3(currentData.ukSoundFile))
             removes.push(removeMp3(currentData.usSoundFile))
             generates.push(generateMp3(currentData.userId, text, 'uk'))
             generates.push(generateMp3(currentData.userId, text, 'us'))
         }
-        if (currentData.translate !== translate) {
+        if (translate && currentData.translate !== translate) {
             removes.push(removeMp3(currentData.ruSoundFile))
             generates.push(generateMp3(currentData.userId, translate, 'ru'))
         }
@@ -30,6 +30,10 @@ module.exports = options => async hook => {
                 hook.data[`${result.language}SoundFile`] = result.filename
                 hook.data[`${result.language}SoundLength`] = result.duration
             })
+        }
+
+        if (status && currentData.status !== status) {
+            hook.data.statusUpdatedAt = new Date()
         }
     } catch (err) {
         console.log(err) // eslint-disable-line no-console

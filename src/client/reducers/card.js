@@ -74,7 +74,7 @@ export const toggleRememberPlayMode = createAction(TOGGLE_REMEMBER_PLAY_MODE)
 export const toggleRememberSound = createAction(TOGGLE_REMEMBER_SOUND)
 export const switchRememberOrder = createAction(SWITCH_REMEMBER_ORDER)
 export const updateRememberLabel = createAction(UPDATE_REMEMBER_LABEL)
-export const rememberCard = createAction(REMEMBER_CARD)
+export const rememberCardWithoutSaving = createAction(REMEMBER_CARD)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(cardInfo))
@@ -92,6 +92,11 @@ export const updateCard = cardInfo => async (dispatch, getState) => {
 export const deleteCard = cardId => async (dispatch, getState) => {
     dispatch(deleteCardWithoutSaving(cardId))
     await axios.delete(`/cards/${cardId}`)
+}
+
+export const rememberCard = cardId => async (dispatch, getState) => {
+    dispatch(rememberCardWithoutSaving(cardId))
+    await axios.patch(`/cards/${cardId}`, { status: 1 })
 }
 
 export const loadCards = () => async (dispatch, getState) => {

@@ -10,7 +10,7 @@ import reducer, {
     setLoadingCardsState,
     goNextRememberCard,
     updateRememberParams,
-    rememberCard,
+    rememberCardWithoutSaving as rememberCard,
     toggleRememberPlayMode,
     toggleRememberSound,
     switchRememberOrder,
