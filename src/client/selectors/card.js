@@ -9,6 +9,8 @@ const getRememberStep = state => state.card.remember.step
 const getRememberParams = state => state.card.remember.params
 const getRememberSortedList = state => state.card.remember.list
 const getRememberCurrentCardIndex = state => state.card.remember.currentCardIndex
+const getWriteSortedList = state => state.card.write.list
+const getWriteCurrentCardIndex = state => state.card.write.currentCardIndex
 
 export const getRememberList = createSelector(getList, getRememberParams, (list, params) => {
     if (params.label === '') {
@@ -138,3 +140,15 @@ export const getNextStepDelay = createSelector(
         return delay
     }
 )
+
+export const getWriteCurrentCard = createSelector(
+    getList,
+    getWriteSortedList,
+    getWriteCurrentCardIndex,
+    (list, writeSortedList, index) => {
+        const id = writeSortedList[index] || 0
+        return _find(list, { id }) || {}
+    }
+)
+
+export const getNextWriteCardSounds = createSelector(() => 1)

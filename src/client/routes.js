@@ -9,6 +9,7 @@ import FeaturesPage from 'components/FeaturesPage'
 import UserArea from 'components/UserArea'
 import CardsPage from 'components/CardsPage'
 import RememberPage from 'components/RememberPage'
+import WritePage from 'components/WritePage'
 import NotFoundPage from 'components/NotFoundPage'
 
 export default (
@@ -21,6 +22,7 @@ export default (
             <IndexRedirect to="cards" />
             <Route path="cards" component={CardsPage} />
             <Route path="remember" component={RememberPage} />
+            <Route path="write" component={WritePage} />
         </Route>
         <Route path="*" component={NotFoundPage} />
     </Route>

@@ -11,6 +11,7 @@ import {
     getNextRememberCardSounds,
     getNextStepDelay,
     getWriteTotalCards,
+    getWriteCurrentCard,
 } from './card'
 
 describe('Card selectors', () => {
@@ -390,6 +391,38 @@ describe('Card selectors', () => {
                 },
             }
             expect(getCardTotal(state)).toBe(2)
+        })
+    })
+
+    describe('getWriteCurrentCard()', () => {
+        it('Should return current card to write', () => {
+            const state = {
+                card: {
+                    list: [{ id: 2, text: 'Some', translate: 'Another' }],
+                    write: {
+                        list: [1, 2, 3],
+                        currentCardIndex: 1,
+                    },
+                },
+            }
+            expect(getWriteCurrentCard(state)).toEqual({
+                id: 2,
+                text: 'Some',
+                translate: 'Another',
+            })
+        })
+
+        it('Should return empty object', () => {
+            const state = {
+                card: {
+                    list: [{ id: 2, text: 'Some', translate: 'Another' }],
+                    write: {
+                        list: [1, 2, 3],
+                        currentCardIndex: 0,
+                    },
+                },
+            }
+            expect(getWriteCurrentCard(state)).toEqual({})
         })
     })
 })
