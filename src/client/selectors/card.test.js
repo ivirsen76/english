@@ -12,6 +12,7 @@ import {
     getNextStepDelay,
     getWriteTotalCards,
     getWriteCurrentCard,
+    getNextWriteCardSounds,
 } from './card'
 
 describe('Card selectors', () => {
@@ -424,5 +425,21 @@ describe('Card selectors', () => {
             }
             expect(getWriteCurrentCard(state)).toEqual({})
         })
+    })
+
+    it('Should return next write card sounds', () => {
+        const state = {
+            card: {
+                list: [
+                    { id: 1, status: 1 },
+                    { id: 2, status: 1, usSoundFile: '1.mp3', ruSoundFile: '2.mp3' },
+                ],
+                write: {
+                    list: [1, 2],
+                    currentCardIndex: 0,
+                },
+            },
+        }
+        expect(getNextWriteCardSounds(state)).toEqual(['1.mp3'])
     })
 })

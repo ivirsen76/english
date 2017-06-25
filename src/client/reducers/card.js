@@ -66,6 +66,7 @@ const UPDATE_REMEMBER_LABEL = 'english/card/UPDATE_REMEMBER_LABEL'
 const REMEMBER_CARD = 'english/card/REMEMBER_CARD'
 // Write actions
 const SET_WRITE_CARDS = 'english/card/SET_WRITE_CARDS'
+const GO_NEXT_WRITE_CARD = 'english/card/GO_NEXT_WRITE_CARD'
 
 // Action Creators
 export const addCardWithoutSaving = createAction(ADD_CARD)
@@ -83,6 +84,7 @@ export const switchRememberOrder = createAction(SWITCH_REMEMBER_ORDER)
 export const updateRememberLabel = createAction(UPDATE_REMEMBER_LABEL)
 export const rememberCardWithoutSaving = createAction(REMEMBER_CARD)
 export const setWriteCards = createAction(SET_WRITE_CARDS)
+export const goNextWriteCard = createAction(GO_NEXT_WRITE_CARD)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(cardInfo))
@@ -344,6 +346,18 @@ export default handleActions(
                     ...state.write,
                     list: writeList,
                     currentCardIndex: 0,
+                },
+            }
+        },
+        [GO_NEXT_WRITE_CARD]: (state, action) => {
+            const currentCardIndex = state.write.currentCardIndex
+            return {
+                ...state,
+                write: {
+                    ...state.write,
+                    currentCardIndex: state.write.list[currentCardIndex + 1]
+                        ? currentCardIndex + 1
+                        : 0,
                 },
             }
         },

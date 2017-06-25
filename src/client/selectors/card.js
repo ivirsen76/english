@@ -24,8 +24,8 @@ export const getNextRememberCardSounds = createSelector(
     getList,
     getRememberSortedList,
     getRememberCurrentCardIndex,
-    (list, rememberSortedList, index) => {
-        const id = rememberSortedList[index + 1]
+    (list, sortedList, index) => {
+        const id = sortedList[index + 1]
         if (!id) {
             return []
         }
@@ -145,10 +145,23 @@ export const getWriteCurrentCard = createSelector(
     getList,
     getWriteSortedList,
     getWriteCurrentCardIndex,
-    (list, writeSortedList, index) => {
-        const id = writeSortedList[index] || 0
+    (list, sortedList, index) => {
+        const id = sortedList[index] || 0
         return _find(list, { id }) || {}
     }
 )
 
-export const getNextWriteCardSounds = createSelector(() => 1)
+export const getNextWriteCardSounds = createSelector(
+    getList,
+    getWriteSortedList,
+    getWriteCurrentCardIndex,
+    (list, sortedList, index) => {
+        const id = sortedList[index + 1]
+        if (!id) {
+            return []
+        }
+
+        const nextCard = _find(list, { id })
+        return [nextCard.usSoundFile]
+    }
+)

@@ -16,6 +16,7 @@ import reducer, {
     switchRememberOrder,
     updateRememberLabel,
     setWriteCards,
+    goNextWriteCard,
 } from './card'
 
 describe('card reducer', () => {
@@ -531,6 +532,22 @@ describe('card reducer', () => {
             }
             const resultedState = reducer(state, setWriteCards())
             expect(resultedState.write.list).toEqual([1])
+        })
+    })
+
+    describe('goNextWriteCard()', () => {
+        it('Should go to the next step', () => {
+            const state = {
+                ...initialState,
+                list: [{ id: 1, status: 1 }, { id: 2, status: 1 }, { id: 3, status: 1 }],
+                write: {
+                    ...initialState.write,
+                    list: [1, 2, 3],
+                    currentCardIndex: 0,
+                },
+            }
+            const resultedState = reducer(state, goNextWriteCard())
+            expect(resultedState.write.currentCardIndex).toBe(1)
         })
     })
 })
