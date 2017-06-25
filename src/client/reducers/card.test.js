@@ -17,6 +17,8 @@ import reducer, {
     updateRememberLabel,
     setWriteCards,
     goNextWriteCard,
+    updateWriteInput,
+    checkWriting,
 } from './card'
 
 describe('card reducer', () => {
@@ -513,12 +515,18 @@ describe('card reducer', () => {
                 list: [{ id: 1, status: 1 }, { id: 2, status: 0 }, { id: 3, status: 1 }],
                 write: {
                     ...initialState.write,
+                    errors: [1],
+                    input: 'some',
                     currentCardIndex: 1,
+                    isChecked: true,
                 },
             }
             const resultedState = reducer(state, setWriteCards())
             expect(resultedState.write.list).toEqual([1, 3])
+            expect(resultedState.write.errors).toEqual([])
+            expect(resultedState.write.input).toEqual('')
             expect(resultedState.write.currentCardIndex).toBe(0)
+            expect(resultedState.write.isChecked).toBe(false)
         })
 
         it('Respect card limit', () => {
@@ -543,11 +551,59 @@ describe('card reducer', () => {
                 write: {
                     ...initialState.write,
                     list: [1, 2, 3],
+                    input: 'some',
                     currentCardIndex: 0,
+                    isChecked: true,
                 },
             }
             const resultedState = reducer(state, goNextWriteCard())
             expect(resultedState.write.currentCardIndex).toBe(1)
+            expect(resultedState.write.isChecked).toBe(false)
+            expect(resultedState.write.input).toEqual('')
+        })
+
+        it('Should ignore next step if it is not checked', () => {
+            const state = {
+                ...initialState,
+                list: [{ id: 1, status: 1 }, { id: 2, status: 1 }, { id: 3, status: 1 }],
+                write: {
+                    ...initialState.write,
+                    list: [1, 2, 3],
+                    isChecked: false,
+                },
+            }
+            expect(reducer(state, goNextWriteCard())).toBe(state)
+        })
+    })
+
+    describe('updateWriteInput()', () => {
+        it('Should update input', () => {
+            const state = {
+                ...initialState,
+                write: {
+                    ...initialState.write,
+                    input: 'som',
+                },
+            }
+            const resultedState = reducer(state, updateWriteInput('some'))
+            expect(resultedState.write.input).toBe('some')
+        })
+    })
+
+    describe('checkWriting()', () => {
+        it('Should check writing', () => {
+            const state = {
+                ...initialState,
+                list: [{ id: 1, status: 1 }, { id: 2, status: 1 }, { id: 3, status: 1 }],
+                write: {
+                    ...initialState.write,
+                    list: [1, 2, 3],
+                    currentCardIndex: 0,
+                    isChecked: false,
+                },
+            }
+            const resultedState = reducer(state, checkWriting())
+            expect(resultedState.write.isChecked).toBe(true)
         })
     })
 })

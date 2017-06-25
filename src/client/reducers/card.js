@@ -42,9 +42,11 @@ export const initialState = {
     },
     write: {
         list: [],
+        errors: [],
+        input: '',
         limit: 10,
-        params: {},
         currentCardIndex: 0,
+        isChecked: false,
     },
 }
 
@@ -67,6 +69,8 @@ const REMEMBER_CARD = 'english/card/REMEMBER_CARD'
 // Write actions
 const SET_WRITE_CARDS = 'english/card/SET_WRITE_CARDS'
 const GO_NEXT_WRITE_CARD = 'english/card/GO_NEXT_WRITE_CARD'
+const UPDATE_WRITE_INPUT = 'english/card/UPDATE_WRITE_INPUT'
+const CHECK_WRITING = 'english/card/CHECK_WRITING'
 
 // Action Creators
 export const addCardWithoutSaving = createAction(ADD_CARD)
@@ -85,6 +89,8 @@ export const updateRememberLabel = createAction(UPDATE_REMEMBER_LABEL)
 export const rememberCardWithoutSaving = createAction(REMEMBER_CARD)
 export const setWriteCards = createAction(SET_WRITE_CARDS)
 export const goNextWriteCard = createAction(GO_NEXT_WRITE_CARD)
+export const updateWriteInput = createAction(UPDATE_WRITE_INPUT)
+export const checkWriting = createAction(CHECK_WRITING)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(cardInfo))
@@ -345,11 +351,18 @@ export default handleActions(
                 write: {
                     ...state.write,
                     list: writeList,
+                    errors: [],
+                    input: '',
                     currentCardIndex: 0,
+                    isChecked: false,
                 },
             }
         },
         [GO_NEXT_WRITE_CARD]: (state, action) => {
+            if (!state.write.isChecked) {
+                return state
+            }
+
             const currentCardIndex = state.write.currentCardIndex
             return {
                 ...state,
@@ -358,9 +371,25 @@ export default handleActions(
                     currentCardIndex: state.write.list[currentCardIndex + 1]
                         ? currentCardIndex + 1
                         : 0,
+                    isChecked: false,
+                    input: '',
                 },
             }
         },
+        [UPDATE_WRITE_INPUT]: (state, action) => ({
+            ...state,
+            write: {
+                ...state.write,
+                input: action.payload,
+            },
+        }),
+        [CHECK_WRITING]: (state, action) => ({
+            ...state,
+            write: {
+                ...state.write,
+                isChecked: true,
+            },
+        }),
     },
     initialState
 )
