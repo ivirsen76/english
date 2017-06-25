@@ -1,7 +1,7 @@
 import reducer, {
     initialState,
     addCardWithoutSaving as addCard,
-    deleteCard,
+    deleteCardWithoutSaving as deleteCard,
     updateCardWithoutSaving as updateCard,
     updateCardData,
     minNewId,

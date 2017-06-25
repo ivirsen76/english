@@ -62,7 +62,7 @@ const REMEMBER_CARD = 'english/card/REMEMBER_CARD'
 
 // Action Creators
 export const addCardWithoutSaving = createAction(ADD_CARD)
-export const deleteCard = createAction(DELETE_CARD)
+export const deleteCardWithoutSaving = createAction(DELETE_CARD)
 export const updateCardWithoutSaving = createAction(UPDATE_CARD)
 export const updateCardData = createAction(UPDATE_CARD_DATA)
 export const setCards = createAction(SET_CARDS)
@@ -87,6 +87,11 @@ export const updateCard = cardInfo => async (dispatch, getState) => {
     dispatch(updateCardWithoutSaving({ id: cardInfo.id, ...result }))
     const response = await axios.patch(`/cards/${cardInfo.id}`, result)
     dispatch(updateCardData(response.data))
+}
+
+export const deleteCard = cardId => async (dispatch, getState) => {
+    dispatch(deleteCardWithoutSaving(cardId))
+    await axios.delete(`/cards/${cardId}`)
 }
 
 export const loadCards = () => async (dispatch, getState) => {
