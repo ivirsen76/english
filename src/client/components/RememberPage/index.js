@@ -20,6 +20,7 @@ import {
     switchRememberOrder,
     updateRememberLabel,
     updateCard,
+    deleteCard,
 } from 'reducers/card'
 import Counter from './Counter'
 import EditButton from './EditButton'
@@ -52,6 +53,7 @@ class RememberPage extends React.Component {
         togglePlayMode: PropTypes.func,
         toggleSound: PropTypes.func,
         updateCard: PropTypes.func,
+        deleteCard: PropTypes.func,
         updateLabel: PropTypes.func,
         nextSounds: PropTypes.array,
         nextStepDelay: PropTypes.number,
@@ -130,7 +132,7 @@ class RememberPage extends React.Component {
                     <div className={style.mainButtons}>
                         <EditButton card={currentCard} updateCard={this.props.updateCard} />
                         <NextButton onClick={this.goNext} />
-                        <DeleteButton />
+                        <DeleteButton card={currentCard} deleteCard={this.props.deleteCard} />
                     </div>
 
                     <div className={style.otherButtons}>
@@ -197,6 +199,7 @@ export default connect(mapStateToProps, {
     goNext: goNextRememberCard,
     rememberCard,
     updateCard,
+    deleteCard,
     togglePlayMode: toggleRememberPlayMode,
     toggleSound: toggleRememberSound,
     switchOrder: switchRememberOrder,

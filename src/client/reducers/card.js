@@ -117,10 +117,22 @@ export default handleActions(
                 list: [...state.list, { id: nextId, ..._pick(action.payload, acceptedFields) }],
             }
         },
-        [DELETE_CARD]: (state, action) => ({
-            ...state,
-            list: state.list.filter(item => item.id !== action.payload),
-        }),
+        [DELETE_CARD]: (state, action) => {
+            const newRememberList = state.remember.list.filter(item => item !== action.payload)
+
+            return {
+                ...state,
+                list: state.list.filter(item => item.id !== action.payload),
+                remember: {
+                    ...state.remember,
+                    list: newRememberList,
+                    step: 1,
+                    currentCardIndex: newRememberList.length < state.remember.currentCardIndex + 1
+                        ? 0
+                        : state.remember.currentCardIndex,
+                },
+            }
+        },
         [UPDATE_CARD]: (state, action) => ({
             ...state,
             list: state.list.map(item => {

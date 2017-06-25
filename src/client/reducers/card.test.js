@@ -227,16 +227,25 @@ describe('card reducer', () => {
     })
 
     describe('deleteCard()', () => {
-        it('Should delete card', () => {
+        it('Should delete card and remove it from remember list', () => {
             const state = {
                 ...initialState,
                 list: [
-                    { id: 1, text: 'Ball', translate: 'Some' },
-                    { id: 2, text: 'Tree', translate: 'Some' },
+                    { id: 1, text: 'Ball', translate: 'Some', status: 0 },
+                    { id: 2, text: 'Tree', translate: 'Some', status: 0 },
                 ],
+                remember: {
+                    list: [1, 2],
+                    step: 2,
+                    currentCardIndex: 0,
+                },
             }
-            const expectedList = [{ id: 2, text: 'Tree', translate: 'Some' }]
-            expect(reducer(state, deleteCard(1)).list).toEqual(expectedList)
+            const expectedList = [{ id: 2, text: 'Tree', translate: 'Some', status: 0 }]
+            const resultedState = reducer(state, deleteCard(1))
+            expect(resultedState.list).toEqual(expectedList)
+            expect(resultedState.remember.list).toEqual([2])
+            expect(resultedState.remember.step).toBe(1)
+            expect(resultedState.remember.currentCardIndex).toBe(0)
         })
     })
 
