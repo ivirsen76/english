@@ -17,7 +17,6 @@ export default class Label extends React.Component {
                 <div className="inline field">
                     <label>Label</label>
                     <input
-                        id="remember_label_input"
                         type="text"
                         style={{ width: '6em' }}
                         value={this.props.value}
