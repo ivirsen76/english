@@ -30,7 +30,6 @@ export const initialState = {
     list: [],
     remember: {
         list: [],
-        cardLimit: 100,
         params: {
             isEnFirst: true,
             isAutoPlayMode: false,
@@ -40,6 +39,12 @@ export const initialState = {
         },
         currentCardIndex: 0,
         step: 1,
+    },
+    write: {
+        list: [],
+        limit: 10,
+        params: {},
+        currentCardIndex: 0,
     },
 }
 
@@ -59,6 +64,8 @@ const TOGGLE_REMEMBER_SOUND = 'english/card/TOGGLE_REMEMBER_SOUND'
 const SWITCH_REMEMBER_ORDER = 'english/card/SWITCH_REMEMBER_ORDER'
 const UPDATE_REMEMBER_LABEL = 'english/card/UPDATE_REMEMBER_LABEL'
 const REMEMBER_CARD = 'english/card/REMEMBER_CARD'
+// Write actions
+const SET_WRITE_CARDS = 'english/card/SET_WRITE_CARDS'
 
 // Action Creators
 export const addCardWithoutSaving = createAction(ADD_CARD)
@@ -75,6 +82,7 @@ export const toggleRememberSound = createAction(TOGGLE_REMEMBER_SOUND)
 export const switchRememberOrder = createAction(SWITCH_REMEMBER_ORDER)
 export const updateRememberLabel = createAction(UPDATE_REMEMBER_LABEL)
 export const rememberCardWithoutSaving = createAction(REMEMBER_CARD)
+export const setWriteCards = createAction(SET_WRITE_CARDS)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(cardInfo))
@@ -322,6 +330,20 @@ export default handleActions(
                     currentCardIndex: newRememberList.length < state.remember.currentCardIndex + 1
                         ? 0
                         : state.remember.currentCardIndex,
+                },
+            }
+        },
+        [SET_WRITE_CARDS]: (state, action) => {
+            const writeList = state.list
+                .filter(card => card.status === 1)
+                .slice(0, state.write.limit)
+                .map(card => card.id)
+            return {
+                ...state,
+                write: {
+                    ...state.write,
+                    list: writeList,
+                    currentCardIndex: 0,
                 },
             }
         },

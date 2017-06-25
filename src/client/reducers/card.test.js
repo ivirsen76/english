@@ -15,6 +15,7 @@ import reducer, {
     toggleRememberSound,
     switchRememberOrder,
     updateRememberLabel,
+    setWriteCards,
 } from './card'
 
 describe('card reducer', () => {
@@ -501,6 +502,35 @@ describe('card reducer', () => {
             const resultedState = reducer(state, goNextRememberCard())
             expect(resultedState.remember.step).toBe(1)
             expect(resultedState.remember.currentCardIndex).toBe(0)
+        })
+    })
+
+    describe('setWriteCards()', () => {
+        it('Should set list of cards', () => {
+            const state = {
+                ...initialState,
+                list: [{ id: 1, status: 1 }, { id: 2, status: 0 }, { id: 3, status: 1 }],
+                write: {
+                    ...initialState.write,
+                    currentCardIndex: 1,
+                },
+            }
+            const resultedState = reducer(state, setWriteCards())
+            expect(resultedState.write.list).toEqual([1, 3])
+            expect(resultedState.write.currentCardIndex).toBe(0)
+        })
+
+        it('Respect card limit', () => {
+            const state = {
+                ...initialState,
+                list: [{ id: 1, status: 1 }, { id: 2, status: 0 }, { id: 3, status: 1 }],
+                write: {
+                    ...initialState.write,
+                    limit: 1,
+                },
+            }
+            const resultedState = reducer(state, setWriteCards())
+            expect(resultedState.write.list).toEqual([1])
         })
     })
 })
