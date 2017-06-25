@@ -21,6 +21,7 @@ const DoneButton = ReactSelector('DoneButton')
 const PlayButton = ReactSelector('PlayButton')
 const SwitchButton = ReactSelector('SwitchButton')
 const EditButton = ReactSelector('EditButton')
+const DeleteButton = ReactSelector('DeleteButton')
 const EditSubmitButton = Selector('button').withText('Изменить')
 const Alert = ReactSelector('Alert')
 
@@ -87,4 +88,10 @@ test('Should edit card', async t => {
 
     await t.expect(PanelUs.innerText).contains('some')
     await t.expect(PanelRu.innerText).contains('что-то')
+})
+
+test('Should delete card', async t => {
+    await t.click(DeleteButton)
+    await t.expect(PanelUs.innerText).contains('block')
+    await t.expect(Counter.innerText).contains('1 / 4')
 })
