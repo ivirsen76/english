@@ -2,7 +2,7 @@
 import { Selector } from 'testcafe'
 import ReactSelector from 'testcafe-react-selectors'
 import { regularUser } from './roles.js'
-import restoreDb from './db/restoreDb.js'
+import { restoreDb, getNumRecords } from './db/utils.js'
 
 fixture('Remember page').beforeEach(async t => {
     restoreDb()
@@ -58,6 +58,8 @@ test('Should remember card', async t => {
     await t.click(DoneButton)
     await t.expect(PanelUs.innerText).contains('block')
     await t.expect(Counter.innerText).contains('1 / 4')
+
+    await t.expect(await getNumRecords('cards', { text: 'text', status: 1 })).eql(1)
 })
 
 test('Should start playing', async t => {
@@ -88,10 +90,14 @@ test('Should edit card', async t => {
 
     await t.expect(PanelUs.innerText).contains('some')
     await t.expect(PanelRu.innerText).contains('что-то')
+
+    await t.expect(await getNumRecords('cards', { text: 'some', translate: 'что-то' })).eql(1)
 })
 
 test('Should delete card', async t => {
     await t.click(DeleteButton)
     await t.expect(PanelUs.innerText).contains('block')
     await t.expect(Counter.innerText).contains('1 / 4')
+
+    await t.expect(await getNumRecords('cards', { text: 'text' })).eql(0)
 })
