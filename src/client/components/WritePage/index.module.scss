@@ -10,7 +10,7 @@
     width: 100%;
     margin: 0;
     outline: none;
-    line-height: 1.3;
+    line-height: 32px;
     padding: 8px 12px;
     font-size: 24px;
     border: 1px solid #85B7D9;
@@ -19,14 +19,19 @@
     background: #FFFFFF;
     resize: none;
 }
+.heightMeter {
+    padding: 8px 12px;
+    border: 1px solid #000;
+}
 .resultBlock {
     padding: 6px 13px;
-
-    .rightText {
-        font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        font-size: 24px;
-        color: #333;
-        line-height: 1.3;
-        margin-bottom: 8px;
-    }
+}
+.rightText {
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    color: #333;
+    line-height: 32px;
+}
+.translate {
+    margin-top: 10px;
 }

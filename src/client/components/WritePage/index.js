@@ -27,6 +27,14 @@ class Component extends React.Component {
         height: null,
     }
 
+    componentWillMount() {
+        document.addEventListener('keydown', this.handleEnterKey)
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleEnterKey)
+    }
+
     componentDidMount() {
         this.adjustHeight()
         this.props.setWriteCards()
@@ -47,12 +55,19 @@ class Component extends React.Component {
         }
     }
 
+    handleEnterKey = e => {
+        if (e.keyCode === 13) {
+            e.preventDefault()
+            this.goNext()
+        }
+    }
+
     adjustHeight = () => {
         if (!this.heightMeter) {
             return
         }
 
-        const height = this.heightMeter.clientHeight
+        const height = this.heightMeter.offsetHeight
         if (height !== this.state.height) {
             this.setState({ height })
         }
@@ -67,6 +82,10 @@ class Component extends React.Component {
 
     goNext = e => {
         e && e.preventDefault()
+
+        if (!this.props.input) {
+            return
+        }
 
         if (this.props.isChecked) {
             this.props.goNextWriteCard()
@@ -97,7 +116,7 @@ class Component extends React.Component {
                               />
                               <div style={{ height: 0, overflow: 'hidden' }}>
                                   <div
-                                      className={style.resultBlock}
+                                      className={style.heightMeter}
                                       ref={div => {
                                           this.heightMeter = div
                                       }}
@@ -123,7 +142,7 @@ class Component extends React.Component {
                                           diffStyle="added"
                                       />
                                   </div>
-                                  <div>
+                                  <div className={style.translate}>
                                       {this.props.currentCard.translate}
                                   </div>
                               </div>
