@@ -116,14 +116,12 @@ class Component extends React.Component {
                               />
                               <div style={{ height: 0, overflow: 'hidden' }}>
                                   <div
-                                      className={style.heightMeter}
+                                      className={style.input}
                                       ref={div => {
                                           this.heightMeter = div
                                       }}
                                   >
-                                      <div className={style.rightText}>
-                                          {this.props.input || '1'}
-                                      </div>
+                                      {this.props.input || '1'}
                                   </div>
                               </div>
                           </div>
@@ -135,7 +133,7 @@ class Component extends React.Component {
                                   />
                               </div>
                               <div className={style.resultBlock}>
-                                  <div className={style.rightText}>
+                                  <div className={style.text}>
                                       <DiffResult
                                           str1={this.props.currentCard.text}
                                           str2={this.props.input}

@@ -5,28 +5,7 @@
     margin-bottom: .8em;
     text-align: center;
 }
-.input {
-    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    width: 100%;
-    margin: 0;
-    outline: none;
-    line-height: 32px;
-    padding: 8px 12px;
-    font-size: 24px;
-    border: 1px solid #85B7D9;
-    color: #333;
-    border-radius: 4px;
-    background: #FFFFFF;
-    resize: none;
-}
-.heightMeter {
-    padding: 8px 12px;
-    border: 1px solid #000;
-}
-.resultBlock {
-    padding: 6px 13px;
-}
-.rightText {
+.text {
     font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-size: 24px;
     color: #333;
@@ -34,4 +13,18 @@
 }
 .translate {
     margin-top: 10px;
+}
+.input {
+    composes: text;
+    width: 100%;
+    margin: 0;
+    outline: none;
+    padding: 8px 12px;
+    border: 1px solid #85B7D9;
+    border-radius: 4px;
+    background: #FFFFFF;
+    resize: none;
+}
+.resultBlock {
+    padding: 6px 13px;
 }
