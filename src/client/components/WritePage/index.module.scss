@@ -13,6 +13,7 @@
 }
 .translate {
     margin-top: 10px;
+    color: #999;
 }
 .input {
     composes: text;
@@ -27,4 +28,9 @@
 }
 .resultBlock {
     padding: 6px 13px;
+}
+.buttonWrapper {
+    display: flex;
+    margin-bottom: 1em;
+    justify-content: center;
 }

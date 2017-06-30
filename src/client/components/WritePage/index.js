@@ -104,8 +104,13 @@ class Component extends React.Component {
                     <div className={style.counter}>
                         <Counter current={currentCardNumber} total={totalCards} />
                     </div>
-                    <div>
-                        <button onClick={this.goNext}>Next</button>
+                    <div className={style.buttonWrapper}>
+                        <button className="huge circular ui icon button" onClick={this.goNext}>
+                            <i className="icon-arrow-right" />
+                        </button>
+                        <button className="huge circular ui icon button" onClick={this.playSound}>
+                            <i className="icon-play3" />
+                        </button>
                     </div>
                     {!isChecked
                         ? <div>
