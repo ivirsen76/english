@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import writeStyle from '../index.module.scss'
 
 export default class InputField extends React.Component {
     static propTypes = {
         value: PropTypes.string,
         onChange: PropTypes.func,
+        height: PropTypes.number,
     }
 
     onChange = e => {
@@ -14,15 +16,14 @@ export default class InputField extends React.Component {
 
     render() {
         return (
-            <div className="ui form">
-                <input
-                    type="text"
-                    value={this.props.value}
-                    onChange={this.onChange}
-                    placeholder="Type the listened text"
-                    autoFocus
-                />
-            </div>
+            <textarea
+                type="text"
+                className={writeStyle.input}
+                value={this.props.value}
+                onChange={this.onChange}
+                style={{ height: this.props.height }}
+                autoFocus
+            />
         )
     }
 }

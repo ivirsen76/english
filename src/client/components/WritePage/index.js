@@ -6,6 +6,7 @@ import { setWriteCards, goNextWriteCard, updateWriteInput, checkWriting } from '
 import mp3 from 'utils/mp3.js'
 import Counter from '../RememberPage/Counter'
 import InputField from './InputField'
+import DiffResult from './DiffResult'
 import style from './index.module.scss'
 
 class Component extends React.Component {
@@ -22,11 +23,18 @@ class Component extends React.Component {
         input: PropTypes.string,
     }
 
+    state = {
+        height: null,
+    }
+
     componentDidMount() {
+        this.adjustHeight()
         this.props.setWriteCards()
     }
 
     componentDidUpdate(prevProps) {
+        this.adjustHeight()
+
         if (prevProps.currentCard.text !== this.props.currentCard.text) {
             this.playSound()
         }
@@ -36,6 +44,17 @@ class Component extends React.Component {
             this.props.nextSounds.map(soundFile =>
                 mp3.preload(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + soundFile)
             )
+        }
+    }
+
+    adjustHeight = () => {
+        if (!this.heightMeter) {
+            return
+        }
+
+        const height = this.heightMeter.clientHeight
+        if (height !== this.state.height) {
+            this.setState({ height })
         }
     }
 
@@ -69,16 +88,46 @@ class Component extends React.Component {
                     <div>
                         <button onClick={this.goNext}>Next</button>
                     </div>
-                    <InputField value={this.props.input} onChange={this.props.updateWriteInput} />
-                    {isChecked &&
-                        <div>
-                            <div>
-                                {this.props.currentCard.text}
-                            </div>
-                            <div>
-                                {this.props.currentCard.translate}
-                            </div>
-                        </div>}
+                    {!isChecked
+                        ? <div>
+                              <InputField
+                                  value={this.props.input}
+                                  onChange={this.props.updateWriteInput}
+                                  height={this.state.height}
+                              />
+                              <div style={{ height: 0, overflow: 'hidden' }}>
+                                  <div
+                                      className={style.resultBlock}
+                                      ref={div => {
+                                          this.heightMeter = div
+                                      }}
+                                  >
+                                      <div className={style.rightText}>
+                                          {this.props.input || '1'}
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        : <div>
+                              <div className={style.input}>
+                                  <DiffResult
+                                      str1={this.props.input}
+                                      str2={this.props.currentCard.text}
+                                  />
+                              </div>
+                              <div className={style.resultBlock}>
+                                  <div className={style.rightText}>
+                                      <DiffResult
+                                          str1={this.props.currentCard.text}
+                                          str2={this.props.input}
+                                          diffStyle="added"
+                                      />
+                                  </div>
+                                  <div>
+                                      {this.props.currentCard.translate}
+                                  </div>
+                              </div>
+                          </div>}
                 </div>
             </div>
         )
