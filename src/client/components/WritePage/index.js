@@ -8,9 +8,8 @@ import Counter from '../RememberPage/Counter'
 import InputField from './InputField'
 import DiffResult from './DiffResult'
 import NextButton from './NextButton'
+import { isTextEqual } from 'utils/text.js'
 import style from './index.module.scss'
-
-export const convertText = text => text.replace(/(\s|-|%|,|\.|:|!|\?|\[|]|\/)/g, '').toLowerCase()
 
 class Component extends React.Component {
     static propTypes = {
@@ -97,10 +96,8 @@ class Component extends React.Component {
         }
     }
 
-    isCorrect = () => convertText(this.props.input) === convertText(this.props.currentCard.text)
-
     render() {
-        const { currentCardNumber, totalCards, isChecked } = this.props
+        const { currentCard, input, currentCardNumber, totalCards, isChecked } = this.props
 
         return (
             <div>
@@ -118,7 +115,7 @@ class Component extends React.Component {
                     {!isChecked
                         ? <div>
                               <InputField
-                                  value={this.props.input}
+                                  value={input}
                                   onChange={this.props.updateWriteInput}
                                   height={this.state.height}
                               />
@@ -129,7 +126,7 @@ class Component extends React.Component {
                                           this.heightMeter = div
                                       }}
                                   >
-                                      {this.props.input || '1'}
+                                      {input || '1'}
                                   </div>
                               </div>
                           </div>
@@ -138,25 +135,24 @@ class Component extends React.Component {
                                   className={
                                       style.input +
                                       ' ' +
-                                      (this.isCorrect() ? style.positive : style.negative)
+                                      (isTextEqual(currentCard.text, input)
+                                          ? style.positive
+                                          : style.negative)
                                   }
                                   id="result"
                               >
-                                  <DiffResult
-                                      str1={this.props.input}
-                                      str2={this.props.currentCard.text}
-                                  />
+                                  <DiffResult str1={input} str2={currentCard.text} />
                               </div>
                               <div className={style.resultBlock}>
                                   <div className={style.text} id="rightText">
                                       <DiffResult
-                                          str1={this.props.currentCard.text}
-                                          str2={this.props.input}
+                                          str1={currentCard.text}
+                                          str2={input}
                                           diffStyle="added"
                                       />
                                   </div>
                                   <div className={style.translate} id="translate">
-                                      {this.props.currentCard.translate}
+                                      {currentCard.translate}
                                   </div>
                               </div>
                           </div>}
