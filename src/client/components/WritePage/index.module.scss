@@ -25,6 +25,15 @@
     border-radius: 4px;
     background: #FFFFFF;
     resize: none;
+
+    &.positive {
+        background-color: #fcfff5;
+        border-color: #a3c293;
+    }
+    &.negative {
+        background-color: #fff6f6;
+        border-color: #e0b4b4;
+    }
 }
 .resultBlock {
     padding: 6px 13px;

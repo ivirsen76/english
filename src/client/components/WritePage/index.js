@@ -9,6 +9,8 @@ import InputField from './InputField'
 import DiffResult from './DiffResult'
 import style from './index.module.scss'
 
+export const convertText = text => text.replace(/(\s|-|%|,|\.|:|!|\?|\[|]|\/)/g, '').toLowerCase()
+
 class Component extends React.Component {
     static propTypes = {
         setWriteCards: PropTypes.func,
@@ -94,6 +96,8 @@ class Component extends React.Component {
         }
     }
 
+    isCorrect = () => convertText(this.props.input) === convertText(this.props.currentCard.text)
+
     render() {
         const { currentCardNumber, totalCards, isChecked } = this.props
 
@@ -131,7 +135,13 @@ class Component extends React.Component {
                               </div>
                           </div>
                         : <div>
-                              <div className={style.input}>
+                              <div
+                                  className={
+                                      style.input +
+                                      ' ' +
+                                      (this.isCorrect() ? style.positive : style.negative)
+                                  }
+                              >
                                   <DiffResult
                                       str1={this.props.input}
                                       str2={this.props.currentCard.text}
