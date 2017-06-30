@@ -58,6 +58,7 @@
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
     "husky": "^0.14.0",
+    "lint-staged": "^4.0.0",
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.0.2",
     "parse-db-url": "0.0.0",
@@ -75,6 +76,9 @@
     "build": "react-app-rewired build",
     "test": "react-scripts test --env=jsdom",
     "test:browser": "testcafe -e chrome src/tests/*.page.js",
-    "precommit": "eslint . && CI=true npm run test"
+    "precommit": "lint-staged && CI=true npm run test"
+  },
+  "lint-staged": {
+    "src/**/*.js": "eslint"
   }
 }
