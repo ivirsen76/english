@@ -591,19 +591,40 @@ describe('card reducer', () => {
     })
 
     describe('checkWriting()', () => {
-        it('Should check writing', () => {
+        it('Should check writing for wrong word', () => {
             const state = {
                 ...initialState,
-                list: [{ id: 1, status: 1 }, { id: 2, status: 1 }, { id: 3, status: 1 }],
+                list: [{ id: 1, status: 1, text: 'some' }, { id: 2, status: 1, text: 'some' }],
                 write: {
                     ...initialState.write,
-                    list: [1, 2, 3],
+                    list: [1, 2],
+                    errors: [],
+                    input: 'wrong',
                     currentCardIndex: 0,
                     isChecked: false,
                 },
             }
             const resultedState = reducer(state, checkWriting())
             expect(resultedState.write.isChecked).toBe(true)
+            expect(resultedState.write.errors).toEqual([1])
+        })
+
+        it('Should check writing for right word', () => {
+            const state = {
+                ...initialState,
+                list: [{ id: 1, status: 1, text: 'some' }, { id: 2, status: 1, text: 'some' }],
+                write: {
+                    ...initialState.write,
+                    list: [1, 2],
+                    errors: [],
+                    input: 'Some',
+                    currentCardIndex: 0,
+                    isChecked: false,
+                },
+            }
+            const resultedState = reducer(state, checkWriting())
+            expect(resultedState.write.isChecked).toBe(true)
+            expect(resultedState.write.errors).toEqual([])
         })
     })
 })

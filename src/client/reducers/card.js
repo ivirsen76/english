@@ -7,6 +7,7 @@ import _omit from 'lodash/omit'
 import _find from 'lodash/find'
 import axios from 'utils/axios'
 import { set } from 'dot-prop-immutable'
+import { isTextEqual } from 'utils/text.js'
 
 export const minNewId = 1000000000
 
@@ -383,13 +384,23 @@ export default handleActions(
                 input: action.payload,
             },
         }),
-        [CHECK_WRITING]: (state, action) => ({
-            ...state,
-            write: {
-                ...state.write,
-                isChecked: true,
-            },
-        }),
+        [CHECK_WRITING]: (state, action) => {
+            const currentCardId = state.write.list[state.write.currentCardIndex]
+            const currentCard = _find(state.list, item => item.id === currentCardId)
+
+            const newErrors = isTextEqual(currentCard.text, state.write.input)
+                ? state.write.errors
+                : [...state.write.errors, currentCardId]
+
+            return {
+                ...state,
+                write: {
+                    ...state.write,
+                    errors: newErrors,
+                    isChecked: true,
+                },
+            }
+        },
     },
     initialState
 )
