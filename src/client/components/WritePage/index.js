@@ -7,6 +7,7 @@ import mp3 from 'utils/mp3.js'
 import Counter from '../RememberPage/Counter'
 import InputField from './InputField'
 import DiffResult from './DiffResult'
+import NextButton from './NextButton'
 import style from './index.module.scss'
 
 export const convertText = text => text.replace(/(\s|-|%|,|\.|:|!|\?|\[|]|\/)/g, '').toLowerCase()
@@ -109,9 +110,7 @@ class Component extends React.Component {
                         <Counter current={currentCardNumber} total={totalCards} />
                     </div>
                     <div className={style.buttonWrapper}>
-                        <button className="huge circular ui icon button" onClick={this.goNext}>
-                            <i className="icon-arrow-right" />
-                        </button>
+                        <NextButton goNext={this.goNext} />
                         <button className="huge circular ui icon button" onClick={this.playSound}>
                             <i className="icon-play3" />
                         </button>
@@ -141,6 +140,7 @@ class Component extends React.Component {
                                       ' ' +
                                       (this.isCorrect() ? style.positive : style.negative)
                                   }
+                                  id="result"
                               >
                                   <DiffResult
                                       str1={this.props.input}
@@ -148,14 +148,14 @@ class Component extends React.Component {
                                   />
                               </div>
                               <div className={style.resultBlock}>
-                                  <div className={style.text}>
+                                  <div className={style.text} id="rightText">
                                       <DiffResult
                                           str1={this.props.currentCard.text}
                                           str2={this.props.input}
                                           diffStyle="added"
                                       />
                                   </div>
-                                  <div className={style.translate}>
+                                  <div className={style.translate} id="translate">
                                       {this.props.currentCard.translate}
                                   </div>
                               </div>
