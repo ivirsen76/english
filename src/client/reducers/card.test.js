@@ -19,6 +19,7 @@ import reducer, {
     goNextWriteCard,
     updateWriteInput,
     checkWriting,
+    saveWriteResults,
 } from './card'
 
 describe('card reducer', () => {
@@ -625,6 +626,30 @@ describe('card reducer', () => {
             const resultedState = reducer(state, checkWriting())
             expect(resultedState.write.isChecked).toBe(true)
             expect(resultedState.write.errors).toEqual([])
+        })
+    })
+
+    describe('saveWriteResults()', () => {
+        it('Should save write results', () => {
+            const state = {
+                ...initialState,
+                list: [
+                    { id: 1, status: 1, writeRightAttempt: 1 },
+                    { id: 2, status: 1, writeRightAttempt: 1 },
+                    { id: 3, status: 1, writeRightAttempt: 2 },
+                ],
+                write: {
+                    ...initialState.write,
+                    list: [1, 2, 3],
+                    errors: [1],
+                },
+            }
+            const resultedState = reducer(state, saveWriteResults())
+            expect(resultedState.list).toEqual([
+                { id: 1, status: 1, writeRightAttempt: 0 },
+                { id: 2, status: 1, writeRightAttempt: 2 },
+                { id: 3, status: 2, writeRightAttempt: 3 },
+            ])
         })
     })
 })

@@ -5,11 +5,13 @@ import _pick from 'lodash/pick'
 import _keys from 'lodash/keys'
 import _omit from 'lodash/omit'
 import _find from 'lodash/find'
+import _cloneDeep from 'lodash/cloneDeep'
 import axios from 'utils/axios'
 import { set } from 'dot-prop-immutable'
 import { isTextEqual } from 'utils/text.js'
 
 export const minNewId = 1000000000
+export const maxWriteAttempts = 3
 
 export const acceptedFields = [
     'text',
@@ -72,6 +74,7 @@ const SET_WRITE_CARDS = 'english/card/SET_WRITE_CARDS'
 const GO_NEXT_WRITE_CARD = 'english/card/GO_NEXT_WRITE_CARD'
 const UPDATE_WRITE_INPUT = 'english/card/UPDATE_WRITE_INPUT'
 const CHECK_WRITING = 'english/card/CHECK_WRITING'
+const SAVE_WRITE_RESULTS = 'english/card/SAVE_WRITE_RESULTS'
 
 // Action Creators
 export const addCardWithoutSaving = createAction(ADD_CARD)
@@ -92,6 +95,7 @@ export const setWriteCards = createAction(SET_WRITE_CARDS)
 export const goNextWriteCard = createAction(GO_NEXT_WRITE_CARD)
 export const updateWriteInput = createAction(UPDATE_WRITE_INPUT)
 export const checkWriting = createAction(CHECK_WRITING)
+export const saveWriteResults = createAction(SAVE_WRITE_RESULTS)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(cardInfo))
@@ -399,6 +403,26 @@ export default handleActions(
                     errors: newErrors,
                     isChecked: true,
                 },
+            }
+        },
+        [SAVE_WRITE_RESULTS]: (state, action) => {
+            const list = _cloneDeep(state.list)
+
+            state.write.list.forEach(id => {
+                const card = _find(list, { id })
+                if (state.write.errors.includes(id)) {
+                    card.writeRightAttempt = 0
+                } else {
+                    card.writeRightAttempt++
+                    if (card.writeRightAttempt >= maxWriteAttempts) {
+                        card.status = 2
+                    }
+                }
+            })
+
+            return {
+                ...state,
+                list,
             }
         },
     },
