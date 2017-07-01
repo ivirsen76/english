@@ -411,10 +411,10 @@ export default handleActions(
             state.write.list.forEach(id => {
                 const card = _find(list, { id })
                 if (state.write.errors.includes(id)) {
-                    card.writeRightAttempt = 0
+                    card.writeRightAttempts = 0
                 } else {
-                    card.writeRightAttempt++
-                    if (card.writeRightAttempt >= maxWriteAttempts) {
+                    card.writeRightAttempts++
+                    if (card.writeRightAttempts >= maxWriteAttempts) {
                         card.status = 2
                     }
                 }

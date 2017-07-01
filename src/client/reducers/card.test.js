@@ -634,9 +634,9 @@ describe('card reducer', () => {
             const state = {
                 ...initialState,
                 list: [
-                    { id: 1, status: 1, writeRightAttempt: 1 },
-                    { id: 2, status: 1, writeRightAttempt: 1 },
-                    { id: 3, status: 1, writeRightAttempt: 2 },
+                    { id: 1, status: 1, writeRightAttempts: 1 },
+                    { id: 2, status: 1, writeRightAttempts: 1 },
+                    { id: 3, status: 1, writeRightAttempts: 2 },
                 ],
                 write: {
                     ...initialState.write,
@@ -646,9 +646,9 @@ describe('card reducer', () => {
             }
             const resultedState = reducer(state, saveWriteResults())
             expect(resultedState.list).toEqual([
-                { id: 1, status: 1, writeRightAttempt: 0 },
-                { id: 2, status: 1, writeRightAttempt: 2 },
-                { id: 3, status: 2, writeRightAttempt: 3 },
+                { id: 1, status: 1, writeRightAttempts: 0 },
+                { id: 2, status: 1, writeRightAttempts: 2 },
+                { id: 3, status: 2, writeRightAttempts: 3 },
             ])
         })
     })
