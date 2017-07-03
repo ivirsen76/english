@@ -16,9 +16,9 @@ import reducer, {
     switchRememberOrder,
     updateRememberLabel,
     setWriteCards,
-    goNextWriteCard,
+    goNextWriteCardInSet as goNextWriteCard,
     updateWriteInput,
-    checkWriting,
+    checkWritingWithoutSaving as checkWriting,
     saveWriteResults,
 } from './card'
 

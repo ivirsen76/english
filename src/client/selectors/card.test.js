@@ -13,6 +13,7 @@ import {
     getWriteTotalCards,
     getWriteCurrentCard,
     getNextWriteCardSounds,
+    isLastWriteCard,
 } from './card'
 
 describe('Card selectors', () => {
@@ -441,5 +442,31 @@ describe('Card selectors', () => {
             },
         }
         expect(getNextWriteCardSounds(state)).toEqual(['1.mp3'])
+    })
+
+    describe('isLastWriteCard()', () => {
+        it('Should return false', () => {
+            const state = {
+                card: {
+                    write: {
+                        list: [1, 2, 3],
+                        currentCardIndex: 1,
+                    },
+                },
+            }
+            expect(isLastWriteCard(state)).toBe(false)
+        })
+
+        it('Should return true', () => {
+            const state = {
+                card: {
+                    write: {
+                        list: [1, 2, 3],
+                        currentCardIndex: 2,
+                    },
+                },
+            }
+            expect(isLastWriteCard(state)).toBe(true)
+        })
     })
 })

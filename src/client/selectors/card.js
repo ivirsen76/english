@@ -165,3 +165,9 @@ export const getNextWriteCardSounds = createSelector(
         return [nextCard.usSoundFile]
     }
 )
+
+export const isLastWriteCard = createSelector(
+    getWriteSortedList,
+    getWriteCurrentCardIndex,
+    (sortedList, index) => sortedList.length === index + 1
+)

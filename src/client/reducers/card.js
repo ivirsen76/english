@@ -9,6 +9,8 @@ import _cloneDeep from 'lodash/cloneDeep'
 import axios from 'utils/axios'
 import { set } from 'dot-prop-immutable'
 import { isTextEqual } from 'utils/text.js'
+import notification from '@ieremeev/notification'
+import { isLastWriteCard } from 'selectors/card.js'
 
 export const minNewId = 1000000000
 export const maxWriteAttempts = 3
@@ -92,9 +94,9 @@ export const switchRememberOrder = createAction(SWITCH_REMEMBER_ORDER)
 export const updateRememberLabel = createAction(UPDATE_REMEMBER_LABEL)
 export const rememberCardWithoutSaving = createAction(REMEMBER_CARD)
 export const setWriteCards = createAction(SET_WRITE_CARDS)
-export const goNextWriteCard = createAction(GO_NEXT_WRITE_CARD)
+export const goNextWriteCardInSet = createAction(GO_NEXT_WRITE_CARD)
 export const updateWriteInput = createAction(UPDATE_WRITE_INPUT)
-export const checkWriting = createAction(CHECK_WRITING)
+export const checkWritingWithoutSaving = createAction(CHECK_WRITING)
 export const saveWriteResults = createAction(SAVE_WRITE_RESULTS)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
@@ -125,6 +127,29 @@ export const loadCards = () => async (dispatch, getState) => {
     const res = await axios.get('/cards')
     dispatch(setCards(res.data.data))
     dispatch(setLoadingCardsState(false))
+}
+
+export const checkWriting = () => async (dispatch, getState) => {
+    dispatch(checkWritingWithoutSaving())
+
+    const state = getState()
+
+    if (isLastWriteCard(state)) {
+        const total = state.card.write.list.length
+        const correctTotal = total - state.card.write.errors.length
+        notification(`Correct ${correctTotal} from ${total}`)
+        dispatch(saveWriteResults())
+    }
+}
+
+export const goNextWriteCard = () => async (dispatch, getState) => {
+    const state = getState()
+
+    if (isLastWriteCard(state)) {
+        dispatch(setWriteCards())
+    } else {
+        dispatch(goNextWriteCardInSet())
+    }
 }
 
 // Reducer
