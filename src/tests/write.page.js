@@ -17,6 +17,7 @@ const NextButton = ReactSelector('NextButton')
 const Result = Selector('#result')
 const RightText = Selector('#rightText')
 const Translate = Selector('#translate')
+const Alert = ReactSelector('Alert')
 
 test('Should go to the next word', async t => {
     await t.expect(Counter.innerText).contains('1 / 3')
@@ -45,4 +46,19 @@ test('Should go to the next word after clicking the button', async t => {
 test('Should not go to the next step if there is not input yet', async t => {
     await t.click(NextButton)
     await t.typeText(Input, 'some')
+})
+
+test.only('Should go to the last word in set', async t => {
+    await t.typeText(Input, 'Person')
+    await t.click(NextButton)
+    await t.click(NextButton)
+
+    await t.typeText(Input, 'Car')
+    await t.click(NextButton)
+    await t.click(NextButton)
+
+    await t.typeText(Input, 'Wrong')
+    await t.click(NextButton)
+
+    await t.expect(Alert.innerText).contains('Correct 2 from 3')
 })
