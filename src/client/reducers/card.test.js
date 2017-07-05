@@ -526,6 +526,7 @@ describe('card reducer', () => {
                 list: [{ id: 1, status: 1 }, { id: 2, status: 0 }, { id: 3, status: 1 }],
                 write: {
                     ...initialState.write,
+                    iteration: 0,
                     input: 'some',
                     currentCardIndex: 1,
                     isChecked: true,
@@ -536,6 +537,7 @@ describe('card reducer', () => {
             expect(resultedState.write.input).toEqual('')
             expect(resultedState.write.currentCardIndex).toBe(0)
             expect(resultedState.write.isChecked).toBe(false)
+            expect(resultedState.write.iteration).toBe(1)
         })
 
         it('Respect card limit', () => {

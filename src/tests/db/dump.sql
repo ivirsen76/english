@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.14)
 # Database: feather
-# Generation Time: 2017-07-05 15:27:31 +0000
+# Generation Time: 2017-07-05 17:56:43 +0000
 # ************************************************************
 
 
@@ -83,8 +83,8 @@ VALUES
 	(20,1,'Ramble','бормотать','test','users/1/20_uk_eIwnhi.mp3',679,'users/1/20_us_Ysfslw.mp3',679,'users/1/20_ru_r9Ccez.mp3',835,0,'2017-05-12 19:33:40','2017-05-12 19:33:40','2017-06-01 21:37:58',0,NULL),
 	(21,1,'One more time together','Еще один раз','test','users/1/21_uk_sKTDFP.mp3',1384,'users/1/21_us_3gJfPY.mp3',1593,'users/1/21_ru_EiPbqg.mp3',1123,0,'2017-05-12 19:34:49','2017-05-12 19:34:49','2017-05-14 01:22:27',0,NULL),
 	(22,1,'Try it now immediately','Попробуй это немедленно','','users/1/22_uk_Fb6wFp.mp3',1515,'users/1/22_us_g4Fv9u.mp3',1358,'users/1/22_ru_hdqwkS.mp3',1410,0,'2017-05-12 19:35:48','2017-05-12 19:35:48','2017-05-14 01:57:19',0,NULL),
-	(23,1,'person','человек','','users/1/uk_d8L0sXfzDn.mp3',783,'users/1/us_mHJ4U92CeF.mp3',626,'users/1/ru_uzmaqzxejW.mp3',757,1,'2017-06-25 10:43:28','2017-06-25 10:42:51','2017-06-25 10:43:28',0,NULL),
-	(24,1,'car','машина','','users/1/uk_uOsQluJ5tw.mp3',496,'users/1/us_jm6nlYWO53.mp3',522,'users/1/ru_r4xkCQ6Lr6.mp3',653,1,'2017-06-25 10:43:29','2017-06-25 10:42:59','2017-06-25 10:43:29',0,NULL),
+	(23,1,'person','человек','','users/1/uk_d8L0sXfzDn.mp3',783,'users/1/us_mHJ4U92CeF.mp3',626,'users/1/ru_uzmaqzxejW.mp3',757,1,'2017-06-25 10:43:28','2017-06-25 10:42:51','2017-06-25 10:43:28',2,NULL),
+	(24,1,'car','машина','','users/1/uk_uOsQluJ5tw.mp3',496,'users/1/us_jm6nlYWO53.mp3',522,'users/1/ru_r4xkCQ6Lr6.mp3',653,1,'2017-06-25 10:43:29','2017-06-25 10:42:59','2017-06-25 10:43:29',2,NULL),
 	(25,1,'calendar','календарь','','users/1/uk_46wfD0WeDw.mp3',626,'users/1/us_t2WwVQ4Ds7.mp3',679,'users/1/ru_8hypMYtVtD.mp3',679,1,'2017-06-25 10:43:30','2017-06-25 10:43:06','2017-06-25 10:43:30',0,NULL);
 
 /*!40000 ALTER TABLE `cards` ENABLE KEYS */;

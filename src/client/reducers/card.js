@@ -55,6 +55,7 @@ export const initialState = {
     },
     write: {
         list: [],
+        iteration: 0,
         input: '',
         limit: 10,
         currentCardIndex: 0,
@@ -418,6 +419,7 @@ export default handleActions(
                 ...state,
                 write: {
                     ...state.write,
+                    iteration: state.write.iteration + 1,
                     list: writeList,
                     input: '',
                     currentCardIndex: 0,

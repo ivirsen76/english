@@ -23,6 +23,7 @@ class Component extends React.Component {
         currentCard: PropTypes.object,
         isChecked: PropTypes.bool,
         input: PropTypes.string,
+        iteration: PropTypes.number,
     }
 
     state = {
@@ -45,7 +46,10 @@ class Component extends React.Component {
     componentDidUpdate(prevProps) {
         this.adjustHeight()
 
-        if (prevProps.currentCard.text !== this.props.currentCard.text) {
+        if (
+            prevProps.currentCard.text !== this.props.currentCard.text ||
+            prevProps.iteration !== this.props.iteration
+        ) {
             this.playSound()
         }
 
@@ -171,6 +175,7 @@ function mapStateToProps(state) {
         nextSounds: getNextWriteCardSounds(state),
         isChecked: state.card.write.isChecked,
         input: state.card.write.input,
+        iteration: state.card.write.iteration,
     }
 }
 

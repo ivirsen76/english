@@ -61,5 +61,7 @@ test('Should go to the last word in set', async t => {
     await t.click(NextButton)
 
     await t.expect(Alert.innerText).contains('Correct 2 from 3')
-    await t.expect(await getNumRecords('cards', { text: 'Person', writeRightAttempts: 1 })).eql(1)
+    await t
+        .expect(await getNumRecords('cards', { text: 'Person', writeRightAttempts: 3, status: 2 }))
+        .eql(1)
 })
