@@ -4,7 +4,7 @@ const removeMp3 = require('./removeMp3')
 module.exports = options => async hook => {
     try {
         const id = hook.id
-        const { text, translate, status } = hook.data
+        const { text, translate, status, writeRightAttempts } = hook.data
         const { dataValues: currentData } = await hook.service.get(id)
 
         // Check if we need new sound
@@ -34,6 +34,10 @@ module.exports = options => async hook => {
 
         if (status && currentData.status !== status) {
             hook.data.statusUpdatedAt = new Date()
+        }
+
+        if (writeRightAttempts !== undefined) {
+            hook.data.writeLastDate = new Date()
         }
     } catch (err) {
         console.log(err) // eslint-disable-line no-console
