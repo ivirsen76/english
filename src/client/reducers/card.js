@@ -42,6 +42,7 @@ export const initialState = {
     list: [],
     remember: {
         list: [],
+        iteration: 0,
         params: {
             isEnFirst: true,
             isAutoPlayMode: false,
@@ -286,6 +287,7 @@ export default handleActions(
                 remember: {
                     ...state.remember,
                     list: rememberList,
+                    iteration: state.remember.iteration + 1,
                     currentCardIndex: 0,
                     step: 1,
                 },

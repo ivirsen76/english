@@ -447,6 +447,7 @@ describe('card reducer', () => {
                 list: [{ id: 1, status: 0 }, { id: 2, status: 1 }, { id: 3, status: 0 }],
                 remember: {
                     ...initialState.remember,
+                    iteration: 0,
                     currentCardIndex: 1,
                     step: 2,
                 },
@@ -455,6 +456,7 @@ describe('card reducer', () => {
             expect(resultedState.remember.list).toEqual([1, 3])
             expect(resultedState.remember.currentCardIndex).toBe(0)
             expect(resultedState.remember.step).toBe(1)
+            expect(resultedState.remember.iteration).toBe(1)
         })
 
         it('Should set list of cards with order', () => {

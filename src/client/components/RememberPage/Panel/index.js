@@ -21,6 +21,10 @@ export default class Component extends React.Component {
         iconPosition: 'bottom',
     }
 
+    componentDidMount() {
+        this.playSound()
+    }
+
     componentDidUpdate(prevProps, prevState) {
         if (this.props.show && this.props.isSound) {
             if (

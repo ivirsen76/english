@@ -43,6 +43,7 @@ class RememberPage extends React.Component {
         firstWord: PropTypes.object,
         secondWord: PropTypes.object,
         step: PropTypes.number,
+        iteration: PropTypes.number,
         // enLanguage: PropTypes.string,
         isAutoPlayMode: PropTypes.bool,
         label: PropTypes.string,
@@ -119,6 +120,7 @@ class RememberPage extends React.Component {
             label,
             firstWord,
             secondWord,
+            iteration,
         } = this.props
 
         return (
@@ -150,27 +152,29 @@ class RememberPage extends React.Component {
                         </div>
                     </div>
 
-                    {totalCards === 0
-                        ? <div className={style.noCardsMessage}>No cards to show</div>
-                        : <div className={style.panelWrapper}>
-                              <SwitchButton onClick={this.switchOrder} />
-                              <Panel
-                                  word={firstWord.word}
-                                  language={firstWord.language}
-                                  isSound={firstWord.isSound}
-                                  soundFile={firstWord.soundFile}
-                                  toggleSound={toggleSound}
-                              />
-                              <Panel
-                                  word={secondWord.word}
-                                  language={secondWord.language}
-                                  isSound={secondWord.isSound}
-                                  soundFile={secondWord.soundFile}
-                                  show={step === 2}
-                                  iconPosition="top"
-                                  toggleSound={toggleSound}
-                              />
-                          </div>}
+                    {totalCards === 0 &&
+                        <div className={style.noCardsMessage}>No cards to show</div>}
+                    {totalCards !== 0 &&
+                        currentCard.text &&
+                        <div key={iteration} className={style.panelWrapper}>
+                            <SwitchButton onClick={this.switchOrder} />
+                            <Panel
+                                word={firstWord.word}
+                                language={firstWord.language}
+                                isSound={firstWord.isSound}
+                                soundFile={firstWord.soundFile}
+                                toggleSound={toggleSound}
+                            />
+                            <Panel
+                                word={secondWord.word}
+                                language={secondWord.language}
+                                isSound={secondWord.isSound}
+                                soundFile={secondWord.soundFile}
+                                show={step === 2}
+                                iconPosition="top"
+                                toggleSound={toggleSound}
+                            />
+                        </div>}
 
                     <GoNextPanel onClick={this.goNext} />
                 </div>
@@ -190,6 +194,7 @@ function mapStateToProps(state) {
         nextStepDelay: getNextStepDelay(state),
         firstWord: getRememberFirstWord(state),
         secondWord: getRememberSecondWord(state),
+        iteration: state.card.remember.iteration,
         ..._pick(state.card.remember.params, ['isAutoPlayMode', 'label']),
     }
 }
