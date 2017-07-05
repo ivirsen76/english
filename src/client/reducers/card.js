@@ -10,7 +10,7 @@ import axios from 'utils/axios'
 import { set } from 'dot-prop-immutable'
 import { isTextEqual } from 'utils/text.js'
 import notification from '@ieremeev/notification'
-import { isLastWriteCard, getWriteErrorsTotal } from 'selectors/card.js'
+import { isLastWriteCard, getWriteErrorsTotal, getCurrentWriteCard } from 'selectors/card.js'
 
 export const minNewId = 1000000000
 export const maxWriteAttempts = 3
@@ -131,19 +131,18 @@ export const checkWriting = () => async (dispatch, getState) => {
     dispatch(saveWriteResults())
 
     const state = getState()
-    const currentCardId = state.card.write.list[state.card.write.currentCardIndex]
-    const currentCard = _find(state.card.list, item => item.id === currentCardId)
+    const currentCard = getCurrentWriteCard(state)
+
+    await axios.patch(
+        `/cards/${currentCard.id}`,
+        _pick(currentCard, ['status', 'writeRightAttempts'])
+    )
 
     if (isLastWriteCard(state)) {
         const total = state.card.write.list.length
         const correctTotal = total - getWriteErrorsTotal(state)
         notification(`Correct ${correctTotal} from ${total}`)
     }
-
-    await axios.patch(
-        `/cards/${currentCard.id}`,
-        _pick(currentCard, ['status', 'writeRightAttempts'])
-    )
 }
 
 export const goNextWriteCard = () => async (dispatch, getState) => {

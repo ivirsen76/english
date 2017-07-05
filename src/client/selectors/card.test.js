@@ -15,6 +15,7 @@ import {
     getNextWriteCardSounds,
     isLastWriteCard,
     getWriteErrorsTotal,
+    getCurrentWriteCard,
 } from './card'
 
 describe('Card selectors', () => {
@@ -500,6 +501,21 @@ describe('Card selectors', () => {
                 },
             }
             expect(getWriteErrorsTotal(state)).toBe(1)
+        })
+    })
+
+    describe('getCurrentWriteCard()', () => {
+        it('Should return errors', () => {
+            const state = {
+                card: {
+                    list: [{ id: 1, writeRightAttempts: 0 }],
+                    write: {
+                        list: [1],
+                        currentCardIndex: 0,
+                    },
+                },
+            }
+            expect(getCurrentWriteCard(state)).toEqual({ id: 1, writeRightAttempts: 0 })
         })
     })
 })

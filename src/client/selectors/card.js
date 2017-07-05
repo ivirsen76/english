@@ -181,3 +181,10 @@ export const getWriteErrorsTotal = createSelector(
         return list.filter(item => ids.includes(item.id) && item.writeRightAttempts === 0).length
     }
 )
+
+export const getCurrentWriteCard = createSelector(
+    getList,
+    getWriteSortedList,
+    getWriteCurrentCardIndex,
+    (list, sortedList, writeIndex) => _find(list, { id: sortedList[writeIndex] })
+)

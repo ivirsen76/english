@@ -2,7 +2,7 @@
 import { Selector } from 'testcafe'
 import ReactSelector from 'testcafe-react-selectors'
 import { regularUser } from './roles.js'
-import { restoreDb } from './db/utils.js'
+import { restoreDb, getNumRecords } from './db/utils.js'
 
 fixture('Write page').beforeEach(async t => {
     restoreDb()
@@ -61,4 +61,5 @@ test('Should go to the last word in set', async t => {
     await t.click(NextButton)
 
     await t.expect(Alert.innerText).contains('Correct 2 from 3')
+    await t.expect(await getNumRecords('cards', { text: 'Person', writeRightAttempts: 1 })).eql(1)
 })
