@@ -10,7 +10,7 @@ import axios from 'utils/axios'
 import { set } from 'dot-prop-immutable'
 import { isTextEqual } from 'utils/text.js'
 import notification from '@ieremeev/notification'
-import { isLastWriteCard } from 'selectors/card.js'
+import { isLastWriteCard, getWriteErrorsTotal } from 'selectors/card.js'
 
 export const minNewId = 1000000000
 export const maxWriteAttempts = 3
@@ -27,6 +27,7 @@ export const acceptedFields = [
     'ukSoundLength',
     'status',
     'createdAt',
+    'writeRightAttempts',
 ]
 
 // Initial state
@@ -47,7 +48,6 @@ export const initialState = {
     },
     write: {
         list: [],
-        errors: [],
         input: '',
         limit: 10,
         currentCardIndex: 0,
@@ -75,7 +75,6 @@ const REMEMBER_CARD = 'english/card/REMEMBER_CARD'
 const SET_WRITE_CARDS = 'english/card/SET_WRITE_CARDS'
 const GO_NEXT_WRITE_CARD = 'english/card/GO_NEXT_WRITE_CARD'
 const UPDATE_WRITE_INPUT = 'english/card/UPDATE_WRITE_INPUT'
-const CHECK_WRITING = 'english/card/CHECK_WRITING'
 const SAVE_WRITE_RESULTS = 'english/card/SAVE_WRITE_RESULTS'
 
 // Action Creators
@@ -96,7 +95,6 @@ export const rememberCardWithoutSaving = createAction(REMEMBER_CARD)
 export const setWriteCards = createAction(SET_WRITE_CARDS)
 export const goNextWriteCardInSet = createAction(GO_NEXT_WRITE_CARD)
 export const updateWriteInput = createAction(UPDATE_WRITE_INPUT)
-export const checkWritingWithoutSaving = createAction(CHECK_WRITING)
 export const saveWriteResults = createAction(SAVE_WRITE_RESULTS)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
@@ -130,16 +128,22 @@ export const loadCards = () => async (dispatch, getState) => {
 }
 
 export const checkWriting = () => async (dispatch, getState) => {
-    dispatch(checkWritingWithoutSaving())
+    dispatch(saveWriteResults())
 
     const state = getState()
+    const currentCardId = state.card.write.list[state.card.write.currentCardIndex]
+    const currentCard = _find(state.card.list, item => item.id === currentCardId)
 
     if (isLastWriteCard(state)) {
         const total = state.card.write.list.length
-        const correctTotal = total - state.card.write.errors.length
+        const correctTotal = total - getWriteErrorsTotal(state)
         notification(`Correct ${correctTotal} from ${total}`)
-        dispatch(saveWriteResults())
     }
+
+    await axios.patch(
+        `/cards/${currentCard.id}`,
+        _pick(currentCard, ['status', 'writeRightAttempts'])
+    )
 }
 
 export const goNextWriteCard = () => async (dispatch, getState) => {
@@ -381,7 +385,6 @@ export default handleActions(
                 write: {
                     ...state.write,
                     list: writeList,
-                    errors: [],
                     input: '',
                     currentCardIndex: 0,
                     isChecked: false,
@@ -413,41 +416,26 @@ export default handleActions(
                 input: action.payload,
             },
         }),
-        [CHECK_WRITING]: (state, action) => {
-            const currentCardId = state.write.list[state.write.currentCardIndex]
-            const currentCard = _find(state.list, item => item.id === currentCardId)
+        [SAVE_WRITE_RESULTS]: (state, action) => {
+            const id = state.write.list[state.write.currentCardIndex]
+            const card = _cloneDeep(_find(state.list, { id }))
 
-            const newErrors = isTextEqual(currentCard.text, state.write.input)
-                ? state.write.errors
-                : [...state.write.errors, currentCardId]
+            if (isTextEqual(card.text, state.write.input)) {
+                card.writeRightAttempts++
+                if (card.writeRightAttempts >= maxWriteAttempts) {
+                    card.status = 2
+                }
+            } else {
+                card.writeRightAttempts = 0
+            }
 
             return {
                 ...state,
+                list: state.list.map(item => (item.id === id ? card : item)),
                 write: {
                     ...state.write,
-                    errors: newErrors,
                     isChecked: true,
                 },
-            }
-        },
-        [SAVE_WRITE_RESULTS]: (state, action) => {
-            const list = _cloneDeep(state.list)
-
-            state.write.list.forEach(id => {
-                const card = _find(list, { id })
-                if (state.write.errors.includes(id)) {
-                    card.writeRightAttempts = 0
-                } else {
-                    card.writeRightAttempts++
-                    if (card.writeRightAttempts >= maxWriteAttempts) {
-                        card.status = 2
-                    }
-                }
-            })
-
-            return {
-                ...state,
-                list,
             }
         },
     },

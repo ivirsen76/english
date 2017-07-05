@@ -171,3 +171,13 @@ export const isLastWriteCard = createSelector(
     getWriteCurrentCardIndex,
     (sortedList, index) => sortedList.length === index + 1
 )
+
+export const getWriteErrorsTotal = createSelector(
+    getList,
+    getWriteSortedList,
+    getWriteCurrentCardIndex,
+    (list, sortedList, writeIndex) => {
+        const ids = sortedList.slice(0, writeIndex + 1)
+        return list.filter(item => ids.includes(item.id) && item.writeRightAttempts === 0).length
+    }
+)

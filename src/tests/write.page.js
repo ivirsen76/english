@@ -48,7 +48,7 @@ test('Should not go to the next step if there is not input yet', async t => {
     await t.typeText(Input, 'some')
 })
 
-test.only('Should go to the last word in set', async t => {
+test('Should go to the last word in set', async t => {
     await t.typeText(Input, 'Person')
     await t.click(NextButton)
     await t.click(NextButton)

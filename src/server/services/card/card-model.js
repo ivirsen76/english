@@ -32,6 +32,12 @@ module.exports = sequelize => {
                 defaultValue: 0,
             },
             statusUpdatedAt: Sequelize.DATE,
+            writeRightAttempts: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                defaultValue: 0,
+            },
+            writeLastDate: Sequelize.DATE,
         },
         {
             freezeTableName: true,

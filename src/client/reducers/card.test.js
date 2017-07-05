@@ -18,7 +18,6 @@ import reducer, {
     setWriteCards,
     goNextWriteCardInSet as goNextWriteCard,
     updateWriteInput,
-    checkWritingWithoutSaving as checkWriting,
     saveWriteResults,
 } from './card'
 
@@ -516,7 +515,6 @@ describe('card reducer', () => {
                 list: [{ id: 1, status: 1 }, { id: 2, status: 0 }, { id: 3, status: 1 }],
                 write: {
                     ...initialState.write,
-                    errors: [1],
                     input: 'some',
                     currentCardIndex: 1,
                     isChecked: true,
@@ -524,7 +522,6 @@ describe('card reducer', () => {
             }
             const resultedState = reducer(state, setWriteCards())
             expect(resultedState.write.list).toEqual([1, 3])
-            expect(resultedState.write.errors).toEqual([])
             expect(resultedState.write.input).toEqual('')
             expect(resultedState.write.currentCardIndex).toBe(0)
             expect(resultedState.write.isChecked).toBe(false)
@@ -591,64 +588,55 @@ describe('card reducer', () => {
         })
     })
 
-    describe('checkWriting()', () => {
-        it('Should check writing for wrong word', () => {
+    describe('saveWriteResults()', () => {
+        it('Should save write result for the right word', () => {
             const state = {
                 ...initialState,
-                list: [{ id: 1, status: 1, text: 'some' }, { id: 2, status: 1, text: 'some' }],
+                list: [{ id: 1, text: 'some', writeRightAttempts: 1 }],
                 write: {
                     ...initialState.write,
-                    list: [1, 2],
-                    errors: [],
-                    input: 'wrong',
-                    currentCardIndex: 0,
-                    isChecked: false,
-                },
-            }
-            const resultedState = reducer(state, checkWriting())
-            expect(resultedState.write.isChecked).toBe(true)
-            expect(resultedState.write.errors).toEqual([1])
-        })
-
-        it('Should check writing for right word', () => {
-            const state = {
-                ...initialState,
-                list: [{ id: 1, status: 1, text: 'some' }, { id: 2, status: 1, text: 'some' }],
-                write: {
-                    ...initialState.write,
-                    list: [1, 2],
-                    errors: [],
+                    list: [1],
                     input: 'Some',
                     currentCardIndex: 0,
                     isChecked: false,
                 },
             }
-            const resultedState = reducer(state, checkWriting())
+            const resultedState = reducer(state, saveWriteResults())
+            expect(resultedState.list).toEqual([{ id: 1, text: 'some', writeRightAttempts: 2 }])
             expect(resultedState.write.isChecked).toBe(true)
-            expect(resultedState.write.errors).toEqual([])
         })
-    })
 
-    describe('saveWriteResults()', () => {
-        it('Should save write results', () => {
+        it('Should save write result for the right word and change status', () => {
             const state = {
                 ...initialState,
-                list: [
-                    { id: 1, status: 1, writeRightAttempts: 1 },
-                    { id: 2, status: 1, writeRightAttempts: 1 },
-                    { id: 3, status: 1, writeRightAttempts: 2 },
-                ],
+                list: [{ id: 1, text: 'some', status: 1, writeRightAttempts: 2 }],
                 write: {
                     ...initialState.write,
-                    list: [1, 2, 3],
-                    errors: [1],
+                    list: [1],
+                    input: 'Some',
+                    currentCardIndex: 0,
                 },
             }
             const resultedState = reducer(state, saveWriteResults())
             expect(resultedState.list).toEqual([
-                { id: 1, status: 1, writeRightAttempts: 0 },
-                { id: 2, status: 1, writeRightAttempts: 2 },
-                { id: 3, status: 2, writeRightAttempts: 3 },
+                { id: 1, text: 'some', status: 2, writeRightAttempts: 3 },
+            ])
+        })
+
+        it('Should reset write results for the wrong word', () => {
+            const state = {
+                ...initialState,
+                list: [{ id: 1, text: 'some', status: 1, writeRightAttempts: 2 }],
+                write: {
+                    ...initialState.write,
+                    list: [1],
+                    input: 'wrong',
+                    currentCardIndex: 0,
+                },
+            }
+            const resultedState = reducer(state, saveWriteResults())
+            expect(resultedState.list).toEqual([
+                { id: 1, text: 'some', status: 1, writeRightAttempts: 0 },
             ])
         })
     })
