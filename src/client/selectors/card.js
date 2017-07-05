@@ -190,11 +190,11 @@ export const getCurrentWriteCard = createSelector(
 )
 
 export const isLastRememberCard = createSelector(
-    getRememberSortedList,
+    getRememberList,
     getRememberCurrentCardIndex,
     getRememberStep,
-    (sortedList, index, step) => {
-        if (sortedList.length === index + 1 && step === 2) {
+    (list, index, step) => {
+        if (list.length === index + 1 && step === 2) {
             return true
         }
 

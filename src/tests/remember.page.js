@@ -52,6 +52,15 @@ test('Should go to the next card', async t => {
     await t.expect(PanelRu.innerText).notContains('блок')
 })
 
+test('Should go to the next card with filter', async t => {
+    await t.typeText(Label, 'alone')
+    await t.expect(Counter.innerText).contains('1 / 1')
+
+    await t.click(NextButton)
+    await t.click(NextButton)
+    await t.expect(Counter.innerText).contains('1 / 1')
+})
+
 test('Should remember card', async t => {
     await t.expect(PanelUs.innerText).contains('text')
 

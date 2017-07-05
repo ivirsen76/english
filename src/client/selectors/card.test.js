@@ -340,13 +340,35 @@ describe('Card selectors', () => {
     })
 
     describe('isLastRememberCard()', () => {
+        const list = [
+            { id: 1, label: 'alone', status: 0 },
+            { id: 2, label: '', status: 0 },
+            { id: 3, label: '', status: 0 },
+        ]
+
         it('Should return true', () => {
             const state = {
                 card: {
+                    list,
                     remember: {
-                        list: [1, 2, 3],
                         currentCardIndex: 2,
                         step: 2,
+                        params: { label: '' },
+                    },
+                },
+            }
+            expect(isLastRememberCard(state)).toBe(true)
+        })
+
+        it('Should return true for label', () => {
+            const state = {
+                card: {
+                    list,
+                    remember: {
+                        list: [1, 2, 3],
+                        currentCardIndex: 0,
+                        step: 2,
+                        params: { label: 'alone' },
                     },
                 },
             }
@@ -356,10 +378,11 @@ describe('Card selectors', () => {
         it('Should return false', () => {
             const state = {
                 card: {
+                    list,
                     remember: {
-                        list: [1, 2, 3],
                         currentCardIndex: 2,
                         step: 1,
+                        params: { label: '' },
                     },
                 },
             }
@@ -369,10 +392,11 @@ describe('Card selectors', () => {
         it('Should return false', () => {
             const state = {
                 card: {
+                    list,
                     remember: {
-                        list: [1, 2, 3],
                         currentCardIndex: 1,
                         step: 2,
+                        params: { label: '' },
                     },
                 },
             }
