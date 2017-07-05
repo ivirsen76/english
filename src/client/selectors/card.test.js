@@ -16,6 +16,7 @@ import {
     isLastWriteCard,
     getWriteErrorsTotal,
     getCurrentWriteCard,
+    isLastRememberCard,
 } from './card'
 
 describe('Card selectors', () => {
@@ -335,6 +336,47 @@ describe('Card selectors', () => {
                 },
             }
             expect(getRememberCurrentCard(state)).toEqual({})
+        })
+    })
+
+    describe('isLastRememberCard()', () => {
+        it('Should return true', () => {
+            const state = {
+                card: {
+                    remember: {
+                        list: [1, 2, 3],
+                        currentCardIndex: 2,
+                        step: 2,
+                    },
+                },
+            }
+            expect(isLastRememberCard(state)).toBe(true)
+        })
+
+        it('Should return false', () => {
+            const state = {
+                card: {
+                    remember: {
+                        list: [1, 2, 3],
+                        currentCardIndex: 2,
+                        step: 1,
+                    },
+                },
+            }
+            expect(isLastRememberCard(state)).toBe(false)
+        })
+
+        it('Should return false', () => {
+            const state = {
+                card: {
+                    remember: {
+                        list: [1, 2, 3],
+                        currentCardIndex: 1,
+                        step: 2,
+                    },
+                },
+            }
+            expect(isLastRememberCard(state)).toBe(false)
         })
     })
 

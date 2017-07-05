@@ -13,7 +13,7 @@ import {
 } from 'selectors/card'
 import {
     setRememberCards,
-    goNextRememberCard,
+    goNextRememberStep,
     rememberCard,
     toggleRememberSound,
     toggleRememberPlayMode,
@@ -196,7 +196,7 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
     setRememberCards,
-    goNext: goNextRememberCard,
+    goNext: goNextRememberStep,
     rememberCard,
     updateCard,
     deleteCard,

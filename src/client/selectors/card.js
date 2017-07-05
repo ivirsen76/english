@@ -188,3 +188,16 @@ export const getCurrentWriteCard = createSelector(
     getWriteCurrentCardIndex,
     (list, sortedList, writeIndex) => _find(list, { id: sortedList[writeIndex] })
 )
+
+export const isLastRememberCard = createSelector(
+    getRememberSortedList,
+    getRememberCurrentCardIndex,
+    getRememberStep,
+    (sortedList, index, step) => {
+        if (sortedList.length === index + 1 && step === 2) {
+            return true
+        }
+
+        return false
+    }
+)

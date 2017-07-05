@@ -11,7 +11,12 @@ import axios from 'utils/axios'
 import { set } from 'dot-prop-immutable'
 import { isTextEqual } from 'utils/text.js'
 import notification from '@ieremeev/notification'
-import { isLastWriteCard, getWriteErrorsTotal, getCurrentWriteCard } from 'selectors/card.js'
+import {
+    isLastWriteCard,
+    getWriteErrorsTotal,
+    getCurrentWriteCard,
+    isLastRememberCard,
+} from 'selectors/card.js'
 
 export const minNewId = 1000000000
 export const maxWriteAttempts = 3
@@ -135,6 +140,15 @@ export const setRememberCards = () => (dispatch, getState) => {
         dispatch(setRememberCardsWithOrder(order))
     } else {
         dispatch(setRememberCardsWithOrder())
+    }
+}
+
+export const goNextRememberStep = () => (dispatch, getState) => {
+    const state = getState()
+    if (isLastRememberCard(state)) {
+        dispatch(setRememberCards())
+    } else {
+        dispatch(goNextRememberCard())
     }
 }
 
