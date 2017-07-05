@@ -3,7 +3,7 @@
 exports[`<SideMenu /> Should render menu 1`] = `
 <Menu
   fluid={true}
-  size="large"
+  size="massive"
   vertical={true}
 >
   <MenuItem>
@@ -14,6 +14,9 @@ exports[`<SideMenu /> Should render menu 1`] = `
       <withProps(Link)
         to="/user/cards"
       >
+        <Icon
+          type="books"
+        />
         Мои слова
         <div
           className="ui label"
@@ -31,6 +34,9 @@ exports[`<SideMenu /> Should render menu 1`] = `
       <withProps(Link)
         to="/user/remember"
       >
+        <Icon
+          type="bubble2"
+        />
         Запоминание
         <div
           className="ui label"
@@ -41,6 +47,9 @@ exports[`<SideMenu /> Should render menu 1`] = `
       <withProps(Link)
         to="/user/write"
       >
+        <Icon
+          type="pencil2"
+        />
         Написание
         <div
           className="ui label"
@@ -51,6 +60,9 @@ exports[`<SideMenu /> Should render menu 1`] = `
       <withProps(Link)
         to="/user/mp3"
       >
+        <Icon
+          type="headphones"
+        />
         Скачать MP3
       </withProps(Link)>
     </MenuMenu>
@@ -63,6 +75,9 @@ exports[`<SideMenu /> Should render menu 1`] = `
       <withProps(Link)
         to="/user/statistics"
       >
+        <Icon
+          type="stats-dots"
+        />
         Статистика
       </withProps(Link)>
     </MenuMenu>
