@@ -5,6 +5,7 @@ import _pick from 'lodash/pick'
 import _keys from 'lodash/keys'
 import _omit from 'lodash/omit'
 import _find from 'lodash/find'
+import _shuffle from 'lodash/shuffle'
 import _cloneDeep from 'lodash/cloneDeep'
 import axios from 'utils/axios'
 import { set } from 'dot-prop-immutable'
@@ -84,7 +85,7 @@ export const updateCardWithoutSaving = createAction(UPDATE_CARD)
 export const updateCardData = createAction(UPDATE_CARD_DATA)
 export const setCards = createAction(SET_CARDS)
 export const setLoadingCardsState = createAction(SET_LOADING_CARDS_STATE)
-export const setRememberCards = createAction(SET_REMEMBER_CARDS)
+export const setRememberCardsWithOrder = createAction(SET_REMEMBER_CARDS)
 export const goNextRememberCard = createAction(GO_NEXT_REMEMBER_CARD)
 export const updateRememberParams = createAction(UPDATE_REMEMBER_PARAMS)
 export const toggleRememberPlayMode = createAction(TOGGLE_REMEMBER_PLAY_MODE)
@@ -125,6 +126,16 @@ export const loadCards = () => async (dispatch, getState) => {
     const res = await axios.get('/cards')
     dispatch(setCards(res.data.data))
     dispatch(setLoadingCardsState(false))
+}
+
+export const setRememberCards = () => (dispatch, getState) => {
+    if (process.env.NODE_ENV === 'production') {
+        const state = getState()
+        const order = _shuffle(Array.from(Array(state.card.list.length).keys()))
+        dispatch(setRememberCardsWithOrder(order))
+    } else {
+        dispatch(setRememberCardsWithOrder())
+    }
 }
 
 export const checkWriting = () => async (dispatch, getState) => {
@@ -247,7 +258,15 @@ export default handleActions(
             list: action.payload.map(item => _pick(item, ['id', ...acceptedFields])),
         }),
         [SET_REMEMBER_CARDS]: (state, action) => {
-            const rememberList = state.list.filter(card => card.status === 0).map(card => card.id)
+            let rememberList
+            if (action.payload) {
+                rememberList = action.payload
+                    .map(index => state.list[index])
+                    .filter(card => card.status === 0)
+                    .map(card => card.id)
+            } else {
+                rememberList = state.list.filter(card => card.status === 0).map(card => card.id)
+            }
             return {
                 ...state,
                 remember: {
