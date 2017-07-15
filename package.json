@@ -77,7 +77,8 @@
     "build": "react-app-rewired build",
     "test": "react-scripts test --env=jsdom",
     "test:browser": "testcafe -e chrome src/tests/*.page.js",
-    "precommit": "lint-staged && CI=true npm run test"
+    "precommit": "lint-staged && CI=true npm run test",
+    "deploy": "npm run build && eb deploy"
   },
   "lint-staged": {
     "src/**/*.js": "eslint"
