@@ -74,6 +74,8 @@
     "start": "npm-run-all --parallel start:client start:server",
     "start:client": "react-app-rewired start",
     "start:server": "nodemon src/server/",
+    "start:prod": "npm run migrate && node src/server/",
+    "migrate": "sequelize db:migrate",
     "build": "react-app-rewired build",
     "test": "react-scripts test --env=jsdom",
     "test:browser": "testcafe -e chrome src/tests/*.page.js",
