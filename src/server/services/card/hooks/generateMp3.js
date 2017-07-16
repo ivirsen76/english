@@ -56,9 +56,6 @@ module.exports = async (userId, text, language) => {
         })
     )
 
-    // Normalize the volume
-    await exec(template(process.env.SOUND_NORMALIZE_COMMAND, { filename: encodedTmpFilename }))
-
     // Get the duration
     const info = await exec(
         template(process.env.SOUND_GET_MP3_DURATION_COMMAND, { filename: encodedTmpFilename })
