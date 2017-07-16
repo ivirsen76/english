@@ -10,7 +10,7 @@ import './styles/app.css'
 import './styles/icomoon.css'
 import routes from './routes'
 import configureStore from './store/configureStore'
-import registerServiceWorker from './registerServiceWorker'
+// import registerServiceWorker from './registerServiceWorker'
 
 const store = configureStore()
 const token = cookie.get('token')
@@ -27,4 +27,4 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 )
-registerServiceWorker()
+// registerServiceWorker()
