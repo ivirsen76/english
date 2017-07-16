@@ -2,6 +2,7 @@
   "name": "awesome",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "/assets",
   "dependencies": {
     "@ieremeev/button": "^2.0.3",
     "@ieremeev/notification": "^2.0.6",
