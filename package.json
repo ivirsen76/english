@@ -2,11 +2,11 @@
   "name": "awesome",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "/assets",
+  "homepage": "/assets",
   "dependencies": {
     "@ieremeev/button": "^2.0.3",
     "@ieremeev/notification": "^2.0.6",
-    "@ieremeev/table": "^2.1.10",
+    "@ieremeev/table": "^2.1.11",
     "aws-sdk": "^2.54.0",
     "axios": "^0.16.1",
     "babel-polyfill": "^6.23.0",

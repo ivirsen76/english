@@ -5,18 +5,19 @@ import format from 'date-fns/format'
 import EditCard from '../EditCard'
 import DeleteCard from '../DeleteCard'
 import AudioLink from './AudioLink'
+import style from './style.module.scss'
 
 export const Cards = ({ data, deleteCard, updateCard }) => {
     const columns = [
         {
             name: 'actions',
             label: '',
-            render: (value, row) => (
+            render: (value, row) =>
                 <div>
                     <EditCard updateCard={updateCard} initialValues={row} />
                     <DeleteCard deleteCard={deleteCard} id={row.id} />
-                </div>
-            ),
+                </div>,
+            className: style.nowrap,
         },
         {
             name: 'text',

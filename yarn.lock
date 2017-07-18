@@ -19,9 +19,9 @@
     classnames "^2.2.5"
     prop-types "^15.5.10"
 
-"@ieremeev/table@^2.1.10":
-  version "2.1.10"
-  resolved "https://registry.npmjs.org/@ieremeev/table/-/table-2.1.10.tgz#a014cb3d3953f678280320c6ba38f00fdec645e6"
+"@ieremeev/table@^2.1.11":
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/@ieremeev/table/-/table-2.1.11.tgz#4a3c4770501c00156ecbc8158507d5bbc6c961c0"
   dependencies:
     "@ieremeev/paginator" "^2.0.6"
     lodash "^4.17.4"
@@ -2384,11 +2384,7 @@ dot-prop@^3.0.0:
   dependencies:
     is-obj "^1.0.0"
 
-dotenv@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
-
-dotenv@^4.0.0:
+dotenv@4.0.0, dotenv@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
 
