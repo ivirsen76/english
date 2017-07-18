@@ -19,9 +19,9 @@
     classnames "^2.2.5"
     prop-types "^15.5.10"
 
-"@ieremeev/table@^2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@ieremeev/table/-/table-2.1.11.tgz#4a3c4770501c00156ecbc8158507d5bbc6c961c0"
+"@ieremeev/table@^2.1.12":
+  version "2.1.12"
+  resolved "https://registry.yarnpkg.com/@ieremeev/table/-/table-2.1.12.tgz#81473e1c3b95e20e8e882828e7900bd65674b5f3"
   dependencies:
     "@ieremeev/paginator" "^2.0.6"
     lodash "^4.17.4"
