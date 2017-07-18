@@ -52,6 +52,12 @@ test('Should go to the next card', async t => {
     await t.expect(PanelRu.innerText).notContains('блок')
 })
 
+test('Should go to the next card when pressing space', async t => {
+    await t.expect(PanelRu.innerText).notContains('текст')
+    await t.pressKey('space')
+    await t.expect(PanelRu.innerText).contains('текст')
+})
+
 test('Should go to the next card with filter', async t => {
     await t.typeText(Label, 'alone')
     await t.expect(Counter.innerText).contains('1 / 1')

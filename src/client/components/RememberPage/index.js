@@ -62,6 +62,7 @@ class RememberPage extends React.Component {
 
     componentDidMount() {
         this.props.setRememberCards()
+        document.addEventListener('keydown', this.handleSpaceKey)
     }
 
     componentDidUpdate(prevProps) {
@@ -82,6 +83,17 @@ class RememberPage extends React.Component {
             this.props.nextSounds.map(soundFile =>
                 mp3.preload(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + soundFile)
             )
+        }
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleSpaceKey)
+    }
+
+    handleSpaceKey = e => {
+        if (e.keyCode === 32) {
+            e.preventDefault()
+            this.goNext()
         }
     }
 
