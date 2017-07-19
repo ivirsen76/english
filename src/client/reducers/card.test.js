@@ -7,6 +7,7 @@ import reducer, {
     minNewId,
     setCards,
     setRememberCardsWithOrder as setRememberCards,
+    resetRememberCards,
     setLoadingCardsState,
     goNextRememberCard,
     updateRememberParams,
@@ -466,6 +467,26 @@ describe('card reducer', () => {
             }
             const resultedState = reducer(state, setRememberCards([2, 1, 0]))
             expect(resultedState.remember.list).toEqual([33, 11])
+        })
+    })
+
+    describe('resetRememberCards()', () => {
+        it('Should reset card list', () => {
+            const state = {
+                ...initialState,
+                remember: {
+                    ...initialState.remember,
+                    list: [1, 3],
+                    currentCardIndex: 1,
+                    step: 2,
+                    iteration: 34,
+                },
+            }
+            const resultedState = reducer(state, resetRememberCards())
+            expect(resultedState.remember.list).toEqual([])
+            expect(resultedState.remember.currentCardIndex).toBe(0)
+            expect(resultedState.remember.step).toBe(1)
+            expect(resultedState.remember.iteration).toBe(0)
         })
     })
 

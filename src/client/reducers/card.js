@@ -72,6 +72,7 @@ const SET_CARDS = 'english/card/SET_CARDS'
 const SET_LOADING_CARDS_STATE = 'english/card/SET_LOADING_CARDS_STATE'
 // Remember actions
 const SET_REMEMBER_CARDS = 'english/card/SET_REMEMBER_CARDS'
+const RESET_REMEMBER_CARDS = 'english/card/RESET_REMEMBER_CARDS'
 const GO_NEXT_REMEMBER_CARD = 'english/card/GO_NEXT_REMEMBER_CARD'
 const UPDATE_REMEMBER_PARAMS = 'english/card/UPDATE_REMEMBER_PARAMS'
 const TOGGLE_REMEMBER_PLAY_MODE = 'english/card/TOGGLE_REMEMBER_PLAY_MODE'
@@ -93,6 +94,7 @@ export const updateCardData = createAction(UPDATE_CARD_DATA)
 export const setCards = createAction(SET_CARDS)
 export const setLoadingCardsState = createAction(SET_LOADING_CARDS_STATE)
 export const setRememberCardsWithOrder = createAction(SET_REMEMBER_CARDS)
+export const resetRememberCards = createAction(RESET_REMEMBER_CARDS)
 export const goNextRememberCard = createAction(GO_NEXT_REMEMBER_CARD)
 export const updateRememberParams = createAction(UPDATE_REMEMBER_PARAMS)
 export const toggleRememberPlayMode = createAction(TOGGLE_REMEMBER_PLAY_MODE)
@@ -213,9 +215,10 @@ export default handleActions(
                     ...state.remember,
                     list: newRememberList,
                     step: 1,
-                    currentCardIndex: newRememberList.length < state.remember.currentCardIndex + 1
-                        ? 0
-                        : state.remember.currentCardIndex,
+                    currentCardIndex:
+                        newRememberList.length < state.remember.currentCardIndex + 1
+                            ? 0
+                            : state.remember.currentCardIndex,
                 },
             }
         },
@@ -294,6 +297,16 @@ export default handleActions(
                 },
             }
         },
+        [RESET_REMEMBER_CARDS]: (state, action) => ({
+            ...state,
+            remember: {
+                ...state.remember,
+                list: [],
+                iteration: 0,
+                currentCardIndex: 0,
+                step: 1,
+            },
+        }),
         [SET_LOADING_CARDS_STATE]: (state, action) => ({
             ...state,
             loading: !!action.payload,
@@ -404,9 +417,10 @@ export default handleActions(
                     ...state.remember,
                     list: newRememberList,
                     step: 1,
-                    currentCardIndex: newRememberList.length < state.remember.currentCardIndex + 1
-                        ? 0
-                        : state.remember.currentCardIndex,
+                    currentCardIndex:
+                        newRememberList.length < state.remember.currentCardIndex + 1
+                            ? 0
+                            : state.remember.currentCardIndex,
                 },
             }
         },

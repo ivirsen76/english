@@ -13,6 +13,7 @@ import {
 } from 'selectors/card'
 import {
     setRememberCards,
+    resetRememberCards,
     goNextRememberStep,
     rememberCard,
     toggleRememberSound,
@@ -48,6 +49,7 @@ class RememberPage extends React.Component {
         isAutoPlayMode: PropTypes.bool,
         label: PropTypes.string,
         setRememberCards: PropTypes.func,
+        resetRememberCards: PropTypes.func,
         rememberCard: PropTypes.func,
         goNext: PropTypes.func,
         switchOrder: PropTypes.func,
@@ -87,6 +89,7 @@ class RememberPage extends React.Component {
     }
 
     componentWillUnmount() {
+        this.props.resetRememberCards()
         document.removeEventListener('keydown', this.handleSpaceKey)
     }
 
@@ -213,6 +216,7 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
     setRememberCards,
+    resetRememberCards,
     goNext: goNextRememberStep,
     rememberCard,
     updateCard,
