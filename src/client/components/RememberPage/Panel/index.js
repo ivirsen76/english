@@ -42,9 +42,9 @@ export default class Component extends React.Component {
     }
 
     playSound = e => {
-        if (e) e.preventDefault()
+        e && e.preventDefault()
 
-        if (this.props.soundFile) {
+        if (this.props.soundFile && this.props.show) {
             mp3.play(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + this.props.soundFile)
         }
     }
@@ -64,7 +64,11 @@ export default class Component extends React.Component {
         if (!this.props.show) {
             word = null
         } else if (this.props.soundFile) {
-            word = <a onClick={this.playSound}>{this.props.word}</a>
+            word = (
+                <a onClick={this.playSound}>
+                    {this.props.word}
+                </a>
+            )
         } else {
             word = this.props.word
         }
