@@ -22,7 +22,9 @@ export default class Component extends React.Component {
     }
 
     componentDidMount() {
-        this.playSound()
+        if (this.props.show && this.props.isSound) {
+            this.playSound()
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -44,7 +46,7 @@ export default class Component extends React.Component {
     playSound = e => {
         e && e.preventDefault()
 
-        if (this.props.soundFile && this.props.show) {
+        if (this.props.soundFile) {
             mp3.play(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + this.props.soundFile)
         }
     }
