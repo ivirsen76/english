@@ -5,7 +5,7 @@ import MenuLink from 'components/MenuLink'
 import Icon from './Icon'
 
 const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) =>
-    <Menu vertical fluid size="massive">
+    <Menu vertical fluid size="huge">
         <Menu.Item>
             <Menu.Header>Словарь</Menu.Header>
 
@@ -54,12 +54,8 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) =>
             <Menu.Header>Настройки</Menu.Header>
 
             <Menu.Menu>
-                <MenuLink to="/user/tasks">
-                    Задачи
-                </MenuLink>
-                <MenuLink to="/user/base">
-                    База слов
-                </MenuLink>
+                <MenuLink to="/user/tasks">Задачи</MenuLink>
+                <MenuLink to="/user/base">База слов</MenuLink>
             </Menu.Menu>
         </Menu.Item>
     </Menu>

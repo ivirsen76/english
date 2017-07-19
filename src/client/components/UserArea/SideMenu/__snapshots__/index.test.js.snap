@@ -3,7 +3,7 @@
 exports[`<SideMenu /> Should render menu 1`] = `
 <Menu
   fluid={true}
-  size="massive"
+  size="huge"
   vertical={true}
 >
   <MenuItem>
