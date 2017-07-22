@@ -63,10 +63,6 @@ class RememberPage extends React.Component {
         nextStepDelay: PropTypes.number,
     }
 
-    state = {
-        showFirstWord: true,
-    }
-
     componentDidMount() {
         this.props.setRememberCards()
         document.addEventListener('keydown', this.handleSpaceKey)
@@ -112,14 +108,6 @@ class RememberPage extends React.Component {
     scheduleNext = delay => {
         clearTimeout(this.timeout)
         this.timeout = setTimeout(this.goNext, delay)
-
-        this.setState({ showFirstWord: true })
-        if (this.props.step === 1) {
-            // Show word only for a moment
-            setTimeout(() => {
-                this.setState({ showFirstWord: false })
-            }, delay / 2)
-        }
     }
 
     switchOrder = e => {
@@ -196,7 +184,6 @@ class RememberPage extends React.Component {
                                 isSound={firstWord.isSound}
                                 soundFile={firstWord.soundFile}
                                 toggleSound={toggleSound}
-                                show={this.state.showFirstWord}
                             />
                             <Panel
                                 word={secondWord.word}
