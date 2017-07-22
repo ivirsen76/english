@@ -96,17 +96,19 @@ test('Should switch panels', async t => {
 
 test('Should edit card', async t => {
     await t.click(EditButton)
-    await t.typeText('input[name=text]', 'some', { replace: true })
-    await t.typeText('input[name=translate]', 'что-то', { replace: true })
+    await t.typeText('input[name=text]', 'some one', { replace: true })
+    await t.typeText('input[name=translate]', 'что-то еще', { replace: true })
 
     await t.click(EditSubmitButton)
     await t.expect(Alert.innerText).contains('Карточка обновлена')
     await t.click(NextButton)
 
-    await t.expect(PanelUs.innerText).contains('some')
-    await t.expect(PanelRu.innerText).contains('что-то')
+    await t.expect(PanelUs.innerText).contains('some one')
+    await t.expect(PanelRu.innerText).contains('что-то еще')
 
-    await t.expect(await getNumRecords('cards', { text: 'some', translate: 'что-то' })).eql(1)
+    await t
+        .expect(await getNumRecords('cards', { text: 'some one', translate: 'что-то еще' }))
+        .eql(1)
 })
 
 test('Should delete card', async t => {
