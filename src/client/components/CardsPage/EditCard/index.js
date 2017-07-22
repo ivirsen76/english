@@ -13,7 +13,7 @@ export default class Component extends React.Component {
 
     static defaultProps = {
         trigger: (
-            <button className="ui green compact tiny icon button">
+            <button className="ui green compact mini icon button">
                 <i className="icon-pencil" />
             </button>
         ),
