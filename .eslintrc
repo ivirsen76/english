@@ -14,6 +14,7 @@
         "jsx-a11y/label-has-for": ["off"],
         "no-unused-expressions": ["off"],
         "class-methods-use-this": ["off"],
+        "no-restricted-syntax": ["off"],
         "no-console": ["error", { allow: ["info", "warn", "error"] }]
     }
 }

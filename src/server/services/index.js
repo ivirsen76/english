@@ -2,6 +2,7 @@ const Sequelize = require('sequelize')
 const card = require('./card')
 const authentication = require('./authentication')
 const user = require('./user')
+const mp3 = require('./mp3')
 
 module.exports = function() {
     const app = this
@@ -15,4 +16,5 @@ module.exports = function() {
     app.configure(authentication)
     app.configure(user)
     app.configure(card)
+    app.configure(mp3)
 }

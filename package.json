@@ -28,6 +28,7 @@
         "fs-promise": "^2.0.3",
         "js-cookie": "^2.1.4",
         "lodash": "^4.17.4",
+        "md5": "^2.2.1",
         "mysql": "^2.13.0",
         "passport": "^0.3.2",
         "prop-types": "^15.5.10",
