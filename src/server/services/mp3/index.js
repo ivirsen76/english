@@ -3,11 +3,29 @@ const hooks = require('./hooks')
 const shuffle = require('lodash/shuffle')
 const pick = require('lodash/pick')
 const md5 = require('md5')
+const fsp = require('fs-promise')
 
 AWS.config.update({
     region: process.env.AWS_DEFAULT_REGION,
 })
 const s3 = new AWS.S3()
+
+const minPause = 500
+const maxPause = 5000
+
+const getPauseLength = length => {
+    const result = Math.round(length / 500) * 500
+
+    if (result < minPause) {
+        return minPause
+    }
+
+    if (result > maxPause) {
+        return maxPause
+    }
+
+    return result
+}
 
 class Service {
     setup(app) {
@@ -16,6 +34,14 @@ class Service {
 
     constructor(options) {
         this.options = options || {}
+    }
+
+    async getPauseFiles() {
+        const pause = {}
+        for (let i = minPause; i <= maxPause; i += 500) {
+            pause[i] = await fsp.readFile(`${__dirname}/pause/${i}.mp3`)
+        }
+        return pause
     }
 
     async create(data, params) {
@@ -27,8 +53,10 @@ class Service {
             },
         })
         const list = shuffle(cards.data).map(card =>
-            pick(card, ['usSoundFile', 'usSoundLength', 'ruSoundFile', 'ruSoundLength'])
+            pick(card, ['usSoundFile', 'usSoundLength', 'ruSoundFile'])
         )
+
+        const pauseFiles = await this.getPauseFiles()
 
         const buffers = []
         for (let card of list) {
@@ -40,6 +68,8 @@ class Service {
                 .promise()
             buffers.push(ruFile.Body)
 
+            buffers.push(pauseFiles[getPauseLength(card.usSoundLength + 500)])
+
             const usFile = await s3
                 .getObject({
                     Bucket: process.env.AWS_S3_BUCKET,
@@ -47,9 +77,11 @@ class Service {
                 })
                 .promise()
             buffers.push(usFile.Body)
+
+            buffers.push(pauseFiles[getPauseLength(5000)])
         }
 
-        const filename = `${userId}/${md5(userId)}/sound.mp3`
+        const filename = `${userId}/${md5(userId)}/word-word.mp3`
         await s3
             .putObject({
                 Bucket: process.env.AWS_S3_BUCKET,
@@ -81,3 +113,4 @@ module.exports = function() {
 }
 
 module.exports.Service = Service
+module.exports.getPauseLength = getPauseLength
