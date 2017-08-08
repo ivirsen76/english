@@ -51,6 +51,7 @@ module.exports = async (userId, text, language) => {
     // Encode with standard bitrate
     await exec(
         template(process.env.SOUND_ENCODE_MP3_COMMAND, {
+            scale: 3,
             filein: tmpFilename,
             fileout: encodedTmpFilename,
         })

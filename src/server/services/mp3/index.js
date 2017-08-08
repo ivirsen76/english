@@ -3,7 +3,11 @@ const hooks = require('./hooks')
 const shuffle = require('lodash/shuffle')
 const pick = require('lodash/pick')
 const md5 = require('md5')
+const fs = require('fs')
 const fsp = require('fs-promise')
+const temp = require('temp')
+const template = require('string-template')
+const exec = require('child-process-promise').exec
 
 AWS.config.update({
     region: process.env.AWS_DEFAULT_REGION,
@@ -44,6 +48,19 @@ class Service {
         return pause
     }
 
+    writeToTmpFile(content) {
+        return new Promise((resolve, reject) => {
+            temp.open({ prefix: 'english_', suffix: '.mp3' }, (err, info) => {
+                if (err) throw err
+
+                fs.writeFile(info.path, content, err1 => {
+                    if (err1) throw err1
+                    resolve(info.path)
+                })
+            })
+        })
+    }
+
     async create(data, params) {
         const userId = params.user.id
         const cards = await this.app.service('cards').find({
@@ -81,16 +98,33 @@ class Service {
             buffers.push(pauseFiles[getPauseLength(5000)])
         }
 
+        const tmpFilename = await this.writeToTmpFile(Buffer.concat(buffers))
+        const encodedTmpFilename = tmpFilename + '.mp3'
+
+        // Reencode file to clean up resulted mp3
+        await exec(
+            template(process.env.SOUND_ENCODE_MP3_COMMAND, {
+                scale: 1,
+                filein: tmpFilename,
+                fileout: encodedTmpFilename,
+            })
+        )
+
+        // Write file to the AWS S3 bucket
         const filename = `${userId}/${md5(userId)}/word-word.mp3`
+        const content = await fsp.readFile(encodedTmpFilename)
         await s3
             .putObject({
                 Bucket: process.env.AWS_S3_BUCKET,
                 Key: `public/sounds/users/${filename}`,
                 ACL: 'public-read',
-                Body: Buffer.concat(buffers),
+                Body: content,
                 ContentType: 'application/octet-stream',
             })
             .promise()
+
+        // Remove temp files
+        await Promise.all([fsp.unlink(tmpFilename), fsp.unlink(encodedTmpFilename)])
 
         return Promise.resolve({ status: 'OK', filename })
     }
