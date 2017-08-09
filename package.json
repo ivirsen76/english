@@ -70,8 +70,8 @@
         "react-scripts": "1.0.7",
         "react-test-renderer": "^15.5.4",
         "sass-loader": "^6.0.5",
-        "testcafe": "^0.16.1",
-        "testcafe-react-selectors": "0.0.5"
+        "testcafe": "^0.17.0",
+        "testcafe-react-selectors": "^0.0.6"
     },
     "scripts": {
         "start": "npm-run-all --parallel start:client start:server",

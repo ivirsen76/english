@@ -17,7 +17,7 @@ export default class Component extends React.Component {
     }
 
     render() {
-        const trigger = <button className="ui compact primary button">Добавить слово</button>
+        const trigger = <button className="ui compact primary button">Add card</button>
 
         return (
             <Modal size="small" closeIcon trigger={trigger}>

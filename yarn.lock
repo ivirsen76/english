@@ -8079,9 +8079,9 @@ testcafe-browser-tools@1.2.4:
     read-file-relative "^1.2.0"
     which-promise "^1.0.0"
 
-testcafe-hammerhead@10.10.0:
-  version "10.10.0"
-  resolved "https://registry.npmjs.org/testcafe-hammerhead/-/testcafe-hammerhead-10.10.0.tgz#c77d8044ca156ecdd17ebd679f5400530ee1b4c6"
+testcafe-hammerhead@11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/testcafe-hammerhead/-/testcafe-hammerhead-11.0.3.tgz#aa351b7217c3fd53adb689fa33990005ae572b23"
   dependencies:
     babel-runtime "^6.3.19"
     bowser "1.6.0"
@@ -8105,9 +8105,9 @@ testcafe-hammerhead@10.10.0:
     webauth "^1.1.0"
     yakaa "1.0.1"
 
-testcafe-legacy-api@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/testcafe-legacy-api/-/testcafe-legacy-api-3.0.0.tgz#76f6a5ce910707a887d153ee2dea926764f4a585"
+testcafe-legacy-api@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/testcafe-legacy-api/-/testcafe-legacy-api-3.1.0.tgz#b18dabc664012953211f1bfc86c7c0f17f143034"
   dependencies:
     async "0.2.6"
     babel-runtime "^5.8.34"
@@ -8123,9 +8123,9 @@ testcafe-legacy-api@3.0.0:
     strip-bom "^2.0.0"
     uglify-js "1.2.6"
 
-testcafe-react-selectors@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.npmjs.org/testcafe-react-selectors/-/testcafe-react-selectors-0.0.5.tgz#5b2ab8d03b87da2efe0c0600782b866e84a6e36e"
+testcafe-react-selectors@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/testcafe-react-selectors/-/testcafe-react-selectors-0.0.6.tgz#700544636ef4afcee3216ee35416fdcfa9de0f2a"
 
 testcafe-reporter-json@^2.1.0:
   version "2.1.0"
@@ -8147,9 +8147,9 @@ testcafe-reporter-xunit@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/testcafe-reporter-xunit/-/testcafe-reporter-xunit-2.1.0.tgz#e6d66c572ce15af266706af0fd610b2a841dd443"
 
-testcafe@^0.16.1:
-  version "0.16.2"
-  resolved "https://registry.npmjs.org/testcafe/-/testcafe-0.16.2.tgz#0b07542458ce422be3fbb9a513efdba8d97ec480"
+testcafe@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/testcafe/-/testcafe-0.17.0.tgz#593e0d12d86eeb45f44e1b18a11d515dcf9bb8d6"
   dependencies:
     babel-core "^6.22.1"
     babel-plugin-transform-class-properties "^6.24.1"
@@ -8198,8 +8198,8 @@ testcafe@^0.16.1:
     stack-chain "^1.3.6"
     strip-bom "^2.0.0"
     testcafe-browser-tools "1.2.4"
-    testcafe-hammerhead "10.10.0"
-    testcafe-legacy-api "3.0.0"
+    testcafe-hammerhead "11.0.3"
+    testcafe-legacy-api "3.1.0"
     testcafe-reporter-json "^2.1.0"
     testcafe-reporter-list "^2.1.0"
     testcafe-reporter-minimal "^2.1.0"

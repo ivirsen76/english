@@ -145,7 +145,7 @@ class RememberPage extends React.Component {
 
         return (
             <div>
-                <h2>Запоминание</h2>
+                <h2>Remember</h2>
                 <div className={style.wrapper}>
                     <div className={style.counter}>
                         <Counter current={currentCardNumber} total={totalCards} />

@@ -19,7 +19,7 @@ class Component extends React.Component {
     render() {
         return (
             <div>
-                <h2>Мои слова</h2>
+                <h2>My cards</h2>
                 <div className="margin1">
                     <AddCard
                         addCard={this.props.addCard}

@@ -170,7 +170,7 @@ export const checkWriting = () => async (dispatch, getState) => {
     if (isLastWriteCard(state)) {
         const total = state.card.write.list.length
         const correctTotal = total - getWriteErrorsTotal(state)
-        notification(`Correct ${correctTotal} from ${total}`)
+        notification(`Correct ${correctTotal} of ${total}`)
     }
 }
 

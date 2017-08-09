@@ -105,7 +105,7 @@ class Component extends React.Component {
 
         return (
             <div>
-                <h2>Написание</h2>
+                <h2>Write</h2>
                 <div className={style.wrapper}>
                     <div className={style.counter}>
                         <Counter current={currentCardNumber} total={totalCards} />

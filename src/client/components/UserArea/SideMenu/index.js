@@ -7,55 +7,46 @@ import Icon from './Icon'
 const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) =>
     <Menu vertical fluid size="huge">
         <Menu.Item>
-            <Menu.Header>Словарь</Menu.Header>
+            <Menu.Header>Vocabulary</Menu.Header>
 
             <Menu.Menu>
                 <MenuLink to="/user/cards">
                     <Icon type="books" />
-                    Мои слова
+                    My cards
                     <div className="ui label">{cardTotal}</div>
                 </MenuLink>
             </Menu.Menu>
         </Menu.Item>
 
         <Menu.Item>
-            <Menu.Header>Изучение</Menu.Header>
+            <Menu.Header>Learning</Menu.Header>
 
             <Menu.Menu>
                 <MenuLink to="/user/remember">
                     <Icon type="bubble2" />
-                    Запоминание
+                    Remember
                     <div className="ui label">{cardRememberTotal}</div>
                 </MenuLink>
                 <MenuLink to="/user/write">
                     <Icon type="pencil2" />
-                    Написание
+                    Write
                     <div className="ui label">{cardWriteTotal}</div>
                 </MenuLink>
                 <MenuLink to="/user/mp3">
                     <Icon type="headphones" />
-                    Скачать MP3
+                    Download MP3
                 </MenuLink>
             </Menu.Menu>
         </Menu.Item>
 
         <Menu.Item>
-            <Menu.Header>Справочно</Menu.Header>
+            <Menu.Header>Other</Menu.Header>
 
             <Menu.Menu>
                 <MenuLink to="/user/statistics">
                     <Icon type="stats-dots" />
-                    Статистика
+                    Statistics
                 </MenuLink>
-            </Menu.Menu>
-        </Menu.Item>
-
-        <Menu.Item>
-            <Menu.Header>Настройки</Menu.Header>
-
-            <Menu.Menu>
-                <MenuLink to="/user/tasks">Задачи</MenuLink>
-                <MenuLink to="/user/base">База слов</MenuLink>
             </Menu.Menu>
         </Menu.Item>
     </Menu>

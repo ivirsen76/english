@@ -8,7 +8,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
 >
   <MenuItem>
     <MenuHeader>
-      Словарь
+      Vocabulary
     </MenuHeader>
     <MenuMenu>
       <withProps(Link)
@@ -17,7 +17,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
         <Icon
           type="books"
         />
-        Мои слова
+        My cards
         <div
           className="ui label"
         >
@@ -28,7 +28,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
   </MenuItem>
   <MenuItem>
     <MenuHeader>
-      Изучение
+      Learning
     </MenuHeader>
     <MenuMenu>
       <withProps(Link)
@@ -37,7 +37,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
         <Icon
           type="bubble2"
         />
-        Запоминание
+        Remember
         <div
           className="ui label"
         >
@@ -50,7 +50,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
         <Icon
           type="pencil2"
         />
-        Написание
+        Write
         <div
           className="ui label"
         >
@@ -63,13 +63,13 @@ exports[`<SideMenu /> Should render menu 1`] = `
         <Icon
           type="headphones"
         />
-        Скачать MP3
+        Download MP3
       </withProps(Link)>
     </MenuMenu>
   </MenuItem>
   <MenuItem>
     <MenuHeader>
-      Справочно
+      Other
     </MenuHeader>
     <MenuMenu>
       <withProps(Link)
@@ -78,24 +78,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
         <Icon
           type="stats-dots"
         />
-        Статистика
-      </withProps(Link)>
-    </MenuMenu>
-  </MenuItem>
-  <MenuItem>
-    <MenuHeader>
-      Настройки
-    </MenuHeader>
-    <MenuMenu>
-      <withProps(Link)
-        to="/user/tasks"
-      >
-        Задачи
-      </withProps(Link)>
-      <withProps(Link)
-        to="/user/base"
-      >
-        База слов
+        Statistics
       </withProps(Link)>
     </MenuMenu>
   </MenuItem>
