@@ -18,11 +18,7 @@ module.exports = function(sequelize) {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            info: {
-                type: Sequelize.TEXT('tiny'),
-                allowNull: false,
-                defaultValue: '',
-            },
+            info: Sequelize.TEXT('tiny'),
             type: {
                 type: Sequelize.STRING,
                 allowNull: false,
