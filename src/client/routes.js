@@ -11,6 +11,7 @@ import CardsPage from 'components/CardsPage'
 import RememberPage from 'components/RememberPage'
 import WritePage from 'components/WritePage'
 import DownloadMp3Page from 'components/DownloadMp3Page'
+import BasesPage from 'components/BasesPage'
 import NotFoundPage from 'components/NotFoundPage'
 
 export default (
@@ -25,6 +26,7 @@ export default (
             <Route path="remember" component={RememberPage} />
             <Route path="write" component={WritePage} />
             <Route path="mp3" component={DownloadMp3Page} />
+            <Route path="bases" component={BasesPage} />
         </Route>
         <Route path="*" component={NotFoundPage} />
     </Route>

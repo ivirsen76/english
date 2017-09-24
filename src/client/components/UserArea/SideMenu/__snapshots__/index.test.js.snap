@@ -80,6 +80,14 @@ exports[`<SideMenu /> Should render menu 1`] = `
         />
         Statistics
       </withProps(Link)>
+      <withProps(Link)
+        to="/user/bases"
+      >
+        <Icon
+          type="library"
+        />
+        Bases
+      </withProps(Link)>
     </MenuMenu>
   </MenuItem>
 </Menu>

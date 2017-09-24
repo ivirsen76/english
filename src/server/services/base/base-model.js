@@ -7,10 +7,12 @@ module.exports = function(sequelize) {
             parentId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
+                defaultValue: 0,
             },
             position: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
+                defaultValue: 0,
             },
             title: {
                 type: Sequelize.STRING,
@@ -19,14 +21,17 @@ module.exports = function(sequelize) {
             info: {
                 type: Sequelize.TEXT('tiny'),
                 allowNull: false,
+                defaultValue: '',
             },
             type: {
                 type: Sequelize.STRING,
                 allowNull: false,
+                defaultValue: 'folder',
             },
             label: {
                 type: Sequelize.STRING,
                 allowNull: false,
+                defaultValue: '',
             },
             price: Sequelize.INTEGER,
         },

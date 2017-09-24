@@ -4,7 +4,7 @@ import { Menu } from 'semantic-ui-react'
 import MenuLink from 'components/MenuLink'
 import Icon from './Icon'
 
-const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) =>
+const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
     <Menu vertical fluid size="huge">
         <Menu.Item>
             <Menu.Header>Vocabulary</Menu.Header>
@@ -47,9 +47,14 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) =>
                     <Icon type="stats-dots" />
                     Statistics
                 </MenuLink>
+                <MenuLink to="/user/bases">
+                    <Icon type="library" />
+                    Bases
+                </MenuLink>
             </Menu.Menu>
         </Menu.Item>
     </Menu>
+)
 
 SideMenu.propTypes = {
     cardTotal: PropTypes.number,
