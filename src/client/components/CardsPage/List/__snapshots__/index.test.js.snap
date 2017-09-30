@@ -6,6 +6,7 @@ exports[`<Cards /> Should render table 1`] = `
   columns={Object {}}
   data={Object {}}
   hideBottomPaginator={false}
+  name="table"
   noDataMessage="There is no data"
   perPage={50}
   showRowNumber={true}

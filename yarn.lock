@@ -19,13 +19,15 @@
     classnames "^2.2.5"
     prop-types "^15.5.10"
 
-"@ieremeev/table@^2.1.12":
-  version "2.1.12"
-  resolved "https://registry.yarnpkg.com/@ieremeev/table/-/table-2.1.12.tgz#81473e1c3b95e20e8e882828e7900bd65674b5f3"
+"@ieremeev/table@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@ieremeev/table/-/table-2.2.1.tgz#f48549a323aa34bfc320540b453d86010aeec571"
   dependencies:
     "@ieremeev/paginator" "^2.0.6"
     lodash "^4.17.4"
+    md5 "^2.2.1"
     prop-types "^15.5.10"
+    store "^2.0.12"
 
 "@types/express-serve-static-core@*":
   version "4.0.48"
@@ -7792,6 +7794,10 @@ stdout-stream@^1.4.0:
 stealthy-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
+
+store@^2.0.12:
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/store/-/store-2.0.12.tgz#8c534e2a0b831f72b75fc5f1119857c44ef5d593"
 
 stream-browserify@^2.0.1:
   version "2.0.1"
