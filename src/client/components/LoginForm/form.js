@@ -28,13 +28,13 @@ class LoginForm extends React.Component {
         return (
             <form onSubmit={handleSubmit} className="ui form">
                 <Field name="email" component={Input} label="Email" autoFocus />
-                <Field name="password" component={Input} label="Пароль" type="password" />
+                <Field name="password" component={Input} label="Password" type="password" />
 
                 <button
                     className={'ui ' + (submitting && 'loading') + ' compact button'}
                     type="submit"
                 >
-                    Войти
+                    Log in
                 </button>
             </form>
         )

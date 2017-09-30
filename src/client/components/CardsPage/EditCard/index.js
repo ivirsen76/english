@@ -21,7 +21,7 @@ export default class Component extends React.Component {
 
     handleSubmit = values => {
         this.props.updateCard(values)
-        notification('Карточка обновлена')
+        notification('Card has been updated')
         this.modal.handleClose()
     }
 
@@ -35,13 +35,13 @@ export default class Component extends React.Component {
                     this.modal = modal
                 }}
             >
-                <Modal.Header>Изменить слово</Modal.Header>
+                <Modal.Header>Update card</Modal.Header>
                 <Modal.Content>
                     <Form
                         form="editCard"
                         onSubmit={this.handleSubmit}
                         initialValues={this.props.initialValues}
-                        submitButtonTitle="Изменить"
+                        submitButtonTitle="Update card"
                     />
                 </Modal.Content>
             </Modal>

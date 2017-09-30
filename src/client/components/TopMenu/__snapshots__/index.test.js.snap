@@ -33,16 +33,13 @@ exports[`<TopMenu /> Should render menu 1`] = `
   >
     <DropdownMenu>
       <DropdownItem>
-        Матрица Simple
+        Matrix Simple
       </DropdownItem>
       <DropdownItem>
-        Матрица Continuous
+        Matrix Continuous
       </DropdownItem>
       <DropdownItem>
-        Выделение слов
-      </DropdownItem>
-      <DropdownItem>
-        Числа на слух
+        Numbers
       </DropdownItem>
     </DropdownMenu>
   </Dropdown>
@@ -101,16 +98,13 @@ exports[`<TopMenu /> Should render menu for logged user 1`] = `
   >
     <DropdownMenu>
       <DropdownItem>
-        Матрица Simple
+        Matrix Simple
       </DropdownItem>
       <DropdownItem>
-        Матрица Continuous
+        Matrix Continuous
       </DropdownItem>
       <DropdownItem>
-        Выделение слов
-      </DropdownItem>
-      <DropdownItem>
-        Числа на слух
+        Numbers
       </DropdownItem>
     </DropdownMenu>
   </Dropdown>

@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import Input from 'components/SemanticInput'
 
 export const errorMessages = {
-    noTitle: 'Вы должны ввести текст',
+    noTitle: 'You have to provide title',
 }
 
 export const validate = values => {

@@ -35,7 +35,7 @@ export default class Component extends React.Component {
                     this.modal = modal
                 }}
             >
-                <Modal.Header>Изменить слово</Modal.Header>
+                <Modal.Header>Update card</Modal.Header>
                 <Modal.Content>
                     <Form
                         form="editBase"

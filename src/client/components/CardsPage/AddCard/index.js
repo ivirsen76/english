@@ -13,7 +13,7 @@ export default class Component extends React.Component {
 
     handleSubmit = values => {
         this.props.addCard(values)
-        notification('Карточка добавлена')
+        notification('Card has been added')
     }
 
     render() {
@@ -21,14 +21,14 @@ export default class Component extends React.Component {
 
         return (
             <Modal size="small" closeIcon trigger={trigger}>
-                <Modal.Header>Добавить слово</Modal.Header>
+                <Modal.Header>Add card</Modal.Header>
                 <Modal.Content>
                     <div key={this.props.nextNewId}>
                         <Form
                             form={'addCard' + this.props.nextNewId}
                             onSubmit={this.handleSubmit}
                             initialValues={{ label: this.props.latestLabel }}
-                            submitButtonTitle="Добавить"
+                            submitButtonTitle="Add card"
                         />
                     </div>
                 </Modal.Content>

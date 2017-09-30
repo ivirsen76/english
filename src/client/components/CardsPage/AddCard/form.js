@@ -5,10 +5,10 @@ import Input from 'components/SemanticInput'
 import { stripBrackets } from 'utils/card.js'
 
 export const errorMessages = {
-    noText: 'Вы должны ввести текст',
-    invalidText: 'Текст должен быть написан по-английски',
-    noTranslate: 'Вы должны ввести перевод',
-    invalidTranslate: 'Текст должен быть написан по-русски',
+    noText: 'Text is required',
+    invalidText: 'Text has to be in English',
+    noTranslate: 'Translation is required',
+    invalidTranslate: 'Translation has to be in Russian',
 }
 
 export const validate = values => {
@@ -50,9 +50,9 @@ class AddCardForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.props.handleSubmit} className="ui form">
-                <Field name="text" component={Input} label="Текст" autoFocus />
-                <Field name="translate" component={Input} label="Перевод" />
-                <Field name="label" component={Input} label="Метка" />
+                <Field name="text" component={Input} label="Text" autoFocus />
+                <Field name="translate" component={Input} label="Translation" />
+                <Field name="label" component={Input} label="Tag" />
 
                 <button className="ui compact button" type="submit">
                     {this.props.submitButtonTitle}
