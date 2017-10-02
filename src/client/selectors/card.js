@@ -4,13 +4,13 @@ import _max from 'lodash/max'
 import _maxBy from 'lodash/maxBy'
 import _find from 'lodash/find'
 
-const getList = state => state.card.list
-const getRememberStep = state => state.card.remember.step
-const getRememberParams = state => state.card.remember.params
-const getRememberSortedList = state => state.card.remember.list
-const getRememberCurrentCardIndex = state => state.card.remember.currentCardIndex
-const getWriteSortedList = state => state.card.write.list
-const getWriteCurrentCardIndex = state => state.card.write.currentCardIndex
+const getList = state => state.list
+const getRememberStep = state => state.remember.step
+const getRememberParams = state => state.remember.params
+const getRememberSortedList = state => state.remember.list
+const getRememberCurrentCardIndex = state => state.remember.currentCardIndex
+const getWriteSortedList = state => state.write.list
+const getWriteCurrentCardIndex = state => state.write.currentCardIndex
 
 export const getRememberList = createSelector(getList, getRememberParams, (list, params) => {
     if (params.label === '') {

@@ -37,9 +37,7 @@ class Component extends React.Component {
                         cardWriteTotal={this.props.cardWriteTotal}
                     />
                 </div>
-                <div className="twelve wide column">
-                    {this.props.children}
-                </div>
+                <div className="twelve wide column">{this.props.children}</div>
             </div>
         )
     }
@@ -47,9 +45,9 @@ class Component extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        cardTotal: getCardTotal(state),
-        cardRememberTotal: getRememberTotalCards(state),
-        cardWriteTotal: getWriteTotalCards(state),
+        cardTotal: getCardTotal(state.card),
+        cardRememberTotal: getRememberTotalCards(state.card),
+        cardWriteTotal: getWriteTotalCards(state.card),
         loading: state.card.loading,
     }
 }

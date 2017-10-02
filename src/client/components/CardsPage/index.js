@@ -40,8 +40,8 @@ class Component extends React.Component {
 function mapStateToProps(state) {
     return {
         list: state.card.list,
-        nextNewId: getNextNewId(state),
-        latestLabel: getLatestLabel(state),
+        nextNewId: getNextNewId(state.card),
+        latestLabel: getLatestLabel(state.card),
     }
 }
 

@@ -22,7 +22,7 @@ const PlayButton = ReactSelector('PlayButton')
 const SwitchButton = ReactSelector('SwitchButton')
 const EditButton = ReactSelector('EditButton')
 const DeleteButton = ReactSelector('DeleteButton')
-const EditSubmitButton = Selector('button').withText('Изменить')
+const EditSubmitButton = Selector('button').withText('Update card')
 const Alert = ReactSelector('Alert')
 
 test('Should render right counter', async t => {
@@ -100,7 +100,7 @@ test('Should edit card', async t => {
     await t.typeText('input[name=translate]', 'что-то еще', { replace: true })
 
     await t.click(EditSubmitButton)
-    await t.expect(Alert.innerText).contains('Карточка обновлена')
+    await t.expect(Alert.innerText).contains('has been updated')
     await t.click(NextButton)
 
     await t.expect(PanelUs.innerText).contains('some one')

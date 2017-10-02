@@ -172,10 +172,11 @@ class RememberPage extends React.Component {
                         </div>
                     </div>
 
-                    {totalCards === 0 &&
-                        <div className={style.noCardsMessage}>No cards to show</div>}
+                    {totalCards === 0 && (
+                        <div className={style.noCardsMessage}>No cards to show</div>
+                    )}
                     {totalCards !== 0 &&
-                        currentCard.text &&
+                    currentCard.text && (
                         <div key={iteration} className={style.panelWrapper}>
                             <SwitchButton onClick={this.switchOrder} />
                             <Panel
@@ -194,7 +195,8 @@ class RememberPage extends React.Component {
                                 iconPosition="top"
                                 toggleSound={toggleSound}
                             />
-                        </div>}
+                        </div>
+                    )}
 
                     <GoNextPanel onClick={this.goNext} />
                 </div>
@@ -205,15 +207,15 @@ class RememberPage extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        totalCards: getRememberTotalCards(state),
+        totalCards: getRememberTotalCards(state.card),
         currentCardNumber: state.card.remember.currentCardIndex + 1,
-        currentCard: getRememberCurrentCard(state),
+        currentCard: getRememberCurrentCard(state.card),
         step: state.card.remember.step,
         enLanguage: 'us',
-        nextSounds: getNextRememberCardSounds(state),
-        nextStepDelay: getNextStepDelay(state),
-        firstWord: getRememberFirstWord(state),
-        secondWord: getRememberSecondWord(state),
+        nextSounds: getNextRememberCardSounds(state.card),
+        nextStepDelay: getNextStepDelay(state.card),
+        firstWord: getRememberFirstWord(state.card),
+        secondWord: getRememberSecondWord(state.card),
         iteration: state.card.remember.iteration,
         isEditing: !!state.form.editCard,
         ..._pick(state.card.remember.params, ['isAutoPlayMode', 'label']),

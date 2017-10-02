@@ -149,7 +149,7 @@ export const setRememberCards = () => (dispatch, getState) => {
 
 export const goNextRememberStep = () => (dispatch, getState) => {
     const state = getState()
-    if (isLastRememberCard(state)) {
+    if (isLastRememberCard(state.card)) {
         dispatch(setRememberCards())
     } else {
         dispatch(goNextRememberCard())
@@ -160,16 +160,16 @@ export const checkWriting = () => async (dispatch, getState) => {
     dispatch(saveWriteResults())
 
     const state = getState()
-    const currentCard = getCurrentWriteCard(state)
+    const currentCard = getCurrentWriteCard(state.card)
 
     await axios.patch(
         `/cards/${currentCard.id}`,
         _pick(currentCard, ['status', 'writeRightAttempts'])
     )
 
-    if (isLastWriteCard(state)) {
+    if (isLastWriteCard(state.card)) {
         const total = state.card.write.list.length
-        const correctTotal = total - getWriteErrorsTotal(state)
+        const correctTotal = total - getWriteErrorsTotal(state.card)
         notification(`Correct ${correctTotal} of ${total}`)
     }
 }
@@ -177,7 +177,7 @@ export const checkWriting = () => async (dispatch, getState) => {
 export const goNextWriteCard = () => async (dispatch, getState) => {
     const state = getState()
 
-    if (isLastWriteCard(state)) {
+    if (isLastWriteCard(state.card)) {
         dispatch(setWriteCards())
     } else {
         dispatch(goNextWriteCardInSet())

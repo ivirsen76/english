@@ -116,50 +116,52 @@ class Component extends React.Component {
                             <i className="icon-play3" />
                         </button>
                     </div>
-                    {!isChecked
-                        ? <div>
-                              <InputField
-                                  value={input}
-                                  onChange={this.props.updateWriteInput}
-                                  height={this.state.height}
-                              />
-                              <div style={{ height: 0, overflow: 'hidden' }}>
-                                  <div
-                                      className={style.input}
-                                      ref={div => {
-                                          this.heightMeter = div
-                                      }}
-                                  >
-                                      {input || '1'}
-                                  </div>
-                              </div>
-                          </div>
-                        : <div>
-                              <div
-                                  className={
-                                      style.input +
-                                      ' ' +
-                                      (isTextEqual(currentCard.text, input)
-                                          ? style.positive
-                                          : style.negative)
-                                  }
-                                  id="result"
-                              >
-                                  <DiffResult str1={input} str2={currentCard.text} />
-                              </div>
-                              <div className={style.resultBlock}>
-                                  <div className={style.text} id="rightText">
-                                      <DiffResult
-                                          str1={currentCard.text}
-                                          str2={input}
-                                          diffStyle="added"
-                                      />
-                                  </div>
-                                  <div className={style.translate} id="translate">
-                                      {currentCard.translate}
-                                  </div>
-                              </div>
-                          </div>}
+                    {!isChecked ? (
+                        <div>
+                            <InputField
+                                value={input}
+                                onChange={this.props.updateWriteInput}
+                                height={this.state.height}
+                            />
+                            <div style={{ height: 0, overflow: 'hidden' }}>
+                                <div
+                                    className={style.input}
+                                    ref={div => {
+                                        this.heightMeter = div
+                                    }}
+                                >
+                                    {input || '1'}
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div>
+                            <div
+                                className={
+                                    style.input +
+                                    ' ' +
+                                    (isTextEqual(currentCard.text, input)
+                                        ? style.positive
+                                        : style.negative)
+                                }
+                                id="result"
+                            >
+                                <DiffResult str1={input} str2={currentCard.text} />
+                            </div>
+                            <div className={style.resultBlock}>
+                                <div className={style.text} id="rightText">
+                                    <DiffResult
+                                        str1={currentCard.text}
+                                        str2={input}
+                                        diffStyle="added"
+                                    />
+                                </div>
+                                <div className={style.translate} id="translate">
+                                    {currentCard.translate}
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         )
@@ -170,9 +172,9 @@ function mapStateToProps(state) {
     return {
         totalCards: state.card.write.list.length,
         currentCardNumber: state.card.write.currentCardIndex + 1,
-        currentCard: getWriteCurrentCard(state),
+        currentCard: getWriteCurrentCard(state.card),
         enLanguage: 'us',
-        nextSounds: getNextWriteCardSounds(state),
+        nextSounds: getNextWriteCardSounds(state.card),
         isChecked: state.card.write.isChecked,
         input: state.card.write.input,
         iteration: state.card.write.iteration,

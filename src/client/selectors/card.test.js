@@ -23,18 +23,14 @@ describe('Card selectors', () => {
     describe('Should return first word', () => {
         it('Should return first word for en first', () => {
             const state = {
-                card: {
-                    list: [
-                        { id: 1, status: 0, text: 'Some', usSoundFile: '1.mp3', usSoundLength: 1 },
-                    ],
-                    remember: {
-                        list: [1],
-                        currentCardIndex: 0,
-                        params: {
-                            isEnFirst: true,
-                            isEnSound: true,
-                            isRuSound: false,
-                        },
+                list: [{ id: 1, status: 0, text: 'Some', usSoundFile: '1.mp3', usSoundLength: 1 }],
+                remember: {
+                    list: [1],
+                    currentCardIndex: 0,
+                    params: {
+                        isEnFirst: true,
+                        isEnSound: true,
+                        isRuSound: false,
                     },
                 },
             }
@@ -50,24 +46,22 @@ describe('Card selectors', () => {
 
         it('Should return first word for ru first', () => {
             const state = {
-                card: {
-                    list: [
-                        {
-                            id: 1,
-                            status: 0,
-                            translate: 'Some',
-                            ruSoundFile: '1.mp3',
-                            ruSoundLength: 1,
-                        },
-                    ],
-                    remember: {
-                        list: [1],
-                        currentCardIndex: 0,
-                        params: {
-                            isEnFirst: false,
-                            isEnSound: true,
-                            isRuSound: false,
-                        },
+                list: [
+                    {
+                        id: 1,
+                        status: 0,
+                        translate: 'Some',
+                        ruSoundFile: '1.mp3',
+                        ruSoundLength: 1,
+                    },
+                ],
+                remember: {
+                    list: [1],
+                    currentCardIndex: 0,
+                    params: {
+                        isEnFirst: false,
+                        isEnSound: true,
+                        isRuSound: false,
                     },
                 },
             }
@@ -85,18 +79,14 @@ describe('Card selectors', () => {
     describe('Should return second word', () => {
         it('Should return second word for ru first', () => {
             const state = {
-                card: {
-                    list: [
-                        { id: 1, status: 0, text: 'Some', usSoundFile: '1.mp3', usSoundLength: 1 },
-                    ],
-                    remember: {
-                        list: [1],
-                        currentCardIndex: 0,
-                        params: {
-                            isEnFirst: false,
-                            isEnSound: true,
-                            isRuSound: false,
-                        },
+                list: [{ id: 1, status: 0, text: 'Some', usSoundFile: '1.mp3', usSoundLength: 1 }],
+                remember: {
+                    list: [1],
+                    currentCardIndex: 0,
+                    params: {
+                        isEnFirst: false,
+                        isEnSound: true,
+                        isRuSound: false,
                     },
                 },
             }
@@ -112,24 +102,22 @@ describe('Card selectors', () => {
 
         it('Should return second word for en first', () => {
             const state = {
-                card: {
-                    list: [
-                        {
-                            id: 1,
-                            status: 0,
-                            translate: 'Some',
-                            ruSoundFile: '1.mp3',
-                            ruSoundLength: 1,
-                        },
-                    ],
-                    remember: {
-                        list: [1],
-                        currentCardIndex: 0,
-                        params: {
-                            isEnFirst: true,
-                            isEnSound: true,
-                            isRuSound: false,
-                        },
+                list: [
+                    {
+                        id: 1,
+                        status: 0,
+                        translate: 'Some',
+                        ruSoundFile: '1.mp3',
+                        ruSoundLength: 1,
+                    },
+                ],
+                remember: {
+                    list: [1],
+                    currentCardIndex: 0,
+                    params: {
+                        isEnFirst: true,
+                        isEnSound: true,
+                        isRuSound: false,
                     },
                 },
             }
@@ -147,17 +135,15 @@ describe('Card selectors', () => {
     describe('Should return next step delay', () => {
         it('Should return delay for first step', () => {
             const state = {
-                card: {
-                    list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
-                    remember: {
-                        list: [1],
-                        currentCardIndex: 0,
-                        step: 1,
-                        params: {
-                            isEnFirst: true,
-                            isEnSound: true,
-                            isRuSound: false,
-                        },
+                list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
+                remember: {
+                    list: [1],
+                    currentCardIndex: 0,
+                    step: 1,
+                    params: {
+                        isEnFirst: true,
+                        isEnSound: true,
+                        isRuSound: false,
                     },
                 },
             }
@@ -167,17 +153,15 @@ describe('Card selectors', () => {
 
         it('Should return delay for first step without sound on first word', () => {
             const state = {
-                card: {
-                    list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
-                    remember: {
-                        list: [1],
-                        currentCardIndex: 0,
-                        step: 1,
-                        params: {
-                            isEnFirst: true,
-                            isEnSound: false,
-                            isRuSound: false,
-                        },
+                list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
+                remember: {
+                    list: [1],
+                    currentCardIndex: 0,
+                    step: 1,
+                    params: {
+                        isEnFirst: true,
+                        isEnSound: false,
+                        isRuSound: false,
                     },
                 },
             }
@@ -187,17 +171,15 @@ describe('Card selectors', () => {
 
         it('Should return delay for the second step', () => {
             const state = {
-                card: {
-                    list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
-                    remember: {
-                        list: [1],
-                        currentCardIndex: 0,
-                        step: 2,
-                        params: {
-                            isEnFirst: true,
-                            isEnSound: true,
-                            isRuSound: false,
-                        },
+                list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
+                remember: {
+                    list: [1],
+                    currentCardIndex: 0,
+                    step: 2,
+                    params: {
+                        isEnFirst: true,
+                        isEnSound: true,
+                        isRuSound: false,
                     },
                 },
             }
@@ -207,17 +189,15 @@ describe('Card selectors', () => {
 
         it('Should return delay for first step when ru is first', () => {
             const state = {
-                card: {
-                    list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
-                    remember: {
-                        list: [1],
-                        currentCardIndex: 0,
-                        step: 1,
-                        params: {
-                            isEnFirst: false,
-                            isEnSound: true,
-                            isRuSound: false,
-                        },
+                list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
+                remember: {
+                    list: [1],
+                    currentCardIndex: 0,
+                    step: 1,
+                    params: {
+                        isEnFirst: false,
+                        isEnSound: true,
+                        isRuSound: false,
                     },
                 },
             }
@@ -227,17 +207,15 @@ describe('Card selectors', () => {
 
         it('Should return delay for the second step when ru is first', () => {
             const state = {
-                card: {
-                    list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
-                    remember: {
-                        list: [1],
-                        currentCardIndex: 0,
-                        step: 2,
-                        params: {
-                            isEnFirst: false,
-                            isEnSound: true,
-                            isRuSound: true,
-                        },
+                list: [{ id: 1, status: 0, usSoundLength: 1, ruSoundLength: 2 }],
+                remember: {
+                    list: [1],
+                    currentCardIndex: 0,
+                    step: 2,
+                    params: {
+                        isEnFirst: false,
+                        isEnSound: true,
+                        isRuSound: true,
                     },
                 },
             }
@@ -248,15 +226,13 @@ describe('Card selectors', () => {
 
     it('Should return next card sounds', () => {
         const state = {
-            card: {
-                list: [
-                    { id: 1, status: 0 },
-                    { id: 2, status: 0, usSoundFile: '1.mp3', ruSoundFile: '2.mp3' },
-                ],
-                remember: {
-                    list: [1, 2],
-                    currentCardIndex: 0,
-                },
+            list: [
+                { id: 1, status: 0 },
+                { id: 2, status: 0, usSoundFile: '1.mp3', ruSoundFile: '2.mp3' },
+            ],
+            remember: {
+                list: [1, 2],
+                currentCardIndex: 0,
             },
         }
         expect(getNextRememberCardSounds(state)).toEqual(['1.mp3', '2.mp3'])
@@ -264,16 +240,14 @@ describe('Card selectors', () => {
 
     it('Should return total cards to remember', () => {
         const state = {
-            card: {
-                list: [
-                    { id: 1, status: 0, label: 'some' },
-                    { id: 2, status: 1 },
-                    { id: 3, status: 0, label: 'testing' },
-                ],
-                remember: {
-                    params: {
-                        label: 'test',
-                    },
+            list: [
+                { id: 1, status: 0, label: 'some' },
+                { id: 2, status: 1 },
+                { id: 3, status: 0, label: 'testing' },
+            ],
+            remember: {
+                params: {
+                    label: 'test',
                 },
             },
         }
@@ -282,25 +256,21 @@ describe('Card selectors', () => {
 
     it('Should return total cards to write', () => {
         const state = {
-            card: {
-                list: [{ id: 1, status: 0 }, { id: 2, status: 1 }, { id: 3, status: 1 }],
-            },
+            list: [{ id: 1, status: 0 }, { id: 2, status: 1 }, { id: 3, status: 1 }],
         }
         expect(getWriteTotalCards(state)).toBe(2)
     })
 
     it('Should get remember list', () => {
         const state = {
-            card: {
-                list: [
-                    { id: 1, status: 0, label: 'some' },
-                    { id: 2, status: 1 },
-                    { id: 3, status: 0, label: 'testing' },
-                ],
-                remember: {
-                    params: {
-                        label: 'test',
-                    },
+            list: [
+                { id: 1, status: 0, label: 'some' },
+                { id: 2, status: 1 },
+                { id: 3, status: 0, label: 'testing' },
+            ],
+            remember: {
+                params: {
+                    label: 'test',
                 },
             },
         }
@@ -310,12 +280,10 @@ describe('Card selectors', () => {
     describe('getRememberCurrentCard()', () => {
         it('Should return current card to remember', () => {
             const state = {
-                card: {
-                    list: [{ id: 2, text: 'Some', translate: 'Another' }],
-                    remember: {
-                        list: [1, 2, 3],
-                        currentCardIndex: 1,
-                    },
+                list: [{ id: 2, text: 'Some', translate: 'Another' }],
+                remember: {
+                    list: [1, 2, 3],
+                    currentCardIndex: 1,
                 },
             }
             expect(getRememberCurrentCard(state)).toEqual({
@@ -327,12 +295,10 @@ describe('Card selectors', () => {
 
         it('Should return empty object', () => {
             const state = {
-                card: {
-                    list: [{ id: 2, text: 'Some', translate: 'Another' }],
-                    remember: {
-                        list: [1, 2, 3],
-                        currentCardIndex: 0,
-                    },
+                list: [{ id: 2, text: 'Some', translate: 'Another' }],
+                remember: {
+                    list: [1, 2, 3],
+                    currentCardIndex: 0,
                 },
             }
             expect(getRememberCurrentCard(state)).toEqual({})
@@ -348,13 +314,11 @@ describe('Card selectors', () => {
 
         it('Should return true', () => {
             const state = {
-                card: {
-                    list,
-                    remember: {
-                        currentCardIndex: 2,
-                        step: 2,
-                        params: { label: '' },
-                    },
+                list,
+                remember: {
+                    currentCardIndex: 2,
+                    step: 2,
+                    params: { label: '' },
                 },
             }
             expect(isLastRememberCard(state)).toBe(true)
@@ -362,14 +326,12 @@ describe('Card selectors', () => {
 
         it('Should return true for label', () => {
             const state = {
-                card: {
-                    list,
-                    remember: {
-                        list: [1, 2, 3],
-                        currentCardIndex: 0,
-                        step: 2,
-                        params: { label: 'alone' },
-                    },
+                list,
+                remember: {
+                    list: [1, 2, 3],
+                    currentCardIndex: 0,
+                    step: 2,
+                    params: { label: 'alone' },
                 },
             }
             expect(isLastRememberCard(state)).toBe(true)
@@ -377,13 +339,11 @@ describe('Card selectors', () => {
 
         it('Should return false', () => {
             const state = {
-                card: {
-                    list,
-                    remember: {
-                        currentCardIndex: 2,
-                        step: 1,
-                        params: { label: '' },
-                    },
+                list,
+                remember: {
+                    currentCardIndex: 2,
+                    step: 1,
+                    params: { label: '' },
                 },
             }
             expect(isLastRememberCard(state)).toBe(false)
@@ -391,13 +351,11 @@ describe('Card selectors', () => {
 
         it('Should return false', () => {
             const state = {
-                card: {
-                    list,
-                    remember: {
-                        currentCardIndex: 1,
-                        step: 2,
-                        params: { label: '' },
-                    },
+                list,
+                remember: {
+                    currentCardIndex: 1,
+                    step: 2,
+                    params: { label: '' },
                 },
             }
             expect(isLastRememberCard(state)).toBe(false)
@@ -407,18 +365,14 @@ describe('Card selectors', () => {
     describe('getNextNewId()', () => {
         it('Should return next new id', () => {
             const state = {
-                card: {
-                    list: [{ id: 1 }],
-                },
+                list: [{ id: 1 }],
             }
             expect(getNextNewId(state)).toBe(minNewId)
         })
 
         it('Should return next new id', () => {
             const state = {
-                card: {
-                    list: [{ id: minNewId }],
-                },
+                list: [{ id: minNewId }],
             }
             expect(getNextNewId(state)).toBe(minNewId + 1)
         })
@@ -427,27 +381,21 @@ describe('Card selectors', () => {
     describe('getLatestLabel()', () => {
         it('Should return empty string for empty list', () => {
             const state = {
-                card: {
-                    list: [],
-                },
+                list: [],
             }
             expect(getLatestLabel(state)).toBe('')
         })
 
         it('Should return empty string for the list without label', () => {
             const state = {
-                card: {
-                    list: [{ id: 1 }],
-                },
+                list: [{ id: 1 }],
             }
             expect(getLatestLabel(state)).toBe('')
         })
 
         it('Should return latest label', () => {
             const state = {
-                card: {
-                    list: [{ id: 2, label: 'second' }, { id: 1, label: 'first' }],
-                },
+                list: [{ id: 2, label: 'second' }, { id: 1, label: 'first' }],
             }
             expect(getLatestLabel(state)).toBe('second')
         })
@@ -456,9 +404,7 @@ describe('Card selectors', () => {
     describe('getCardTotal()', () => {
         it('Should return number of cards', () => {
             const state = {
-                card: {
-                    list: [{ id: 1 }, { id: 2 }],
-                },
+                list: [{ id: 1 }, { id: 2 }],
             }
             expect(getCardTotal(state)).toBe(2)
         })
@@ -467,12 +413,10 @@ describe('Card selectors', () => {
     describe('getWriteCurrentCard()', () => {
         it('Should return current card to write', () => {
             const state = {
-                card: {
-                    list: [{ id: 2, text: 'Some', translate: 'Another' }],
-                    write: {
-                        list: [1, 2, 3],
-                        currentCardIndex: 1,
-                    },
+                list: [{ id: 2, text: 'Some', translate: 'Another' }],
+                write: {
+                    list: [1, 2, 3],
+                    currentCardIndex: 1,
                 },
             }
             expect(getWriteCurrentCard(state)).toEqual({
@@ -484,12 +428,10 @@ describe('Card selectors', () => {
 
         it('Should return empty object', () => {
             const state = {
-                card: {
-                    list: [{ id: 2, text: 'Some', translate: 'Another' }],
-                    write: {
-                        list: [1, 2, 3],
-                        currentCardIndex: 0,
-                    },
+                list: [{ id: 2, text: 'Some', translate: 'Another' }],
+                write: {
+                    list: [1, 2, 3],
+                    currentCardIndex: 0,
                 },
             }
             expect(getWriteCurrentCard(state)).toEqual({})
@@ -498,15 +440,13 @@ describe('Card selectors', () => {
 
     it('Should return next write card sounds', () => {
         const state = {
-            card: {
-                list: [
-                    { id: 1, status: 1 },
-                    { id: 2, status: 1, usSoundFile: '1.mp3', ruSoundFile: '2.mp3' },
-                ],
-                write: {
-                    list: [1, 2],
-                    currentCardIndex: 0,
-                },
+            list: [
+                { id: 1, status: 1 },
+                { id: 2, status: 1, usSoundFile: '1.mp3', ruSoundFile: '2.mp3' },
+            ],
+            write: {
+                list: [1, 2],
+                currentCardIndex: 0,
             },
         }
         expect(getNextWriteCardSounds(state)).toEqual(['1.mp3'])
@@ -515,11 +455,9 @@ describe('Card selectors', () => {
     describe('isLastWriteCard()', () => {
         it('Should return false', () => {
             const state = {
-                card: {
-                    write: {
-                        list: [1, 2, 3],
-                        currentCardIndex: 1,
-                    },
+                write: {
+                    list: [1, 2, 3],
+                    currentCardIndex: 1,
                 },
             }
             expect(isLastWriteCard(state)).toBe(false)
@@ -527,11 +465,9 @@ describe('Card selectors', () => {
 
         it('Should return true', () => {
             const state = {
-                card: {
-                    write: {
-                        list: [1, 2, 3],
-                        currentCardIndex: 2,
-                    },
+                write: {
+                    list: [1, 2, 3],
+                    currentCardIndex: 2,
                 },
             }
             expect(isLastWriteCard(state)).toBe(true)
@@ -541,16 +477,14 @@ describe('Card selectors', () => {
     describe('getWriteErrorsTotal()', () => {
         it('Should return errors', () => {
             const state = {
-                card: {
-                    list: [
-                        { id: 1, writeRightAttempts: 0 },
-                        { id: 2, writeRightAttempts: 1 },
-                        { id: 3, writeRightAttempts: 2 },
-                    ],
-                    write: {
-                        list: [1, 2, 3],
-                        currentCardIndex: 1,
-                    },
+                list: [
+                    { id: 1, writeRightAttempts: 0 },
+                    { id: 2, writeRightAttempts: 1 },
+                    { id: 3, writeRightAttempts: 2 },
+                ],
+                write: {
+                    list: [1, 2, 3],
+                    currentCardIndex: 1,
                 },
             }
             expect(getWriteErrorsTotal(state)).toBe(1)
@@ -558,12 +492,10 @@ describe('Card selectors', () => {
 
         it('Should return one error', () => {
             const state = {
-                card: {
-                    list: [{ id: 1, writeRightAttempts: 0 }],
-                    write: {
-                        list: [1],
-                        currentCardIndex: 0,
-                    },
+                list: [{ id: 1, writeRightAttempts: 0 }],
+                write: {
+                    list: [1],
+                    currentCardIndex: 0,
                 },
             }
             expect(getWriteErrorsTotal(state)).toBe(1)
@@ -573,12 +505,10 @@ describe('Card selectors', () => {
     describe('getCurrentWriteCard()', () => {
         it('Should return errors', () => {
             const state = {
-                card: {
-                    list: [{ id: 1, writeRightAttempts: 0 }],
-                    write: {
-                        list: [1],
-                        currentCardIndex: 0,
-                    },
+                list: [{ id: 1, writeRightAttempts: 0 }],
+                write: {
+                    list: [1],
+                    currentCardIndex: 0,
                 },
             }
             expect(getCurrentWriteCard(state)).toEqual({ id: 1, writeRightAttempts: 0 })
