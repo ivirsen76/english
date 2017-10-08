@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { logout } from 'reducers/auth'
-import { browserHistory } from 'react-router'
+import { history } from '../../store/configureStore'
 
 class Component extends React.Component {
     static propTypes = {
@@ -11,7 +11,7 @@ class Component extends React.Component {
 
     componentDidMount() {
         this.props.logout()
-        browserHistory.push('/')
+        history.push('/')
     }
 
     render() {

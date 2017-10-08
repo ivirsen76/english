@@ -6,7 +6,7 @@ import LoginForm from 'components/LoginForm'
 
 const TopMenu = ({ isLoggedIn, user }) => (
     <Menu inverted>
-        <MenuLink to="/" onlyActiveOnIndex>
+        <MenuLink to="/" exact>
             Home
         </MenuLink>
         <MenuLink to="/features">Features</MenuLink>
