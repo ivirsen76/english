@@ -1,19 +1,17 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
 import thunk from 'redux-thunk'
+import createHistory from 'history/createBrowserHistory'
+import { routerMiddleware } from 'react-router-redux'
 import { persistStore } from 'redux-persist'
 import rootReducer from '../reducers'
 
+export const history = createHistory()
 const persistConfig = { whitelist: ['card', 'auth'] }
 
 export const configureStoreProd = initialState => {
-    const middlewares = [
-        // Add other middleware on this line...
-
-        // thunk middleware can also accept an extra argument to be passed to each thunk action
-        // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
-        thunk,
-    ]
+    const reactRouterMiddleware = routerMiddleware(history)
+    const middlewares = [thunk, reactRouterMiddleware]
 
     const store = createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares)))
     persistStore(store, persistConfig)
@@ -21,18 +19,9 @@ export const configureStoreProd = initialState => {
 }
 
 export const configureStoreDev = initialState => {
-    const middlewares = [
-        // Add other middleware on this line...
+    const reactRouterMiddleware = routerMiddleware(history)
+    const middlewares = [reduxImmutableStateInvariant(), thunk, reactRouterMiddleware]
 
-        // Redux middleware that spits an error on you when you try to mutate your state either inside a dispatch or between dispatches.
-        reduxImmutableStateInvariant(),
-
-        // thunk middleware can also accept an extra argument to be passed to each thunk action
-        // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
-        thunk,
-    ]
-
-    // add support for Redux dev tools
     // eslint-disable-next-line no-underscore-dangle
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -42,20 +31,11 @@ export const configureStoreDev = initialState => {
         composeEnhancers(applyMiddleware(...middlewares))
     )
 
-    if (module.hot) {
-        // Enable Webpack hot module replacement for reducers
-        module.hot.accept('../reducers', () => {
-            const nextReducer = require('../reducers').default // eslint-disable-line global-require
-            store.replaceReducer(nextReducer)
-        })
-    }
-
     persistStore(store, persistConfig)
     return store
 }
 
-const configureStore = process.env.NODE_ENV === 'production'
-    ? configureStoreProd
-    : configureStoreDev
+const configureStore =
+    process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev
 
 export default configureStore
