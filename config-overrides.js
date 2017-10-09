@@ -1,5 +1,6 @@
 const _find = require('lodash/find') // eslint-disable-line no-underscore-dangle
 const _cloneDeep = require('lodash/cloneDeep') // eslint-disable-line no-underscore-dangle
+const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 module.exports = function override(config, env) {
     // Add babel-polyfill
@@ -17,15 +18,17 @@ module.exports = function override(config, env) {
     })
 
     // Generate scss rule based on css rule
-    const cssRule = _find(config.module.rules, rule => rule.test && rule.test.toString().includes('.css'))
+    const cssRule = _find(
+        config.module.rules,
+        rule => rule.test && rule.test.toString().includes('.css')
+    )
     const scssLoader = (cssRule.use || cssRule.loader)
         .map(item => {
             if (item.loader && item.loader.includes('/css-loader')) {
                 item = _cloneDeep(item)
                 item.options.modules = true
-                item.options.localIdentName = env === 'development'
-                    ? '[name]__[local]___[hash:base64:5]'
-                    : '[hash:base64]'
+                item.options.localIdentName =
+                    env === 'development' ? '[name]__[local]___[hash:base64:5]' : '[hash:base64]'
             }
 
             return item
@@ -40,6 +43,12 @@ module.exports = function override(config, env) {
         scssRule.loader = scssLoader
     }
     config.module.rules.push(scssRule)
+
+    config.plugins.push(
+        new CircularDependencyPlugin({
+            exclude: /node_modules/,
+        })
+    )
 
     return config
 }

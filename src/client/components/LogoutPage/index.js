@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { logout } from 'reducers/auth'
-import { history } from '../../store/configureStore'
+import history from '../../store/history'
 
 class Component extends React.Component {
     static propTypes = {

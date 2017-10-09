@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect'
-import { minNewId } from 'reducers/card'
 import _max from 'lodash/max'
 import _maxBy from 'lodash/maxBy'
 import _find from 'lodash/find'
@@ -36,7 +35,7 @@ export const getNextRememberCardSounds = createSelector(
 )
 
 export const getNextNewId = createSelector(getList, list =>
-    _max([...list.map(item => item.id + 1), minNewId])
+    _max([...list.map(item => item.id + 1), 1000000000])
 )
 
 export const getLatestLabel = createSelector(getList, list => {

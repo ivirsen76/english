@@ -1,12 +1,11 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
 import thunk from 'redux-thunk'
-import createHistory from 'history/createBrowserHistory'
 import { routerMiddleware } from 'react-router-redux'
 import { persistStore } from 'redux-persist'
+import history from './history'
 import rootReducer from '../reducers'
 
-export const history = createHistory()
 const persistConfig = { whitelist: ['card', 'auth'] }
 
 export const configureStoreProd = initialState => {

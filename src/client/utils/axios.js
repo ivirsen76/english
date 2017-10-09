@@ -1,6 +1,6 @@
 import axios from 'axios'
 import notification from '@ieremeev/notification'
-import { history } from '../store/configureStore'
+import history from '../store/history'
 
 const instance = axios.create({
     baseURL: process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3030',
