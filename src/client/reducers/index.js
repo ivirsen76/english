@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
     card,
     base,
     form: formReducer,
-    routing: routerReducer,
+    router: routerReducer,
 })
 
 export default rootReducer
