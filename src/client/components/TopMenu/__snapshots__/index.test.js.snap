@@ -4,17 +4,17 @@ exports[`<TopMenu /> Should render menu 1`] = `
 <Menu
   inverted={true}
 >
-  <withProps(Link)
-    onlyActiveOnIndex={true}
+  <withProps(NavLink)
+    exact={true}
     to="/"
   >
     Home
-  </withProps(Link)>
-  <withProps(Link)
+  </withProps(NavLink)>
+  <withProps(NavLink)
     to="/features"
   >
     Features
-  </withProps(Link)>
+  </withProps(NavLink)>
   <MenuItem>
     Card base
   </MenuItem>
@@ -69,17 +69,17 @@ exports[`<TopMenu /> Should render menu for logged user 1`] = `
 <Menu
   inverted={true}
 >
-  <withProps(Link)
-    onlyActiveOnIndex={true}
+  <withProps(NavLink)
+    exact={true}
     to="/"
   >
     Home
-  </withProps(Link)>
-  <withProps(Link)
+  </withProps(NavLink)>
+  <withProps(NavLink)
     to="/features"
   >
     Features
-  </withProps(Link)>
+  </withProps(NavLink)>
   <MenuItem>
     Card base
   </MenuItem>
@@ -111,11 +111,11 @@ exports[`<TopMenu /> Should render menu for logged user 1`] = `
   <MenuMenu
     position="right"
   >
-    <withProps(Link)
+    <withProps(NavLink)
       to="/user"
     >
       Dashboard
-    </withProps(Link)>
+    </withProps(NavLink)>
     <Dropdown
       additionLabel="Add "
       additionPosition="top"
@@ -133,11 +133,11 @@ exports[`<TopMenu /> Should render menu for logged user 1`] = `
         <DropdownItem>
           Change password
         </DropdownItem>
-        <withProps(Link)
+        <withProps(NavLink)
           to="/logout"
         >
           Log out
-        </withProps(Link)>
+        </withProps(NavLink)>
       </DropdownMenu>
     </Dropdown>
   </MenuMenu>

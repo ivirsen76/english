@@ -11,7 +11,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
       Vocabulary
     </MenuHeader>
     <MenuMenu>
-      <withProps(Link)
+      <withProps(NavLink)
         to="/user/cards"
       >
         <Icon
@@ -23,7 +23,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
         >
           3
         </div>
-      </withProps(Link)>
+      </withProps(NavLink)>
     </MenuMenu>
   </MenuItem>
   <MenuItem>
@@ -31,7 +31,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
       Learning
     </MenuHeader>
     <MenuMenu>
-      <withProps(Link)
+      <withProps(NavLink)
         to="/user/remember"
       >
         <Icon
@@ -43,8 +43,8 @@ exports[`<SideMenu /> Should render menu 1`] = `
         >
           12
         </div>
-      </withProps(Link)>
-      <withProps(Link)
+      </withProps(NavLink)>
+      <withProps(NavLink)
         to="/user/write"
       >
         <Icon
@@ -56,15 +56,15 @@ exports[`<SideMenu /> Should render menu 1`] = `
         >
           7
         </div>
-      </withProps(Link)>
-      <withProps(Link)
+      </withProps(NavLink)>
+      <withProps(NavLink)
         to="/user/mp3"
       >
         <Icon
           type="headphones"
         />
         Download MP3
-      </withProps(Link)>
+      </withProps(NavLink)>
     </MenuMenu>
   </MenuItem>
   <MenuItem>
@@ -72,22 +72,22 @@ exports[`<SideMenu /> Should render menu 1`] = `
       Other
     </MenuHeader>
     <MenuMenu>
-      <withProps(Link)
+      <withProps(NavLink)
         to="/user/statistics"
       >
         <Icon
           type="stats-dots"
         />
         Statistics
-      </withProps(Link)>
-      <withProps(Link)
+      </withProps(NavLink)>
+      <withProps(NavLink)
         to="/user/bases"
       >
         <Icon
           type="library"
         />
         Bases
-      </withProps(Link)>
+      </withProps(NavLink)>
     </MenuMenu>
   </MenuItem>
 </Menu>

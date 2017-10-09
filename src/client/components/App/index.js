@@ -2,11 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import TopMenu from 'components/TopMenu'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import HomePage from 'components/HomePage'
 import LoginPage from 'components/LoginPage'
 import LogoutPage from 'components/LogoutPage'
 import FeaturesPage from 'components/FeaturesPage'
+import UserArea from 'components/UserArea'
+import NotFoundPage from 'components/NotFoundPage'
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -21,10 +23,14 @@ class App extends React.Component {
         return (
             <div className="ui container">
                 <TopMenu isLoggedIn={this.props.isLoggedIn} user={this.props.user} />
-                <Route exact path="/" component={HomePage} />
-                <Route path="/features" component={FeaturesPage} />
-                <Route path="/login" component={LoginPage} />
-                <Route path="/logout" component={LogoutPage} />
+                <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <Route path="/features" component={FeaturesPage} />
+                    <Route path="/login" component={LoginPage} />
+                    <Route path="/logout" component={LogoutPage} />
+                    <Route path="/user" component={UserArea} />
+                    <Route component={NotFoundPage} />
+                </Switch>
             </div>
         )
     }
