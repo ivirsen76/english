@@ -16,5 +16,7 @@ if (token) {
     store.dispatch(authenticate(token))
 }
 
+const some = 'some';
+
 ReactDOM.render(<Root store={store} history={history} />, document.getElementById('root'))
 // registerServiceWorker()

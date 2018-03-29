@@ -4,7 +4,7 @@
     "homepage": "/assets",
     "scripts": {
         "start": "npm-run-all --parallel start:client start:server",
-        "start:client": "npm run build --watch",
+        "start:client": "ieremeev-app-build --watch",
         "start:server": "nodemon src/server/",
         "start:prod": "npm run migrate && node src/server/",
         "migrate": "sequelize db:migrate",
@@ -20,6 +20,7 @@
         "deploy": "npm run build && eb deploy"
     },
     "dependencies": {
+        "@ieremeev/boilerplate": "^1.0.1",
         "@ieremeev/button": "^2.0.3",
         "@ieremeev/notification": "^2.0.6",
         "@ieremeev/table": "^2.2.1",
