@@ -2,6 +2,23 @@
     "name": "english",
     "private": true,
     "homepage": "/assets",
+    "scripts": {
+        "start": "npm-run-all --parallel start:client start:server",
+        "start:client": "npm run build --watch",
+        "start:server": "nodemon src/server/",
+        "start:prod": "npm run migrate && node src/server/",
+        "migrate": "sequelize db:migrate",
+        "build": "ieremeev-app-build",
+        "lint": "ieremeev-app-lint",
+        "format": "ieremeev-app-format",
+        "test": "ieremeev-app-test --watch",
+        "test:browser": "ieremeev-app-testbrowser",
+        "analyze": "ieremeev-app-analyze-bundle",
+        "duplicate": "ieremeev-app-duplicate",
+        "check": "ieremeev-app-lint && ieremeev-app-test",
+        "precommit": "ieremeev-app-format -s && cccisd-app-lint -s && cccisd-app-test -s",
+        "deploy": "npm run build && eb deploy"
+    },
     "dependencies": {
         "@ieremeev/button": "^2.0.3",
         "@ieremeev/notification": "^2.0.6",
@@ -59,34 +76,7 @@
         "winston": "^2.3.1"
     },
     "devDependencies": {
-        "circular-dependency-plugin": "^4.2.1",
-        "enzyme": "^2.8.2",
-        "enzyme-to-json": "^1.5.1",
-        "husky": "^0.14.0",
-        "lint-staged": "^4.0.0",
-        "node-sass": "^4.7.2",
-        "npm-run-all": "^4.0.2",
         "parse-db-url": "0.0.0",
-        "react-app-rewired": "^1.0.2",
-        "react-scripts": "1.0.7",
-        "react-test-renderer": "^15.5.4",
-        "sass-loader": "^6.0.5",
-        "testcafe": "^0.17.0",
-        "testcafe-react-selectors": "^0.0.6"
-    },
-    "scripts": {
-        "start": "npm-run-all --parallel start:client start:server",
-        "start:client": "react-app-rewired start",
-        "start:server": "nodemon src/server/",
-        "start:prod": "npm run migrate && node src/server/",
-        "migrate": "sequelize db:migrate",
-        "build": "react-app-rewired build",
-        "test": "react-scripts test --env=jsdom",
-        "test:browser": "testcafe chrome src/tests/*.page.js",
-        "precommit": "lint-staged && CI=true npm run test",
-        "deploy": "npm run build && eb deploy"
-    },
-    "lint-staged": {
-        "src/**/*.js": "eslint"
+        "@ieremeev/app": "^1.0.3"
     }
 }
