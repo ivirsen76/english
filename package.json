@@ -1,6 +1,5 @@
 {
-    "name": "awesome",
-    "version": "0.1.0",
+    "name": "english",
     "private": true,
     "homepage": "/assets",
     "dependencies": {
