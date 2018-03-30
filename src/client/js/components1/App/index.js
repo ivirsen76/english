@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import TopMenu from 'components/TopMenu'
+import TopMenu from 'js/components/TopMenu'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import HomePage from 'components/HomePage'
-import LoginPage from 'components/LoginPage'
-import LogoutPage from 'components/LogoutPage'
-import FeaturesPage from 'components/FeaturesPage'
-import UserArea from 'components/UserArea'
-import NotFoundPage from 'components/NotFoundPage'
+import HomePage from 'js/components/HomePage'
+import LoginPage from 'js/components/LoginPage'
+import LogoutPage from 'js/components/LogoutPage'
+import FeaturesPage from 'js/components/FeaturesPage'
+import UserArea from 'js/components/UserArea'
+import NotFoundPage from 'js/components/NotFoundPage'
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless

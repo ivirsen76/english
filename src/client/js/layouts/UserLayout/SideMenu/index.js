@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu } from 'semantic-ui-react'
-import MenuLink from 'components/MenuLink'
+import MenuLink from 'js/components/MenuLink'
 import Icon from './Icon'
 
 const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
-import Input from 'components/SemanticInput'
-import { stripBrackets } from 'utils/card.js'
+import Input from 'js/components/SemanticInput'
+import { stripBrackets } from 'js/utils/card.js'
 
 export const errorMessages = {
     noText: 'Text is required',

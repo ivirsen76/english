@@ -1,4 +1,4 @@
-import { minNewId } from 'reducers/card'
+import { minNewId } from 'js/reducers/card'
 import {
     getNextNewId,
     getLatestLabel,

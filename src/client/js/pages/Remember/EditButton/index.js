@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import EditCard from 'components/CardsPage/EditCard'
+import EditCard from 'js/pages/Cards/EditCard'
 
 export default class EditButton extends React.Component {
     static propTypes = {

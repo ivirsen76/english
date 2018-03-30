@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import toJson from 'utils/toJson'
+import toJson from 'js/utils/toJson'
 import SideMenu from './index'
 
 describe('<SideMenu />', () => {

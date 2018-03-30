@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
-import Input from 'components/SemanticInput'
+import Input from 'js/components/SemanticInput'
 
 export const errorMessages = {
     noTitle: 'You have to provide title',

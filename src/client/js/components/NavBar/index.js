@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Dropdown, Menu, Modal } from 'semantic-ui-react'
-import MenuLink from './MenuLink'
+import MenuLink from '../MenuLink'
 // import LoginForm from 'js/components/LoginForm'
 
 const TopMenu = ({ isLoggedIn, user }) => (

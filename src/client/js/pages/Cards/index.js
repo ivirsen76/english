@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { addCard, deleteCard, updateCard } from 'reducers/card'
-import { getNextNewId, getLatestLabel } from 'selectors/card'
+import { addCard, deleteCard, updateCard } from 'js/reducers/card'
+import { getNextNewId, getLatestLabel } from 'js/selectors/card'
 import List from './List'
 import AddCard from './AddCard'
 

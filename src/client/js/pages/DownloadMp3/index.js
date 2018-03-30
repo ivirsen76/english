@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import axios from 'utils/axios'
+import axios from 'axios'
 import classnames from 'classnames'
 
 class Component extends React.Component {

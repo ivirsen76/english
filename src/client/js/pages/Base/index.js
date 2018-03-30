@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { addBase, updateBase, loadBases } from 'reducers/base'
+import { addBase, updateBase, loadBases } from 'js/reducers/base'
 import List from './List'
 import AddBase from './AddBase'
 

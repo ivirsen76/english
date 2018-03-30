@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import _pick from 'lodash/pick'
-import mp3 from 'utils/mp3.js'
+import mp3 from 'js/utils/mp3.js'
 import {
     getRememberTotalCards,
     getRememberCurrentCard,
@@ -10,7 +10,7 @@ import {
     getNextStepDelay,
     getRememberFirstWord,
     getRememberSecondWord,
-} from 'selectors/card'
+} from 'js/selectors/card'
 import {
     setRememberCards,
     resetRememberCards,
@@ -22,7 +22,7 @@ import {
     updateRememberLabel,
     updateCard,
     deleteCard,
-} from 'reducers/card'
+} from 'js/reducers/card'
 import Counter from './Counter'
 import EditButton from './EditButton'
 import NextButton from './NextButton'
