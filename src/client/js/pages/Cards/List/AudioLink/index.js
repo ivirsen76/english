@@ -18,13 +18,15 @@ export default class Component extends React.Component {
 
         return (
             <div>
-                {audioUrl
-                    ? <a href="" onClick={this.play}>{text}</a>
-                    : <div>
-                          {text}
-                          {' '}
-                          <div className="ui tiny active inline loader" />
-                      </div>}
+                {audioUrl ? (
+                    <a href="" onClick={this.play}>
+                        {text}
+                    </a>
+                ) : (
+                    <div>
+                        {text} <div className="ui tiny active inline loader" />
+                    </div>
+                )}
             </div>
         )
     }

@@ -14,8 +14,9 @@ class Component extends React.Component {
         const { filename } = response.data
         this.setState({ loading: false })
 
-        window.location = `${process.env
-            .REACT_APP_AWS_S3_PUBLIC_URL}sounds/users/${filename}?${Date.now()}`
+        window.location = `${process.env.REACT_APP_AWS_S3_PUBLIC_URL}sounds/users/${
+            filename
+        }?${Date.now()}`
     }
 
     render() {

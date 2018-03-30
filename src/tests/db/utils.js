@@ -5,7 +5,9 @@ import parse from 'parse-db-url'
 import _map from 'lodash/map'
 
 const db = parse(dbConfig.mysql)
-const command = `mysql -u ${db.user} --password=${db.password} ${db.database} < src/tests/db/dump.sql`
+const command = `mysql -u ${db.user} --password=${db.password} ${
+    db.database
+} < src/tests/db/dump.sql`
 shell.config.silent = true
 
 const connection = mysql.createConnection(db)

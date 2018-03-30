@@ -19,7 +19,11 @@ export default class DiffResult extends React.Component {
 
         return diff(str1, str2).map((item, index) => {
             if (item.added) {
-                return <span key={index} className={style[this.props.diffStyle]}>{item.text}</span>
+                return (
+                    <span key={index} className={style[this.props.diffStyle]}>
+                        {item.text}
+                    </span>
+                )
             }
 
             return item.text

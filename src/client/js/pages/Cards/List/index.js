@@ -12,11 +12,12 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
         {
             name: 'actions',
             label: '',
-            render: (value, row) =>
+            render: (value, row) => (
                 <div>
                     <EditCard updateCard={updateCard} initialValues={row} />
                     <DeleteCard deleteCard={deleteCard} id={row.id} />
-                </div>,
+                </div>
+            ),
             className: style.nowrap,
         },
         {

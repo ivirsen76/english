@@ -39,9 +39,7 @@ const TopMenu = ({ isLoggedIn, user }) => (
             <Menu.Menu position="right">
                 <Modal size="small" closeIcon trigger={<a className="item">Log in</a>}>
                     <Modal.Header>Log in</Modal.Header>
-                    <Modal.Content>
-                        LoginForm
-                    </Modal.Content>
+                    <Modal.Content>LoginForm</Modal.Content>
                 </Modal>
             </Menu.Menu>
         )}

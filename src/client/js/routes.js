@@ -1,26 +1,26 @@
-import React from 'react';
-import { Route, NotFound } from '@ieremeev/boilerplate';
-import defaultProps from 'recompose/defaultProps.js';
-import { Switch } from 'react-router-dom';
+import React from 'react'
+import { Route, NotFound } from '@ieremeev/boilerplate'
+import defaultProps from 'recompose/defaultProps.js'
+import { Switch } from 'react-router-dom'
 
 // Layouts
-import PublicLayout from './layouts/PublicLayout';
-import UserLayout from './layouts/UserLayout';
+import PublicLayout from './layouts/PublicLayout'
+import UserLayout from './layouts/UserLayout'
 
 // Pages
 /* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
-import Home from './pages/Home';
-import Features from './pages/Features';
-import Cards from './pages/Cards';
-import Remember from './pages/Remember';
-import Write from './pages/Write';
-import DownloadMp3 from './pages/DownloadMp3';
-import Base from './pages/Base';
+import Home from './pages/Home'
+import Features from './pages/Features'
+import Cards from './pages/Cards'
+import Remember from './pages/Remember'
+import Write from './pages/Write'
+import DownloadMp3 from './pages/DownloadMp3'
+import Base from './pages/Base'
 
 // import FlowList from 'bundle-loader?lazy!./pages/FlowList';
 
 // Bind UserLayout by default
-const AppRoute = defaultProps({ layout: UserLayout })(Route);
+const AppRoute = defaultProps({ layout: UserLayout })(Route)
 
 export default () => (
     <Switch>
@@ -37,4 +37,4 @@ export default () => (
         {/* Not found page */}
         <AppRoute component={NotFound} />
     </Switch>
-);
+)

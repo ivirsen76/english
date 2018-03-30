@@ -7,6 +7,10 @@ export default class DoneButton extends React.Component {
     }
 
     render() {
-        return <button className="ui button" onClick={this.props.onClick}>Done</button>
+        return (
+            <button className="ui button" onClick={this.props.onClick}>
+                Done
+            </button>
+        )
     }
 }

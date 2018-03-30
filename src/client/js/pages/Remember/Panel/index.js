@@ -66,11 +66,7 @@ export default class Component extends React.Component {
         if (!this.props.show) {
             word = null
         } else if (this.props.soundFile) {
-            word = (
-                <a onClick={this.playSound}>
-                    {this.props.word}
-                </a>
-            )
+            word = <a onClick={this.playSound}>{this.props.word}</a>
         } else {
             word = this.props.word
         }

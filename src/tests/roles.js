@@ -6,4 +6,3 @@ export const regularUser = Role('http://localhost:3000/login', async t => {
         .typeText('input[name=password]', 'password', { paste: true })
         .click('button')
 })
-
