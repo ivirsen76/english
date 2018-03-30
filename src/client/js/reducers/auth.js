@@ -1,7 +1,7 @@
 import { handleActions, createAction } from 'redux-actions'
 import { REHYDRATE } from 'redux-persist/constants'
 import _pick from 'lodash/pick'
-import axios from 'utils/axios'
+import axios from 'js/utils/axios'
 import history from '../store/history'
 import { SubmissionError } from 'redux-form'
 import cookie from 'js-cookie'

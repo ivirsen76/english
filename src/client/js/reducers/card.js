@@ -7,16 +7,16 @@ import _omit from 'lodash/omit'
 import _find from 'lodash/find'
 import _shuffle from 'lodash/shuffle'
 import _cloneDeep from 'lodash/cloneDeep'
-import axios from 'utils/axios'
+import axios from 'axios'
 import { set } from 'dot-prop-immutable'
-import { isTextEqual } from 'utils/text.js'
+import { isTextEqual } from 'js/utils/text.js'
 import notification from '@ieremeev/notification'
 import {
     isLastWriteCard,
     getWriteErrorsTotal,
     getCurrentWriteCard,
     isLastRememberCard,
-} from 'selectors/card.js'
+} from 'js/selectors/card.js'
 
 export const minNewId = 1000000000
 export const maxWriteAttempts = 3

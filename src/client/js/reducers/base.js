@@ -1,5 +1,5 @@
 import { handleActions, createAction } from 'redux-actions'
-import axios from 'utils/axios'
+import axios from 'axios'
 
 export const minNewId = 1000000000
 export const maxWriteAttempts = 3

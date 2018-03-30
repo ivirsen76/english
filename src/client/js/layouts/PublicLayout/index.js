@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import NavBar from 'js/components/NavBar';
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -8,7 +9,7 @@ export default class Component extends React.Component {
 
     render() {
         return (
-                <div className="ui container">{this.props.children}</div>
+                <div className="ui container"><NavBar />{this.props.children}</div>
         );
     }
 }
