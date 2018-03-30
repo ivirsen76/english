@@ -10,6 +10,8 @@ import UserLayout from './layouts/UserLayout'
 // Pages
 /* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
 import Home from './pages/Home'
+import Login from './pages/Login'
+import Logout from './pages/Logout'
 import Features from './pages/Features'
 import Cards from './pages/Cards'
 import Remember from './pages/Remember'
@@ -25,14 +27,16 @@ const AppRoute = defaultProps({ layout: UserLayout })(Route)
 export default () => (
     <Switch>
         <AppRoute path="/" exact component={Home} layout={PublicLayout} />
-        <AppRoute path="/features" exact component={Features} layout={PublicLayout} />
+        <AppRoute path="/features" component={Features} layout={PublicLayout} />
+        <AppRoute path="/login" component={Login} layout={PublicLayout} />
+        <AppRoute path="/logout" component={Logout} layout={PublicLayout} />
 
         {/* User pages */}
-        <AppRoute path="/user/cards" exact component={Cards} />
-        <AppRoute path="/user/remember" exact component={Remember} />
-        <AppRoute path="/user/write" exact component={Write} />
-        <AppRoute path="/user/mp3" exact component={DownloadMp3} />
-        <AppRoute path="/user/base" exact component={Base} />
+        <AppRoute path="/user/cards" component={Cards} />
+        <AppRoute path="/user/remember" component={Remember} />
+        <AppRoute path="/user/write" component={Write} />
+        <AppRoute path="/user/mp3" component={DownloadMp3} />
+        <AppRoute path="/user/base" component={Base} />
 
         {/* Not found page */}
         <AppRoute component={NotFound} />

@@ -1,8 +1,8 @@
 import { handleActions, createAction } from 'redux-actions'
 import { REHYDRATE } from 'redux-persist/constants'
 import _pick from 'lodash/pick'
-import axios from 'js/utils/axios'
-import history from '../store/history'
+import axios from 'axios'
+// import history from '../store/history'
 import { SubmissionError } from 'redux-form'
 import cookie from 'js-cookie'
 import { set } from 'dot-prop-immutable'
@@ -40,7 +40,7 @@ export const login = async (dispatch, { email, password }) => {
         cookie.set('token', res.data.token)
         dispatch(authenticate(res.data.token))
         dispatch(setUser(res.data.data))
-        history.push('/user/cards')
+        // history.push('/user/cards')
     } catch (e) {
         throw new SubmissionError({ email: 'User or password are wrong' })
     }

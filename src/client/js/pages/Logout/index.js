@@ -2,16 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { logout } from 'js/reducers/auth'
-import history from '../../store/history'
 
 class Component extends React.Component {
     static propTypes = {
+        history: PropTypes.object,
         logout: PropTypes.func,
     }
 
     componentDidMount() {
         this.props.logout()
-        history.push('/')
+        this.props.history.push('/')
     }
 
     render() {
