@@ -17,7 +17,7 @@
         "duplicate": "ieremeev-app-duplicate",
         "check": "ieremeev-app-lint && ieremeev-app-test",
         "precommit": "ieremeev-app-format -s && cccisd-app-lint -s && cccisd-app-test -s",
-        "deploy": "npm run build && eb deploy"
+        "deploy": "npm run build"
     },
     "dependencies": {
         "@ieremeev/boilerplate": "^1.0.2",
