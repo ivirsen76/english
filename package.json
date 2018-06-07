@@ -20,12 +20,12 @@
         "deploy": "npm run build"
     },
     "dependencies": {
+        "@ieremeev/axios": "^1.0.3",
         "@ieremeev/boilerplate": "^1.0.2",
         "@ieremeev/button": "^2.0.3",
         "@ieremeev/notification": "^2.0.6",
         "@ieremeev/table": "^2.2.1",
         "aws-sdk": "^2.54.0",
-        "axios": "^0.16.1",
         "babel-polyfill": "^6.23.0",
         "body-parser": "^1.17.2",
         "child-process-promise": "^2.2.1",
@@ -79,7 +79,7 @@
         "winston": "^2.3.1"
     },
     "devDependencies": {
-        "@ieremeev/app": "^1.0.8",
+        "@ieremeev/app": "^1.0.10",
         "parse-db-url": "0.0.0"
     }
 }
