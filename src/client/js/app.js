@@ -5,7 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { App, createStore } from '@ieremeev/boilerplate'
 import reducers from './reducers.js'
-import Routes from './routes.js'
+import Routes from './Routes.js'
 
 const store = createStore(reducers)
 
