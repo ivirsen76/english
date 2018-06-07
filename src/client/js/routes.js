@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, NotFound } from '@ieremeev/boilerplate'
 import defaultProps from 'recompose/defaultProps.js'
-import { Switch } from 'react-router-dom'
+import { Switch, Redirect } from 'react-router-dom'
 
 // Layouts
 import PublicLayout from './layouts/PublicLayout'
@@ -32,6 +32,7 @@ export default () => (
         <AppRoute path="/logout" component={Logout} layout={PublicLayout} />
 
         {/* User pages */}
+        <Redirect exact from="/user" to="/user/cards" />
         <AppRoute path="/user/cards" component={Cards} />
         <AppRoute path="/user/remember" component={Remember} />
         <AppRoute path="/user/write" component={Write} />
