@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getCardTotal, getRememberTotalCards, getWriteTotalCards } from 'js/selectors/card';
 import { loadCards } from 'js/reducers/card';
 import SideMenu from './SideMenu';
+import NavBar from 'js/components/NavBar';
 
 class Component extends React.Component {
     static propTypes = {
@@ -31,15 +32,18 @@ class Component extends React.Component {
         }
 
         return (
-            <div className="ui grid">
-                <div className="four wide column">
-                    <SideMenu
-                        cardTotal={this.props.cardTotal}
-                        cardRememberTotal={this.props.cardRememberTotal}
-                        cardWriteTotal={this.props.cardWriteTotal}
-                    />
+            <div className="ui container">
+                <NavBar />
+                <div className="ui grid">
+                    <div className="four wide column">
+                        <SideMenu
+                            cardTotal={this.props.cardTotal}
+                            cardRememberTotal={this.props.cardRememberTotal}
+                            cardWriteTotal={this.props.cardWriteTotal}
+                        />
+                    </div>
+                    <div className="twelve wide column">{this.props.children}</div>
                 </div>
-                <div className="twelve wide column">{this.props.children}</div>
             </div>
         );
     }
