@@ -1,15 +1,15 @@
 /* eslint-disable */
-import React from 'react';
-import PropTypes from 'prop-types';
-import TopMenu from 'js/components/TopMenu';
-import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import HomePage from 'js/components/HomePage';
-import LoginPage from 'js/components/LoginPage';
-import LogoutPage from 'js/components/LogoutPage';
-import FeaturesPage from 'js/components/FeaturesPage';
-import UserArea from 'js/components/UserArea';
-import NotFoundPage from 'js/components/NotFoundPage';
+import React from 'react'
+import PropTypes from 'prop-types'
+import TopMenu from 'js/components/TopMenu'
+import { connect } from 'react-redux'
+import { Route, Switch } from 'react-router-dom'
+import HomePage from 'js/components/HomePage'
+import LoginPage from 'js/components/LoginPage'
+import LogoutPage from 'js/components/LogoutPage'
+import FeaturesPage from 'js/components/FeaturesPage'
+import UserArea from 'js/components/UserArea'
+import NotFoundPage from 'js/components/NotFoundPage'
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -18,7 +18,7 @@ class App extends React.Component {
     static propTypes = {
         isLoggedIn: PropTypes.bool,
         user: PropTypes.object,
-    };
+    }
 
     render() {
         return (
@@ -33,7 +33,7 @@ class App extends React.Component {
                     <Route component={NotFoundPage} />
                 </Switch>
             </div>
-        );
+        )
     }
 }
 
@@ -41,7 +41,7 @@ function mapStateToProps(state) {
     return {
         isLoggedIn: !!state.app.auth.token,
         user: state.app.auth.user,
-    };
+    }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)

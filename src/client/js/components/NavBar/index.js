@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Dropdown, Menu, Modal } from 'semantic-ui-react';
-import MenuLink from '../MenuLink';
-import LoginForm from 'js/components/LoginForm';
-import { connect } from 'react-redux';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Dropdown, Menu, Modal } from 'semantic-ui-react'
+import MenuLink from '../MenuLink'
+import LoginForm from 'js/components/LoginForm'
+import { connect } from 'react-redux'
 
 class NavBar extends React.Component {
     static propTypes = {
         isLoggedIn: PropTypes.bool,
         user: PropTypes.object,
-    };
+    }
 
     render() {
-        const { isLoggedIn, user } = this.props;
+        const { isLoggedIn, user } = this.props
 
         return (
             <Menu inverted>
@@ -56,13 +56,13 @@ class NavBar extends React.Component {
                     </Menu.Menu>
                 )}
             </Menu>
-        );
+        )
     }
 }
 
 const mapStateToProps = state => ({
     isLoggedIn: !!state.app.auth.token,
     user: state.app.auth.user,
-});
+})
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps)(NavBar)

@@ -1,23 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import axios from '@ieremeev/axios';
-import classnames from 'classnames';
+import React from 'react'
+import { connect } from 'react-redux'
+import axios from '@ieremeev/axios'
+import classnames from 'classnames'
 
 class Component extends React.Component {
     state = {
         loading: false,
-    };
+    }
 
     download = async () => {
-        this.setState({ loading: true });
-        const response = await axios.post('/mp3', {});
-        const { filename } = response.data;
-        this.setState({ loading: false });
+        this.setState({ loading: true })
+        const response = await axios.post('/mp3', {})
+        const { filename } = response.data
+        this.setState({ loading: false })
 
         window.location = `${process.env.REACT_APP_AWS_S3_PUBLIC_URL}sounds/users/${
             filename
-        }?${Date.now()}`;
-    };
+        }?${Date.now()}`
+    }
 
     render() {
         return (
@@ -34,12 +34,12 @@ class Component extends React.Component {
                     Download
                 </button>
             </div>
-        );
+        )
     }
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {}
 }
 
-export default connect(mapStateToProps)(Component);
+export default connect(mapStateToProps)(Component)

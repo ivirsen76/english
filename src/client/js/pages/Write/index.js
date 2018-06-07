@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getWriteCurrentCard, getNextWriteCardSounds } from 'js/selectors/card';
-import { setWriteCards, goNextWriteCard, updateWriteInput, checkWriting } from 'js/reducers/card';
-import mp3 from 'js/utils/mp3.js';
-import Counter from 'js/pages/Remember/Counter';
-import InputField from './InputField';
-import DiffResult from './DiffResult';
-import NextButton from './NextButton';
-import { isTextEqual } from 'js/utils/text.js';
-import style from './index.module.scss';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { getWriteCurrentCard, getNextWriteCardSounds } from 'js/selectors/card'
+import { setWriteCards, goNextWriteCard, updateWriteInput, checkWriting } from 'js/reducers/card'
+import mp3 from 'js/utils/mp3.js'
+import Counter from 'js/pages/Remember/Counter'
+import InputField from './InputField'
+import DiffResult from './DiffResult'
+import NextButton from './NextButton'
+import { isTextEqual } from 'js/utils/text.js'
+import style from './index.module.scss'
 
 class Component extends React.Component {
     static propTypes = {
@@ -24,84 +24,84 @@ class Component extends React.Component {
         isChecked: PropTypes.bool,
         input: PropTypes.string,
         iteration: PropTypes.number,
-    };
+    }
 
     state = {
         height: null,
-    };
+    }
 
     componentWillMount() {
-        document.addEventListener('keydown', this.handleEnterKey);
+        document.addEventListener('keydown', this.handleEnterKey)
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keydown', this.handleEnterKey);
+        document.removeEventListener('keydown', this.handleEnterKey)
     }
 
     componentDidMount() {
-        this.adjustHeight();
-        this.props.setWriteCards();
+        this.adjustHeight()
+        this.props.setWriteCards()
     }
 
     componentDidUpdate(prevProps) {
-        this.adjustHeight();
+        this.adjustHeight()
 
         if (
             prevProps.currentCard.text !== this.props.currentCard.text ||
             prevProps.iteration !== this.props.iteration
         ) {
-            this.playSound();
+            this.playSound()
         }
 
         if (process.env.NODE_ENV !== 'test') {
             // Preload mp3 for the next card
             this.props.nextSounds.map(soundFile =>
                 mp3.preload(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + soundFile)
-            );
+            )
         }
     }
 
     handleEnterKey = e => {
         if (e.keyCode === 13) {
-            e.preventDefault();
-            this.goNext();
+            e.preventDefault()
+            this.goNext()
         }
-    };
+    }
 
     adjustHeight = () => {
         if (!this.heightMeter) {
-            return;
+            return
         }
 
-        const height = this.heightMeter.offsetHeight;
+        const height = this.heightMeter.offsetHeight
         if (height !== this.state.height) {
-            this.setState({ height });
+            this.setState({ height })
         }
-    };
+    }
 
     playSound = e => {
-        const currentCard = this.props.currentCard;
-        e && e.preventDefault();
+        const currentCard = this.props.currentCard
+        e && e.preventDefault()
 
-        mp3.play(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + currentCard.usSoundFile);
-    };
+        mp3.play(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + currentCard.usSoundFile)
+    }
 
     goNext = e => {
-        e && e.preventDefault();
+        e && e.preventDefault()
 
         if (!this.props.input) {
-            return;
+            return
         }
 
         if (this.props.isChecked) {
-            this.props.goNextWriteCard();
+            this.props.goNextWriteCard()
         } else {
-            this.props.checkWriting();
+            this.props.checkWriting()
         }
-    };
+    }
 
     render() {
-        const { currentCard, input, currentCardNumber, totalCards, isChecked } = this.props;
+        const { currentCard, input, currentCardNumber, totalCards, isChecked } = this.props
 
         return (
             <div>
@@ -127,7 +127,7 @@ class Component extends React.Component {
                                 <div
                                     className={style.input}
                                     ref={div => {
-                                        this.heightMeter = div;
+                                        this.heightMeter = div
                                     }}
                                 >
                                     {input || '1'}
@@ -164,7 +164,7 @@ class Component extends React.Component {
                     )}
                 </div>
             </div>
-        );
+        )
     }
 }
 
@@ -178,7 +178,7 @@ function mapStateToProps(state) {
         isChecked: state.app.card.write.isChecked,
         input: state.app.card.write.input,
         iteration: state.app.card.write.iteration,
-    };
+    }
 }
 
 export default connect(mapStateToProps, {
@@ -186,4 +186,4 @@ export default connect(mapStateToProps, {
     goNextWriteCard,
     updateWriteInput,
     checkWriting,
-})(Component);
+})(Component)
