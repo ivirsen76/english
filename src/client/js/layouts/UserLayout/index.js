@@ -46,10 +46,10 @@ class Component extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    cardTotal: getCardTotal(state.card),
-    cardRememberTotal: getRememberTotalCards(state.card),
-    cardWriteTotal: getWriteTotalCards(state.card),
-    loading: state.card.loading,
+    cardTotal: getCardTotal(state.app.card),
+    cardRememberTotal: getRememberTotalCards(state.app.card),
+    cardWriteTotal: getWriteTotalCards(state.app.card),
+    loading: state.app.card.loading,
 });
 
 export default connect(mapStateToProps, { loadCards })(Component);

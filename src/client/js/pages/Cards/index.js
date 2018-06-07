@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { addCard, deleteCard, updateCard } from 'js/reducers/card'
-import { getNextNewId, getLatestLabel } from 'js/selectors/card'
-import List from './List'
-import AddCard from './AddCard'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addCard, deleteCard, updateCard } from 'js/reducers/card';
+import { getNextNewId, getLatestLabel } from 'js/selectors/card';
+import List from './List';
+import AddCard from './AddCard';
 
 class Component extends React.Component {
     static propTypes = {
@@ -14,7 +14,7 @@ class Component extends React.Component {
         updateCard: PropTypes.func.isRequired,
         nextNewId: PropTypes.number.isRequired,
         latestLabel: PropTypes.string.isRequired,
-    }
+    };
 
     render() {
         return (
@@ -33,20 +33,20 @@ class Component extends React.Component {
                     updateCard={this.props.updateCard}
                 />
             </div>
-        )
+        );
     }
 }
 
 function mapStateToProps(state) {
     return {
-        list: state.card.list,
-        nextNewId: getNextNewId(state.card),
-        latestLabel: getLatestLabel(state.card),
-    }
+        list: state.app.card.list,
+        nextNewId: getNextNewId(state.app.card),
+        latestLabel: getLatestLabel(state.app.card),
+    };
 }
 
 export default connect(mapStateToProps, {
     addCard,
     deleteCard,
     updateCard,
-})(Component)
+})(Component);

@@ -140,7 +140,7 @@ export const loadCards = () => async (dispatch, getState) => {
 export const setRememberCards = () => (dispatch, getState) => {
     if (process.env.NODE_ENV === 'production') {
         const state = getState();
-        const order = _shuffle(Array.from(Array(state.card.list.length).keys()));
+        const order = _shuffle(Array.from(Array(state.app.card.list.length).keys()));
         dispatch(setRememberCardsWithOrder(order));
     } else {
         dispatch(setRememberCardsWithOrder());
@@ -149,7 +149,7 @@ export const setRememberCards = () => (dispatch, getState) => {
 
 export const goNextRememberStep = () => (dispatch, getState) => {
     const state = getState();
-    if (isLastRememberCard(state.card)) {
+    if (isLastRememberCard(state.app.card)) {
         dispatch(setRememberCards());
     } else {
         dispatch(goNextRememberCard());
@@ -160,16 +160,16 @@ export const checkWriting = () => async (dispatch, getState) => {
     dispatch(saveWriteResults());
 
     const state = getState();
-    const currentCard = getCurrentWriteCard(state.card);
+    const currentCard = getCurrentWriteCard(state.app.card);
 
     await axios.patch(
         `/cards/${currentCard.id}`,
         _pick(currentCard, ['status', 'writeRightAttempts'])
     );
 
-    if (isLastWriteCard(state.card)) {
-        const total = state.card.write.list.length;
-        const correctTotal = total - getWriteErrorsTotal(state.card);
+    if (isLastWriteCard(state.app.card)) {
+        const total = state.app.card.write.list.length;
+        const correctTotal = total - getWriteErrorsTotal(state.app.card);
         notification(`Correct ${correctTotal} of ${total}`);
     }
 };
@@ -177,7 +177,7 @@ export const checkWriting = () => async (dispatch, getState) => {
 export const goNextWriteCard = () => async (dispatch, getState) => {
     const state = getState();
 
-    if (isLastWriteCard(state.card)) {
+    if (isLastWriteCard(state.app.card)) {
         dispatch(setWriteCards());
     } else {
         dispatch(goNextWriteCardInSet());

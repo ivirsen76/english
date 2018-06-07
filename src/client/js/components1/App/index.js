@@ -39,8 +39,8 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        isLoggedIn: !!state.auth.token,
-        user: state.auth.user,
+        isLoggedIn: !!state.app.auth.token,
+        user: state.app.auth.user,
     };
 }
 
