@@ -16,7 +16,7 @@
         "analyze": "ieremeev-app-analyze-bundle",
         "duplicate": "ieremeev-app-duplicate",
         "check": "ieremeev-app-lint && ieremeev-app-test",
-        "precommit": "ieremeev-app-format -s && cccisd-app-lint -s && cccisd-app-test -s",
+        "precommit": "ieremeev-app-format -s && ieremeev-app-lint -s && ieremeev-app-test -s",
         "deploy": "npm run build"
     },
     "dependencies": {
