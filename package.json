@@ -79,7 +79,7 @@
         "winston": "^2.3.1"
     },
     "devDependencies": {
-        "@ieremeev/app": "^1.0.5",
+        "@ieremeev/app": "^1.0.7",
         "parse-db-url": "0.0.0"
     }
 }
