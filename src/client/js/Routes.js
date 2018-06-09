@@ -17,7 +17,7 @@ import Cards from './pages/Cards'
 import Remember from './pages/Remember'
 import Write from './pages/Write'
 import DownloadMp3 from './pages/DownloadMp3'
-import Bases from './pages/Bases'
+import Base from './pages/Base'
 
 // import FlowList from 'bundle-loader?lazy!./pages/FlowList';
 
@@ -37,7 +37,7 @@ export default () => (
         <AppRoute path="/user/remember" component={Remember} />
         <AppRoute path="/user/write" component={Write} />
         <AppRoute path="/user/mp3" component={DownloadMp3} />
-        <AppRoute path="/user/bases" component={Bases} />
+        <AppRoute path="/user/base" component={Base} />
 
         {/* Not found page */}
         <AppRoute component={NotFound} />

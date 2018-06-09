@@ -2,8 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { addBase, updateBase, loadBases } from 'js/reducers/base'
-import List from './List'
-import AddBase from './AddBase'
+import Table from '@ieremeev/table'
+import { Link } from 'react-router-dom'
+import AddBase from '../AddBase'
+import EditBase from '../EditBase'
 
 class Component extends React.Component {
     static propTypes = {
@@ -27,13 +29,38 @@ class Component extends React.Component {
             )
         }
 
+        const columns = [
+            {
+                name: 'actions',
+                label: '',
+                render: (value, row) => (
+                    <div>
+                        <EditBase updateBase={this.props.updateBase} initialValues={row} />
+                    </div>
+                ),
+            },
+            {
+                name: 'title',
+                label: 'Title',
+                filter: true,
+                sort: true,
+                render: (value, row) => <Link to={`/user/base/${row.id}`}>{value}</Link>,
+            },
+            {
+                name: 'price',
+                label: 'Price',
+                filter: true,
+                sort: true,
+            },
+        ]
+
         return (
             <div>
                 <h2>Bases</h2>
                 <div className="margin1">
                     <AddBase addBase={this.props.addBase} />
                 </div>
-                <List data={this.props.list} updateBase={this.props.updateBase} />
+                <Table data={this.props.list} columns={columns} showRowNumber />
             </div>
         )
     }

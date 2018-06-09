@@ -47,7 +47,7 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
                     <Icon type="stats-dots" />
                     Statistics
                 </MenuLink>
-                <MenuLink to="/user/bases">
+                <MenuLink to="/user/base">
                     <Icon type="library" />
                     Bases
                 </MenuLink>
