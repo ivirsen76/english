@@ -22,10 +22,4 @@ class Component extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {}
-}
-
-export default connect(mapStateToProps, {
-    logout,
-})(Component)
+export default connect(null, { logout })(Component)

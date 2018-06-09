@@ -3,18 +3,21 @@ import '../styles/app.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { App, createStore } from '@ieremeev/boilerplate'
+import { App, createStore, history } from '@ieremeev/boilerplate'
 import reducers from './reducers.js'
 import Routes from './Routes.js'
-import { setToken } from './reducers/auth.js'
+import axios from '@ieremeev/axios'
 
 const store = createStore(reducers)
 
-// Set token
+// Setup axios
 const token = store.getState().app.auth.token
 if (token) {
-    store.dispatch(setToken(token))
+    axios.setToken(token)
 }
+axios.setLoginRedirect(() => {
+    history.push('/login')
+})
 
 ReactDOM.render(
     <App store={store}>
