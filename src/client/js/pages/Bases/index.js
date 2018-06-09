@@ -39,12 +39,10 @@ class Component extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        list: state.app.base.list,
-        loading: state.app.base.loading,
-    }
-}
+const mapStateToProps = state => ({
+    list: state.app.base.list,
+    loading: state.app.base.loading,
+})
 
 export default connect(mapStateToProps, {
     addBase,
