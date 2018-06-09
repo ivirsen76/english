@@ -1,4 +1,4 @@
-import reducer, { initialState, setToken, discardToken, setUser } from './auth'
+import reducer, { initialState, setJustToken as setToken, discardToken, setUser } from './auth'
 
 describe('auth reducer', () => {
     describe('setToken()', () => {

@@ -20,8 +20,8 @@
         "deploy": "npm run build"
     },
     "dependencies": {
-        "@ieremeev/axios": "^1.0.3",
-        "@ieremeev/boilerplate": "^1.0.2",
+        "@ieremeev/axios": "^1.0.4",
+        "@ieremeev/boilerplate": "^1.1.1",
         "@ieremeev/button": "^2.0.3",
         "@ieremeev/notification": "^2.0.6",
         "@ieremeev/table": "^2.2.1",
@@ -44,7 +44,6 @@
         "feathers-sequelize": "^1.4.5",
         "fs-promise": "^2.0.3",
         "history": "^4.7.2",
-        "js-cookie": "^2.1.4",
         "lodash": "^4.17.4",
         "md5": "^2.2.1",
         "mysql": "^2.13.0",

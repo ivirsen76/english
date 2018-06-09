@@ -6,14 +6,14 @@ import ReactDOM from 'react-dom'
 import { App, createStore } from '@ieremeev/boilerplate'
 import reducers from './reducers.js'
 import Routes from './Routes.js'
-import cookie from 'js-cookie'
-import { authenticate } from 'js/reducers/auth'
+import axios from '@ieremeev/axios'
 
 const store = createStore(reducers)
 
-const token = cookie.get('token')
+// Set token to axios
+const token = store.getState().app.auth.token
 if (token) {
-    store.dispatch(authenticate(token))
+    axios.setToken(token)
 }
 
 ReactDOM.render(
