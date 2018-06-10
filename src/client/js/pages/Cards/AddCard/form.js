@@ -45,6 +45,7 @@ class AddCardForm extends React.Component {
     static propTypes = {
         handleSubmit: PropTypes.func,
         submitButtonTitle: PropTypes.string,
+        hideLabel: PropTypes.bool,
     }
 
     render() {
@@ -52,7 +53,7 @@ class AddCardForm extends React.Component {
             <form onSubmit={this.props.handleSubmit} className="ui form">
                 <Field name="text" component={Input} label="Text" autoFocus />
                 <Field name="translate" component={Input} label="Translation" />
-                <Field name="label" component={Input} label="Tag" />
+                {!this.props.hideLabel && <Field name="label" component={Input} label="Tag" />}
 
                 <button className="ui compact button" type="submit">
                     {this.props.submitButtonTitle}
