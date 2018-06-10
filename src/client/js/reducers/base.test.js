@@ -3,6 +3,7 @@ import reducer, {
     addBaseWithoutSaving as addBase,
     deleteBaseWithoutSaving as deleteBase,
     updateBaseWithoutSaving as updateBase,
+    addCardWithoutSaving as addCard,
     setBases,
     setLoadingBasesState,
 } from './base'
@@ -75,6 +76,20 @@ describe('base reducer', () => {
                 ])
             )
             expect(resultedState.list).toEqual(expectedList)
+        })
+    })
+
+    describe('addCard()', () => {
+        it('Should add card to base', () => {
+            const oldCard = { id: 4, baseId: 2, text: 'More', translate: 'Anymore' }
+            const newCard = { id: 5, baseId: 1, text: 'Some', translate: 'Another' }
+            const state = {
+                ...initialState,
+                cards: [oldCard],
+            }
+
+            const resultedState = reducer(state, addCard(newCard))
+            expect(resultedState.cards).toEqual([oldCard, newCard])
         })
     })
 })

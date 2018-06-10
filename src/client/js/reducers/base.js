@@ -1,13 +1,11 @@
 import { handleActions, createAction } from 'redux-actions'
 import axios from '@ieremeev/axios'
 
-export const minNewId = 1000000000
-export const maxWriteAttempts = 3
-
 // Initial state
 export const initialState = {
     loading: true,
     list: [],
+    cards: [],
 }
 
 // Actions
@@ -16,6 +14,7 @@ const DELETE_BASE = 'english/base/DELETE_BASE'
 const UPDATE_BASE = 'english/base/UPDATE_BASE'
 const SET_LOADING_BASES_STATE = 'english/base/SET_LOADING_BASES_STATE'
 const SET_BASES = 'english/base/SET_BASES'
+const ADD_CARD = 'english/base/ADD_CARD'
 
 // Action Creators
 export const addBaseWithoutSaving = createAction(ADD_BASE)
@@ -23,6 +22,7 @@ export const deleteBaseWithoutSaving = createAction(DELETE_BASE)
 export const updateBaseWithoutSaving = createAction(UPDATE_BASE)
 export const setLoadingBasesState = createAction(SET_LOADING_BASES_STATE)
 export const setBases = createAction(SET_BASES)
+export const addCardWithoutSaving = createAction(ADD_CARD)
 
 export const addBase = baseInfo => async (dispatch, getState) => {
     const response = await axios.post('/bases', baseInfo)
@@ -77,6 +77,10 @@ export default handleActions(
         [SET_LOADING_BASES_STATE]: (state, action) => ({
             ...state,
             loading: !!action.payload,
+        }),
+        [ADD_CARD]: (state, action) => ({
+            ...state,
+            cards: [...state.cards, action.payload],
         }),
     },
     initialState
