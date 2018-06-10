@@ -15,6 +15,8 @@ const UPDATE_BASE = 'english/base/UPDATE_BASE'
 const SET_LOADING_BASES_STATE = 'english/base/SET_LOADING_BASES_STATE'
 const SET_BASES = 'english/base/SET_BASES'
 const ADD_CARD = 'english/base/ADD_CARD'
+const UPDATE_CARD = 'english/base/UPDATE_CARD'
+const SET_CARDS_FOR_BASE = 'english/base/SET_CARDS_FOR_BASE'
 
 // Action Creators
 export const addBaseWithoutSaving = createAction(ADD_BASE)
@@ -23,6 +25,8 @@ export const updateBaseWithoutSaving = createAction(UPDATE_BASE)
 export const setLoadingBasesState = createAction(SET_LOADING_BASES_STATE)
 export const setBases = createAction(SET_BASES)
 export const addCardWithoutSaving = createAction(ADD_CARD)
+export const updateCardWithoutSaving = createAction(UPDATE_CARD)
+export const setCardsForBase = createAction(SET_CARDS_FOR_BASE)
 
 export const addBase = baseInfo => async (dispatch, getState) => {
     const response = await axios.post('/bases', baseInfo)
@@ -82,6 +86,25 @@ export default handleActions(
             ...state,
             cards: [...state.cards, action.payload],
         }),
+        [UPDATE_CARD]: (state, action) => {
+            const cardId = action.payload.id
+
+            return {
+                ...state,
+                cards: [...state.cards.filter(item => item.id !== cardId), action.payload],
+            }
+        },
+        [SET_CARDS_FOR_BASE]: (state, action) => {
+            const { baseId, cards } = action.payload
+
+            return {
+                ...state,
+                cards: [
+                    ...state.cards.filter(item => item.baseId !== baseId),
+                    ...cards.map(item => ({ ...item, baseId })),
+                ],
+            }
+        },
     },
     initialState
 )

@@ -4,8 +4,10 @@ import reducer, {
     deleteBaseWithoutSaving as deleteBase,
     updateBaseWithoutSaving as updateBase,
     addCardWithoutSaving as addCard,
+    updateCardWithoutSaving as updateCard,
     setBases,
     setLoadingBasesState,
+    setCardsForBase,
 } from './base'
 
 describe('base reducer', () => {
@@ -90,6 +92,48 @@ describe('base reducer', () => {
 
             const resultedState = reducer(state, addCard(newCard))
             expect(resultedState.cards).toEqual([oldCard, newCard])
+        })
+    })
+
+    describe('updateCard()', () => {
+        it('Should update card', () => {
+            const state = {
+                ...initialState,
+                cards: [
+                    { id: 3, text: 'One', translate: 'Another', baseId: 2 },
+                    { id: 4, text: 'More', translate: 'Anymore', baseId: 2 },
+                ],
+            }
+            const expectedCards = [
+                { id: 3, text: 'One', translate: 'Another', baseId: 2 },
+                { id: 4, text: 'Some', translate: 'Moreover', baseId: 2 },
+            ]
+
+            const resultedState = reducer(
+                state,
+                updateCard({ id: 4, text: 'Some', translate: 'Moreover', baseId: 2 })
+            )
+            expect(resultedState.cards).toEqual(expectedCards)
+        })
+    })
+
+    describe('setCardsForBase()', () => {
+        it('Should set cards for base', () => {
+            const state = {
+                ...initialState,
+                cards: [{ id: 5, baseId: 2, text: 'Old', translate: 'ReallyOld' }],
+            }
+            const cards = [
+                { id: 3, text: 'One', translate: 'Another' },
+                { id: 4, text: 'More', translate: 'Anymore' },
+            ]
+            const expectedCards = [
+                { id: 3, text: 'One', translate: 'Another', baseId: 2 },
+                { id: 4, text: 'More', translate: 'Anymore', baseId: 2 },
+            ]
+
+            const resultedState = reducer(state, setCardsForBase({ baseId: 2, cards }))
+            expect(resultedState.cards).toEqual(expectedCards)
         })
     })
 })
