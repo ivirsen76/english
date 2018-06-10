@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 
 module.exports = function(sequelize) {
     const basecard = sequelize.define(
-        'basecard',
+        'basecards',
         {
             baseId: {
                 type: Sequelize.INTEGER,
@@ -27,8 +27,6 @@ module.exports = function(sequelize) {
             freezeTableName: true,
         }
     )
-
-    basecard.sync()
 
     return basecard
 }

@@ -36,7 +36,5 @@ module.exports = function(sequelize) {
         }
     )
 
-    base.sync()
-
     return base
 }

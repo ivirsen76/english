@@ -50,6 +50,11 @@ export const loadBases = () => async (dispatch, getState) => {
     dispatch(setLoadingBasesState(false))
 }
 
+export const addCard = cardInfo => async (dispatch, getState) => {
+    const response = await axios.post('/basecards', cardInfo)
+    dispatch(addCardWithoutSaving(response.data))
+}
+
 // Reducer
 export default handleActions(
     {
