@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { addBase, updateBase, loadBases } from 'js/reducers/base'
+import { addBase, updateBase } from 'js/reducers/base'
 import Table from '@ieremeev/table'
 import { Link } from 'react-router-dom'
 import AddBase from '../AddBase'
@@ -12,23 +12,9 @@ class Component extends React.Component {
         list: PropTypes.array.isRequired,
         addBase: PropTypes.func.isRequired,
         updateBase: PropTypes.func.isRequired,
-        loadBases: PropTypes.func,
-        loading: PropTypes.bool,
-    }
-
-    componentDidMount() {
-        this.props.loadBases()
     }
 
     render() {
-        if (this.props.loading) {
-            return (
-                <div className="ui active inverted dimmer">
-                    <div className="ui big text loader">Loading</div>
-                </div>
-            )
-        }
-
         const columns = [
             {
                 name: 'actions',
@@ -68,11 +54,6 @@ class Component extends React.Component {
 
 const mapStateToProps = state => ({
     list: state.app.base.list,
-    loading: state.app.base.loading,
 })
 
-export default connect(mapStateToProps, {
-    addBase,
-    updateBase,
-    loadBases,
-})(Component)
+export default connect(mapStateToProps, { addBase, updateBase })(Component)
