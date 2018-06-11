@@ -4,13 +4,28 @@ import format from 'date-fns/format'
 import Table from '@ieremeev/table'
 import { connect } from 'react-redux'
 import AddCard from './AddCard'
-import { addCard } from 'js/reducers/base.js'
+import { addCard, loadCards } from 'js/reducers/base.js'
+import Loader from '@ieremeev/loader'
 
 class ShowBase extends React.Component {
     static propTypes = {
         base: PropTypes.object,
         list: PropTypes.array,
+        cardsLoaded: PropTypes.bool,
         addCard: PropTypes.func,
+        loadCards: PropTypes.func,
+    }
+
+    state = {
+        loading: false,
+    }
+
+    componentDidMount = async () => {
+        if (!this.props.cardsLoaded) {
+            this.setState({ loading: true })
+            await this.props.loadCards(this.props.base.id)
+            this.setState({ loading: false })
+        }
     }
 
     addCard = values => {
@@ -52,18 +67,23 @@ class ShowBase extends React.Component {
         ]
 
         return (
-            <div>
+            <Loader loading={this.state.loading}>
                 <div className="margin1">
                     <AddCard addCard={this.addCard} />
                 </div>
                 <Table data={this.props.list} columns={columns} showRowNumber />
-            </div>
+            </Loader>
         )
     }
 }
 
-const mapStateToProps = (state, props) => ({
-    list: state.app.base.cards.filter(item => item.baseId === props.base.id),
-})
+const mapStateToProps = (state, props) => {
+    const baseId = props.base.id
 
-export default connect(mapStateToProps, { addCard })(ShowBase)
+    return {
+        cardsLoaded: !!state.app.base.cards.find(item => item.baseId === baseId),
+        list: state.app.base.cards.filter(item => item.baseId === baseId),
+    }
+}
+
+export default connect(mapStateToProps, { addCard, loadCards })(ShowBase)

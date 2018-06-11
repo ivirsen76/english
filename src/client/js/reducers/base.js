@@ -50,6 +50,11 @@ export const loadBases = () => async (dispatch, getState) => {
     dispatch(setLoadingBasesState(false))
 }
 
+export const loadCards = baseId => async (dispatch, getState) => {
+    const response = await axios.get(`/basecards?baseId=${baseId}`)
+    dispatch(setCardsForBase({ baseId, cards: response.data.data }))
+}
+
 export const addCard = cardInfo => async (dispatch, getState) => {
     const response = await axios.post('/basecards', cardInfo)
     dispatch(addCardWithoutSaving(response.data))
