@@ -1,5 +1,6 @@
 import { handleActions, createAction } from 'redux-actions'
 import axios from '@ieremeev/axios'
+import _pick from 'lodash/pick'
 
 // Initial state
 export const initialState = {
@@ -60,6 +61,12 @@ export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(response.data))
 }
 
+export const updateCard = cardInfo => async (dispatch, getState) => {
+    const result = _pick(cardInfo, ['id', 'text', 'translate'])
+    dispatch(updateCardWithoutSaving(result))
+    await axios.patch(`/basecards/${cardInfo.id}`, result)
+}
+
 // Reducer
 export default handleActions(
     {
@@ -101,7 +108,13 @@ export default handleActions(
 
             return {
                 ...state,
-                cards: [...state.cards.filter(item => item.id !== cardId), action.payload],
+                cards: state.cards.map(item => {
+                    if (item.id !== cardId) {
+                        return item
+                    }
+
+                    return { ...item, ...action.payload }
+                }),
             }
         },
         [SET_CARDS_FOR_BASE]: (state, action) => {

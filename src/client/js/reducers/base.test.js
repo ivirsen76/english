@@ -111,7 +111,7 @@ describe('base reducer', () => {
 
             const resultedState = reducer(
                 state,
-                updateCard({ id: 4, text: 'Some', translate: 'Moreover', baseId: 2 })
+                updateCard({ id: 4, text: 'Some', translate: 'Moreover' })
             )
             expect(resultedState.cards).toEqual(expectedCards)
         })

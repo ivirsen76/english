@@ -4,7 +4,8 @@ import format from 'date-fns/format'
 import Table from '@ieremeev/table'
 import { connect } from 'react-redux'
 import AddCard from './AddCard'
-import { addCard, loadCards } from 'js/reducers/base.js'
+import EditCard from './EditCard'
+import { addCard, updateCard, loadCards } from 'js/reducers/base.js'
 import Loader from '@ieremeev/loader'
 
 class ShowBase extends React.Component {
@@ -13,6 +14,7 @@ class ShowBase extends React.Component {
         list: PropTypes.array,
         cardsLoaded: PropTypes.bool,
         addCard: PropTypes.func,
+        updateCard: PropTypes.func,
         loadCards: PropTypes.func,
     }
 
@@ -35,17 +37,15 @@ class ShowBase extends React.Component {
 
     render() {
         const columns = [
-            // {
-            //     name: 'actions',
-            //     label: '',
-            //     render: (value, row) => (
-            //         <div>
-            //             <EditCard updateCard={updateCard} initialValues={row} />
-            //             <DeleteCard deleteCard={deleteCard} id={row.id} />
-            //         </div>
-            //     ),
-            //     className: style.nowrap,
-            // },
+            {
+                name: 'actions',
+                label: '',
+                render: (value, row) => (
+                    <div>
+                        <EditCard updateCard={this.props.updateCard} initialValues={row} />
+                    </div>
+                ),
+            },
             {
                 name: 'text',
                 label: 'Text',
@@ -86,4 +86,4 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-export default connect(mapStateToProps, { addCard, loadCards })(ShowBase)
+export default connect(mapStateToProps, { addCard, updateCard, loadCards })(ShowBase)
