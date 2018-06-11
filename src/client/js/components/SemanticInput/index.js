@@ -1,24 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import FieldWrapper from '../SemanticFieldWrapper'
 import _pick from 'lodash/pick'
 
 export default class Component extends React.Component {
     static propTypes = {
         input: PropTypes.object,
-        meta: PropTypes.object,
         label: PropTypes.node,
     }
 
     render() {
-        const { input, label, meta: { touched, error } } = this.props
+        const { input, label } = this.props
         const props = _pick(this.props, ['autoFocus', 'type'])
 
         return (
-            <div className={'field ' + (touched && error && 'error')}>
+            <FieldWrapper {...this.props}>
                 <label htmlFor={input.name}>{label}</label>
                 <input {...input} {...props} />
-                {touched && error && <div className="ui pointing red basic label">{error}</div>}
-            </div>
+            </FieldWrapper>
         )
     }
 }
