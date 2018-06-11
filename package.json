@@ -1,7 +1,6 @@
 {
     "name": "english",
     "private": true,
-    "homepage": "/assets",
     "scripts": {
         "start": "npm-run-all --parallel start:client start:server",
         "start:client": "ieremeev-app-build --watch",
