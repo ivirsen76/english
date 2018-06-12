@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.39)
 # Database: feather
-# Generation Time: 2018-06-12 05:49:58 +0000
+# Generation Time: 2018-06-12 06:19:47 +0000
 # ************************************************************
 
 
@@ -70,6 +70,15 @@ CREATE TABLE `basecards` (
   CONSTRAINT `basecards_ibfk_1` FOREIGN KEY (`baseId`) REFERENCES `bases` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `basecards` WRITE;
+/*!40000 ALTER TABLE `basecards` DISABLE KEYS */;
+
+INSERT INTO `basecards` (`id`, `baseId`, `text`, `translate`, `ukSoundFile`, `ukSoundLength`, `usSoundFile`, `usSoundLength`, `ruSoundFile`, `ruSoundLength`, `createdAt`, `updatedAt`)
+VALUES
+    (1,2,'first','первый',NULL,NULL,NULL,NULL,NULL,NULL,'2018-06-12 06:17:46','2018-06-12 06:17:46');
+
+/*!40000 ALTER TABLE `basecards` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table bases
@@ -92,6 +101,16 @@ CREATE TABLE `bases` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `bases` WRITE;
+/*!40000 ALTER TABLE `bases` DISABLE KEYS */;
+
+INSERT INTO `bases` (`id`, `parentId`, `position`, `title`, `info`, `type`, `label`, `count`, `price`, `createdAt`, `updatedAt`)
+VALUES
+    (1,0,0,'face2face',NULL,'folder','',0,NULL,'2018-06-12 06:17:13','2018-06-12 06:17:13'),
+    (2,1,0,'Chapter 1',NULL,'cards','',1,NULL,'2018-06-12 06:17:26','2018-06-12 06:17:26');
+
+/*!40000 ALTER TABLE `bases` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table cards
