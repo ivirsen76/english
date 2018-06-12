@@ -1,6 +1,6 @@
 /* global fixture */
 import { Selector } from 'testcafe'
-import ReactSelector from 'testcafe-react-selectors'
+import { ReactSelector } from 'testcafe-react-selectors'
 import { regularUser } from './roles.js'
 import { restoreDb, getNumRecords } from './db/utils.js'
 
