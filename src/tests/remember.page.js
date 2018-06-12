@@ -7,7 +7,7 @@ import { restoreDb, getNumRecords } from './db/utils.js'
 fixture('Remember page').beforeEach(async t => {
     restoreDb()
     await t.useRole(regularUser)
-    await t.navigateTo('http://localhost:3000/user/remember')
+    await t.navigateTo('http://localhost:9000/user/remember')
 })
 
 // Selectors
