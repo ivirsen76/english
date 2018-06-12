@@ -29,6 +29,11 @@ module.exports = function(sequelize) {
                 allowNull: false,
                 defaultValue: '',
             },
+            count: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                defaultValue: 0,
+            },
             price: Sequelize.INTEGER,
         },
         {

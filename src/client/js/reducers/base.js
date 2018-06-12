@@ -58,6 +58,14 @@ export const loadCards = baseId => async (dispatch, getState) => {
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     const response = await axios.post('/basecards', cardInfo)
+    const state = getState().app.base
+
+    // Increment count of the base
+    const base = state.list.find(item => item.id === cardInfo.baseId)
+    if (base) {
+        dispatch(updateBaseWithoutSaving(base.id, { count: base.count + 1 }))
+    }
+
     dispatch(addCardWithoutSaving(response.data))
 }
 

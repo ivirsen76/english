@@ -22,10 +22,16 @@ module.exports = {
             type: {
                 type: Sequelize.STRING,
                 allowNull: false,
+                defaultValue: 'folder',
             },
             label: {
                 type: Sequelize.STRING,
                 allowNull: false,
+            },
+            count: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                defaultValue: 0,
             },
             price: Sequelize.INTEGER,
             createdAt: Sequelize.DATE,

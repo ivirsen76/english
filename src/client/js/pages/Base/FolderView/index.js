@@ -36,6 +36,12 @@ class Component extends React.Component {
                 render: (value, row) => <Link to={`/user/base/${row.id}`}>{value}</Link>,
             },
             {
+                name: 'count',
+                label: 'Count',
+                filter: true,
+                sort: true,
+            },
+            {
                 name: 'price',
                 label: 'Price',
                 filter: true,
