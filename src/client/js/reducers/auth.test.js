@@ -1,24 +1,15 @@
-import reducer, { initialState, setJustToken as setToken, discardToken, setUser } from './auth'
+import reducer, { initialState, setUser, unsetUser } from './auth'
 
 describe('auth reducer', () => {
-    describe('setToken()', () => {
-        it('Should set token', () => {
-            const token = 'sjdfklsdjklfjlsd'
-            expect(reducer(initialState, setToken(token)).token).toBe(token)
-        })
-    })
-
-    describe('discardToken()', () => {
-        it('Should discard token', () => {
+    describe('unsetUser()', () => {
+        it('Should unset user', () => {
             const state = {
                 ...initialState,
-                token: 'sjfdlkdsf',
                 user: {
                     email: 'some@one.com',
                 },
             }
-            const resultedState = reducer(state, discardToken())
-            expect(resultedState.token).toBeNull()
+            const resultedState = reducer(state, unsetUser())
             expect(resultedState.user).toEqual({})
         })
     })

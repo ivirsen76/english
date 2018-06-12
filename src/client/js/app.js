@@ -7,11 +7,12 @@ import { App, createStore, history } from '@ieremeev/boilerplate'
 import reducers from './reducers.js'
 import Routes from './Routes.js'
 import axios from '@ieremeev/axios'
+import cookie from 'js-cookie'
 
 const store = createStore(reducers)
 
 // Setup axios
-const token = store.getState().app.auth.token
+const token = cookie.get('token')
 if (token) {
     axios.setToken(token)
 }

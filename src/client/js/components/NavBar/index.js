@@ -61,7 +61,7 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    isLoggedIn: !!state.app.auth.token,
+    isLoggedIn: !!state.app.auth.user.email,
     user: state.app.auth.user,
 })
 

@@ -16,7 +16,6 @@ connection.connect()
 
 export const restoreDb = () => {
     shell.exec(command)
-    exit(0)
 }
 
 export const getNumRecords = (table, conditions) => {

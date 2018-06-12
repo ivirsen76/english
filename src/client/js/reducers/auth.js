@@ -3,32 +3,31 @@ import _pick from 'lodash/pick'
 import axios from '@ieremeev/axios'
 // import history from '../store/history'
 import { SubmissionError } from 'redux-form'
+import cookie from 'js-cookie'
 
-export const persistedKeys = ['token', 'user']
+export const persistedKeys = ['user']
 
 // Initial state
 export const initialState = {
-    token: null,
     user: {},
 }
 
 // Actions
-const SET_TOKEN = 'english/auth/SET_TOKEN'
-const DISCARD_TOKEN = 'english/auth/DISCARD_TOKEN'
+const UNSET_USER = 'english/auth/UNSET_USER'
 const SET_USER = 'english/auth/SET_USER'
 
 // Action Creators
-export const setJustToken = createAction(SET_TOKEN)
-export const discardToken = createAction(DISCARD_TOKEN)
+export const unsetUser = createAction(UNSET_USER)
 export const setUser = createAction(SET_USER)
 
 export const setToken = token => (dispatch, getState) => {
-    dispatch(setJustToken(token))
+    cookie.set('token', token)
     axios.setToken(token)
 }
 
 export const logout = () => (dispatch, getState) => {
-    dispatch(discardToken())
+    cookie.remove('token')
+    dispatch(unsetUser())
 }
 
 // This is not exactly an action creator
@@ -47,13 +46,8 @@ export const login = async (dispatch, { email, password }) => {
 // Reducer
 export default handleActions(
     {
-        [SET_TOKEN]: (state, action) => ({
+        [UNSET_USER]: (state, action) => ({
             ...state,
-            token: action.payload,
-        }),
-        [DISCARD_TOKEN]: (state, action) => ({
-            ...state,
-            token: null,
             user: {},
         }),
         [SET_USER]: (state, action) => ({

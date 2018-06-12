@@ -44,6 +44,7 @@
         "feathers-sequelize": "^1.4.5",
         "fs-promise": "^2.0.3",
         "history": "^4.7.2",
+        "js-cookie": "^2.2.0",
         "lodash": "^4.17.4",
         "md5": "^2.2.1",
         "mysql": "^2.13.0",
@@ -79,6 +80,7 @@
     },
     "devDependencies": {
         "@ieremeev/app": "^1.0.15",
-        "parse-db-url": "0.0.0"
+        "parse-db-url": "0.0.0",
+        "shelljs": "^0.8.2"
     }
 }
