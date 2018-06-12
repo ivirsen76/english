@@ -4,15 +4,18 @@ import { connect } from 'react-redux'
 import { addBase, updateBase } from 'js/reducers/base'
 import Table from '@ieremeev/table'
 import { Link } from 'react-router-dom'
-import AddBase from '../AddBase'
-import EditBase from '../EditBase'
+import AddBase from './AddBase'
+import EditBase from './EditBase'
 
 class Component extends React.Component {
     static propTypes = {
+        base: PropTypes.object,
         list: PropTypes.array.isRequired,
         addBase: PropTypes.func.isRequired,
         updateBase: PropTypes.func.isRequired,
     }
+
+    addBase = values => this.props.addBase({ ...values, parentId: this.props.base.id })
 
     render() {
         const columns = [
@@ -42,9 +45,8 @@ class Component extends React.Component {
 
         return (
             <div>
-                <h2>Bases</h2>
                 <div className="margin1">
-                    <AddBase addBase={this.props.addBase} />
+                    <AddBase addBase={this.addBase} />
                 </div>
                 <Table data={this.props.list} columns={columns} showRowNumber />
             </div>
@@ -52,8 +54,8 @@ class Component extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    list: state.app.base.list,
+const mapStateToProps = (state, props) => ({
+    list: state.app.base.list.filter(item => item.parentId === props.base.id),
 })
 
 export default connect(mapStateToProps, { addBase, updateBase })(Component)

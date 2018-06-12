@@ -37,7 +37,7 @@ export default () => (
         <AppRoute path="/user/remember" component={Remember} />
         <AppRoute path="/user/write" component={Write} />
         <AppRoute path="/user/mp3" component={DownloadMp3} />
-        <AppRoute path="/user/base" component={Base} />
+        <AppRoute path="/user/base/:id?" component={Base} />
 
         {/* Not found page */}
         <AppRoute component={NotFound} />
