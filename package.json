@@ -11,7 +11,7 @@
         "lint": "ieremeev-app-lint",
         "format": "ieremeev-app-format",
         "test": "ieremeev-app-test --watch",
-        "testcafe": "testcafe chrome src/testcafe/**/*.page.js",
+        "testcafe": "testcafe chrome:headless src/testcafe/**/*.page.js",
         "testcafe:live": "testcafe-live chrome src/testcafe/**/*.page.js",
         "analyze": "ieremeev-app-analyze-bundle",
         "duplicate": "ieremeev-app-duplicate",

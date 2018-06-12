@@ -42,7 +42,9 @@ class Component extends React.Component {
                             cardWriteTotal={this.props.cardWriteTotal}
                         />
                     </div>
-                    <div className="twelve wide column">{this.props.children}</div>
+                    <div id="body" className="twelve wide column">
+                        {this.props.children}
+                    </div>
                 </div>
             </div>
         )

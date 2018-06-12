@@ -41,6 +41,7 @@ class AddBaseForm extends React.Component {
                 />
 
                 <button
+                    id="addBaseSubmitButton"
                     className={`ui ${this.props.submitting && 'loading'} compact button`}
                     type="submit"
                 >
