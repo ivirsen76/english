@@ -6,6 +6,7 @@ import Table from '@ieremeev/table'
 import { Link } from 'react-router-dom'
 import AddBase from './AddBase'
 import EditBase from './EditBase'
+import style from './style.module.css'
 
 class Component extends React.Component {
     static propTypes = {
@@ -31,6 +32,7 @@ class Component extends React.Component {
                         />
                     </div>
                 ),
+                className: style.actions,
             },
             {
                 name: 'title',

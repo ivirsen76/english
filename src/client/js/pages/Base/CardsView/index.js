@@ -7,6 +7,7 @@ import AddCard from './AddCard'
 import EditCard from './EditCard'
 import { addCard, updateCard, loadCards } from 'js/reducers/base.js'
 import Loader from '@ieremeev/loader'
+import style from './style.module.css'
 
 class ShowBase extends React.Component {
     static propTypes = {
@@ -45,6 +46,7 @@ class ShowBase extends React.Component {
                         <EditCard updateCard={this.props.updateCard} initialValues={row} />
                     </div>
                 ),
+                className: style.actions,
             },
             {
                 name: 'text',

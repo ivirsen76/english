@@ -18,7 +18,7 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
                     <DeleteCard deleteCard={deleteCard} id={row.id} />
                 </div>
             ),
-            className: style.nowrap,
+            className: style.actions,
         },
         {
             name: 'text',
