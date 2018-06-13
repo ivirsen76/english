@@ -30,7 +30,7 @@ export default class Component extends React.Component {
             <Modal size="small" closeIcon trigger={trigger}>
                 <Modal.Header>Add card</Modal.Header>
                 <Modal.Content>
-                    <div>
+                    <div key={this.state.count}>
                         <Form
                             form={'addCardForBase' + this.state.count}
                             onSubmit={this.handleSubmit}
