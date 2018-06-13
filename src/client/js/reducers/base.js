@@ -16,6 +16,7 @@ const UPDATE_BASE = 'english/base/UPDATE_BASE'
 const SET_LOADING_BASES_STATE = 'english/base/SET_LOADING_BASES_STATE'
 const SET_BASES = 'english/base/SET_BASES'
 const ADD_CARD = 'english/base/ADD_CARD'
+const DELETE_CARD = 'english/base/DELETE_CARD'
 const UPDATE_CARD = 'english/base/UPDATE_CARD'
 const SET_CARDS_FOR_BASE = 'english/base/SET_CARDS_FOR_BASE'
 
@@ -26,6 +27,7 @@ export const updateBaseWithoutSaving = createAction(UPDATE_BASE)
 export const setLoadingBasesState = createAction(SET_LOADING_BASES_STATE)
 export const setBases = createAction(SET_BASES)
 export const addCardWithoutSaving = createAction(ADD_CARD)
+export const deleteCardWithoutSaving = createAction(DELETE_CARD)
 export const updateCardWithoutSaving = createAction(UPDATE_CARD)
 export const setCardsForBase = createAction(SET_CARDS_FOR_BASE)
 
@@ -69,6 +71,11 @@ export const addCard = cardInfo => async (dispatch, getState) => {
     dispatch(addCardWithoutSaving(response.data))
 }
 
+export const deleteCard = basecardId => async (dispatch, getState) => {
+    await axios.delete(`/basecardss/${basecardId}`)
+    dispatch(deleteCardWithoutSaving(basecardId))
+}
+
 export const updateCard = cardInfo => async (dispatch, getState) => {
     const result = _pick(cardInfo, ['id', 'text', 'translate'])
     dispatch(updateCardWithoutSaving(result))
@@ -110,6 +117,10 @@ export default handleActions(
         [ADD_CARD]: (state, action) => ({
             ...state,
             cards: [...state.cards, action.payload],
+        }),
+        [DELETE_CARD]: (state, action) => ({
+            ...state,
+            cards: state.cards.filter(item => item.id !== action.payload),
         }),
         [UPDATE_CARD]: (state, action) => {
             const cardId = action.payload.id

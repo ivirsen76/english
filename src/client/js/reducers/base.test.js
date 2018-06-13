@@ -4,6 +4,7 @@ import reducer, {
     deleteBaseWithoutSaving as deleteBase,
     updateBaseWithoutSaving as updateBase,
     addCardWithoutSaving as addCard,
+    deleteCardWithoutSaving as deleteCard,
     updateCardWithoutSaving as updateCard,
     setBases,
     setLoadingBasesState,
@@ -92,6 +93,18 @@ describe('base reducer', () => {
 
             const resultedState = reducer(state, addCard(newCard))
             expect(resultedState.cards).toEqual([oldCard, newCard])
+        })
+    })
+
+    describe('deleteCard()', () => {
+        it('Should delete card', () => {
+            const state = {
+                ...initialState,
+                cards: [{ id: 1, text: 'Tree1' }, { id: 2, text: 'Tree2' }],
+            }
+            const expectedCards = [{ id: 2, text: 'Tree2' }]
+            const resultedState = reducer(state, deleteCard(1))
+            expect(resultedState.cards).toEqual(expectedCards)
         })
     })
 
