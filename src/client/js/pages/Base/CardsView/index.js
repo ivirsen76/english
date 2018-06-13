@@ -5,7 +5,8 @@ import Table from '@ieremeev/table'
 import { connect } from 'react-redux'
 import AddCard from './AddCard'
 import EditCard from './EditCard'
-import { addCard, updateCard, loadCards } from 'js/reducers/base.js'
+import DeleteCard from './DeleteCard'
+import { addCard, deleteCard, updateCard, loadCards } from 'js/reducers/base.js'
 import Loader from '@ieremeev/loader'
 import style from './style.module.css'
 
@@ -15,6 +16,7 @@ class ShowBase extends React.Component {
         list: PropTypes.array,
         cardsLoaded: PropTypes.bool,
         addCard: PropTypes.func,
+        deleteCard: PropTypes.func,
         updateCard: PropTypes.func,
         loadCards: PropTypes.func,
     }
@@ -44,6 +46,7 @@ class ShowBase extends React.Component {
                 render: (value, row) => (
                     <div>
                         <EditCard updateCard={this.props.updateCard} initialValues={row} />
+                        <DeleteCard deleteCard={this.props.deleteCard} id={row.id} />
                     </div>
                 ),
                 className: style.actions,
@@ -88,4 +91,4 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-export default connect(mapStateToProps, { addCard, updateCard, loadCards })(ShowBase)
+export default connect(mapStateToProps, { addCard, deleteCard, updateCard, loadCards })(ShowBase)

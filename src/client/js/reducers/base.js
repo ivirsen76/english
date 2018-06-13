@@ -72,7 +72,7 @@ export const addCard = cardInfo => async (dispatch, getState) => {
 }
 
 export const deleteCard = basecardId => async (dispatch, getState) => {
-    await axios.delete(`/basecardss/${basecardId}`)
+    await axios.delete(`/basecards/${basecardId}`)
     dispatch(deleteCardWithoutSaving(basecardId))
 }
 
