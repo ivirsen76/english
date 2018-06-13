@@ -6,17 +6,9 @@ import Form from '../AddBase/form'
 
 export default class Component extends React.Component {
     static propTypes = {
-        trigger: PropTypes.node,
+        baseId: PropTypes.id,
         initialValues: PropTypes.object,
         updateBase: PropTypes.func,
-    }
-
-    static defaultProps = {
-        trigger: (
-            <button className="ui green compact mini icon button">
-                <i className="icon-pencil" />
-            </button>
-        ),
     }
 
     handleSubmit = values => {
@@ -26,11 +18,20 @@ export default class Component extends React.Component {
     }
 
     render() {
+        const trigger = (
+            <button
+                id={`updateBaseButton${this.props.baseId}`}
+                className="ui green compact mini icon button"
+            >
+                <i className="icon-pencil" />
+            </button>
+        )
+
         return (
             <Modal
                 size="small"
                 closeIcon
-                trigger={this.props.trigger}
+                trigger={trigger}
                 ref={modal => {
                     this.modal = modal
                 }}

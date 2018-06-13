@@ -24,7 +24,11 @@ class Component extends React.Component {
                 label: '',
                 render: (value, row) => (
                     <div>
-                        <EditBase updateBase={this.props.updateBase} initialValues={row} />
+                        <EditBase
+                            baseId={row.id}
+                            updateBase={this.props.updateBase}
+                            initialValues={row}
+                        />
                     </div>
                 ),
             },
