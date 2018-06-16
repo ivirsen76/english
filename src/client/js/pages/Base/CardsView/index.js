@@ -45,7 +45,11 @@ class ShowBase extends React.Component {
                 label: '',
                 render: (value, row) => (
                     <div>
-                        <EditCard updateCard={this.props.updateCard} initialValues={row} />
+                        <EditCard
+                            id={row.id}
+                            updateCard={this.props.updateCard}
+                            initialValues={row}
+                        />
                         <DeleteCard deleteCard={this.props.deleteCard} id={row.id} />
                     </div>
                 ),

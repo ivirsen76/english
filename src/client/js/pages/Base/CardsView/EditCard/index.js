@@ -6,17 +6,9 @@ import Form from 'js/pages/Cards/AddCard/form.js'
 
 export default class Component extends React.Component {
     static propTypes = {
-        trigger: PropTypes.node,
+        id: PropTypes.number,
         initialValues: PropTypes.object,
         updateCard: PropTypes.func,
-    }
-
-    static defaultProps = {
-        trigger: (
-            <button className="ui green compact mini icon button">
-                <i className="icon-pencil" />
-            </button>
-        ),
     }
 
     handleSubmit = values => {
@@ -26,11 +18,20 @@ export default class Component extends React.Component {
     }
 
     render() {
+        const trigger = (
+            <button
+                className="ui green compact mini icon button"
+                id={`updateCardButton${this.props.id}`}
+            >
+                <i className="icon-pencil" />
+            </button>
+        )
+
         return (
             <Modal
                 size="small"
                 closeIcon
-                trigger={this.props.trigger}
+                trigger={trigger}
                 ref={modal => {
                     this.modal = modal
                 }}
