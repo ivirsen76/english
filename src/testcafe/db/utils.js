@@ -1,9 +1,9 @@
-import mysql from 'mysql'
-import shell from 'shelljs'
-import dbConfig from '../../server/config/default.js'
-import parse from 'parse-db-url'
-import _map from 'lodash/map'
-import path from 'path'
+const mysql = require('mysql')
+const shell = require('shelljs')
+const dbConfig = require('../../server/config/default.js')
+const parse = require('parse-db-url')
+const _map = require('lodash/map')
+const path = require('path')
 
 const dumpPath = path.join(__dirname, 'dump.sql')
 
@@ -14,19 +14,20 @@ shell.config.silent = true
 const connection = mysql.createConnection(db)
 connection.connect()
 
-export const restoreDb = () => {
-    shell.exec(command)
-}
+module.exports = {
+    restoreDb: () => {
+        shell.exec(command)
+    },
+    getNumRecords: (table, conditions) => {
+        const where = conditions
+            ? 'WHERE ' + _map(conditions, (item, key) => `${key}="${item}"`).join(' AND ')
+            : ''
+        const query = `SELECT count(*) AS cnt FROM ${table} ${where}`
 
-export const getNumRecords = (table, conditions) => {
-    const where = conditions
-        ? 'WHERE ' + _map(conditions, (item, key) => `${key}="${item}"`).join(' AND ')
-        : ''
-    const query = `SELECT count(*) AS cnt FROM ${table} ${where}`
-
-    return new Promise((resolve, reject) => {
-        connection.query(query, (error, results, fields) => {
-            resolve(results[0].cnt)
+        return new Promise((resolve, reject) => {
+            connection.query(query, (error, results, fields) => {
+                resolve(results[0].cnt)
+            })
         })
-    })
+    },
 }

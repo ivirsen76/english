@@ -13,6 +13,7 @@
         "test": "ieremeev-app-test --watch",
         "testcafe": "testcafe chrome:headless src/testcafe/**/*.page.js",
         "testcafe:live": "testcafe-live chrome src/testcafe/**/*.page.js",
+        "testcafe:db": "node src/testcafe/bin/restoreDb.js",
         "analyze": "ieremeev-app-analyze-bundle",
         "duplicate": "ieremeev-app-duplicate",
         "check": "ieremeev-app-lint && ieremeev-app-test",
