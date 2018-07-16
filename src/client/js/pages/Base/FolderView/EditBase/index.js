@@ -6,7 +6,7 @@ import Form from '../AddBase/form'
 
 export default class Component extends React.Component {
     static propTypes = {
-        baseId: PropTypes.id,
+        baseId: PropTypes.number,
         initialValues: PropTypes.object,
         updateBase: PropTypes.func,
     }
