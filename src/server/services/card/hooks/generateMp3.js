@@ -12,7 +12,7 @@ AWS.config.update({
 const polly = new AWS.Polly()
 const s3 = new AWS.S3()
 const voices = {
-    uk: 'Emma',
+    uk: 'Amy',
     us: 'Salli',
     ru: 'Tatyana',
 }
@@ -50,7 +50,7 @@ module.exports = async (userId, text, language) => {
 
     // Encode with standard bitrate
     await exec(
-        template(process.env.SOUND_ENCODE_MP3_COMMAND, {
+        template(process.env.IEREMEEV_SOUND_ENCODE_MP3_COMMAND, {
             scale: 3,
             filein: tmpFilename,
             fileout: encodedTmpFilename,
@@ -59,7 +59,9 @@ module.exports = async (userId, text, language) => {
 
     // Get the duration
     const info = await exec(
-        template(process.env.SOUND_GET_MP3_DURATION_COMMAND, { filename: encodedTmpFilename })
+        template(process.env.IEREMEEV_SOUND_GET_MP3_DURATION_COMMAND, {
+            filename: encodedTmpFilename,
+        })
     )
     const duration = +/###(\d+)###/g.exec(info.stdout)[1]
 

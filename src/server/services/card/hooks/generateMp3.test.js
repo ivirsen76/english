@@ -1,8 +1,14 @@
 /* global describe, it, expect */
 import _keys from 'lodash/keys'
 import request from 'request-promise-native'
+import AWS from 'aws-sdk'
 
 require('dotenv').config()
+
+process.env.AWS_S3_BUCKET = 'ieremeev-test'
+process.env.AWS_S3_PUBLIC_URL = 'http://s3.amazonaws.com/ieremeev-test/public/'
+
+const s3 = new AWS.S3()
 const generateMp3 = require('./generateMp3.js')
 
 describe('generate mp3', () => {
@@ -12,17 +18,26 @@ describe('generate mp3', () => {
         expect(result.language).toBe('uk')
 
         // Duration can vary
-        expect(result.duration).toBeGreaterThan(900)
-        expect(result.duration).toBeLessThan(1100)
+        expect(result.duration).toBeGreaterThan(800)
+        expect(result.duration).toBeLessThan(900)
 
         const response = await request({
-            uri: `${process.env.REACT_APP_AWS_S3_PUBLIC_URL}sounds/${result.filename}`,
+            uri: `${process.env.AWS_S3_PUBLIC_URL}sounds/${result.filename}`,
             resolveWithFullResponse: true,
         })
+
+        // clean files
+        await s3
+            .deleteObject({
+                Bucket: process.env.AWS_S3_BUCKET,
+                Key: `public/sounds/${result.filename}`,
+            })
+            .promise()
+
         expect(response.statusCode).toBe(200)
 
         // Body size can vary
-        expect(response.body.length).toBeGreaterThan(6000)
-        expect(response.body.length).toBeLessThan(7000)
+        expect(response.body.length).toBeGreaterThan(4000)
+        expect(response.body.length).toBeLessThan(5000)
     })
 })
