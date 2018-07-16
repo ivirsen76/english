@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.39)
 # Database: feather
-# Generation Time: 2018-06-12 06:19:47 +0000
+# Generation Time: 2018-07-16 20:14:33 +0000
 # ************************************************************
 
 
@@ -106,8 +106,10 @@ LOCK TABLES `bases` WRITE;
 
 INSERT INTO `bases` (`id`, `parentId`, `position`, `title`, `info`, `type`, `label`, `count`, `price`, `createdAt`, `updatedAt`)
 VALUES
-    (1,0,0,'face2face',NULL,'folder','',0,NULL,'2018-06-12 06:17:13','2018-06-12 06:17:13'),
-    (2,1,0,'Chapter 1',NULL,'cards','',1,NULL,'2018-06-12 06:17:26','2018-06-12 06:17:26');
+    (1,4,0,'face2face',NULL,'folder','',0,NULL,'2018-06-12 06:17:13','2018-06-12 06:17:13'),
+    (2,1,0,'Chapter 1',NULL,'cards','',1,NULL,'2018-06-12 06:17:26','2018-06-12 06:17:26'),
+    (3,1,1,'Chapter 2',NULL,'cards','',0,NULL,'2018-06-13 06:17:26','2018-06-13 06:17:26'),
+    (4,0,0,'Books',NULL,'folder','',0,NULL,'2018-06-10 06:17:13','2018-06-10 06:17:13');
 
 /*!40000 ALTER TABLE `bases` ENABLE KEYS */;
 UNLOCK TABLES;
