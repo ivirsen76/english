@@ -10,7 +10,7 @@ export default class Component extends React.Component {
 
     play = e => {
         e.preventDefault()
-        mp3.play(process.env.REACT_APP_AWS_S3_PUBLIC_URL + 'sounds/' + this.props.audioUrl)
+        mp3.play(process.env.AWS_S3_PUBLIC_URL + 'sounds/' + this.props.audioUrl)
     }
 
     render() {
