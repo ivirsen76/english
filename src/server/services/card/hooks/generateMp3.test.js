@@ -5,9 +5,6 @@ import AWS from 'aws-sdk'
 
 require('dotenv').config()
 
-process.env.AWS_S3_BUCKET = 'ieremeev-test'
-process.env.AWS_S3_PUBLIC_URL = 'http://s3.amazonaws.com/ieremeev-test/public/'
-
 const s3 = new AWS.S3()
 const generateMp3 = require('./generateMp3.js')
 
@@ -22,7 +19,7 @@ describe('generate mp3', () => {
         expect(result.duration).toBeLessThan(900)
 
         const response = await request({
-            uri: `${process.env.AWS_S3_PUBLIC_URL}sounds/${result.filename}`,
+            uri: `http:${process.env.AWS_S3_PUBLIC_URL}sounds/${result.filename}`,
             resolveWithFullResponse: true,
         })
 
