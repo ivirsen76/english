@@ -1,13 +1,14 @@
-// const globalHooks = require('../../../hooks')
-// const hooks = require('feathers-hooks')
+// const auth = require('feathers-authentication').hooks
+const beforeCreate = require('./beforeCreate')
+const beforePatch = require('./beforePatch')
 
 exports.before = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [beforeCreate()],
     update: [],
-    patch: [],
+    patch: [beforePatch()],
     remove: [],
 }
 
