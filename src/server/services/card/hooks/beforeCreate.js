@@ -5,9 +5,9 @@ module.exports = options => async hook => {
         const { text, translate, userId } = hook.data
 
         const results = await Promise.all([
-            generateMp3(userId, text, 'uk'),
-            generateMp3(userId, text, 'us'),
-            generateMp3(userId, translate, 'ru'),
+            generateMp3(`users/${userId}`, text, 'uk'),
+            generateMp3(`users/${userId}`, text, 'us'),
+            generateMp3(`users/${userId}`, translate, 'ru'),
         ])
 
         results.forEach(result => {
@@ -16,6 +16,6 @@ module.exports = options => async hook => {
         })
         hook.data.statusUpdatedAt = new Date()
     } catch (err) {
-        console.log(err) // eslint-disable-line no-console
+        console.error(err)
     }
 }
