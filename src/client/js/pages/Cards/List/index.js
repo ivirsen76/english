@@ -4,7 +4,7 @@ import Table from '@ieremeev/table'
 import format from 'date-fns/format'
 import EditCard from '../EditCard'
 import DeleteCard from '../DeleteCard'
-import AudioLink from './AudioLink'
+import AudioLink from 'js/components/AudioLink'
 import style from './style.module.scss'
 
 export const Cards = ({ data, deleteCard, updateCard }) => {
