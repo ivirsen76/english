@@ -8,6 +8,7 @@ import EditCard from './EditCard'
 import DeleteCard from './DeleteCard'
 import { addCard, deleteCard, updateCard, loadCards } from 'js/reducers/base.js'
 import Loader from '@ieremeev/loader'
+import AudioLink from 'js/components/AudioLink'
 import style from './style.module.css'
 
 class ShowBase extends React.Component {
@@ -60,12 +61,14 @@ class ShowBase extends React.Component {
                 label: 'Text',
                 filter: true,
                 sort: true,
+                render: (value, row) => <AudioLink text={value} audioUrl={row.usSoundFile} />,
             },
             {
                 name: 'translate',
                 label: 'Translate',
                 filter: true,
                 sort: true,
+                render: (value, row) => <AudioLink text={value} audioUrl={row.ruSoundFile} />,
             },
             {
                 name: 'createdAt',
