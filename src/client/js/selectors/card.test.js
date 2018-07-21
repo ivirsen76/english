@@ -349,7 +349,7 @@ describe('Card selectors', () => {
             expect(isLastRememberCard(state)).toBe(false)
         })
 
-        it('Should return false', () => {
+        it('Should return false again', () => {
             const state = {
                 list,
                 remember: {
@@ -370,7 +370,7 @@ describe('Card selectors', () => {
             expect(getNextNewId(state)).toBe(minNewId)
         })
 
-        it('Should return next new id', () => {
+        it('Should return next new id after minNewId', () => {
             const state = {
                 list: [{ id: minNewId }],
             }

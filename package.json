@@ -20,6 +20,9 @@
         "precommit": "ieremeev-app-format -s && ieremeev-app-lint -s && ieremeev-app-test -s",
         "deploy": "npm run build"
     },
+    "peerDependencies": {
+        "enzyme": "*"
+    },
     "dependencies": {
         "@ieremeev/axios": "^1.0.4",
         "@ieremeev/boilerplate": "^1.1.1",

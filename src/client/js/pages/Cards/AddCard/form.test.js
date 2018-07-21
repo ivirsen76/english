@@ -36,7 +36,7 @@ describe('validate', () => {
         invalidTranslate('текст%&&^*(&(&(*#', errorMessages.invalidTranslate)
     })
 
-    it('Should not return text error', () => {
+    it('Should not return translate error', () => {
         validTranslate('Обычный текст')
         validTranslate('Обычный текст (with english inside brackets)')
         validTranslate('Обычный-текст, да: ты. Нет? Да! за; (with english inside brackets)')
