@@ -81,7 +81,7 @@ exports[`<SideMenu /> Should render menu 1`] = `
         Statistics
       </withProps(NavLink)>
       <withProps(NavLink)
-        to="/user/bases"
+        to="/user/base"
       >
         <Icon
           type="library"

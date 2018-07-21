@@ -2,13 +2,14 @@
 
 exports[`<Cards /> Should render table 1`] = `
 <Table
-  className="ui compact table"
+  className="ui unstackable compact table"
   columns={Object {}}
   data={Object {}}
   hideBottomPaginator={false}
   name="table"
   noDataMessage="There is no data"
   perPage={50}
+  saveSettings={false}
   showRowNumber={true}
 />
 `;
