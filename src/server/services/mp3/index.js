@@ -76,6 +76,7 @@ class Service {
         const pauseFiles = await this.getPauseFiles()
 
         const buffers = []
+        // eslint-disable-next-line no-restricted-syntax
         for (let card of list) {
             const ruFile = await s3
                 .getObject({
