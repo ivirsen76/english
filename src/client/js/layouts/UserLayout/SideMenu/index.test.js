@@ -1,6 +1,5 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import toJson from 'js/utils/toJson'
 import SideMenu from './index'
 
 describe('<SideMenu />', () => {
@@ -8,6 +7,6 @@ describe('<SideMenu />', () => {
         const wrapper = shallow(
             <SideMenu cardTotal={3} cardRememberTotal={12} cardWriteTotal={7} />
         )
-        expect(toJson(wrapper)).toMatchSnapshot()
+        expect(wrapper).toMatchSnapshot()
     })
 })

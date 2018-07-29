@@ -1,6 +1,5 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import toJson from 'js/utils/toJson'
 import { Cards } from './index'
 
 describe('<Cards />', () => {
@@ -8,6 +7,6 @@ describe('<Cards />', () => {
         const data = [{ id: 1, text: 'Tree', translate: 'Дерево' }]
 
         const wrapper = shallow(<Cards data={data} />)
-        expect(toJson(wrapper)).toMatchSnapshot()
+        expect(wrapper).toMatchSnapshot()
     })
 })
