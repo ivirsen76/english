@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Modal } from 'semantic-ui-react'
 import notification from '@ieremeev/notification'
 import Form from './form'
+import { SubmissionError } from 'redux-form'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -11,13 +12,21 @@ export default class Component extends React.Component {
         latestLabel: PropTypes.string,
     }
 
-    handleSubmit = values => {
-        this.props.addCard(values)
-        notification('Card has been added')
+    handleSubmit = async values => {
+        try {
+            await this.props.addCard(values)
+            notification('Card has been added')
+        } catch (error) {
+            throw new SubmissionError(error)
+        }
     }
 
     render() {
-        const trigger = <button className="ui compact primary button">Add card</button>
+        const trigger = (
+            <button id="addCardButton" className="ui compact primary button">
+                Add card
+            </button>
+        )
 
         return (
             <Modal size="small" closeIcon trigger={trigger}>
