@@ -24,7 +24,7 @@
         "enzyme": "*"
     },
     "dependencies": {
-        "@ieremeev/axios": "^1.0.4",
+        "@ieremeev/axios": "^1.1.0",
         "@ieremeev/boilerplate": "^1.1.1",
         "@ieremeev/button": "^2.0.3",
         "@ieremeev/loader": "^1.1.4",
