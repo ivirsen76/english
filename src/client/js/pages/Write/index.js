@@ -1,14 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getWriteCurrentCard, getNextWriteCardSounds } from 'js/selectors/card'
-import { setWriteCards, goNextWriteCard, updateWriteInput, checkWriting } from 'js/reducers/card'
-import mp3 from 'js/utils/mp3.js'
-import Counter from 'js/pages/Remember/Counter'
+import { getWriteCurrentCard, getNextWriteCardSounds } from 'client/js/selectors/card'
+import {
+    setWriteCards,
+    goNextWriteCard,
+    updateWriteInput,
+    checkWriting,
+} from 'client/js/reducers/card'
+import mp3 from 'client/js/utils/mp3.js'
+import Counter from 'client/js/pages/Remember/Counter'
 import InputField from './InputField'
 import DiffResult from './DiffResult'
 import NextButton from './NextButton'
-import { isTextEqual } from 'js/utils/text.js'
+import { isTextEqual } from 'client/js/utils/text.js'
 import style from './index.module.scss'
 
 class Component extends React.Component {

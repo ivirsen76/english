@@ -6,9 +6,9 @@ import { connect } from 'react-redux'
 import AddCard from './AddCard'
 import EditCard from './EditCard'
 import DeleteCard from './DeleteCard'
-import { addCard, deleteCard, updateCard, loadCards } from 'js/reducers/base.js'
+import { addCard, deleteCard, updateCard, loadCards } from 'client/js/reducers/base.js'
 import Loader from '@ieremeev/loader'
-import AudioLink from 'js/components/AudioLink'
+import AudioLink from 'client/js/components/AudioLink'
 import style from './style.module.css'
 
 class ShowBase extends React.Component {

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import style from './style.module.scss'
-import mp3 from 'js/utils/mp3.js'
+import mp3 from 'client/js/utils/mp3.js'
 import SoundIcon from './SoundIcon.js'
 
 export default class Component extends React.Component {

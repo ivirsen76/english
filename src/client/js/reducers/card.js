@@ -9,14 +9,14 @@ import _shuffle from 'lodash/shuffle'
 import _cloneDeep from 'lodash/cloneDeep'
 import axios from '@ieremeev/axios'
 import { set } from 'dot-prop-immutable'
-import { isTextEqual } from 'js/utils/text.js'
+import { isTextEqual } from 'client/js/utils/text.js'
 import notification from '@ieremeev/notification'
 import {
     isLastWriteCard,
     getWriteErrorsTotal,
     getCurrentWriteCard,
     isLastRememberCard,
-} from 'js/selectors/card.js'
+} from 'client/js/selectors/card.js'
 
 export const minNewId = 1000000000
 export const maxWriteAttempts = 3

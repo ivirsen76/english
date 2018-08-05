@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
-import Input from 'js/components/SemanticInput'
+import Input from 'client/js/components/SemanticInput'
 import { validate } from 'server/services/card/hooks/validate.js'
 
 class AddCardForm extends React.Component {

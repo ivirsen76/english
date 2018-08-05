@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import diff from 'js/utils/diff.js'
+import diff from 'client/js/utils/diff.js'
 import style from './style.module.scss'
 
 export default class DiffResult extends React.Component {

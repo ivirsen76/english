@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { loadBases } from 'js/reducers/base'
+import { loadBases } from 'client/js/reducers/base'
 import { connect } from 'react-redux'
 import Loader from '@ieremeev/loader'
 import FolderView from './FolderView'
 import CardsView from './CardsView'
 import { Link } from 'react-router-dom'
-import { getParents } from 'js/helpers/base.js'
+import { getParents } from 'client/js/helpers/base.js'
 
 class Component extends React.Component {
     static propTypes = {

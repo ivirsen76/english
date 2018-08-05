@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Dropdown, Menu, Modal } from 'semantic-ui-react'
 import MenuLink from '../MenuLink'
-import LoginForm from 'js/components/LoginForm'
+import LoginForm from 'client/js/components/LoginForm'
 import { connect } from 'react-redux'
 
 class NavBar extends React.Component {

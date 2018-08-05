@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
-import Input from 'js/components/SemanticInput'
+import Input from 'client/js/components/SemanticInput'
 import isEmail from 'validator/lib/isEmail'
 
 export const validate = values => {

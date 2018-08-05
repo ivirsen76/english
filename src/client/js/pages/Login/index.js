@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import LoginForm from 'js/components/LoginForm'
-import { logout } from 'js/reducers/auth'
+import LoginForm from 'client/js/components/LoginForm'
+import { logout } from 'client/js/reducers/auth'
 
 class Component extends React.Component {
     static propTypes = {

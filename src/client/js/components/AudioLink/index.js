@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import mp3 from 'js/utils/mp3.js'
+import mp3 from 'client/js/utils/mp3.js'
 
 export default class Component extends React.Component {
     static propTypes = {

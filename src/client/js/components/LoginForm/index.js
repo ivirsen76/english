@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { login } from 'js/reducers/auth'
+import { login } from 'client/js/reducers/auth'
 import Form from './form'
 import { withRouter } from 'react-router-dom'
 

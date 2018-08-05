@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getCardTotal, getRememberTotalCards, getWriteTotalCards } from 'js/selectors/card'
-import { loadCards } from 'js/reducers/card'
+import { getCardTotal, getRememberTotalCards, getWriteTotalCards } from 'client/js/selectors/card'
+import { loadCards } from 'client/js/reducers/card'
 import SideMenu from './SideMenu'
-import NavBar from 'js/components/NavBar'
+import NavBar from 'client/js/components/NavBar'
 
 class Component extends React.Component {
     static propTypes = {

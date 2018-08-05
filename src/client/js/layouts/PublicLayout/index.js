@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import NavBar from 'js/components/NavBar'
+import NavBar from 'client/js/components/NavBar'
 
 export default class Component extends React.Component {
     static propTypes = {
