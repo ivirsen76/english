@@ -108,9 +108,9 @@ export const updateWriteInput = createAction(UPDATE_WRITE_INPUT)
 export const saveWriteResults = createAction(SAVE_WRITE_RESULTS)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
-    dispatch(addCardWithoutSaving(cardInfo))
     const response = await axios.post('/cards', cardInfo)
-    dispatch(updateCardData(response.data))
+    // dispatch(addCardWithoutSaving(cardInfo))
+    // dispatch(updateCardData(response.data))
 }
 
 export const updateCard = cardInfo => async (dispatch, getState) => {
