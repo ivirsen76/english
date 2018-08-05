@@ -2,50 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 import Input from 'js/components/SemanticInput'
-import { stripBrackets } from 'js/utils/card.js'
-
-export const errorMessages = {
-    noText: 'Text is required',
-    invalidText: 'Text has to be in English',
-    noTranslate: 'Translation is required',
-    invalidTranslate: 'Translation has to be in Russian',
-}
-
-export const validate = values => {
-    const errors = {}
-
-    if (!values.text) {
-        errors.text = errorMessages.noText
-    } else {
-        const text = stripBrackets(values.text)
-
-        if (text === '') {
-            errors.text = errorMessages.noText
-        } else if (!/^[\s\da-zA-Z.,\-!?;:'"]+$/.test(text)) {
-            errors.text = errorMessages.invalidText
-        }
-    }
-
-    if (!values.translate) {
-        errors.translate = errorMessages.noTranslate
-    } else {
-        const translate = stripBrackets(values.translate)
-
-        if (translate === '') {
-            errors.translate = errorMessages.noTranslate
-        } else if (!/^[\s\dа-яА-Я.,\-!?;:'"]+$/.test(translate)) {
-            errors.translate = errorMessages.invalidTranslate
-        }
-    }
-
-    return errors
-}
+import { validate } from 'server/services/card/hooks/validate.js'
 
 class AddCardForm extends React.Component {
     static propTypes = {
         handleSubmit: PropTypes.func,
         submitButtonTitle: PropTypes.string,
         hideLabel: PropTypes.bool,
+        submitting: PropTypes.bool,
     }
 
     render() {
@@ -55,7 +19,10 @@ class AddCardForm extends React.Component {
                 <Field name="translate" component={Input} label="Translation" />
                 {!this.props.hideLabel && <Field name="label" component={Input} label="Tag" />}
 
-                <button className="ui compact button" type="submit">
+                <button
+                    className={`ui ${this.props.submitting && 'loading'} compact button`}
+                    type="submit"
+                >
                     {this.props.submitButtonTitle}
                 </button>
             </form>
@@ -63,6 +30,4 @@ class AddCardForm extends React.Component {
     }
 }
 
-export default reduxForm({
-    validate,
-})(AddCardForm)
+export default reduxForm({ validate })(AddCardForm)
