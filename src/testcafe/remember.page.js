@@ -3,11 +3,12 @@ import { Selector } from 'testcafe'
 import { ReactSelector } from 'testcafe-react-selectors'
 import { regularUser } from './roles.js'
 import { restoreDb, getNumRecords } from './db/utils.js'
+import { url } from './config.js'
 
 fixture('Remember page').beforeEach(async t => {
     restoreDb()
     await t.useRole(regularUser)
-    await t.navigateTo('http://localhost:9000/user/remember')
+    await t.navigateTo(url('/user/remember'))
 })
 
 // Selectors

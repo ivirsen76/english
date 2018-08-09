@@ -3,6 +3,7 @@ import { Selector } from 'testcafe'
 import { ReactSelector } from 'testcafe-react-selectors'
 import { regularUser } from './roles.js'
 import { restoreDb, getNumRecords } from './db/utils.js'
+import { url } from './config.js'
 
 fixture('Bases page').beforeEach(async t => {
     restoreDb()
@@ -23,12 +24,12 @@ const Alert = ReactSelector('Alert')
 const Table = ReactSelector('Table')
 
 test('Should render base title', async t => {
-    await t.navigateTo('http://localhost:9000/user/base')
+    await t.navigateTo(url('/user/base'))
     await t.expect(Title.innerText).contains('Bases')
 })
 
 test('Should add base as folder', async t => {
-    await t.navigateTo('http://localhost:9000/user/base')
+    await t.navigateTo(url('/user/base'))
     await t.click(AddBaseButton)
     await t.typeText('input[name=title]', 'English file')
 
@@ -46,7 +47,7 @@ test('Should add base as cards', async t => {
     const select = Selector('select[name=type]')
     const selectOption = select.find('option')
 
-    await t.navigateTo('http://localhost:9000/user/base')
+    await t.navigateTo(url('/user/base'))
     await t.click(AddBaseButton)
     await t.typeText('input[name=title]', 'English file')
     await t.click(select)
@@ -59,9 +60,9 @@ test('Should add base as cards', async t => {
 })
 
 test('Should edit base', async t => {
-    await t.navigateTo('http://localhost:9000/user/base')
+    await t.navigateTo(url('/user/base'))
 
-    await t.click(Selector('#updateBaseButton1'))
+    await t.click(Selector('#updateBaseButton4'))
     await t.typeText('input[name=title]', 'different name', { replace: true })
 
     await t.click(UpdateBaseSubmitButton)
@@ -72,7 +73,7 @@ test('Should edit base', async t => {
 })
 
 test('Should show breadcrumbs and cards', async t => {
-    await t.navigateTo('http://localhost:9000/user/base/2')
+    await t.navigateTo(url('/user/base/2'))
     await t.expect(Breadcrumb.innerText).contains('Bases')
     await t.expect(Breadcrumb.innerText).contains('face2face')
     await t.expect(Breadcrumb.innerText).contains('Chapter 1')
@@ -80,7 +81,7 @@ test('Should show breadcrumbs and cards', async t => {
 })
 
 test('Should add card', async t => {
-    await t.navigateTo('http://localhost:9000/user/base/2')
+    await t.navigateTo(url('/user/base/2'))
 
     await t.click(AddCardButton)
     await t.typeText('input[name=text]', 'Some word')
@@ -96,7 +97,7 @@ test('Should add card', async t => {
 })
 
 test('Should edit card', async t => {
-    await t.navigateTo('http://localhost:9000/user/base/2')
+    await t.navigateTo(url('/user/base/2'))
 
     await t.click(Selector('#updateCardButton1'))
     await t.typeText('input[name=text]', 'Second one', { replace: true })
@@ -113,7 +114,7 @@ test('Should edit card', async t => {
 })
 
 test('Should delete card', async t => {
-    await t.navigateTo('http://localhost:9000/user/base/2')
+    await t.navigateTo(url('/user/base/2'))
 
     await t.click(Selector('#deleteCardButton1'))
     await t.expect(Alert.innerText).contains('has been deleted')

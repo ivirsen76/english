@@ -1,6 +1,7 @@
 import { Role } from 'testcafe'
+import { url } from './config.js'
 
-export const regularUser = Role('http://localhost:9000/login', async t => {
+export const regularUser = Role(url('/login'), async t => {
     await t
         .typeText('input[name=email]', 'ivirsen@gmail.com', { paste: true })
         .typeText('input[name=password]', 'password', { paste: true })

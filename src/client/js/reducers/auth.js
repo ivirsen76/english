@@ -36,8 +36,6 @@ export const login = async (dispatch, { email, password }) => {
         const res = await axios.post('/auth/local', { email, password })
         dispatch(setToken(res.data.token))
         dispatch(setUser(res.data.data))
-
-        // history.push('/user/cards')
     } catch (e) {
         throw new SubmissionError({ email: 'User or password are wrong' })
     }
