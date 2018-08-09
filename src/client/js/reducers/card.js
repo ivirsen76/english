@@ -2,7 +2,6 @@ import { handleActions, createAction } from 'redux-actions'
 import { REHYDRATE } from 'redux-persist/constants'
 import _pick from 'lodash/pick'
 import _keys from 'lodash/keys'
-import _omit from 'lodash/omit'
 import _find from 'lodash/find'
 import _shuffle from 'lodash/shuffle'
 import _cloneDeep from 'lodash/cloneDeep'
@@ -17,7 +16,6 @@ import {
     isLastRememberCard,
 } from 'client/js/selectors/card.js'
 
-export const minNewId = 1000000000
 export const maxWriteAttempts = 3
 
 export const acceptedFields = [
@@ -67,7 +65,6 @@ export const initialState = {
 const ADD_CARD = 'english/card/ADD_CARD'
 const DELETE_CARD = 'english/card/DELETE_CARD'
 const UPDATE_CARD = 'english/card/UPDATE_CARD'
-const UPDATE_CARD_DATA = 'english/card/UPDATE_CARD_DATA'
 const SET_CARDS = 'english/card/SET_CARDS'
 const SET_LOADING_CARDS_STATE = 'english/card/SET_LOADING_CARDS_STATE'
 // Remember actions
@@ -90,7 +87,6 @@ const SAVE_WRITE_RESULTS = 'english/card/SAVE_WRITE_RESULTS'
 export const addCardWithoutSaving = createAction(ADD_CARD)
 export const deleteCardWithoutSaving = createAction(DELETE_CARD)
 export const updateCardWithoutSaving = createAction(UPDATE_CARD)
-export const updateCardData = createAction(UPDATE_CARD_DATA)
 export const setCards = createAction(SET_CARDS)
 export const setLoadingCardsState = createAction(SET_LOADING_CARDS_STATE)
 export const setRememberCardsWithOrder = createAction(SET_REMEMBER_CARDS)
@@ -114,9 +110,8 @@ export const addCard = cardInfo => async (dispatch, getState) => {
 
 export const updateCard = cardInfo => async (dispatch, getState) => {
     const result = _pick(cardInfo, ['text', 'translate', 'label'])
-    dispatch(updateCardWithoutSaving({ id: cardInfo.id, ...result }))
     const response = await axios.patch(`/cards/${cardInfo.id}`, result)
-    dispatch(updateCardData(response.data))
+    dispatch(updateCardWithoutSaving(response.data))
 }
 
 export const deleteCard = cardId => async (dispatch, getState) => {
@@ -221,46 +216,9 @@ export default handleActions(
             ...state,
             list: state.list.map(item => {
                 if (item.id === action.payload.id) {
-                    let result = {
-                        ...item,
-                        ..._pick(action.payload, ['text', 'translate', 'label']),
-                    }
-                    if (item.text !== result.text) {
-                        result = _omit(result, [
-                            'ukSoundFile',
-                            'ukSoundLength',
-                            'usSoundFile',
-                            'usSoundLength',
-                        ])
-                    }
-                    if (item.translate !== result.translate) {
-                        result = _omit(result, ['ruSoundFile', 'ruSoundLength'])
-                    }
-
-                    return result
-                }
-
-                return item
-            }),
-        }),
-        [UPDATE_CARD_DATA]: (state, action) => ({
-            ...state,
-            list: state.list.map(item => {
-                if (item.id === action.payload.id) {
                     return {
                         ...item,
                         ..._pick(action.payload, acceptedFields),
-                    }
-                }
-
-                if (
-                    item.id >= minNewId &&
-                    action.payload.text === item.text &&
-                    action.payload.translate === item.translate
-                ) {
-                    return {
-                        ...item,
-                        ..._pick(action.payload, ['id', ...acceptedFields]),
                     }
                 }
 

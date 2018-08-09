@@ -35,7 +35,7 @@ export const getNextRememberCardSounds = createSelector(
 )
 
 export const getNextNewId = createSelector(getList, list =>
-    _max([...list.map(item => item.id + 1), 1000000000])
+    _max([...list.map(item => item.id + 1), 1])
 )
 
 export const getLatestLabel = createSelector(getList, list => {

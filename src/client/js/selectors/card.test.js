@@ -1,4 +1,3 @@
-import { minNewId } from 'client/js/reducers/card'
 import {
     getNextNewId,
     getLatestLabel,
@@ -365,16 +364,16 @@ describe('Card selectors', () => {
     describe('getNextNewId()', () => {
         it('Should return next new id', () => {
             const state = {
-                list: [{ id: 1 }],
+                list: [{ id: 3 }],
             }
-            expect(getNextNewId(state)).toBe(minNewId)
+            expect(getNextNewId(state)).toBe(4)
         })
 
-        it('Should return next new id after minNewId', () => {
+        it('Should return next new id when no cards', () => {
             const state = {
-                list: [{ id: minNewId }],
+                list: [],
             }
-            expect(getNextNewId(state)).toBe(minNewId + 1)
+            expect(getNextNewId(state)).toBe(1)
         })
     })
 

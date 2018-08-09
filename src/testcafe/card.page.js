@@ -52,3 +52,23 @@ test('Should show duplication error when editing a card', async t => {
     await t.click(UpdateCardSubmitButton)
     await t.expect(Modal.innerText).contains('Text already exists')
 })
+
+test('Should update card', async t => {
+    await t.click(Selector('#updateCardButton19'))
+    await t.typeText(TextInput, 'updated card', { replace: true })
+    await t.typeText(TranslateInput, 'обновленная карточка', { replace: true })
+
+    await t.click(UpdateCardSubmitButton)
+    await t.expect(Alert.innerText).contains('has been updated')
+    await t.expect(Table.innerText).contains('updated card')
+    await t.expect(Table.innerText).contains('обновленная карточка')
+
+    await t
+        .expect(
+            await getNumRecords('cards', {
+                text: 'updated card',
+                translate: 'обновленная карточка',
+            })
+        )
+        .eql(1)
+})
