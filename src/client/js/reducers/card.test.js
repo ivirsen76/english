@@ -4,7 +4,6 @@ import reducer, {
     deleteCardWithoutSaving as deleteCard,
     updateCardWithoutSaving as updateCard,
     updateCardData,
-    minNewId,
     setCards,
     setRememberCardsWithOrder as setRememberCards,
     resetRememberCards,
@@ -209,24 +208,11 @@ describe('card reducer', () => {
                 ...initialState,
                 list: [],
             }
-            const expectedList = [{ id: minNewId, text: 'Tree', translate: 'Some', label: 'bla' }]
+            const expectedList = [{ id: 12, text: 'Tree', translate: 'Some', label: 'bla' }]
             const resultedState = reducer(
                 state,
-                addCard({ text: 'Tree', translate: 'Some', label: 'bla', unknown: 1 })
+                addCard({ id: 12, text: 'Tree', translate: 'Some', label: 'bla', unknown: 1 })
             )
-            expect(resultedState.list).toEqual(expectedList)
-        })
-
-        it('Should add second new card', () => {
-            const state = {
-                ...initialState,
-                list: [{ id: minNewId, text: 'Ball', translate: 'Some' }],
-            }
-            const expectedList = [
-                { id: minNewId, text: 'Ball', translate: 'Some' },
-                { id: minNewId + 1, text: 'Tree', translate: 'Some' },
-            ]
-            const resultedState = reducer(state, addCard({ text: 'Tree', translate: 'Some' }))
             expect(resultedState.list).toEqual(expectedList)
         })
     })

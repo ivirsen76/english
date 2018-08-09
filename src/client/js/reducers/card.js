@@ -1,6 +1,5 @@
 import { handleActions, createAction } from 'redux-actions'
 import { REHYDRATE } from 'redux-persist/constants'
-import _max from 'lodash/max'
 import _pick from 'lodash/pick'
 import _keys from 'lodash/keys'
 import _omit from 'lodash/omit'
@@ -22,6 +21,7 @@ export const minNewId = 1000000000
 export const maxWriteAttempts = 3
 
 export const acceptedFields = [
+    'id',
     'text',
     'translate',
     'label',
@@ -109,8 +109,7 @@ export const saveWriteResults = createAction(SAVE_WRITE_RESULTS)
 
 export const addCard = cardInfo => async (dispatch, getState) => {
     const response = await axios.post('/cards', cardInfo)
-    // dispatch(addCardWithoutSaving(cardInfo))
-    // dispatch(updateCardData(response.data))
+    dispatch(addCardWithoutSaving(response.data))
 }
 
 export const updateCard = cardInfo => async (dispatch, getState) => {
@@ -197,14 +196,10 @@ export default handleActions(
                 ...savedData.remember.params,
             }))
         },
-        [ADD_CARD]: (state, action) => {
-            const nextId = _max([...state.list.map(item => item.id + 1), minNewId])
-
-            return {
-                ...state,
-                list: [...state.list, { id: nextId, ..._pick(action.payload, acceptedFields) }],
-            }
-        },
+        [ADD_CARD]: (state, action) => ({
+            ...state,
+            list: [...state.list, { ..._pick(action.payload, acceptedFields) }],
+        }),
         [DELETE_CARD]: (state, action) => {
             const newRememberList = state.remember.list.filter(item => item !== action.payload)
 

@@ -1,33 +1,53 @@
 /* global fixture */
 import { Selector } from 'testcafe'
 import { regularUser } from './roles.js'
-import { restoreDb } from './db/utils.js'
-import { baseUrl } from './config.js'
+import { restoreDb, getNumRecords } from './db/utils.js'
+import { url } from './config.js'
+import { ReactSelector } from 'testcafe-react-selectors'
 
 fixture('Bases page').beforeEach(async t => {
     restoreDb()
     await t.useRole(regularUser)
-    await t.navigateTo(`${baseUrl}/user/cards`)
+    await t.navigateTo(url('/user/cards'))
 })
 
 // Selectors
 const Modal = Selector('.ui.modal')
-const AddCardButton = Selector('#addCardButton')
+const AddCardButton = Selector('button').withText('Add card')
 const UpdateCardSubmitButton = Selector('button[type=submit').withText('Update card')
 const AddCardSubmitButton = Selector('button[type=submit').withText('Add card')
+const TextInput = Selector('input[name=text]')
+const TranslateInput = Selector('input[name=translate]')
+const Alert = ReactSelector('Alert')
+const Table = ReactSelector('Table')
 
 test('Should show duplication error when adding a card', async t => {
     await t.click(AddCardButton)
-    await t.typeText('input[name=text]', 'text')
-    await t.typeText('input[name=translate]', 'перевод')
+    await t.typeText(TextInput, 'text')
+    await t.typeText(TranslateInput, 'перевод')
 
     await t.click(AddCardSubmitButton)
     await t.expect(Modal.innerText).contains('Text already exists')
 })
 
+test('Should add card', async t => {
+    await t.click(AddCardButton)
+    await t.typeText(TextInput, 'new card')
+    await t.typeText(TranslateInput, 'новая карточка')
+
+    await t.click(AddCardSubmitButton)
+    await t.expect(Alert.innerText).contains('has been added')
+    await t.expect(Table.innerText).contains('new card')
+    await t.expect(Table.innerText).contains('новая карточка')
+
+    await t
+        .expect(await getNumRecords('cards', { text: 'new card', translate: 'новая карточка' }))
+        .eql(1)
+})
+
 test('Should show duplication error when editing a card', async t => {
     await t.click(Selector('#updateCardButton19'))
-    await t.typeText('input[name=text]', 'text', { replace: true })
+    await t.typeText(TextInput, 'text', { replace: true })
 
     await t.click(UpdateCardSubmitButton)
     await t.expect(Modal.innerText).contains('Text already exists')
