@@ -13,6 +13,7 @@ fixture('Bases page').beforeEach(async t => {
 // Selectors
 const Modal = Selector('.ui.modal')
 const AddCardButton = Selector('#addCardButton')
+const UpdateCardSubmitButton = Selector('button[type=submit').withText('Update card')
 const AddCardSubmitButton = Selector('button[type=submit').withText('Add card')
 
 test('Should show duplication error when adding a card', async t => {
@@ -21,5 +22,13 @@ test('Should show duplication error when adding a card', async t => {
     await t.typeText('input[name=translate]', 'перевод')
 
     await t.click(AddCardSubmitButton)
+    await t.expect(Modal.innerText).contains('Text already exists')
+})
+
+test('Should show duplication error when editing a card', async t => {
+    await t.click(Selector('#updateCardButton19'))
+    await t.typeText('input[name=text]', 'text', { replace: true })
+
+    await t.click(UpdateCardSubmitButton)
     await t.expect(Modal.innerText).contains('Text already exists')
 })

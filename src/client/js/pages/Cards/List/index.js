@@ -14,7 +14,7 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
             label: '',
             render: (value, row) => (
                 <div>
-                    <EditCard updateCard={updateCard} initialValues={row} />
+                    <EditCard updateCard={updateCard} initialValues={row} cardId={row.id} />
                     <DeleteCard deleteCard={deleteCard} id={row.id} />
                 </div>
             ),
