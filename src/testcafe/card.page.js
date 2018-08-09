@@ -21,6 +21,15 @@ const TranslateInput = Selector('input[name=translate]')
 const Alert = ReactSelector('Alert')
 const Table = ReactSelector('Table')
 
+test('Should show validation error when adding a card', async t => {
+    await t.click(AddCardButton)
+    await t.typeText(TextInput, 'русский текст')
+
+    await t.click(AddCardSubmitButton)
+    await t.expect(Modal.innerText).contains('Text has to be in English')
+    await t.expect(Modal.innerText).contains('Translation is required')
+})
+
 test('Should show duplication error when adding a card', async t => {
     await t.click(AddCardButton)
     await t.typeText(TextInput, 'text')
@@ -43,6 +52,14 @@ test('Should add card', async t => {
     await t
         .expect(await getNumRecords('cards', { text: 'new card', translate: 'новая карточка' }))
         .eql(1)
+})
+
+test('Should show validation error when updating card', async t => {
+    await t.click(Selector('#updateCardButton19'))
+    await t.typeText(TextInput, 'русский текст', { replace: true })
+
+    await t.click(UpdateCardSubmitButton)
+    await t.expect(Modal.innerText).contains('Text has to be in English')
 })
 
 test('Should show duplication error when editing a card', async t => {
