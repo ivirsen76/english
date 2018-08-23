@@ -5,7 +5,7 @@ import { restoreDb, getNumRecords } from './db/utils.js'
 import { url } from './config.js'
 import { ReactSelector } from 'testcafe-react-selectors'
 
-fixture('Bases page').beforeEach(async t => {
+fixture('Cards page').beforeEach(async t => {
     restoreDb()
     await t.useRole(regularUser)
     await t.navigateTo(url('/user/cards'))
@@ -20,6 +20,11 @@ const TextInput = Selector('input[name=text]')
 const TranslateInput = Selector('input[name=translate]')
 const Alert = ReactSelector('Alert')
 const Table = ReactSelector('Table')
+const CardTotalBadge = Selector('#cardTotal')
+
+test('Should check environment', async t => {
+    await t.expect(CardTotalBadge.innerText).contains('8')
+})
 
 test('Should show validation error when adding a card', async t => {
     await t.click(AddCardButton)
@@ -48,6 +53,7 @@ test('Should add card', async t => {
     await t.expect(Alert.innerText).contains('has been added')
     await t.expect(Table.innerText).contains('new card')
     await t.expect(Table.innerText).contains('новая карточка')
+    await t.expect(CardTotalBadge.innerText).contains('9')
 
     await t
         .expect(await getNumRecords('cards', { text: 'new card', translate: 'новая карточка' }))
@@ -88,4 +94,14 @@ test('Should update card', async t => {
             })
         )
         .eql(1)
+})
+
+test('Should delete card', async t => {
+    await t.click(Selector('#deleteCardButton19'))
+
+    await t.expect(Table.innerText).notContains('block')
+    await t.expect(Table.innerText).notContains('блок')
+    await t.expect(CardTotalBadge.innerText).contains('7')
+
+    await t.expect(await getNumRecords('cards', { text: 'block', translate: 'блок' })).eql(0)
 })

@@ -13,7 +13,9 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
                 <MenuLink to="/user/cards">
                     <Icon type="books" />
                     My cards
-                    <div className="ui label">{cardTotal}</div>
+                    <div className="ui label" id="cardTotal">
+                        {cardTotal}
+                    </div>
                 </MenuLink>
             </Menu.Menu>
         </Menu.Item>
