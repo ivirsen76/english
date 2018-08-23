@@ -3,8 +3,51 @@
 exports[`<Cards /> Should render table 1`] = `
 <Table
   className="ui unstackable compact table"
-  columns={Object {}}
-  data={Object {}}
+  columns={
+    Array [
+      Object {
+        "className": "actions",
+        "label": "",
+        "name": "actions",
+        "render": [Function],
+      },
+      Object {
+        "filter": true,
+        "label": "Text",
+        "name": "text",
+        "render": [Function],
+        "sort": true,
+      },
+      Object {
+        "filter": true,
+        "label": "Translate",
+        "name": "translate",
+        "render": [Function],
+        "sort": true,
+      },
+      Object {
+        "filter": true,
+        "label": "Label",
+        "name": "label",
+        "sort": true,
+      },
+      Object {
+        "label": "Created at",
+        "name": "createdAt",
+        "render": [Function],
+        "sort": true,
+      },
+    ]
+  }
+  data={
+    Array [
+      Object {
+        "id": 1,
+        "text": "Tree",
+        "translate": "Дерево",
+      },
+    ]
+  }
   hideBottomPaginator={false}
   name="table"
   noDataMessage="There is no data"
