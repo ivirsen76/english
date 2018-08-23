@@ -1,4 +1,3 @@
-/* global describe, it, expect */
 import _keys from 'lodash/keys'
 import request from 'request-promise-native'
 import AWS from 'aws-sdk'

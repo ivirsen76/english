@@ -1,4 +1,3 @@
-/* global fixture */
 import { Selector } from 'testcafe'
 import { regularUser } from './roles.js'
 import { restoreDb, getNumRecords } from './db/utils.js'

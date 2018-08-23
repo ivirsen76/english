@@ -1,4 +1,3 @@
-/* global fixture */
 import { Selector } from 'testcafe'
 import { ReactSelector } from 'testcafe-react-selectors'
 import { regularUser } from './roles.js'
