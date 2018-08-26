@@ -10,7 +10,7 @@ jobs:
     steps:
       - run: sudo apt-get update
       - run: sudo apt-get install mysql-client
-      - run: mysql -uroot -e 'SHOW DATABASES'
+      - run: mysql -h 127.0.0.1 -u root -e 'SHOW DATABASES'
       # - checkout
 
       # # Download and cache dependencies
