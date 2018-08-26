@@ -8,6 +8,7 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - run: sudo apt install mysql-client
       - run: mysql -uroot -e 'SHOW DATABASES'
       # - checkout
 
