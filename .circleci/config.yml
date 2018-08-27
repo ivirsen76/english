@@ -24,12 +24,17 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # Run tests
-      # - run: npm run check
-
       # create DB
       - run: sudo apt-get update
       - run: sudo apt-get install mysql-client
       - run: mysql -h $RDS_HOSTNAME -u $RDS_USERNAME -e "CREATE DATABASE $RDS_DB_NAME"
-      - run: npm run testcafe:db
-      - run: mysql -h $RDS_HOSTNAME -u $RDS_USERNAME -e "SHOW TABLES" $RDS_DB_NAME
+
+      # Run tests
+      # - run: npm run check
+
+      # Run server
+      # - run: npm run build
+      - run: npm run start:prod
+
+      # Run browser tests
+      # - run: npm run testcafe
