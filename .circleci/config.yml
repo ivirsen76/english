@@ -11,6 +11,7 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get install mysql-client
       - run: sleep 5
+      - run: mysql -h $RDS_HOSTNAME -u $RDS_USERNAME -e 'CREATE DATABASE $RDS_DB_NAME'
       - run: mysql -h $RDS_HOSTNAME -u $RDS_USERNAME -e 'SHOW DATABASES'
       # - checkout
 
