@@ -8,7 +8,9 @@ const path = require('path')
 const dumpPath = path.join(__dirname, 'dump.sql')
 
 const db = parse(dbConfig.mysql)
-const command = `mysql -u ${db.user} --password=${db.password} ${db.database} < ${dumpPath}`
+const command = `mysql -h ${db.host} -u ${db.user} --password=${db.password} ${db.database} < ${
+    dumpPath
+}`
 shell.config.silent = true
 
 const connection = mysql.createConnection(db)
