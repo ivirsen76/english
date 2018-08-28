@@ -34,7 +34,7 @@ jobs:
 
       # Run server
       # - run: npm run build
-      - run: npm run start:prod
+      # - run: npm run start:prod
 
       # Run browser tests
       # - run: npm run testcafe
