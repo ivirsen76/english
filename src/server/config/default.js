@@ -5,7 +5,7 @@ const {
     RDS_PASSWORD = 'root',
     RDS_PORT = 3306,
     HOST = 'localhost',
-    PORT = 303,
+    PORT = 3030,
     PUBLIC_PATH = '../../../public/',
     ENGLISH_API_AUTH_TOKEN_SECRET = 'O1It4sjOS9iWMD4F1z3uQvZsYKXrI19YqqKrtAZWQ==',
 } = process.env
