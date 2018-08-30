@@ -1,24 +1,28 @@
+require('dotenv').config()
+
 const mysql = require('mysql')
-const shell = require('shelljs')
-const dbConfig = require('../../server/config/default.js')
-const parse = require('parse-db-url')
+const { execSync } = require('child_process')
 const _map = require('lodash/map')
 const path = require('path')
 
+const { IE_DB_NAME, IE_DB_HOSTNAME, IE_DB_USERNAME, IE_DB_PASSWORD } = process.env
 const dumpPath = path.join(__dirname, 'dump.sql')
 
-const db = parse(dbConfig.mysql)
-const command = `mysql -h ${db.host} -u ${db.user} --password=${db.password} ${db.database} < ${
-    dumpPath
-}`
-shell.config.silent = true
+const command = `mysql -h ${IE_DB_HOSTNAME} -u ${IE_DB_USERNAME} --password=${IE_DB_PASSWORD} ${
+    IE_DB_NAME
+} < ${dumpPath}`
 
-const connection = mysql.createConnection(db)
+const connection = mysql.createConnection({
+    host: IE_DB_HOSTNAME,
+    user: IE_DB_USERNAME,
+    password: IE_DB_PASSWORD,
+    database: IE_DB_NAME,
+})
 connection.connect()
 
 module.exports = {
     restoreDb: () => {
-        shell.exec(command)
+        execSync(command)
     },
     getNumRecords: (table, conditions) => {
         const where = conditions
