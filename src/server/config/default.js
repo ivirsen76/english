@@ -1,20 +1,17 @@
 const {
-    RDS_DB_NAME = 'feather',
-    RDS_HOSTNAME = 'localhost',
-    RDS_USERNAME = 'root',
-    RDS_PASSWORD = 'root',
-    RDS_PORT = 3306,
-    HOST = 'localhost',
-    PORT = 3030,
-    PUBLIC_PATH = '../../../public/',
-    ENGLISH_API_AUTH_TOKEN_SECRET = 'O1It4sjOS9iWMD4F1z3uQvZsYKXrI19YqqKrtAZWQ==',
+    IE_DB_NAME,
+    IE_DB_HOSTNAME,
+    IE_DB_USERNAME,
+    IE_DB_PASSWORD,
+    IE_SERVER_HOST,
+    IE_SERVER_PORT,
+    ENGLISH_API_AUTH_TOKEN_SECRET,
 } = process.env
 
 module.exports = {
-    host: HOST,
-    port: PORT,
-    mysql: `mysql://${RDS_USERNAME}:${RDS_PASSWORD}@${RDS_HOSTNAME}:${RDS_PORT}/${RDS_DB_NAME}`,
-    public: PUBLIC_PATH,
+    host: IE_SERVER_HOST,
+    port: IE_SERVER_PORT,
+    mysql: `mysql://${IE_DB_USERNAME}:${IE_DB_PASSWORD}@${IE_DB_HOSTNAME}:3306/${IE_DB_NAME}`,
     auth: {
         idField: 'id',
         token: {
