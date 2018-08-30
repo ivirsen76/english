@@ -3,9 +3,11 @@
     "private": true,
     "scripts": {
         "start": "npm-run-all --parallel start:client start:server",
-        "start:client": "ieremeev-app-build --watch",
-        "start:server": "nodemon src/server/",
-        "start:prod": "npm run migrate && node src/server/",
+        "start:client": "ieremeev-app-client-dev",
+        "start:server": "npm run migrate && nodemon src/server/",
+        "start:prod": "npm-run-all --parallel start:client:prod start:server:prod",
+        "start:client:prod": "ieremeev-app-client-prod",
+        "start:server:prod": "npm run migrate && node src/server/",
         "migrate": "sequelize db:migrate",
         "build": "ieremeev-app-build",
         "lint": "ieremeev-app-lint",
@@ -17,14 +19,13 @@
         "analyze": "ieremeev-app-analyze-bundle",
         "duplicate": "ieremeev-app-duplicate",
         "check": "ieremeev-app-lint && ieremeev-app-test",
-        "precommit": "ieremeev-app-format -s && ieremeev-app-lint -s && ieremeev-app-test -s",
-        "deploy": "npm run build"
+        "precommit": "ieremeev-app-format -s && ieremeev-app-lint -s && ieremeev-app-test -s"
     },
     "peerDependencies": {
         "enzyme": "*"
     },
     "dependencies": {
-        "@ieremeev/axios": "^1.1.0",
+        "@ieremeev/axios": "^1.1.2",
         "@ieremeev/boilerplate": "^1.1.1",
         "@ieremeev/button": "^2.0.3",
         "@ieremeev/loader": "^1.1.4",
@@ -84,9 +85,7 @@
         "winston": "^2.3.1"
     },
     "devDependencies": {
-        "@ieremeev/app": "^2.1.11",
-        "parse-db-url": "0.0.0",
-        "shelljs": "^0.8.2",
+        "@ieremeev/app": "^3.0.1",
         "testcafe": "^0.20.3",
         "testcafe-live": "^0.1.3",
         "testcafe-react-selectors": "^2.1.0"
