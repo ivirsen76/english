@@ -50,7 +50,7 @@ module.exports = async (folder, text, language) => {
 
     // Encode with standard bitrate
     await exec(
-        template(process.env.IEREMEEV_SOUND_ENCODE_MP3_COMMAND, {
+        template(process.env.IE_SOUND_ENCODE_MP3_COMMAND, {
             scale: 3,
             filein: tmpFilename,
             fileout: encodedTmpFilename,
@@ -59,7 +59,7 @@ module.exports = async (folder, text, language) => {
 
     // Get the duration
     const info = await exec(
-        template(process.env.IEREMEEV_SOUND_GET_MP3_DURATION_COMMAND, {
+        template(process.env.IE_SOUND_GET_MP3_DURATION_COMMAND, {
             filename: encodedTmpFilename,
         })
     )

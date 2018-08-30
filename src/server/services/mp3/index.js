@@ -104,7 +104,7 @@ class Service {
 
         // Reencode file to clean up resulted mp3
         await exec(
-            template(process.env.SOUND_ENCODE_MP3_COMMAND, {
+            template(process.env.IE_SOUND_ENCODE_MP3_COMMAND, {
                 scale: 1,
                 filein: tmpFilename,
                 fileout: encodedTmpFilename,
