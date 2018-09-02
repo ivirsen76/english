@@ -2,14 +2,14 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:9.8.0-browsers
+      - image: circleci/node:10.9.0-browsers
       - image: circleci/mysql:5.6.39-ram
 
     working_directory: ~/repo
 
     steps:
       # Update npm version
-      - run: sudo npm i -g npm@6.4.0
+      # - run: sudo npm i -g npm@6.4.0
 
       - checkout
 
