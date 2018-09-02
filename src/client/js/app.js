@@ -12,7 +12,7 @@ import cookie from 'js-cookie'
 const store = createStore(reducers)
 
 // Setup axios
-axios.defaults.baseURL = `${process.env.IE_SERVER_HOST}:${process.env.IE_SERVER_PORT}`
+axios.defaults.baseURL = `//${process.env.IE_SERVER_HOST}:${process.env.IE_SERVER_PORT}`
 const token = cookie.get('token')
 if (token) {
     axios.setToken(token)

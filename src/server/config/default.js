@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const {
     IE_DB_NAME,
     IE_DB_HOSTNAME,
@@ -12,6 +14,7 @@ module.exports = {
     host: IE_SERVER_HOST,
     port: IE_SERVER_PORT,
     mysql: `mysql://${IE_DB_USERNAME}:${IE_DB_PASSWORD}@${IE_DB_HOSTNAME}:3306/${IE_DB_NAME}`,
+    public: '../../../public/',
     auth: {
         idField: 'id',
         token: {
