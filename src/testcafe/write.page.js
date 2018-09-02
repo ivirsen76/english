@@ -4,7 +4,7 @@ import { regularUser } from './roles.js'
 import { restoreDb, getNumRecords } from './db/utils.js'
 import { url } from './config.js'
 
-fixture('Write page').beforeEach(async t => {
+fixture.skip('Write page').beforeEach(async t => {
     restoreDb()
     await t.useRole(regularUser)
     await t.navigateTo(url('/user/write'))

@@ -22,7 +22,7 @@ connection.connect()
 
 module.exports = {
     restoreDb: () => {
-        execSync(command)
+        execSync(command, { stdio: 'ignore' })
     },
     getNumRecords: (table, conditions) => {
         const where = conditions
