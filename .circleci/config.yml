@@ -30,14 +30,17 @@ jobs:
       # create DB
       - run: sudo apt-get update
       - run: sudo apt-get install mysql-client
-      - run: mysql -h $RDS_HOSTNAME -u $RDS_USERNAME -e "CREATE DATABASE $RDS_DB_NAME"
+      - run: mysql -h $IE_DB_HOSTNAME -u $IE_DB_USERNAME -e "CREATE DATABASE $IE_DB_NAME"
 
       # Run tests
       # - run: npm run check
 
       # Run server
       - run: npm run build
-      - run: npm run start:prod
+      - run:
+          name: Run server
+          command: npm run start:prod
+          background: true
       - run: sleep 5
 
       # Run browser tests
