@@ -38,11 +38,11 @@ jobs:
 
       # Run server
       - run: npm run build
-      - run:
-          name: Run server
-          command: npm run start:prod
-          background: true
-      - run: sleep 5
+      # - run:
+      #     name: Run server
+      #     command: npm run start:prod
+      #     background: true
+      # - run: sleep 5
 
       # Run browser tests
       # - run: npm run testcafe
