@@ -21,7 +21,7 @@ const Alert = ReactSelector('Alert')
 const Table = ReactSelector('Table')
 const CardTotalBadge = Selector('#cardTotal')
 
-test('Should check environment', async t => {
+test.only('Should check environment', async t => {
     await t.expect(CardTotalBadge.innerText).contains('8')
 })
 
