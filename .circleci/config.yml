@@ -45,4 +45,4 @@ jobs:
       - run: sleep 5
 
       # Run browser tests
-      - run: npm run testcafe
+      # - run: npm run testcafe
