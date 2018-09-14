@@ -10,7 +10,7 @@ const template = require('string-template')
 const exec = require('child-process-promise').exec
 
 AWS.config.update({
-    region: process.env.AWS_DEFAULT_REGION,
+    region: process.env.IE_AWS_DEFAULT_REGION,
 })
 const s3 = new AWS.S3()
 
@@ -80,7 +80,7 @@ class Service {
         for (let card of list) {
             const ruFile = await s3
                 .getObject({
-                    Bucket: process.env.AWS_S3_BUCKET,
+                    Bucket: process.env.IE_AWS_S3_BUCKET,
                     Key: `public/sounds/${card.ruSoundFile}`,
                 })
                 .promise()
@@ -90,7 +90,7 @@ class Service {
 
             const usFile = await s3
                 .getObject({
-                    Bucket: process.env.AWS_S3_BUCKET,
+                    Bucket: process.env.IE_AWS_S3_BUCKET,
                     Key: `public/sounds/${card.usSoundFile}`,
                 })
                 .promise()
@@ -116,7 +116,7 @@ class Service {
         const content = await fsp.readFile(encodedTmpFilename)
         await s3
             .putObject({
-                Bucket: process.env.AWS_S3_BUCKET,
+                Bucket: process.env.IE_AWS_S3_BUCKET,
                 Key: `public/sounds/users/${filename}`,
                 ACL: 'public-read',
                 Body: content,

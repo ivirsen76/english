@@ -19,14 +19,14 @@ describe.skip('generate mp3', () => {
         expect(result.duration).toBeLessThan(900)
 
         const response = await request({
-            uri: `http:${process.env.AWS_S3_PUBLIC_URL}sounds/${result.filename}`,
+            uri: `http:${process.env.IE_AWS_S3_PUBLIC_URL}sounds/${result.filename}`,
             resolveWithFullResponse: true,
         })
 
         // clean files
         await s3
             .deleteObject({
-                Bucket: process.env.AWS_S3_BUCKET,
+                Bucket: process.env.IE_AWS_S3_BUCKET,
                 Key: `public/sounds/${result.filename}`,
             })
             .promise()

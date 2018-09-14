@@ -7,7 +7,7 @@ const template = require('string-template')
 const exec = require('child-process-promise').exec
 
 AWS.config.update({
-    region: process.env.AWS_DEFAULT_REGION,
+    region: process.env.IE_AWS_DEFAULT_REGION,
 })
 const polly = new AWS.Polly()
 const s3 = new AWS.S3()
@@ -70,7 +70,7 @@ module.exports = async (folder, text, language) => {
     const content = await fsp.readFile(encodedTmpFilename)
     await s3
         .putObject({
-            Bucket: process.env.AWS_S3_BUCKET,
+            Bucket: process.env.IE_AWS_S3_BUCKET,
             Key: `public/sounds/${filename}`,
             ACL: 'public-read',
             Body: content,
