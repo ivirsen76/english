@@ -59,7 +59,7 @@ module.exports = async (folder, text, language) => {
     const content = await fsp.readFile(encodedTmpFilename)
     await s3
         .putObject({
-            Bucket: process.env.IE_AWS_S3_BUCKET,
+            Bucket: process.env.AWS_S3_BUCKET,
             Key: `public/sounds/${filename}`,
             ACL: 'public-read',
             Body: content,

@@ -9,7 +9,7 @@ module.exports = async filename => {
 
     await s3
         .deleteObject({
-            Bucket: process.env.IE_AWS_S3_BUCKET,
+            Bucket: process.env.AWS_S3_BUCKET,
             Key: `public/sounds/${filename}`,
         })
         .promise()

@@ -61,7 +61,7 @@ class Component extends React.Component {
         if (process.env.NODE_ENV !== 'test') {
             // Preload mp3 for the next card
             this.props.nextSounds.map(soundFile =>
-                mp3.preload(process.env.IE_AWS_S3_PUBLIC_URL + 'sounds/' + soundFile)
+                mp3.preload(process.env.IE_SOUND_URL + 'sounds/' + soundFile)
             )
         }
     }
@@ -88,7 +88,7 @@ class Component extends React.Component {
         const currentCard = this.props.currentCard
         e && e.preventDefault()
 
-        mp3.play(process.env.IE_AWS_S3_PUBLIC_URL + 'sounds/' + currentCard.usSoundFile)
+        mp3.play(process.env.IE_SOUND_URL + 'sounds/' + currentCard.usSoundFile)
     }
 
     goNext = e => {
