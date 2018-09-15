@@ -8,7 +8,7 @@ const fsp = require('fs-promise')
 const temp = require('temp')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
-const { lameCommand } = require('server/utils.js')
+const { lameCommand } = require('../../utils.js')
 
 AWS.config.update({
     region: process.env.IE_AWS_DEFAULT_REGION,

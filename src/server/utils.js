@@ -1,4 +1,4 @@
-const { IE_LAME_PATH, IE_MEDIAINFO_PATH } = process.env
+const { IE_LAME_PATH = '/usr/bin/lame', IE_MEDIAINFO_PATH = '/usr/bin/mediainfo' } = process.env
 
 module.exports = {
     lameCommand: `${IE_LAME_PATH} -b 48 -h --scale {scale} {filein} {fileout} 2>&1`,

@@ -5,7 +5,7 @@ const fs = require('fs')
 const fsp = require('fs-promise')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
-const { lameCommand, mediainfoCommand } = require('server/utils.js')
+const { lameCommand, mediainfoCommand } = require('../../../utils.js')
 
 AWS.config.update({
     region: process.env.IE_AWS_DEFAULT_REGION,
