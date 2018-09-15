@@ -1,6 +1,6 @@
 import _keys from 'lodash/keys'
 import request from 'request-promise-native'
-import AWS from 'aws-sdk'
+import { AWS } from '../../../utils.js'
 
 require('dotenv').config()
 
@@ -8,7 +8,7 @@ const s3 = new AWS.S3()
 const generateMp3 = require('./generateMp3.js')
 
 // eslint-disable-next-line
-describe.skip('generate mp3', () => {
+describe('generate mp3', () => {
     it('Should generate file', async () => {
         const result = await generateMp3('users/100', 'How are you?', 'uk')
         expect(_keys(result)).toEqual(['language', 'filename', 'duration'])

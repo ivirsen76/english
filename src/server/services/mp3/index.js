@@ -1,4 +1,3 @@
-const AWS = require('aws-sdk')
 const hooks = require('./hooks')
 const shuffle = require('lodash/shuffle')
 const pick = require('lodash/pick')
@@ -8,11 +7,8 @@ const fsp = require('fs-promise')
 const temp = require('temp')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
-const { lameCommand } = require('../../utils.js')
+const { AWS, lameCommand } = require('../../utils.js')
 
-AWS.config.update({
-    region: process.env.IE_AWS_DEFAULT_REGION,
-})
 const s3 = new AWS.S3()
 
 const minPause = 500

@@ -1,8 +1,5 @@
-const AWS = require('aws-sdk')
+const { AWS } = require('../../../utils.js')
 
-AWS.config.update({
-    region: process.env.IE_AWS_DEFAULT_REGION,
-})
 const s3 = new AWS.S3()
 
 module.exports = async filename => {
