@@ -8,6 +8,7 @@ const fsp = require('fs-promise')
 const temp = require('temp')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
+const { lameCommand } = require('server/utils.js')
 
 AWS.config.update({
     region: process.env.IE_AWS_DEFAULT_REGION,
@@ -104,11 +105,7 @@ class Service {
 
         // Reencode file to clean up resulted mp3
         await exec(
-            template(process.env.IE_SOUND_ENCODE_MP3_COMMAND, {
-                scale: 1,
-                filein: tmpFilename,
-                fileout: encodedTmpFilename,
-            })
+            template(lameCommand, { scale: 1, filein: tmpFilename, fileout: encodedTmpFilename })
         )
 
         // Write file to the AWS S3 bucket

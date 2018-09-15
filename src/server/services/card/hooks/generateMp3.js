@@ -5,6 +5,7 @@ const fs = require('fs')
 const fsp = require('fs-promise')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
+const { lameCommand, mediainfoCommand } = require('server/utils.js')
 
 AWS.config.update({
     region: process.env.IE_AWS_DEFAULT_REGION,
@@ -50,19 +51,11 @@ module.exports = async (folder, text, language) => {
 
     // Encode with standard bitrate
     await exec(
-        template(process.env.IE_SOUND_ENCODE_MP3_COMMAND, {
-            scale: 3,
-            filein: tmpFilename,
-            fileout: encodedTmpFilename,
-        })
+        template(lameCommand, { scale: 3, filein: tmpFilename, fileout: encodedTmpFilename })
     )
 
     // Get the duration
-    const info = await exec(
-        template(process.env.IE_SOUND_GET_MP3_DURATION_COMMAND, {
-            filename: encodedTmpFilename,
-        })
-    )
+    const info = await exec(template(mediainfoCommand, { filename: encodedTmpFilename }))
     const duration = +/###(\d+)###/g.exec(info.stdout)[1]
 
     // Write file to the AWS S3 bucket
