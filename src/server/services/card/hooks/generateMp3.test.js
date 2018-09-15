@@ -1,6 +1,6 @@
 import _keys from 'lodash/keys'
 import request from 'request-promise-native'
-import { AWS } from '../../../utils.js'
+import AWS from 'aws-sdk'
 
 require('dotenv').config()
 

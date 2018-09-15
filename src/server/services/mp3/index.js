@@ -7,7 +7,8 @@ const fsp = require('fs-promise')
 const temp = require('temp')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
-const { AWS, lameCommand } = require('../../utils.js')
+const { lameCommand } = require('../../utils.js')
+const AWS = require('aws-sdk')
 
 const s3 = new AWS.S3()
 

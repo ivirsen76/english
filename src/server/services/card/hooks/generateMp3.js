@@ -4,7 +4,8 @@ const fs = require('fs')
 const fsp = require('fs-promise')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
-const { AWS, lameCommand, mediainfoCommand } = require('../../../utils.js')
+const { lameCommand, mediainfoCommand } = require('../../../utils.js')
+const AWS = require('aws-sdk')
 
 const polly = new AWS.Polly()
 const s3 = new AWS.S3()
