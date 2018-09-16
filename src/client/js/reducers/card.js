@@ -3,7 +3,7 @@ import { REHYDRATE } from 'redux-persist/constants'
 import _pick from 'lodash/pick'
 import _keys from 'lodash/keys'
 import _find from 'lodash/find'
-import _shuffle from 'lodash/shuffle'
+// import _shuffle from 'lodash/shuffle'
 import _cloneDeep from 'lodash/cloneDeep'
 import axios from '@ieremeev/axios'
 import { set } from 'dot-prop-immutable'
@@ -132,13 +132,13 @@ export const loadCards = () => async (dispatch, getState) => {
 }
 
 export const setRememberCards = () => (dispatch, getState) => {
-    if (process.env.NODE_ENV === 'production') {
-        const state = getState()
-        const order = _shuffle(Array.from(Array(state.app.card.list.length).keys()))
-        dispatch(setRememberCardsWithOrder(order))
-    } else {
-        dispatch(setRememberCardsWithOrder())
-    }
+    // if (process.env.NODE_ENV === 'production') {
+    //     const state = getState()
+    //     const order = _shuffle(Array.from(Array(state.app.card.list.length).keys()))
+    //     dispatch(setRememberCardsWithOrder(order))
+    // } else {
+    dispatch(setRememberCardsWithOrder())
+    // }
 }
 
 export const goNextRememberStep = () => (dispatch, getState) => {

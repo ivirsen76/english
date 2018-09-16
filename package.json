@@ -13,8 +13,8 @@
         "lint": "ieremeev-app-lint",
         "format": "ieremeev-app-format",
         "test": "ieremeev-app-test --watch",
-        "testcafe": "testcafe chrome:headless src/testcafe/**/*.page.js",
-        "testcafe:live": "testcafe-live chrome src/testcafe/**/*.page.js",
+        "testcafe": "testcafe 'chrome:headless --autoplay-policy=no-user-gesture-required' src/testcafe/**/*.page.js",
+        "testcafe:live": "testcafe-live 'chrome --autoplay-policy=no-user-gesture-required' src/testcafe/**/*.page.js",
         "testcafe:db": "node src/testcafe/bin/restoreDb.js",
         "analyze": "ieremeev-app-analyze-bundle",
         "duplicate": "ieremeev-app-duplicate",
@@ -85,7 +85,7 @@
         "winston": "^2.3.1"
     },
     "devDependencies": {
-        "@ieremeev/app": "^3.0.6",
+        "@ieremeev/app": "^3.0.7",
         "testcafe": "^0.20.3",
         "testcafe-live": "^0.1.3",
         "testcafe-react-selectors": "^2.1.0"
