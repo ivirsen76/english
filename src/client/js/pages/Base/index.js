@@ -9,6 +9,7 @@ import CardsView from './CardsView'
 import Tree from '@ieremeev/tree'
 import _pick from 'lodash/pick'
 import { Link } from 'react-router-dom'
+import classnames from 'classnames'
 import style from './style.module.css'
 
 class Component extends React.Component {
@@ -26,12 +27,20 @@ class Component extends React.Component {
     }
 
     getTree = () => {
+        const baseId = +this.props.match.params.id
+
         const getBranch = element => {
             const result = _pick(element, ['id', 'isAdult'])
+            const isActive = element.id === baseId
 
             result.component = (
                 <Link to={`/user/base/${element.id}`}>
-                    <div className="ui message" style={{ padding: '0.7em 1em' }}>
+                    <div
+                        className={classnames(style.item, style[element.type], {
+                            [style.active]: isActive,
+                        })}
+                    >
+                        {element.type === 'folder' && <i className="ui folder icon" />}
                         {element.title}
                     </div>
                 </Link>
@@ -56,7 +65,7 @@ class Component extends React.Component {
 
         return (
             <Loader loading={loading}>
-                <h2>{base.title}</h2>
+                <h2>Bases</h2>
                 <div className={style.grid}>
                     <div className={style.tree}>
                         <Tree
@@ -68,6 +77,7 @@ class Component extends React.Component {
                     </div>
                     {base.id !== 0 && (
                         <div className={style.body}>
+                            <h2>{base.title}</h2>
                             {base.type === 'cards' ? (
                                 <CardsView base={base} />
                             ) : (

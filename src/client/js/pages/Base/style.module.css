@@ -11,3 +11,16 @@
         flex-grow: 1;
     }
 }
+.item {
+    padding: 0.3em 0.5em;
+    border: 1px solid #c9caca;
+    border-radius: 5px;
+    background-color: #f8f8f9;
+    color: #666;
+
+    &.active {
+        color: #22566c;
+        border-color: #a9d5de;
+        background-color: #f8ffff;
+    }
+}
