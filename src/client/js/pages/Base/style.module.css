@@ -7,7 +7,6 @@
         margin-right: 1em;
     }
     .body {
-        margin-top: 5px;
         flex-grow: 1;
     }
 }
@@ -22,5 +21,19 @@
         color: #22566c;
         border-color: #a9d5de;
         background-color: #f8ffff;
+    }
+}
+.addArea {
+    width: 100%;
+    display: flex;
+    margin-bottom: 1em;
+    align-items: center;
+
+    > * {
+        margin-right: 0.3em;
+
+        &:last-child {
+            margin-right: 0;
+        }
     }
 }

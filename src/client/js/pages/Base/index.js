@@ -10,6 +10,7 @@ import Tree from '@ieremeev/tree'
 import _pick from 'lodash/pick'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
+import Element from './Element'
 import style from './style.module.css'
 
 class Component extends React.Component {
@@ -68,6 +69,12 @@ class Component extends React.Component {
                 <h2>Bases</h2>
                 <div className={style.grid}>
                     <div className={style.tree}>
+                        <div className={style.addArea}>
+                            <div>Add:</div>
+                            <Element type="folder" title="Folder" />
+                            <Element type="cards" title="Cards" />
+                        </div>
+
                         <Tree
                             tree={this.getTree()}
                             dragDropType="BUILDER"
