@@ -19,6 +19,7 @@ const ADD_CARD = 'english/base/ADD_CARD'
 const DELETE_CARD = 'english/base/DELETE_CARD'
 const UPDATE_CARD = 'english/base/UPDATE_CARD'
 const SET_CARDS_FOR_BASE = 'english/base/SET_CARDS_FOR_BASE'
+const MOVE_ELEMENT = 'english/base/MOVE_ELEMENT'
 
 // Action Creators
 export const addBaseWithoutSaving = createAction(ADD_BASE)
@@ -30,6 +31,7 @@ export const addCardWithoutSaving = createAction(ADD_CARD)
 export const deleteCardWithoutSaving = createAction(DELETE_CARD)
 export const updateCardWithoutSaving = createAction(UPDATE_CARD)
 export const setCardsForBase = createAction(SET_CARDS_FOR_BASE)
+export const moveElement = createAction(MOVE_ELEMENT)
 
 export const addBase = baseInfo => async (dispatch, getState) => {
     const response = await axios.post('/bases', baseInfo)
@@ -145,6 +147,49 @@ export default handleActions(
                     ...state.cards.filter(item => item.baseId !== baseId),
                     ...cards.map(item => ({ ...item, baseId })),
                 ],
+            }
+        },
+        [MOVE_ELEMENT]: (state, action) => {
+            const { id, parentId, beforeId = 0 } = action.payload
+
+            const element = state.list.find(item => item.id === id)
+            const beforeElement = state.list.find(item => item.id === beforeId)
+            let beforePosition
+            if (beforeElement) {
+                beforePosition = beforeElement.position
+            } else {
+                beforePosition = state.list.filter(item => item.parentId === parentId).length
+            }
+
+            const list = state.list.map(item => {
+                if (item.id === id) {
+                    return {
+                        ...item,
+                        parentId,
+                        position: beforePosition,
+                    }
+                }
+
+                if (item.parentId === parentId && item.position >= beforePosition) {
+                    return {
+                        ...item,
+                        position: item.position + 1,
+                    }
+                }
+
+                if (item.parentId === element.parentId && item.position > element.position) {
+                    return {
+                        ...item,
+                        position: item.position - 1,
+                    }
+                }
+
+                return item
+            })
+
+            return {
+                ...state,
+                list,
             }
         },
     },
