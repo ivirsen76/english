@@ -1,0 +1,13 @@
+.grid {
+    width: 100%;
+    display: flex;
+
+    .tree {
+        width: 200px;
+        margin-right: 1em;
+    }
+    .body {
+        margin-top: 5px;
+        flex-grow: 1;
+    }
+}

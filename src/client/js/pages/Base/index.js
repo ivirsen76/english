@@ -1,18 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { loadBases } from 'client/js/reducers/base'
+import { loadBases, moveElement } from 'client/js/reducers/base'
+import { getTree } from 'client/js/selectors/base'
 import { connect } from 'react-redux'
 import Loader from '@ieremeev/loader'
 import FolderView from './FolderView'
 import CardsView from './CardsView'
+import Tree from '@ieremeev/tree'
+import _pick from 'lodash/pick'
 import { Link } from 'react-router-dom'
-import { getParents } from 'client/js/helpers/base.js'
+import style from './style.module.css'
 
 class Component extends React.Component {
     static propTypes = {
+        tree: PropTypes.object,
         base: PropTypes.object,
-        parents: PropTypes.array,
         loadBases: PropTypes.func,
+        moveElement: PropTypes.func,
         loading: PropTypes.bool,
         match: PropTypes.object,
     }
@@ -21,30 +25,30 @@ class Component extends React.Component {
         this.props.loadBases()
     }
 
-    renderBreadcrumbs = () => {
-        const { base, parents } = this.props
+    getTree = () => {
+        const getBranch = element => {
+            const result = _pick(element, ['id', 'isAdult'])
 
-        if (base.id === 0) {
-            return null
+            result.component = (
+                <Link to={`/user/base/${element.id}`}>
+                    <div className="ui message" style={{ padding: '0.7em 1em' }}>
+                        {element.title}
+                    </div>
+                </Link>
+            )
+
+            if (element.children) {
+                result.children = element.children.map(child => getBranch(child))
+            }
+
+            return result
         }
 
-        return (
-            <div style={{ margin: '-1em 0 1em' }}>
-                <div className="ui breadcrumb">
-                    <Link to="/user/base" className="section">
-                        Bases
-                    </Link>
-                    <i className="right angle icon divider" />
-                    {parents.map(parent => [
-                        <Link key="link" to={`/user/base/${parent.id}`} className="section">
-                            {parent.title}
-                        </Link>,
-                        <i key="divider" className="right angle icon divider" />,
-                    ])}
-                    <div className="active section">{base.title}</div>
-                </div>
-            </div>
-        )
+        return getBranch(this.props.tree)
+    }
+
+    moveElement = (element, parentId, beforeId) => {
+        this.props.moveElement({ id: element.id, parentId, beforeId })
     }
 
     render() {
@@ -53,8 +57,25 @@ class Component extends React.Component {
         return (
             <Loader loading={loading}>
                 <h2>{base.title}</h2>
-                {this.renderBreadcrumbs()}
-                {base.type === 'cards' ? <CardsView base={base} /> : <FolderView base={base} />}
+                <div className={style.grid}>
+                    <div className={style.tree}>
+                        <Tree
+                            tree={this.getTree()}
+                            dragDropType="BUILDER"
+                            onDrop={this.moveElement}
+                            indentSize={20}
+                        />
+                    </div>
+                    {base.id !== 0 && (
+                        <div className={style.body}>
+                            {base.type === 'cards' ? (
+                                <CardsView base={base} />
+                            ) : (
+                                <FolderView base={base} />
+                            )}
+                        </div>
+                    )}
+                </div>
             </Loader>
         )
     }
@@ -64,10 +85,10 @@ const mapStateToProps = (state, props) => {
     const baseId = +props.match.params.id
 
     return {
-        parents: getParents(state.app.base.list, baseId),
         base: state.app.base.list.find(item => item.id === baseId) || { id: 0, title: 'Bases' },
         loading: state.app.base.loading,
+        tree: getTree(state.app.base),
     }
 }
 
-export default connect(mapStateToProps, { loadBases })(Component)
+export default connect(mapStateToProps, { loadBases, moveElement })(Component)
