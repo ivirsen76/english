@@ -10,6 +10,7 @@ import reducer, {
     setLoadingBasesState,
     setCardsForBase,
     moveElement,
+    addElement,
 } from './base'
 
 describe('setLoadingBasesState()', () => {
@@ -216,6 +217,38 @@ describe('moveElement()', () => {
             moveElement({
                 id: 2,
                 parentId: 4,
+            })
+        )
+        expect(resultedState).toEqual(expectedState)
+    })
+})
+
+describe('addElement()', () => {
+    const state = {
+        list: [
+            { id: 1, parentId: 0, position: 0 },
+            { id: 2, parentId: 1, position: 0 },
+            { id: 3, parentId: 1, position: 1 },
+        ],
+        newId: 1000000000,
+    }
+
+    it('Should move element in the same subtree', () => {
+        const expectedState = {
+            list: [
+                { id: 1, parentId: 0, position: 0 },
+                { id: 2, parentId: 1, position: 0 },
+                { id: 3, parentId: 1, position: 2 },
+                { id: 1000000000, parentId: 1, position: 1, type: 'folder' },
+            ],
+            newId: 1000000001,
+        }
+        const resultedState = reducer(
+            state,
+            addElement({
+                element: { type: 'folder' },
+                parentId: 1,
+                beforeId: 3,
             })
         )
         expect(resultedState).toEqual(expectedState)
