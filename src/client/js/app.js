@@ -8,6 +8,8 @@ import reducers from './reducers.js'
 import Routes from './Routes.js'
 import axios from '@ieremeev/axios'
 import cookie from 'js-cookie'
+import { DragDropContext } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
 const store = createStore(reducers)
 
@@ -21,9 +23,10 @@ axios.setLoginRedirect(() => {
     history.push('/login')
 })
 
-ReactDOM.render(
+const Root = DragDropContext(HTML5Backend)(() => (
     <App store={store}>
         <Routes />
-    </App>,
-    document.getElementById('app')
-)
+    </App>
+))
+
+ReactDOM.render(<Root />, document.getElementById('app'))
