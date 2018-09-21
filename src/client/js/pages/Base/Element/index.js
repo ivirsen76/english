@@ -22,13 +22,18 @@ class Element extends React.Component {
     static propTypes = {
         connectDragSource: PropTypes.func.isRequired,
         connectDragPreview: PropTypes.func.isRequired,
-        title: PropTypes.string,
+        element: PropTypes.object,
     }
 
     render() {
-        const { title, connectDragSource } = this.props
+        const { element, connectDragSource, connectDragPreview } = this.props
 
-        return connectDragSource(<div className={style.item}>{title}</div>)
+        return connectDragSource(
+            <div className={style.item}>
+                {connectDragPreview(<span />)}
+                {element.title}
+            </div>
+        )
     }
 }
 

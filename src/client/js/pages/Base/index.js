@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { loadBases, moveElement } from 'client/js/reducers/base'
+import { loadBases, moveElement, addElement } from 'client/js/reducers/base'
 import { getTree } from 'client/js/selectors/base'
 import { connect } from 'react-redux'
 import Loader from '@ieremeev/loader'
@@ -18,6 +18,7 @@ class Component extends React.Component {
         tree: PropTypes.object,
         base: PropTypes.object,
         loadBases: PropTypes.func,
+        addElement: PropTypes.func,
         moveElement: PropTypes.func,
         loading: PropTypes.bool,
         match: PropTypes.object,
@@ -57,8 +58,12 @@ class Component extends React.Component {
         return getBranch(this.props.tree)
     }
 
-    moveElement = (element, parentId, beforeId) => {
-        this.props.moveElement({ id: element.id, parentId, beforeId })
+    onDrop = (element, parentId, beforeId) => {
+        if (element.id) {
+            this.props.moveElement({ id: element.id, parentId, beforeId })
+        } else {
+            this.props.addElement({ element, parentId, beforeId })
+        }
     }
 
     render() {
@@ -71,14 +76,14 @@ class Component extends React.Component {
                     <div className={style.tree}>
                         <div className={style.addArea}>
                             <div>Add:</div>
-                            <Element type="folder" title="Folder" />
-                            <Element type="cards" title="Cards" />
+                            <Element element={{ type: 'folder', title: 'Folder' }} />
+                            <Element element={{ type: 'cards', title: 'Cards' }} />
                         </div>
 
                         <Tree
                             tree={this.getTree()}
                             dragDropType="BUILDER"
-                            onDrop={this.moveElement}
+                            onDrop={this.onDrop}
                             indentSize={20}
                         />
                     </div>
@@ -108,4 +113,4 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-export default connect(mapStateToProps, { loadBases, moveElement })(Component)
+export default connect(mapStateToProps, { loadBases, moveElement, addElement })(Component)
