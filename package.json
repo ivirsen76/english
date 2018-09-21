@@ -31,7 +31,7 @@
         "@ieremeev/loader": "^1.1.4",
         "@ieremeev/notification": "^2.0.6",
         "@ieremeev/table": "^2.2.1",
-        "@ieremeev/tree": "^1.0.2",
+        "@ieremeev/tree": "^1.0.3",
         "aws-sdk": "^2.54.0",
         "babel-polyfill": "^6.23.0",
         "body-parser": "^1.17.2",
