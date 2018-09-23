@@ -1,3 +1,5 @@
+$markSize: 0.7em;
+
 .grid {
     width: 100%;
     display: flex;
@@ -16,6 +18,7 @@
     border-radius: 5px;
     background-color: #f8f8f9;
     color: #666;
+    position: relative;
 
     &.active {
         color: #22566c;
@@ -23,7 +26,25 @@
         background-color: #f8ffff;
         font-weight: bold;
     }
+    .mark {
+        z-index: 201;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: $markSize $markSize 0 0;
+
+        &.dirty {
+            border-color: #f0ad4e transparent transparent transparent;
+        }
+        &.new {
+            border-color: #30bd33 transparent transparent transparent;
+        }
+    }
 }
+
 .addArea {
     width: 100%;
     display: flex;
