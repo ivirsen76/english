@@ -33,7 +33,7 @@ class Service {
             }
         }
 
-        return updates
+        return newIds
     }
 }
 

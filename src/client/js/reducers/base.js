@@ -23,6 +23,7 @@ const UPDATE_CARD = 'english/base/UPDATE_CARD'
 const SET_CARDS_FOR_BASE = 'english/base/SET_CARDS_FOR_BASE'
 const MOVE_ELEMENT = 'english/base/MOVE_ELEMENT'
 const ADD_ELEMENT = 'english/base/ADD_ELEMENT'
+const UPDATE_BASE_IDS = 'english/base/UPDATE_BASE_IDS'
 
 // Action Creators
 export const addBaseWithoutSaving = createAction(ADD_BASE)
@@ -36,10 +37,12 @@ export const updateCardWithoutSaving = createAction(UPDATE_CARD)
 export const setCardsForBase = createAction(SET_CARDS_FOR_BASE)
 export const moveElement = createAction(MOVE_ELEMENT)
 export const addElement = createAction(ADD_ELEMENT)
+export const updateBaseIds = createAction(UPDATE_BASE_IDS)
 
 export const saveBaseTree = () => async (dispatch, getState) => {
     const state = getState().app.base
-    await axios.post('/basetree', state.list)
+    const response = await axios.post('/basetree', state.list)
+    dispatch(updateBaseIds(response.data))
     notification('The base tree has been saved')
 }
 
@@ -238,6 +241,17 @@ export default handleActions(
                     { ...element, id: state.newId, parentId, position: beforePosition },
                 ],
                 newId: state.newId + 1,
+            }
+        },
+        [UPDATE_BASE_IDS]: (state, action) => {
+            const ids = action.payload
+            return {
+                ...state,
+                list: state.list.map(item => ({
+                    ...item,
+                    ...(ids[item.id] && { id: ids[item.id] }),
+                    ...(ids[item.parentId] && { parentId: ids[item.parentId] }),
+                })),
             }
         },
     },

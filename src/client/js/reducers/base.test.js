@@ -11,6 +11,7 @@ import reducer, {
     setCardsForBase,
     moveElement,
     addElement,
+    updateBaseIds,
 } from './base'
 
 describe('setLoadingBasesState()', () => {
@@ -252,5 +253,24 @@ describe('addElement()', () => {
             })
         )
         expect(resultedState).toEqual(expectedState)
+    })
+})
+
+describe('updateBaseIds()', () => {
+    it('Should update base ids', () => {
+        const state = {
+            list: [
+                { id: 100, parentId: 0 },
+                { id: 101, parentId: 100 },
+                { id: 102, parentId: 100 },
+            ],
+        }
+        const expectedList = [
+            { id: 1, parentId: 0 },
+            { id: 2, parentId: 1 },
+            { id: 3, parentId: 1 },
+        ]
+        const resultedState = reducer(state, updateBaseIds({ 100: 1, 101: 2, 102: 3 }))
+        expect(resultedState.list).toEqual(expectedList)
     })
 })
