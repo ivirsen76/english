@@ -65,16 +65,15 @@ describe('setBases()', () => {
         const state = {
             ...initialState,
             list: [{ id: 2, title: 'Tree2', price: 800 }],
+            savedList: [{ some: 'one' }],
         }
         const expectedList = [
             { id: 3, title: 'Tree2', price: 800 },
             { id: 4, title: 'Tree2', price: 800 },
         ]
-        const resultedState = reducer(
-            state,
-            setBases([{ id: 3, title: 'Tree2', price: 800 }, { id: 4, title: 'Tree2', price: 800 }])
-        )
+        const resultedState = reducer(state, setBases(expectedList))
         expect(resultedState.list).toEqual(expectedList)
+        expect(resultedState.savedList).toEqual(expectedList)
     })
 })
 

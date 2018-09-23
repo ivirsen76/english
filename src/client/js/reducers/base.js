@@ -8,6 +8,7 @@ import _isEmpty from 'lodash/isEmpty'
 export const initialState = {
     loading: true,
     list: [],
+    savedList: [],
     cards: [],
     newId: 1000000000,
 }
@@ -125,6 +126,7 @@ export default handleActions(
         [SET_BASES]: (state, action) => ({
             ...state,
             list: action.payload,
+            savedList: action.payload,
         }),
         [SET_LOADING_BASES_STATE]: (state, action) => ({
             ...state,
