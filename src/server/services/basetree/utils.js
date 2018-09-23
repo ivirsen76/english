@@ -2,7 +2,26 @@ const _pick = require('lodash/pick')
 const _isEmpty = require('lodash/isEmpty')
 const _intersection = require('lodash/intersection')
 
+const orderList = list => {
+    const result = []
+
+    const getChildren = parentId => {
+        list
+            .filter(item => item.parentId === parentId)
+            .sort((a, b) => a.position - b.position)
+            .forEach(item => {
+                result.push(item)
+                getChildren(item.id)
+            })
+    }
+    getChildren(0)
+
+    return result
+}
+
 const getUpdates = (originalList, list) => {
+    list = orderList(list)
+
     const affectedKeys = ['id', 'parentId', 'position', 'title', 'type']
     const originalIds = originalList.map(item => item.id)
     const newIds = list.map(item => item.id)
@@ -39,3 +58,4 @@ const getUpdates = (originalList, list) => {
 }
 
 module.exports.getUpdates = getUpdates
+module.exports.orderList = orderList
