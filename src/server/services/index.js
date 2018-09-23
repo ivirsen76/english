@@ -6,6 +6,8 @@ const authentication = require('./authentication')
 const user = require('./user')
 const mp3 = require('./mp3')
 
+const basetree = require('./basetree/basetree.service.js')
+
 module.exports = function() {
     const app = this
 
@@ -21,4 +23,5 @@ module.exports = function() {
     app.configure(base)
     app.configure(basecard)
     app.configure(mp3)
+    app.configure(basetree)
 }

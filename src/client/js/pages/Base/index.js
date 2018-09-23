@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { loadBases, moveElement, addElement } from 'client/js/reducers/base'
+import { loadBases, moveElement, addElement, saveBaseTree } from 'client/js/reducers/base'
 import { getTree } from 'client/js/selectors/base'
 import { connect } from 'react-redux'
 import Loader from '@ieremeev/loader'
@@ -20,6 +20,7 @@ class Component extends React.Component {
         loadBases: PropTypes.func,
         addElement: PropTypes.func,
         moveElement: PropTypes.func,
+        saveBaseTree: PropTypes.func,
         loading: PropTypes.bool,
         match: PropTypes.object,
     }
@@ -74,6 +75,11 @@ class Component extends React.Component {
                 <h2>Bases</h2>
                 <div className={style.grid}>
                     <div className={style.tree}>
+                        <div style={{ marginBottom: '0.5em' }}>
+                            <button onClick={this.props.saveBaseTree} className="tiny ui button">
+                                Save
+                            </button>
+                        </div>
                         <div className={style.addArea}>
                             <div>Add:</div>
                             <Element element={{ type: 'folder', title: 'Folder' }} />
@@ -113,4 +119,6 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-export default connect(mapStateToProps, { loadBases, moveElement, addElement })(Component)
+export default connect(mapStateToProps, { loadBases, moveElement, addElement, saveBaseTree })(
+    Component
+)

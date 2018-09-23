@@ -24,6 +24,9 @@
     "peerDependencies": {
         "enzyme": "*"
     },
+    "directories": {
+        "lib": "src/server"
+    },
     "dependencies": {
         "@ieremeev/axios": "^1.1.2",
         "@ieremeev/boilerplate": "^1.1.1",

@@ -1,5 +1,6 @@
 import { handleActions, createAction } from 'redux-actions'
 import axios from '@ieremeev/axios'
+import notification from '@ieremeev/notification'
 import _pick from 'lodash/pick'
 
 // Initial state
@@ -35,6 +36,12 @@ export const updateCardWithoutSaving = createAction(UPDATE_CARD)
 export const setCardsForBase = createAction(SET_CARDS_FOR_BASE)
 export const moveElement = createAction(MOVE_ELEMENT)
 export const addElement = createAction(ADD_ELEMENT)
+
+export const saveBaseTree = () => async (dispatch, getState) => {
+    const state = getState().app.base
+    await axios.post('/basetree', state.list)
+    notification('The base tree has been saved')
+}
 
 export const addBase = baseInfo => async (dispatch, getState) => {
     const response = await axios.post('/bases', baseInfo)
