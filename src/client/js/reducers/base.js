@@ -2,6 +2,7 @@ import { handleActions, createAction } from 'redux-actions'
 import axios from '@ieremeev/axios'
 import notification from '@ieremeev/notification'
 import _pick from 'lodash/pick'
+import _isEmpty from 'lodash/isEmpty'
 
 // Initial state
 export const initialState = {
@@ -245,6 +246,11 @@ export default handleActions(
         },
         [UPDATE_BASE_IDS]: (state, action) => {
             const ids = action.payload
+
+            if (_isEmpty(ids)) {
+                return state
+            }
+
             return {
                 ...state,
                 list: state.list.map(item => ({
