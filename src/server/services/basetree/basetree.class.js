@@ -15,11 +15,21 @@ class Service {
 
         const result = await bases.find()
         const updates = getUpdates(result.data, data)
+        const newIds = {}
 
         for (let i = 0; i < updates.length; i++) {
             const update = updates[i]
+
+            if (newIds[update.parentId]) {
+                update.parentId = newIds[update.parentId]
+            }
+
             if (update.query === 'update') {
                 await bases.patch(update.id, _omit(update, ['id', 'query']))
+            }
+            if (update.query === 'insert') {
+                const inserted = await bases.create(_omit(update, ['id', 'query']))
+                newIds[update.id] = inserted.dataValues.id
             }
         }
 
