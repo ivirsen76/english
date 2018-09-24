@@ -5,7 +5,7 @@ $markSize: 0.7em;
     display: flex;
 
     .tree {
-        width: 200px;
+        width: 220px;
         margin-right: 1em;
     }
     .body {
@@ -44,18 +44,16 @@ $markSize: 0.7em;
         }
     }
 }
-
-.addArea {
+.topArea {
     width: 100%;
     display: flex;
     margin-bottom: 1em;
-    align-items: center;
+    justify-content: space-between;
+}
+.elementArea {
+    display: flex;
 
     > * {
         margin-right: 0.3em;
-
-        &:last-child {
-            margin-right: 0;
-        }
     }
 }

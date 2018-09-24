@@ -85,18 +85,21 @@ class Component extends React.Component {
                 <h2>Bases</h2>
                 <div className={style.grid}>
                     <div className={style.tree}>
-                        <div style={{ marginBottom: '0.5em' }}>
-                            <button
-                                onClick={this.props.saveBaseTree}
-                                className={`tiny ui ${hasTreeChanges ? 'orange' : ''} button`}
-                            >
-                                Save
-                            </button>
-                        </div>
-                        <div className={style.addArea}>
-                            <div>Add:</div>
-                            <Element element={{ type: 'folder', title: 'Folder' }} />
-                            <Element element={{ type: 'cards', title: 'Cards' }} />
+                        <div className={style.topArea}>
+                            <div className={style.elementArea}>
+                                <Element element={{ type: 'folder', title: 'Folder' }} />
+                                <Element element={{ type: 'cards', title: 'Cards' }} />
+                            </div>
+                            <div>
+                                <button
+                                    onClick={this.props.saveBaseTree}
+                                    className={`fluid compact ui ${
+                                        hasTreeChanges ? 'orange' : ''
+                                    } button`}
+                                >
+                                    Save
+                                </button>
+                            </div>
                         </div>
 
                         <Tree
