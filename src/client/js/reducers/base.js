@@ -4,13 +4,15 @@ import notification from '@ieremeev/notification'
 import _pick from 'lodash/pick'
 import _isEmpty from 'lodash/isEmpty'
 
+export const startNewId = 1000000000
+
 // Initial state
 export const initialState = {
     loading: true,
     list: [],
     savedList: [],
     cards: [],
-    newId: 1000000000,
+    newId: startNewId,
 }
 
 // Actions
@@ -182,7 +184,10 @@ export default handleActions(
                     return {
                         ...item,
                         parentId,
-                        position: beforePosition,
+                        position:
+                            item.parentId === parentId && beforeId === 0
+                                ? beforePosition - 1
+                                : beforePosition,
                     }
                 }
 

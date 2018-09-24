@@ -221,6 +221,28 @@ describe('moveElement()', () => {
         )
         expect(resultedState).toEqual(expectedState)
     })
+
+    it('Should change two elements together', () => {
+        const expectedState = {
+            list: [
+                { id: 1, parentId: 0, position: 0 },
+                { id: 2, parentId: 1, position: 0 },
+                { id: 3, parentId: 1, position: 1 },
+                { id: 4, parentId: 0, position: 1 },
+                { id: 5, parentId: 4, position: 1 },
+                { id: 6, parentId: 4, position: 0 },
+            ],
+        }
+        const resultedState = reducer(
+            state,
+            moveElement({
+                id: 5,
+                parentId: 4,
+                beforeId: 0,
+            })
+        )
+        expect(resultedState).toEqual(expectedState)
+    })
 })
 
 describe('addElement()', () => {

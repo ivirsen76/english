@@ -1,4 +1,11 @@
-import { getTree, getSortedList, getNewIds } from './base'
+import {
+    getTree,
+    getSortedList,
+    getNewIds,
+    getUpdatedIds,
+    getRemovedIds,
+    getHasTreeChanges,
+} from './base'
 
 describe('getSortedList()', () => {
     it('Should return sorted list', () => {
@@ -70,9 +77,50 @@ describe('getTree()', () => {
 describe('getNewIds()', () => {
     it('Should return new Ids', () => {
         const state = {
-            list: [{ id: 1 }, { id: 2 }, { id: 1001 }, { id: 2 }, { id: 1002 }],
-            newId: 1000,
+            list: [{ id: 1 }, { id: 2 }, { id: 1000000000 }, { id: 2 }, { id: 1000000001 }],
+            savedList: [],
         }
-        expect(getNewIds(state)).toEqual([1001, 1002])
+        expect(getNewIds(state)).toEqual([1000000000, 1000000001])
+        expect(getHasTreeChanges(state)).toBe(true)
+    })
+})
+
+describe('getUpdatedIds()', () => {
+    it('Should return updated ids', () => {
+        const state = {
+            list: [
+                { id: 1, parentId: 0, position: 0 },
+                { id: 2, parentId: 0, position: 1 },
+                { id: 1000000000, parentId: 2, position: 0 },
+            ],
+            savedList: [
+                { id: 1, parentId: 0, position: 0 },
+                { id: 2, parentId: 1, position: 0 },
+                { id: 1000000001, parentId: 1, position: 1 },
+            ],
+        }
+        expect(getUpdatedIds(state)).toEqual([2])
+        expect(getHasTreeChanges(state)).toBe(true)
+    })
+})
+
+describe('getRemovedIds()', () => {
+    it('Should return removed ids', () => {
+        const state = {
+            list: [{ id: 1 }, { id: 3 }],
+            savedList: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }],
+        }
+        expect(getRemovedIds(state)).toEqual([2, 4])
+        expect(getHasTreeChanges(state)).toBe(true)
+    })
+})
+
+describe('getHasTreeChanges()', () => {
+    it('Should return false', () => {
+        const state = {
+            list: [{ id: 1, parentId: 0 }, { id: 2, parentId: 0 }],
+            savedList: [{ id: 1, parentId: 0 }, { id: 2, parentId: 0 }],
+        }
+        expect(getHasTreeChanges(state)).toBe(false)
     })
 })

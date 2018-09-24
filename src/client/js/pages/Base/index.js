@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { loadBases, moveElement, addElement, saveBaseTree } from 'client/js/reducers/base'
-import { getTree } from 'client/js/selectors/base'
+import { getTree, getNewIds, getUpdatedIds, getHasTreeChanges } from 'client/js/selectors/base'
 import { connect } from 'react-redux'
 import Loader from '@ieremeev/loader'
 import FolderView from './FolderView'
@@ -21,6 +21,9 @@ class Component extends React.Component {
         addElement: PropTypes.func,
         moveElement: PropTypes.func,
         saveBaseTree: PropTypes.func,
+        newIds: PropTypes.array,
+        updatedIds: PropTypes.array,
+        hasTreeChanges: PropTypes.bool,
         loading: PropTypes.bool,
         match: PropTypes.object,
     }
@@ -31,6 +34,7 @@ class Component extends React.Component {
 
     getTree = () => {
         const baseId = +this.props.match.params.id
+        const { newIds, updatedIds } = this.props
 
         const getBranch = element => {
             const result = _pick(element, ['id', 'isAdult'])
@@ -43,6 +47,12 @@ class Component extends React.Component {
                             [style.active]: isActive,
                         })}
                     >
+                        {newIds.includes(element.id) && (
+                            <div className={style.mark + ' ' + style.new} title="New" />
+                        )}
+                        {updatedIds.includes(element.id) && (
+                            <div className={style.mark + ' ' + style.dirty} title="Updated" />
+                        )}
                         {element.type === 'folder' && <i className="ui folder icon" />}
                         {element.title}
                     </div>
@@ -68,7 +78,7 @@ class Component extends React.Component {
     }
 
     render() {
-        const { loading, base } = this.props
+        const { loading, base, hasTreeChanges } = this.props
 
         return (
             <Loader loading={loading}>
@@ -76,7 +86,10 @@ class Component extends React.Component {
                 <div className={style.grid}>
                     <div className={style.tree}>
                         <div style={{ marginBottom: '0.5em' }}>
-                            <button onClick={this.props.saveBaseTree} className="tiny ui button">
+                            <button
+                                onClick={this.props.saveBaseTree}
+                                className={`tiny ui ${hasTreeChanges ? 'orange' : ''} button`}
+                            >
                                 Save
                             </button>
                         </div>
@@ -116,6 +129,9 @@ const mapStateToProps = (state, props) => {
         base: state.app.base.list.find(item => item.id === baseId) || { id: 0, title: 'Bases' },
         loading: state.app.base.loading,
         tree: getTree(state.app.base),
+        newIds: getNewIds(state.app.base),
+        updatedIds: getUpdatedIds(state.app.base),
+        hasTreeChanges: getHasTreeChanges(state.app.base),
     }
 }
 
