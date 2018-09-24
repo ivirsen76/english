@@ -170,7 +170,6 @@ export default handleActions(
         [MOVE_ELEMENT]: (state, action) => {
             const { id, parentId, beforeId = 0 } = action.payload
 
-            const element = state.list.find(item => item.id === id)
             const beforeElement = state.list.find(item => item.id === beforeId)
             let beforePosition
             if (beforeElement) {
@@ -184,10 +183,7 @@ export default handleActions(
                     return {
                         ...item,
                         parentId,
-                        position:
-                            item.parentId === parentId && beforeId === 0
-                                ? beforePosition - 1
-                                : beforePosition,
+                        position: beforePosition,
                     }
                 }
 
@@ -198,15 +194,20 @@ export default handleActions(
                     }
                 }
 
-                if (item.parentId === element.parentId && item.position > element.position) {
-                    return {
-                        ...item,
-                        position: item.position - 1,
-                    }
-                }
-
-                return item
+                return { ...item }
             })
+
+            // Normalize positions
+            const processChildren = topId => {
+                list
+                    .filter(item => item.parentId === topId)
+                    .sort((a, b) => a.position - b.position)
+                    .forEach((item, index) => {
+                        item.position = index
+                        processChildren(item.id)
+                    })
+            }
+            processChildren(0)
 
             return {
                 ...state,
@@ -258,13 +259,16 @@ export default handleActions(
                 return state
             }
 
+            const newList = state.list.map(item => ({
+                ...item,
+                ...(ids[item.id] && { id: ids[item.id] }),
+                ...(ids[item.parentId] && { parentId: ids[item.parentId] }),
+            }))
+
             return {
                 ...state,
-                list: state.list.map(item => ({
-                    ...item,
-                    ...(ids[item.id] && { id: ids[item.id] }),
-                    ...(ids[item.parentId] && { parentId: ids[item.parentId] }),
-                })),
+                list: newList,
+                savedList: newList,
             }
         },
     },

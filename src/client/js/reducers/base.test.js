@@ -243,6 +243,32 @@ describe('moveElement()', () => {
         )
         expect(resultedState).toEqual(expectedState)
     })
+
+    it('Should move the first element', () => {
+        const state1 = {
+            list: [
+                { id: 1, parentId: 0, position: 0 },
+                { id: 2, parentId: 0, position: 1 },
+                { id: 3, parentId: 0, position: 2 },
+            ],
+        }
+        const expectedState = {
+            list: [
+                { id: 1, parentId: 0, position: 1 },
+                { id: 2, parentId: 0, position: 0 },
+                { id: 3, parentId: 0, position: 2 },
+            ],
+        }
+        const resultedState = reducer(
+            state1,
+            moveElement({
+                id: 1,
+                parentId: 0,
+                beforeId: 3,
+            })
+        )
+        expect(resultedState).toEqual(expectedState)
+    })
 })
 
 describe('addElement()', () => {
@@ -292,6 +318,7 @@ describe('updateBaseIds()', () => {
                 { id: 101, parentId: 100 },
                 { id: 102, parentId: 100 },
             ],
+            savedList: [],
         }
         const expectedList = [
             { id: 1, parentId: 0 },
@@ -300,5 +327,6 @@ describe('updateBaseIds()', () => {
         ]
         const resultedState = reducer(state, updateBaseIds({ 100: 1, 101: 2, 102: 3 }))
         expect(resultedState.list).toEqual(expectedList)
+        expect(resultedState.savedList).toEqual(expectedList)
     })
 })
