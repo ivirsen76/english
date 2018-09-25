@@ -2,11 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Formik, Field } from 'formik'
 import FormikInput from 'client/js/components/FormikInput'
-import _pick from 'lodash/pick'
-import _isEqual from 'lodash/isEqual'
-import _isEmpty from 'lodash/isEmpty'
+import Sync from './Sync.js'
 
-const keys = ['title']
+export const errorMessages = {
+    noTitle: 'You have to provide title',
+}
+
+export const validate = values => {
+    const errors = {}
+
+    if (!values.title) {
+        errors.title = errorMessages.noTitle
+    }
+
+    return errors
+}
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -14,25 +24,20 @@ export default class Component extends React.Component {
         updateBase: PropTypes.func,
     }
 
-    render() {
-        const baseValues = _pick(this.props.base, keys)
+    updateBase = values => {
+        this.props.updateBase({ ...values, id: this.props.base.id })
+    }
 
+    render() {
         return (
             <Formik
-                initialValues={baseValues}
-                validate={values => {
-                    const errors = {}
-
-                    // Synchronize with redux
-                    if (_isEmpty(errors) && !_isEqual(values, baseValues)) {
-                        this.props.updateBase({ ...values, id: this.props.base.id })
-                    }
-
-                    return errors
-                }}
-                render={() => (
+                initialValues={{ title: this.props.base.title }}
+                isInitialValid
+                validate={validate}
+                render={props => (
                     <form className="ui form">
-                        <Field name="title" component={FormikInput} label="Title" />
+                        <Sync {...props} update={this.updateBase} />
+                        <Field name="title" component={FormikInput} label="Title" autoFocus />
                     </form>
                 )}
             />
