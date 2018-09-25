@@ -291,11 +291,13 @@ describe('addElement()', () => {
 })
 
 describe('updateBaseIds()', () => {
-    it('Should return the same state id there are now new ids', () => {
+    it('Should return at least updated savedList if there is no ids', () => {
         const state = {
             list: [{ id: 1, parentId: 0 }, { id: 2, parentId: 1 }, { id: 3, parentId: 1 }],
         }
-        expect(reducer(state, updateBaseIds({}))).toBe(state)
+        const resultedState = reducer(state, updateBaseIds({}))
+        expect(resultedState.list).toBe(state.list)
+        expect(resultedState.savedList).toBe(state.list)
     })
 
     it('Should update base ids', () => {

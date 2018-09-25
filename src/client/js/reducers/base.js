@@ -240,7 +240,10 @@ export default handleActions(
             const ids = action.payload
 
             if (_isEmpty(ids)) {
-                return state
+                return {
+                    ...state,
+                    savedList: state.list,
+                }
             }
 
             const newList = state.list.map(item => ({
