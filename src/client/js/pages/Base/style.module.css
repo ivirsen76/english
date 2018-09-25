@@ -22,7 +22,7 @@ $markSize: 0.7em;
 
     &.active {
         color: #22566c;
-        border: 2px solid #a9d5de;
+        border-color: #a9d5de;
         background-color: #f8ffff;
         font-weight: bold;
     }

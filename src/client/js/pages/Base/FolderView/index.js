@@ -1,73 +1,41 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { addBase, updateBase } from 'client/js/reducers/base'
-import Table from '@ieremeev/table'
-import { Link } from 'react-router-dom'
-import AddBase from './AddBase'
-import EditBase from './EditBase'
-import style from './style.module.css'
+import { Formik, Field } from 'formik'
+import FormikInput from 'client/js/components/FormikInput'
+import _pick from 'lodash/pick'
+import _isEqual from 'lodash/isEqual'
+import _isEmpty from 'lodash/isEmpty'
 
-class Component extends React.Component {
+const keys = ['title']
+
+export default class Component extends React.Component {
     static propTypes = {
         base: PropTypes.object,
-        list: PropTypes.array.isRequired,
-        addBase: PropTypes.func.isRequired,
-        updateBase: PropTypes.func.isRequired,
+        updateBase: PropTypes.func,
     }
 
-    addBase = values => this.props.addBase({ ...values, parentId: this.props.base.id })
-
     render() {
-        const columns = [
-            {
-                name: 'actions',
-                label: '',
-                render: (value, row) => (
-                    <div>
-                        <EditBase
-                            baseId={row.id}
-                            updateBase={this.props.updateBase}
-                            initialValues={row}
-                        />
-                    </div>
-                ),
-                className: style.actions,
-            },
-            {
-                name: 'title',
-                label: 'Title',
-                filter: true,
-                sort: true,
-                render: (value, row) => <Link to={`/user/base/${row.id}`}>{value}</Link>,
-            },
-            {
-                name: 'count',
-                label: 'Count',
-                filter: true,
-                sort: true,
-            },
-            {
-                name: 'price',
-                label: 'Price',
-                filter: true,
-                sort: true,
-            },
-        ]
+        const baseValues = _pick(this.props.base, keys)
 
         return (
-            <div>
-                <div className="margin1">
-                    <AddBase addBase={this.addBase} />
-                </div>
-                <Table data={this.props.list} columns={columns} showRowNumber />
-            </div>
+            <Formik
+                initialValues={baseValues}
+                validate={values => {
+                    const errors = {}
+
+                    // Synchronize with redux
+                    if (_isEmpty(errors) && !_isEqual(values, baseValues)) {
+                        this.props.updateBase({ ...values, id: this.props.base.id })
+                    }
+
+                    return errors
+                }}
+                render={() => (
+                    <form className="ui form">
+                        <Field name="title" component={FormikInput} label="Title" />
+                    </form>
+                )}
+            />
         )
     }
 }
-
-const mapStateToProps = (state, props) => ({
-    list: state.app.base.list.filter(item => item.parentId === props.base.id),
-})
-
-export default connect(mapStateToProps, { addBase, updateBase })(Component)

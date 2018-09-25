@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { loadBases, moveElement, addElement, saveBaseTree } from 'client/js/reducers/base'
+import {
+    loadBases,
+    moveElement,
+    addElement,
+    saveBaseTree,
+    updateBase,
+} from 'client/js/reducers/base'
 import { getTree, getNewIds, getUpdatedIds, getHasTreeChanges } from 'client/js/selectors/base'
 import { connect } from 'react-redux'
 import Loader from '@ieremeev/loader'
@@ -24,6 +30,7 @@ class Component extends React.Component {
         newIds: PropTypes.array,
         updatedIds: PropTypes.array,
         hasTreeChanges: PropTypes.bool,
+        updateBase: PropTypes.func,
         loading: PropTypes.bool,
         match: PropTypes.object,
     }
@@ -115,7 +122,11 @@ class Component extends React.Component {
                             {base.type === 'cards' ? (
                                 <CardsView base={base} />
                             ) : (
-                                <FolderView base={base} />
+                                <FolderView
+                                    key={base.id}
+                                    base={base}
+                                    updateBase={this.props.updateBase}
+                                />
                             )}
                         </div>
                     )}
@@ -138,6 +149,10 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-export default connect(mapStateToProps, { loadBases, moveElement, addElement, saveBaseTree })(
-    Component
-)
+export default connect(mapStateToProps, {
+    loadBases,
+    moveElement,
+    addElement,
+    saveBaseTree,
+    updateBase,
+})(Component)
