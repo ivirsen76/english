@@ -52,6 +52,7 @@
         "feathers-hooks": "^1.8.1",
         "feathers-rest": "^1.7.2",
         "feathers-sequelize": "^1.4.5",
+        "formik": "^1.3.0",
         "fs-promise": "^2.0.3",
         "history": "^4.7.2",
         "js-cookie": "^2.2.0",
