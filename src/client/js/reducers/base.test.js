@@ -1,8 +1,7 @@
 import reducer, {
     initialState,
-    addBaseWithoutSaving as addBase,
     deleteBaseWithoutSaving as deleteBase,
-    updateBaseWithoutSaving as updateBase,
+    updateBase,
     addCardWithoutSaving as addCard,
     deleteCardWithoutSaving as deleteCard,
     updateCardWithoutSaving as updateCard,
@@ -21,18 +20,6 @@ describe('setLoadingBasesState()', () => {
             loading: false,
         }
         expect(reducer(state, setLoadingBasesState(true)).loading).toBe(true)
-    })
-})
-
-describe('addBase()', () => {
-    it('Should add new base', () => {
-        const state = {
-            ...initialState,
-            list: [],
-        }
-        const expectedList = [{ id: 12, title: 'Tree', price: 800 }]
-        const resultedState = reducer(state, addBase({ id: 12, title: 'Tree', price: 800 }))
-        expect(resultedState.list).toEqual(expectedList)
     })
 })
 

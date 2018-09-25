@@ -16,7 +16,6 @@ export const initialState = {
 }
 
 // Actions
-const ADD_BASE = 'english/base/ADD_BASE'
 const DELETE_BASE = 'english/base/DELETE_BASE'
 const UPDATE_BASE = 'english/base/UPDATE_BASE'
 const SET_LOADING_BASES_STATE = 'english/base/SET_LOADING_BASES_STATE'
@@ -30,9 +29,8 @@ const ADD_ELEMENT = 'english/base/ADD_ELEMENT'
 const UPDATE_BASE_IDS = 'english/base/UPDATE_BASE_IDS'
 
 // Action Creators
-export const addBaseWithoutSaving = createAction(ADD_BASE)
 export const deleteBaseWithoutSaving = createAction(DELETE_BASE)
-export const updateBaseWithoutSaving = createAction(UPDATE_BASE)
+export const updateBase = createAction(UPDATE_BASE)
 export const setLoadingBasesState = createAction(SET_LOADING_BASES_STATE)
 export const setBases = createAction(SET_BASES)
 export const addCardWithoutSaving = createAction(ADD_CARD)
@@ -48,16 +46,6 @@ export const saveBaseTree = () => async (dispatch, getState) => {
     const response = await axios.post('/basetree', state.list)
     dispatch(updateBaseIds(response.data))
     notification('The base tree has been saved')
-}
-
-export const addBase = baseInfo => async (dispatch, getState) => {
-    const response = await axios.post('/bases', baseInfo)
-    dispatch(addBaseWithoutSaving(response.data))
-}
-
-export const updateBase = baseInfo => async (dispatch, getState) => {
-    await axios.patch(`/bases/${baseInfo.id}`, baseInfo)
-    dispatch(updateBaseWithoutSaving(baseInfo))
 }
 
 export const deleteBase = baseId => async (dispatch, getState) => {
@@ -84,7 +72,7 @@ export const addCard = cardInfo => async (dispatch, getState) => {
     // Increment count of the base
     const base = state.list.find(item => item.id === cardInfo.baseId)
     if (base) {
-        dispatch(updateBaseWithoutSaving(base.id, { count: base.count + 1 }))
+        dispatch(updateBase(base.id, { count: base.count + 1 }))
     }
 
     dispatch(addCardWithoutSaving(response.data))
@@ -104,10 +92,6 @@ export const updateCard = cardInfo => async (dispatch, getState) => {
 // Reducer
 export default handleActions(
     {
-        [ADD_BASE]: (state, action) => ({
-            ...state,
-            list: [...state.list, action.payload],
-        }),
         [DELETE_BASE]: (state, action) => ({
             ...state,
             list: state.list.filter(item => item.id !== action.payload),
