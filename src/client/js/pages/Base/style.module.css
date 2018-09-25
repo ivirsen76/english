@@ -19,6 +19,9 @@ $markSize: 0.7em;
     background-color: #f8f8f9;
     color: #666;
     position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &.active {
         color: #22566c;
