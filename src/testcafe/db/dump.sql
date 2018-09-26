@@ -180,7 +180,7 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
-INSERT INTO `users` (`id`, `email`, `password`, `createdAt`, `updatedAt`)
+INSERT INTO `users` (`id`, `email`, `password`, `role`, `createdAt`, `updatedAt`)
 VALUES
     (1,'ivirsen@gmail.com','$2a$10$Hzeo5ERqYsjZck2VQa7IdOcPpfSTWmmlyaharv23vrE9FGHQjofj2','admin','2017-05-06 02:46:39','2017-05-06 02:46:39');
 
