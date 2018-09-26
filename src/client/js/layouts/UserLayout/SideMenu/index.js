@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Menu } from 'semantic-ui-react'
 import MenuLink from 'client/js/components/MenuLink'
 import Icon from './Icon'
+import { hasRole } from 'client/js/utils/auth.js'
 
 const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
     <Menu vertical fluid size="huge">
@@ -49,10 +50,12 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
                     <Icon type="stats-dots" />
                     Statistics
                 </MenuLink>
-                <MenuLink to="/user/base">
-                    <Icon type="library" />
-                    Bases
-                </MenuLink>
+                {hasRole('admin') && (
+                    <MenuLink to="/user/base">
+                        <Icon type="library" />
+                        Bases
+                    </MenuLink>
+                )}
             </Menu.Menu>
         </Menu.Item>
     </Menu>

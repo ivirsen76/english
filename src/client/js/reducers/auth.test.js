@@ -22,10 +22,11 @@ describe('auth reducer', () => {
             }
             const user = {
                 email: 'some@one.com',
+                role: 'admin',
                 info: 'dfkfdl',
             }
             const resultedState = reducer(state, setUser(user))
-            expect(resultedState.user).toEqual({ email: 'some@one.com' })
+            expect(resultedState.user).toEqual({ email: 'some@one.com', role: 'admin' })
         })
     })
 })

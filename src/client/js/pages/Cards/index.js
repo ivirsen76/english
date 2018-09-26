@@ -37,13 +37,11 @@ class Component extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        list: state.app.card.list,
-        nextNewId: getNextNewId(state.app.card),
-        latestLabel: getLatestLabel(state.app.card),
-    }
-}
+const mapStateToProps = state => ({
+    list: state.app.card.list,
+    nextNewId: getNextNewId(state.app.card),
+    latestLabel: getLatestLabel(state.app.card),
+})
 
 export default connect(mapStateToProps, {
     addCard,

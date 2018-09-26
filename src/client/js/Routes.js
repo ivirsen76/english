@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, NotFound } from '@ieremeev/boilerplate'
 import defaultProps from 'recompose/defaultProps.js'
 import { Switch, Redirect } from 'react-router-dom'
+import { hasRole } from 'client/js/utils/auth.js'
 
 // Layouts
 import PublicLayout from './layouts/PublicLayout'
@@ -37,7 +38,7 @@ export default () => (
         <AppRoute path="/user/remember" component={Remember} />
         <AppRoute path="/user/write" component={Write} />
         <AppRoute path="/user/mp3" component={DownloadMp3} />
-        <AppRoute path="/user/base/:id?" component={Base} />
+        {hasRole('admin') && <AppRoute path="/user/base/:id?" component={Base} />}
 
         {/* Not found page */}
         <AppRoute component={NotFound} />

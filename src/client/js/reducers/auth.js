@@ -49,7 +49,7 @@ export default handleActions(
         }),
         [SET_USER]: (state, action) => ({
             ...state,
-            user: _pick(action.payload, ['email']),
+            user: _pick(action.payload, ['email', 'role']),
         }),
     },
     initialState
