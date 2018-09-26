@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Modal } from 'semantic-ui-react'
 import notification from '@ieremeev/notification'
 import Form from '../AddCard/form'
-import { SubmissionError } from 'redux-form'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -17,8 +16,8 @@ export default class Component extends React.Component {
             await this.props.updateCard(values)
             notification('Card has been updated')
             this.modal.handleClose()
-        } catch (error) {
-            throw new SubmissionError(error)
+        } catch (errors) {
+            throw errors
         }
     }
 
@@ -44,7 +43,6 @@ export default class Component extends React.Component {
                 <Modal.Header>Update card</Modal.Header>
                 <Modal.Content>
                     <Form
-                        form="editCard"
                         onSubmit={this.handleSubmit}
                         initialValues={this.props.initialValues}
                         submitButtonTitle="Update card"

@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Field, reduxForm } from 'redux-form'
-import Input from 'client/js/components/SemanticInput'
+import { Formik, Form, Field, SemanticInput } from '@ieremeev/formik'
 import { validate } from 'server/services/card/hooks/validate.js'
 
-class AddCardForm extends React.Component {
+export default class AddCardForm extends React.Component {
     static propTypes = {
-        handleSubmit: PropTypes.func,
+        onSubmit: PropTypes.func,
+        initialValues: PropTypes.object,
         submitButtonTitle: PropTypes.string,
         hideLabel: PropTypes.bool,
         submitting: PropTypes.bool,
@@ -14,20 +14,27 @@ class AddCardForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.props.handleSubmit} className="ui form">
-                <Field name="text" component={Input} label="Text" autoFocus />
-                <Field name="translate" component={Input} label="Translation" />
-                {!this.props.hideLabel && <Field name="label" component={Input} label="Tag" />}
+            <Formik
+                validate={validate}
+                onSubmit={this.props.onSubmit}
+                initialValues={this.props.initialValues}
+                render={({ isSubmitting }) => (
+                    <Form className="ui form">
+                        <Field name="text" component={SemanticInput} label="Text" autoFocus />
+                        <Field name="translate" component={SemanticInput} label="Translation" />
+                        {!this.props.hideLabel && (
+                            <Field name="label" component={SemanticInput} label="Tag" />
+                        )}
 
-                <button
-                    className={`ui ${this.props.submitting && 'loading'} compact button`}
-                    type="submit"
-                >
-                    {this.props.submitButtonTitle}
-                </button>
-            </form>
+                        <button
+                            className={`ui ${isSubmitting && 'loading'} compact button`}
+                            type="submit"
+                        >
+                            {this.props.submitButtonTitle}
+                        </button>
+                    </Form>
+                )}
+            />
         )
     }
 }
-
-export default reduxForm({ validate })(AddCardForm)
