@@ -2,8 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { login } from 'client/js/reducers/auth'
-import Form from './form'
 import { withRouter } from 'react-router-dom'
+import { Formik, Form, Field, SemanticInput } from '@ieremeev/formik'
+import isEmail from 'validator/lib/isEmail'
+
+const validate = values => {
+    const errors = {}
+
+    if (!values.email) {
+        errors.email = 'Email is required'
+    } else if (!isEmail(values.email)) {
+        errors.email = 'Email is invalid'
+    }
+
+    return errors
+}
 
 class Component extends React.Component {
     static propTypes = {
@@ -13,13 +26,35 @@ class Component extends React.Component {
 
     login = async values => {
         const { dispatch, history } = this.props
-
         await login(dispatch, values)
         history.push('/user/cards')
     }
 
     render() {
-        return <Form onSubmit={this.login} />
+        return (
+            <Formik
+                validate={validate}
+                onSubmit={this.login}
+                render={({ isSubmitting }) => (
+                    <Form className="ui form">
+                        <Field name="email" component={SemanticInput} label="Email" autoFocus />
+                        <Field
+                            name="password"
+                            component={SemanticInput}
+                            label="Password"
+                            type="password"
+                        />
+
+                        <button
+                            className={'ui ' + (isSubmitting && 'loading') + ' compact button'}
+                            type="submit"
+                        >
+                            Log in
+                        </button>
+                    </Form>
+                )}
+            />
+        )
     }
 }
 

@@ -2,7 +2,6 @@ import { handleActions, createAction } from 'redux-actions'
 import _pick from 'lodash/pick'
 import axios from '@ieremeev/axios'
 // import history from '../store/history'
-import { SubmissionError } from 'redux-form'
 import cookie from 'js-cookie'
 
 export const persistedKeys = ['user']
@@ -37,7 +36,7 @@ export const login = async (dispatch, { email, password }) => {
         dispatch(setToken(res.data.token))
         dispatch(setUser(res.data.data))
     } catch (e) {
-        throw new SubmissionError({ email: 'User or password are wrong' })
+        throw { email: 'User or password are wrong' }
     }
 }
 
