@@ -1,8 +1,8 @@
-// const globalHooks = require('../../../hooks')
-// const hooks = require('feathers-hooks')
+const { hasRole } = require('../../../hooks')
+const auth = require('feathers-authentication').hooks
 
 exports.before = {
-    all: [],
+    all: [auth.verifyToken(), auth.populateUser(), hasRole('admin')],
     find: [],
     get: [],
     create: [],
