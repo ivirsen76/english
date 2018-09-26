@@ -19,7 +19,7 @@ export default class AddCardForm extends React.Component {
                 onSubmit={this.props.onSubmit}
                 initialValues={this.props.initialValues}
                 render={({ isSubmitting }) => (
-                    <Form className="ui form">
+                    <Form className="ui form" id="cardEditForm">
                         <Field name="text" component={SemanticInput} label="Text" autoFocus />
                         <Field name="translate" component={SemanticInput} label="Translation" />
                         {!this.props.hideLabel && (

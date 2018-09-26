@@ -45,7 +45,6 @@ class RememberPage extends React.Component {
         secondWord: PropTypes.object,
         step: PropTypes.number,
         iteration: PropTypes.number,
-        isEditing: PropTypes.bool,
         // enLanguage: PropTypes.string,
         isAutoPlayMode: PropTypes.bool,
         label: PropTypes.string,
@@ -95,11 +94,8 @@ class RememberPage extends React.Component {
     }
 
     handleSpaceKey = e => {
-        if (this.props.isEditing) {
-            return
-        }
-
-        if (e.keyCode === 32) {
+        // Checking that it is a space and there is no edit card form opening
+        if (e.keyCode === 32 && !document.getElementById('cardEditForm')) {
             e.preventDefault()
             this.goNext()
         }
@@ -217,7 +213,6 @@ function mapStateToProps(state) {
         firstWord: getRememberFirstWord(state.app.card),
         secondWord: getRememberSecondWord(state.app.card),
         iteration: state.app.card.remember.iteration,
-        isEditing: !!state.form.editCard,
         ..._pick(state.app.card.remember.params, ['isAutoPlayMode', 'label']),
     }
 }
