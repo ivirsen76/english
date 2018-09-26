@@ -9,6 +9,7 @@ export default class Component extends React.Component {
         cardId: PropTypes.number,
         initialValues: PropTypes.object,
         updateCard: PropTypes.func,
+        trigger: PropTypes.node,
     }
 
     handleSubmit = async values => {
@@ -22,7 +23,7 @@ export default class Component extends React.Component {
     }
 
     render() {
-        const trigger = (
+        const trigger = this.props.trigger || (
             <button
                 id={`updateCardButton${this.props.cardId}`}
                 className="ui green compact mini icon button"
