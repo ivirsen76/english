@@ -4,6 +4,6 @@ export const hasRole = role => {
         return false
     }
 
-    const userRole = store.getState().app.auth.user.role
+    const userRole = store.getState().app.auth.user.roles
     return userRole === role
 }
