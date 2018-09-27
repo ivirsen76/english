@@ -1,12 +1,12 @@
 import { Selector } from 'testcafe'
 import { ReactSelector } from 'testcafe-react-selectors'
-import { regularUser } from './roles.js'
+import { adminUser } from './roles.js'
 import { restoreDb, getNumRecords } from './db/utils.js'
 import { url } from './config.js'
 
 fixture('Bases page').beforeEach(async t => {
     restoreDb()
-    await t.useRole(regularUser)
+    await t.useRole(adminUser)
 })
 
 // Selectors
