@@ -18,7 +18,6 @@ const connection = mysql.createConnection({
     password: IE_DB_PASSWORD,
     database: IE_DB_NAME,
 })
-connection.connect()
 
 module.exports = {
     restoreDb: () => {
@@ -31,9 +30,11 @@ module.exports = {
         const query = `SELECT count(*) AS cnt FROM ${table} ${where}`
 
         return new Promise((resolve, reject) => {
+            connection.connect()
             connection.query(query, (error, results, fields) => {
                 resolve(results[0].cnt)
             })
+            connection.end()
         })
     },
 }

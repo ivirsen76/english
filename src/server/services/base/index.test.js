@@ -1,10 +1,12 @@
 const app = require('../../app')
 const supertest = require('supertest')
+const { restoreDb } = require('../../../testcafe/db/utils.js')
 
 let server
 let request
 
 beforeAll(() => {
+    restoreDb()
     server = app.listen(5000)
     request = supertest(server)
     return new Promise(resolve => server.on('listening', resolve))
