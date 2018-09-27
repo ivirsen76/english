@@ -5,7 +5,7 @@ module.exports = function(app) {
     app.logger = winston
 
     return function(error, req, res, next) {
-        if (error) {
+        if (error && process.env.NODE_ENV !== 'test') {
             const message = `${error.code ? `(${error.code}) ` : ''}Route: ${req.url} - ${
                 error.message
             }`
