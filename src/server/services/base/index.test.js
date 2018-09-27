@@ -1,5 +1,5 @@
 const app = require('../../app')
-let supertest = require('supertest')
+const supertest = require('supertest')
 
 let server
 let request
