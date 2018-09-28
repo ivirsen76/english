@@ -42,3 +42,9 @@ test('Should log in and log out using pages', async t => {
     await t.navigateTo(url('/logout'))
     await t.expect(Body.innerText).contains('Log in')
 })
+
+test('Should show 404 error for non found page', async t => {
+    await t.navigateTo(url('/wrongone'))
+    await t.expect(Body.innerText).contains('404 ERROR')
+    await t.expect(Body.innerText).contains('Take Me Home')
+})

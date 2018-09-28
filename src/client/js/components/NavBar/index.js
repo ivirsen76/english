@@ -14,12 +14,12 @@ export default class NavBar extends React.Component {
                     Home
                 </MenuLink>
                 <MenuLink to="/features">Features</MenuLink>
-                <Menu.Item>Card base</Menu.Item>
+                <MenuLink to="/bases">Card base</MenuLink>
                 <Dropdown item text="Helpers">
                     <Dropdown.Menu>
-                        <Dropdown.Item>Matrix Simple</Dropdown.Item>
-                        <Dropdown.Item>Matrix Continuous</Dropdown.Item>
-                        <Dropdown.Item>Numbers</Dropdown.Item>
+                        <MenuLink to="/helpers/simpleMatrix">Matrix Simple</MenuLink>
+                        <MenuLink to="/helpers/continuousMatrix">Matrix Continuous</MenuLink>
+                        <MenuLink to="/helpers/numbers">Numbers</MenuLink>
                     </Dropdown.Menu>
                 </Dropdown>
                 {isLoggedIn() ? (

@@ -4,7 +4,7 @@ export default class Component extends React.Component {
     render() {
         return (
             <div>
-                <h2>Возможности</h2>
+                <h2>Coming soon</h2>
             </div>
         )
     }
