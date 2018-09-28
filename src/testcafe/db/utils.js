@@ -12,13 +12,6 @@ const command = `mysql -h ${IE_DB_HOSTNAME} -u ${IE_DB_USERNAME} --password=${IE
     IE_DB_NAME
 } < ${dumpPath}`
 
-const connection = mysql.createConnection({
-    host: IE_DB_HOSTNAME,
-    user: IE_DB_USERNAME,
-    password: IE_DB_PASSWORD,
-    database: IE_DB_NAME,
-})
-
 module.exports = {
     restoreDb: () => {
         execSync(command, { stdio: 'ignore' })
@@ -30,6 +23,12 @@ module.exports = {
         const query = `SELECT count(*) AS cnt FROM ${table} ${where}`
 
         return new Promise((resolve, reject) => {
+            const connection = mysql.createConnection({
+                host: IE_DB_HOSTNAME,
+                user: IE_DB_USERNAME,
+                password: IE_DB_PASSWORD,
+                database: IE_DB_NAME,
+            })
             connection.connect()
             connection.query(query, (error, results, fields) => {
                 resolve(results[0].cnt)
