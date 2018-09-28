@@ -8,11 +8,11 @@ const { validateCreate, validatePatch } = require('./validate')
 exports.before = {
     all: [auth.verifyToken(), auth.populateUser(), auth.restrictToAuthenticated()],
     find: [auth.queryWithCurrentUser()],
-    get: [],
+    get: [auth.restrictToOwner()],
     create: [auth.associateCurrentUser(), validateCreate(), beforeCreate()],
-    update: [],
-    patch: [validatePatch(), beforePatch()],
-    remove: [],
+    update: [auth.restrictToOwner()],
+    patch: [auth.restrictToOwner(), validatePatch(), beforePatch()],
+    remove: [auth.restrictToOwner()],
 }
 
 exports.after = {
