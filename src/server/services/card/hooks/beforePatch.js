@@ -1,11 +1,15 @@
 const generateMp3 = require('./generateMp3')
 const removeMp3 = require('./removeMp3')
+const _pick = require('lodash/pick')
 
 module.exports = options => async hook => {
     try {
         const id = hook.id
         const { text, translate, status, writeRightAttempts } = hook.data
         const { dataValues: currentData } = await hook.service.get(id)
+
+        // restrict only to these fields
+        hook.data = _pick(hook.data, ['text', 'translate', 'label', 'status', 'writeRightAttempts'])
 
         if (process.env.NODE_ENV !== 'test') {
             // Check if we need new sound

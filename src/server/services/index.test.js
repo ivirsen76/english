@@ -144,4 +144,43 @@ describe('cards', () => {
             expect(num).toBe(1)
         })
     })
+
+    describe('patch', () => {
+        it('should return 401 for not logged in', async () => {
+            await request.patch('/cards/26').expect(401)
+        })
+
+        it('should return 403 for patching different user card', async () => {
+            const token = await loginAsStudent()
+            await request
+                .patch('/cards/25')
+                .set('Authorization', token)
+                .expect(403)
+        })
+
+        it('should return 200 for patching your card', async () => {
+            const token = await loginAsStudent()
+            await request
+                .patch('/cards/26')
+                .send({
+                    text: 'bla-bla',
+                    translate: 'сон',
+                    label: 'tutorial',
+                    ukSoundFile: 'wrong',
+                    userId: 1,
+                })
+                .set('Authorization', token)
+                .expect(200)
+
+            // It should set userId to 2 anyway
+            const num = await getNumRecords('cards', {
+                text: 'bla-bla',
+                translate: 'сон',
+                label: 'tutorial',
+                ukSoundFile: 'sample.mp3',
+                userId: 2,
+            })
+            expect(num).toBe(1)
+        })
+    })
 })
