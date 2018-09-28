@@ -1,11 +1,12 @@
 import axios from '@ieremeev/axios'
 import cookie from 'js-cookie'
 import _set from 'lodash/set'
+import _unset from 'lodash/unset'
 import _get from 'lodash/get'
 
-export const logout = () => (dispatch, getState) => {
+export const logout = () => {
     cookie.remove('token')
-    _set(window, 'ieremeev.user', null)
+    _unset(window, 'ieremeev.user')
 }
 
 export const setCurrentUser = userData => {
