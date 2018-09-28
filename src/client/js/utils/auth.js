@@ -28,9 +28,10 @@ export const login = async ({ email, password }) => {
     try {
         const res = await axios.post('/auth/local', { email, password })
         const token = res.data.token
+        const userData = res.data.data
         cookie.set('token', token)
         axios.setToken(token)
-        setCurrentUser(res.data.data)
+        setCurrentUser(userData)
     } catch (e) {
         throw { email: 'User or password are wrong' }
     }
