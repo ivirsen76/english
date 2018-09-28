@@ -183,4 +183,32 @@ describe('cards', () => {
             expect(num).toBe(1)
         })
     })
+
+    describe('delete', () => {
+        it('should return 401 for not logged in', async () => {
+            await request.delete('/cards/26').expect(401)
+        })
+
+        it('should return 403 for deleting different user card', async () => {
+            const token = await loginAsStudent()
+            await request
+                .delete('/cards/25')
+                .set('Authorization', token)
+                .expect(403)
+        })
+
+        it('should return 200 for patching your card', async () => {
+            const token = await loginAsStudent()
+            await request
+                .delete('/cards/26')
+                .set('Authorization', token)
+                .expect(200)
+
+            const num = await getNumRecords('cards', {
+                text: 'calendar',
+                userId: 2,
+            })
+            expect(num).toBe(0)
+        })
+    })
 })
