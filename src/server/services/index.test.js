@@ -89,6 +89,30 @@ describe('basetree', () => {
     })
 })
 
+describe('basecard', () => {
+    describe('find', () => {
+        it('should return 401 for not logged in', async () => {
+            await request.get('/basecards').expect(401)
+        })
+
+        it('should return 403 for student role', async () => {
+            const token = await loginAsStudent()
+            await request
+                .get('/basecards')
+                .set('Authorization', token)
+                .expect(403)
+        })
+
+        it('should return 200 for admin role', async () => {
+            const token = await loginAsAdmin()
+            await request
+                .get('/basecards')
+                .set('Authorization', token)
+                .expect(200)
+        })
+    })
+})
+
 describe('cards', () => {
     describe('find', () => {
         it('should return 401 for not logged in', async () => {

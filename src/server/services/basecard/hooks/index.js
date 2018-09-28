@@ -1,9 +1,10 @@
-// const auth = require('feathers-authentication').hooks
+const auth = require('feathers-authentication').hooks
+const { hasRole } = require('../../../hooks')
 const beforeCreate = require('./beforeCreate')
 const beforePatch = require('./beforePatch')
 
 exports.before = {
-    all: [],
+    all: [auth.verifyToken(), auth.populateUser(), hasRole('admin')],
     find: [],
     get: [],
     create: [beforeCreate()],
