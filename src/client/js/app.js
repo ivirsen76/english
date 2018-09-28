@@ -10,23 +10,28 @@ import axios from '@ieremeev/axios'
 import cookie from 'js-cookie'
 import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
+import { setCurrentUserFromToken } from './utils/auth.js'
 
-const store = createStore(reducers)
+const start = async () => {
+    const store = createStore(reducers)
 
-// Setup axios
-axios.defaults.baseURL = `//${process.env.IE_SERVER_HOST}:${process.env.IE_SERVER_PORT}`
-const token = cookie.get('token')
-if (token) {
-    axios.setToken(token)
+    // Setup axios
+    axios.defaults.baseURL = `//${process.env.IE_SERVER_HOST}:${process.env.IE_SERVER_PORT}`
+    axios.setLoginRedirect(() => {
+        history.push('/login')
+    })
+    const token = cookie.get('token')
+    if (token) {
+        axios.setToken(token)
+        await setCurrentUserFromToken()
+    }
+
+    const Root = DragDropContext(HTML5Backend)(() => (
+        <App store={store}>
+            <Routes />
+        </App>
+    ))
+
+    ReactDOM.render(<Root />, document.getElementById('app'))
 }
-axios.setLoginRedirect(() => {
-    history.push('/login')
-})
-
-const Root = DragDropContext(HTML5Backend)(() => (
-    <App store={store}>
-        <Routes />
-    </App>
-))
-
-ReactDOM.render(<Root />, document.getElementById('app'))
+start()

@@ -1,16 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { logout } from 'client/js/reducers/auth'
+import { logout } from 'client/js/utils/auth'
 
-class Component extends React.Component {
+export default class Component extends React.Component {
     static propTypes = {
         history: PropTypes.object,
-        logout: PropTypes.func,
     }
 
     componentDidMount() {
-        this.props.logout()
+        logout()
         this.props.history.push('/')
     }
 
@@ -18,5 +16,3 @@ class Component extends React.Component {
         return null
     }
 }
-
-export default connect(null, { logout })(Component)

@@ -1,9 +1,49 @@
+import axios from '@ieremeev/axios'
+import cookie from 'js-cookie'
+import _set from 'lodash/set'
+import _get from 'lodash/get'
+
+export const logout = () => (dispatch, getState) => {
+    cookie.remove('token')
+    _set(window, 'ieremeev.user', null)
+}
+
+export const setCurrentUser = userData => {
+    _set(window, 'ieremeev.user', userData)
+}
+
+export const setCurrentUserFromToken = async () => {
+    try {
+        const res = await axios.post('/auth/token')
+        _set(window, 'ieremeev.user', res.data.data)
+    } catch (e) {
+        logout()
+    }
+}
+
+export const login = async ({ email, password }) => {
+    logout()
+
+    try {
+        const res = await axios.post('/auth/local', { email, password })
+        const token = res.data.token
+        cookie.set('token', token)
+        axios.setToken(token)
+        setCurrentUser(res.data.data)
+    } catch (e) {
+        throw { email: 'User or password are wrong' }
+    }
+}
+
+export const getCurrentUser = () => _get(window, 'ieremeev.user')
+
+export const isLoggedIn = () => !!getCurrentUser()
+
 export const hasRole = role => {
-    const store = window.ieremeev && window.ieremeev.store
-    if (!store) {
+    const currentUser = getCurrentUser()
+    if (!currentUser) {
         return false
     }
 
-    const userRole = store.getState().app.auth.user.roles
-    return userRole === role
+    return currentUser.roles === role
 }

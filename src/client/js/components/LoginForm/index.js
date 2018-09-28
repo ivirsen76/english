@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { login } from 'client/js/reducers/auth'
+import { login } from 'client/js/utils/auth'
 import { withRouter } from 'react-router-dom'
 import { Formik, Form, Field, SemanticInput } from '@ieremeev/formik'
 import isEmail from 'validator/lib/isEmail'
@@ -20,13 +19,12 @@ const validate = values => {
 
 class Component extends React.Component {
     static propTypes = {
-        dispatch: PropTypes.func,
         history: PropTypes.object,
     }
 
     login = async values => {
-        const { dispatch, history } = this.props
-        await login(dispatch, values)
+        const { history } = this.props
+        await login(values)
         history.push('/user/cards')
     }
 
@@ -58,4 +56,4 @@ class Component extends React.Component {
     }
 }
 
-export default withRouter(connect()(Component))
+export default withRouter(Component)
