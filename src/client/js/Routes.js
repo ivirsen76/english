@@ -9,7 +9,6 @@ import PublicLayout from './layouts/PublicLayout'
 import UserLayout from './layouts/UserLayout'
 
 // Pages
-/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
@@ -19,8 +18,6 @@ import Remember from './pages/Remember'
 import Write from './pages/Write'
 import DownloadMp3 from './pages/DownloadMp3'
 import Base from './pages/Base'
-
-// import FlowList from 'bundle-loader?lazy!./pages/FlowList';
 
 // Bind UserLayout by default
 const AppRoute = defaultProps({ layout: UserLayout })(Route)
