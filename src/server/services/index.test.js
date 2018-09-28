@@ -109,20 +109,12 @@ describe('cards', () => {
             await request.get('/cards/25').expect(401)
         })
 
-        it('should return 200 when getting your own card', async () => {
-            const token = await loginAsStudent()
-            await request
-                .get('/cards/26')
-                .set('Authorization', token)
-                .expect(200)
-        })
-
-        it('should return 403 when getting different user card', async () => {
+        it('should return 405 when getting card', async () => {
             const token = await loginAsStudent()
             await request
                 .get('/cards/25')
                 .set('Authorization', token)
-                .expect(403)
+                .expect(405)
         })
     })
 
@@ -142,6 +134,20 @@ describe('cards', () => {
             // It should set userId to 2 anyway
             const num = await getNumRecords('cards', { text: 'new test one', userId: 2 })
             expect(num).toBe(1)
+        })
+    })
+
+    describe('update', () => {
+        it('should return 401 for not logged in', async () => {
+            await request.put('/cards/25').expect(401)
+        })
+
+        it('should return 405 for logged in user', async () => {
+            const token = await loginAsStudent()
+            await request
+                .put('/cards/25')
+                .set('Authorization', token)
+                .expect(405)
         })
     })
 
