@@ -62,6 +62,16 @@ describe('base', () => {
                 .expect(200)
         })
     })
+
+    describe('delete', () => {
+        it('should return 405', async () => {
+            const token = await loginAsAdmin()
+            await request
+                .delete('/bases/1')
+                .set('Authorization', token)
+                .expect(405)
+        })
+    })
 })
 
 describe('basetree', () => {
