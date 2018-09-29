@@ -1,3 +1,4 @@
+const hooks = require('feathers-hooks')
 const { hasRole } = require('../../../hooks')
 const auth = require('feathers-authentication').hooks
 
@@ -8,7 +9,7 @@ exports.before = {
     create: [],
     update: [],
     patch: [],
-    remove: [],
+    remove: [hooks.disable('rest')],
 }
 
 exports.after = {
