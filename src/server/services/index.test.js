@@ -87,15 +87,6 @@ describe('basetree', () => {
                 .set('Authorization', token)
                 .expect(403)
         })
-
-        it('should return 201 for admin role', async () => {
-            const token = await loginAsAdmin()
-            await request
-                .post('/basetree')
-                .send([])
-                .set('Authorization', token)
-                .expect(201)
-        })
     })
 })
 

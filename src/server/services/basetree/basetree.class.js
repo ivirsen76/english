@@ -24,6 +24,9 @@ class Service {
                 update.parentId = newIds[update.parentId]
             }
 
+            if (update.query === 'delete') {
+                await bases.remove(update.id)
+            }
             if (update.query === 'update') {
                 await bases.patch(update.id, _omit(update, ['id', 'query']))
             }
