@@ -6,8 +6,15 @@ import {
     addElement,
     saveBaseTree,
     updateBase,
+    deleteBase,
 } from 'client/js/reducers/base'
-import { getTree, getNewIds, getUpdatedIds, getHasTreeChanges } from 'client/js/selectors/base'
+import {
+    getTree,
+    getNewIds,
+    getUpdatedIds,
+    getProtectedIds,
+    getHasTreeChanges,
+} from 'client/js/selectors/base'
 import { connect } from 'react-redux'
 import Loader from '@ieremeev/loader'
 import FolderView from './FolderView'
@@ -29,14 +36,23 @@ class Component extends React.Component {
         saveBaseTree: PropTypes.func,
         newIds: PropTypes.array,
         updatedIds: PropTypes.array,
+        protectedIds: PropTypes.array,
         hasTreeChanges: PropTypes.bool,
         updateBase: PropTypes.func,
+        deleteBase: PropTypes.func,
         loading: PropTypes.bool,
         match: PropTypes.object,
     }
 
     componentDidMount() {
         this.props.loadBases()
+    }
+
+    deleteBase = async (baseId, e) => {
+        e && e.preventDefault()
+        e && e.stopPropagation()
+
+        this.props.deleteBase(baseId)
     }
 
     getTree = () => {
@@ -62,6 +78,13 @@ class Component extends React.Component {
                         )}
                         {element.type === 'folder' && <i className="ui folder icon" />}
                         {element.title}
+                        <div className={style.actions}>
+                            {!this.props.protectedIds.includes(element.id) && (
+                                <div onClick={this.deleteBase.bind(this, element.id)}>
+                                    <i className="icon-cross" />
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </Link>
             )
@@ -149,6 +172,7 @@ const mapStateToProps = (state, props) => {
         tree: getTree(state.app.base),
         newIds: getNewIds(state.app.base),
         updatedIds: getUpdatedIds(state.app.base),
+        protectedIds: getProtectedIds(state.app.base),
         hasTreeChanges: getHasTreeChanges(state.app.base),
     }
 }
@@ -159,4 +183,5 @@ export default connect(mapStateToProps, {
     addElement,
     saveBaseTree,
     updateBase,
+    deleteBase,
 })(Component)
