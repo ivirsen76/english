@@ -99,7 +99,7 @@ class ShowBase extends React.Component {
         ]
 
         return (
-            <Loader loading={this.state.loading}>
+            <div>
                 <div className="margin1">
                     <Formik
                         initialValues={{ title: this.props.base.title }}
@@ -121,8 +121,10 @@ class ShowBase extends React.Component {
                 <div className="margin1">
                     <AddCard addCard={this.addCard} />
                 </div>
-                <Table data={this.props.list} columns={columns} showRowNumber />
-            </Loader>
+                <Loader type="inline" loading={this.state.loading}>
+                    <Table data={this.props.list} columns={columns} showRowNumber />
+                </Loader>
+            </div>
         )
     }
 }
