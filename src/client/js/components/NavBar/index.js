@@ -41,7 +41,7 @@ export default class NavBar extends React.Component {
                     </Menu.Menu>
                 ) : (
                     <Menu.Menu position="right">
-                        <Modal size="small" closeIcon trigger={<a className="item">Log in</a>}>
+                        <Modal size="tiny" closeIcon trigger={<a className="item">Log in</a>}>
                             <Modal.Header>Log in</Modal.Header>
                             <Modal.Content>
                                 <LoginForm />
