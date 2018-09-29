@@ -1,6 +1,6 @@
 import reducer, {
     initialState,
-    deleteBaseWithoutSaving as deleteBase,
+    deleteBase,
     updateBase,
     addCardWithoutSaving as addCard,
     deleteCardWithoutSaving as deleteCard,

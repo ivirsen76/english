@@ -28,7 +28,7 @@ const ADD_ELEMENT = 'english/base/ADD_ELEMENT'
 const UPDATE_BASE_IDS = 'english/base/UPDATE_BASE_IDS'
 
 // Action Creators
-export const deleteBaseWithoutSaving = createAction(DELETE_BASE)
+export const deleteBase = createAction(DELETE_BASE)
 export const updateBase = createAction(UPDATE_BASE)
 export const setLoadingBasesState = createAction(SET_LOADING_BASES_STATE)
 export const setBases = createAction(SET_BASES)
@@ -44,11 +44,6 @@ export const saveBaseTree = () => async (dispatch, getState) => {
     const state = getState().app.base
     const response = await axios.post('/basetree', state.list)
     dispatch(updateBaseIds(response.data))
-}
-
-export const deleteBase = baseId => async (dispatch, getState) => {
-    await axios.delete(`/bases/${baseId}`)
-    dispatch(deleteBaseWithoutSaving(baseId))
 }
 
 export const loadBases = () => async (dispatch, getState) => {

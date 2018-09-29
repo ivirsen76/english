@@ -5,6 +5,7 @@ import {
     getUpdatedIds,
     getRemovedIds,
     getHasTreeChanges,
+    getProtectedIds,
 } from './base'
 
 describe('getSortedList()', () => {
@@ -122,5 +123,18 @@ describe('getHasTreeChanges()', () => {
             savedList: [{ id: 1, parentId: 0 }, { id: 2, parentId: 0 }],
         }
         expect(getHasTreeChanges(state)).toBe(false)
+    })
+})
+
+describe('getProtectedIds()', () => {
+    it('Should return protected ids', () => {
+        const state = {
+            list: [
+                { id: 1, parentId: 0 },
+                { id: 2, parentId: 1, count: 1 },
+                { id: 3, parentId: 1 },
+            ],
+        }
+        expect(getProtectedIds(state)).toEqual([1, 2])
     })
 })

@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 import _omit from 'lodash/omit'
 import _isEqual from 'lodash/isEqual'
+import _uniq from 'lodash/uniq'
 import { startNewId } from '../reducers/base.js'
 
 const getList = state => state.list
@@ -64,3 +65,10 @@ export const getHasTreeChanges = createSelector(
     getRemovedIds,
     (newIds, updatedIds, removedIds) => newIds.length + updatedIds.length + removedIds.length > 0
 )
+
+export const getProtectedIds = createSelector(getList, list => {
+    const parents = list.filter(item => item.parentId !== 0).map(item => item.parentId)
+    const withCards = list.filter(item => +item.count > 0).map(item => item.id)
+
+    return _uniq([...parents, ...withCards])
+})
