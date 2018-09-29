@@ -120,7 +120,11 @@ class Component extends React.Component {
                         <div className={style.body}>
                             <h2>{base.title}</h2>
                             {base.type === 'cards' ? (
-                                <CardsView base={base} />
+                                <CardsView
+                                    key={base.id}
+                                    base={base}
+                                    updateBase={this.props.updateBase}
+                                />
                             ) : (
                                 <FolderView
                                     key={base.id}

@@ -1,6 +1,5 @@
 import { handleActions, createAction } from 'redux-actions'
 import axios from '@ieremeev/axios'
-import notification from '@ieremeev/notification'
 import _pick from 'lodash/pick'
 import _isEmpty from 'lodash/isEmpty'
 
@@ -45,7 +44,6 @@ export const saveBaseTree = () => async (dispatch, getState) => {
     const state = getState().app.base
     const response = await axios.post('/basetree', state.list)
     dispatch(updateBaseIds(response.data))
-    notification('The base tree has been saved')
 }
 
 export const deleteBase = baseId => async (dispatch, getState) => {

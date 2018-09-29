@@ -9,11 +9,27 @@ import DeleteCard from './DeleteCard'
 import { addCard, deleteCard, updateCard, loadCards } from 'client/js/reducers/base.js'
 import Loader from '@ieremeev/loader'
 import AudioLink from 'client/js/components/AudioLink'
+import { Formik, Field, SemanticInput } from '@ieremeev/formik'
 import style from './style.module.css'
+
+export const errorMessages = {
+    noTitle: 'You have to provide title',
+}
+
+export const validate = values => {
+    const errors = {}
+
+    if (!values.title) {
+        errors.title = errorMessages.noTitle
+    }
+
+    return errors
+}
 
 class ShowBase extends React.Component {
     static propTypes = {
         base: PropTypes.object,
+        updateBase: PropTypes.func,
         list: PropTypes.array,
         cardsLoaded: PropTypes.bool,
         addCard: PropTypes.func,
@@ -37,6 +53,10 @@ class ShowBase extends React.Component {
     addCard = values => {
         const baseId = this.props.base.id
         this.props.addCard({ ...values, baseId })
+    }
+
+    updateBase = values => {
+        this.props.updateBase({ ...values, id: this.props.base.id })
     }
 
     render() {
@@ -80,6 +100,24 @@ class ShowBase extends React.Component {
 
         return (
             <Loader loading={this.state.loading}>
+                <div className="margin1">
+                    <Formik
+                        initialValues={{ title: this.props.base.title }}
+                        isInitialValid
+                        validate={validate}
+                        onValidChange={this.updateBase}
+                        render={props => (
+                            <form className="ui form">
+                                <Field
+                                    name="title"
+                                    component={SemanticInput}
+                                    label="Title"
+                                    autoFocus
+                                />
+                            </form>
+                        )}
+                    />
+                </div>
                 <div className="margin1">
                     <AddCard addCard={this.addCard} />
                 </div>
