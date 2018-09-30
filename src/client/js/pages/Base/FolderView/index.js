@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Formik, Field, SemanticInput } from '@ieremeev/formik'
+import { Formik, Form, Field, SemanticInput } from '@ieremeev/formik'
 
 export const errorMessages = {
     noTitle: 'You have to provide title',
@@ -34,9 +34,9 @@ export default class Component extends React.Component {
                 validate={validate}
                 onValidChange={this.updateBase}
                 render={props => (
-                    <form className="ui form">
+                    <Form className="ui form">
                         <Field name="title" component={SemanticInput} label="Title" autoFocus />
-                    </form>
+                    </Form>
                 )}
             />
         )

@@ -9,7 +9,7 @@ import DeleteCard from './DeleteCard'
 import { addCard, deleteCard, updateCard, loadCards } from 'client/js/reducers/base.js'
 import Loader from '@ieremeev/loader'
 import AudioLink from 'client/js/components/AudioLink'
-import { Formik, Field, SemanticInput } from '@ieremeev/formik'
+import { Formik, Form, Field, SemanticInput } from '@ieremeev/formik'
 import style from './style.module.css'
 
 export const errorMessages = {
@@ -107,14 +107,14 @@ class ShowBase extends React.Component {
                         validate={validate}
                         onValidChange={this.updateBase}
                         render={props => (
-                            <form className="ui form">
+                            <Form className="ui form">
                                 <Field
                                     name="title"
                                     component={SemanticInput}
                                     label="Title"
                                     autoFocus
                                 />
-                            </form>
+                            </Form>
                         )}
                     />
                 </div>
