@@ -35,7 +35,7 @@ export default () => (
         {/* User pages */}
         <Redirect exact from="/user" to="/user/cards" />
         <AppRoute path="/user/cards" component={Cards} layout={UserLayout} />
-        <AppRoute path="/user/baseBrowser" component={BaseBrowser} layout={UserLayout} />
+        <AppRoute path="/user/baseBrowser/:id?" component={BaseBrowser} layout={UserLayout} />
         <AppRoute path="/user/remember" component={Remember} layout={UserLayout} />
         <AppRoute path="/user/write" component={Write} layout={UserLayout} />
         <AppRoute path="/user/mp3" component={DownloadMp3} layout={UserLayout} />
