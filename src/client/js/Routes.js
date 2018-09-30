@@ -18,6 +18,7 @@ import Remember from './pages/Remember'
 import Write from './pages/Write'
 import DownloadMp3 from './pages/DownloadMp3'
 import Base from './pages/Base'
+import BaseBrowser from './pages/BaseBrowser'
 
 // Bind PublicLayout by default
 const AppRoute = defaultProps({ layout: PublicLayout })(Route)
@@ -34,6 +35,7 @@ export default () => (
         {/* User pages */}
         <Redirect exact from="/user" to="/user/cards" />
         <AppRoute path="/user/cards" component={Cards} layout={UserLayout} />
+        <AppRoute path="/user/baseBrowser" component={BaseBrowser} layout={UserLayout} />
         <AppRoute path="/user/remember" component={Remember} layout={UserLayout} />
         <AppRoute path="/user/write" component={Write} layout={UserLayout} />
         <AppRoute path="/user/mp3" component={DownloadMp3} layout={UserLayout} />
