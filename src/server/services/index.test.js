@@ -1,7 +1,7 @@
 // Testing rest API
 const app = require('../app')
 const supertest = require('supertest')
-const { restoreDb, getNumRecords } = require('../../testcafe/db/utils.js')
+const { restoreDb, getNumRecords, getRecord } = require('../../testcafe/db/utils.js')
 
 let server
 let request
@@ -110,6 +110,22 @@ describe('basecard', () => {
                 .get('/basecards')
                 .set('Authorization', token)
                 .expect(200)
+        })
+    })
+
+    describe('create', () => {
+        it('should increment base cards count', async () => {
+            const initialCount = (await getRecord('bases', { id: 2 })).count
+
+            const token = await loginAsAdmin()
+            await request
+                .post('/basecards')
+                .send({ text: 'new test one', translate: 'новая', baseId: 2 })
+                .set('Authorization', token)
+                .expect(201)
+
+            const resultedCount = (await getRecord('bases', { id: 2 })).count
+            expect(resultedCount).toBe(initialCount + 1)
         })
     })
 })
