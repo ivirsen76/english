@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.39)
 # Database: feather
-# Generation Time: 2018-09-30 00:36:40 +0000
+# Generation Time: 2018-09-30 22:52:01 +0000
 # ************************************************************
 
 
@@ -75,7 +75,16 @@ LOCK TABLES `basecards` WRITE;
 
 INSERT INTO `basecards` (`id`, `baseId`, `text`, `translate`, `ukSoundFile`, `ukSoundLength`, `usSoundFile`, `usSoundLength`, `ruSoundFile`, `ruSoundLength`, `createdAt`, `updatedAt`)
 VALUES
-    (1,2,'first','первый',NULL,NULL,NULL,NULL,NULL,NULL,'2018-06-12 06:17:46','2018-06-12 06:17:46');
+    (1,2,'first','первый','sample.mp3',626,'sample.mp3',679,'sample.mp3',679,'2018-06-12 06:17:46','2018-06-12 06:17:46'),
+    (2,2,'second','второй','sample.mp3',626,'sample.mp3',679,'sample.mp3',679,'2018-09-30 22:50:05','2018-09-30 22:50:05'),
+    (3,2,'third','третий','sample.mp3',626,'sample.mp3',679,'sample.mp3',679,'2018-09-30 22:50:14','2018-09-30 22:50:14'),
+    (4,2,'fourth','четвертый','sample.mp3',626,'sample.mp3',679,'sample.mp3',679,'2018-09-30 22:50:21','2018-09-30 22:50:21'),
+    (5,2,'fifth','пятый','sample.mp3',626,'sample.mp3',679,'sample.mp3',679,'2018-09-30 22:50:27','2018-09-30 22:50:27'),
+    (6,2,'sixth','шестой','sample.mp3',626,'sample.mp3',679,'sample.mp3',679,'2018-09-30 22:50:34','2018-09-30 22:50:34'),
+    (7,2,'sevens','седьмой','sample.mp3',626,'sample.mp3',679,'sample.mp3',679,'2018-09-30 22:50:46','2018-09-30 22:50:46'),
+    (8,2,'eidht','восьмой','sample.mp3',626,'sample.mp3',679,'sample.mp3',679,'2018-09-30 22:51:05','2018-09-30 22:51:05'),
+    (9,2,'ninth','девятый','sample.mp3',626,'sample.mp3',679,'sample.mp3',679,'2018-09-30 22:51:11','2018-09-30 22:51:11'),
+    (10,2,'tenth','десятый','sample.mp3',626,'sample.mp3',679,'sample.mp3',679,'2018-09-30 22:51:18','2018-09-30 22:51:18');
 
 /*!40000 ALTER TABLE `basecards` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -132,7 +141,17 @@ VALUES
     (29,1,0,'Elementary',NULL,'folder','',0,NULL,'2018-09-30 00:35:46','2018-09-30 00:35:46'),
     (30,1,2,'Intermediate',NULL,'folder','',0,NULL,'2018-09-30 00:35:46','2018-09-30 00:35:46'),
     (31,1,3,'Upper-intermediate',NULL,'folder','',0,NULL,'2018-09-30 00:35:46','2018-09-30 00:35:46'),
-    (32,1,4,'Advanced',NULL,'folder','',0,NULL,'2018-09-30 00:35:46','2018-09-30 00:35:46');
+    (32,1,4,'Advanced',NULL,'folder','',0,NULL,'2018-09-30 00:35:46','2018-09-30 00:35:46'),
+    (33,12,4,'Chapter 5',NULL,'folder','',0,NULL,'2018-09-30 22:32:43','2018-09-30 22:32:43'),
+    (34,33,0,'Are you a party animal?',NULL,'cards','',0,NULL,'2018-09-30 22:32:43','2018-09-30 22:32:43'),
+    (35,33,1,'What makes you feel good?',NULL,'cards','',0,NULL,'2018-09-30 22:32:43','2018-09-30 22:32:43'),
+    (36,33,2,'How much can you learn in a month?',NULL,'cards','',0,NULL,'2018-09-30 22:32:43','2018-09-30 22:32:43'),
+    (37,33,3,'The name of the game',NULL,'cards','',0,NULL,'2018-09-30 22:32:43','2018-09-30 22:32:43'),
+    (38,12,5,'Chapter 6',NULL,'folder','',0,NULL,'2018-09-30 22:37:08','2018-09-30 22:37:08'),
+    (39,38,0,'If something bad can happen, it will',NULL,'cards','',0,NULL,'2018-09-30 22:37:08','2018-09-30 22:37:08'),
+    (40,38,1,'Never smile at a crocodile',NULL,'cards','',0,NULL,'2018-09-30 22:37:08','2018-09-30 22:37:08'),
+    (41,38,2,'Decisions, decisions',NULL,'cards','',0,NULL,'2018-09-30 22:37:08','2018-09-30 22:37:08'),
+    (42,38,3,'What should I do?',NULL,'cards','',0,NULL,'2018-09-30 22:37:08','2018-09-30 22:37:08');
 
 /*!40000 ALTER TABLE `bases` ENABLE KEYS */;
 UNLOCK TABLES;
