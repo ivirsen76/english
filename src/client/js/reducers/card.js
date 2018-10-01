@@ -124,11 +124,16 @@ export const rememberCard = cardId => async (dispatch, getState) => {
     await axios.patch(`/cards/${cardId}`, { status: 1 })
 }
 
-export const loadCards = () => async (dispatch, getState) => {
-    dispatch(setLoadingCardsState(true))
+export const loadCards = ({ loading = true } = {}) => async (dispatch, getState) => {
+    loading && dispatch(setLoadingCardsState(true))
     const res = await axios.get('/cards')
     dispatch(setCards(res.data.data))
-    dispatch(setLoadingCardsState(false))
+    loading && dispatch(setLoadingCardsState(false))
+}
+
+export const addCardsFromBase = baseId => async (dispatch, getState) => {
+    await axios.put(`/basetocard/${baseId}`)
+    dispatch(loadCards({ loading: false }))
 }
 
 export const setRememberCards = () => (dispatch, getState) => {

@@ -8,6 +8,8 @@ const mp3 = require('./mp3')
 
 const basetree = require('./basetree/basetree.service.js')
 
+const basetocard = require('./basetocard/basetocard.service.js')
+
 module.exports = function() {
     const app = this
 
@@ -24,4 +26,5 @@ module.exports = function() {
     app.configure(basecard)
     app.configure(mp3)
     app.configure(basetree)
+    app.configure(basetocard)
 }

@@ -259,3 +259,22 @@ describe('cards', () => {
         })
     })
 })
+
+describe('basetocards', () => {
+    describe('update', () => {
+        it('Should add cards from base', async () => {
+            const userId = 2
+            const baseId = 2
+
+            const beforeNum = await getNumRecords('cards', { userId })
+            const token = await loginAsStudent()
+            await request
+                .put(`/basetocard/${baseId}`)
+                .set('Authorization', token)
+                .expect(200)
+
+            const afterNum = await getNumRecords('cards', { userId })
+            expect(afterNum).toBe(beforeNum + 9)
+        })
+    })
+})
