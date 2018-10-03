@@ -83,7 +83,6 @@ $borderColor: #c9c9c9;
             .write {
                 width: 120px;
                 height: 120px;
-                background: #f0c43a;
                 background-size: 120px 120px;
             }
             .add {
