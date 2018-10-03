@@ -1,10 +1,25 @@
 import React from 'react'
+import books from './books.png'
 import style from './style.module.css'
 
 export default class Component extends React.Component {
     render() {
         return (
-            <div style={{ paddingTop: '16em' }}>
+            <div>
+                <div className={style.title}>
+                    <div className={style.books}>
+                        <img src={books} alt="books" />
+                    </div>
+                    <div className={style.registration}>
+                        <h1>Слова</h1>
+                        <h2>
+                            из английских<br />учебников
+                        </h2>
+                        <button className="circular ui compact massive yellow button">
+                            Регистрация
+                        </button>
+                    </div>
+                </div>
                 <div className={style.slogan}>
                     <div>Добавь</div>
                     <div>Запомни</div>

@@ -1,0 +1,9 @@
+.wrapper {
+    padding-top: 0.5em;
+    display: flex;
+}
+.logo {
+    width: 286px;
+    height: 60px;
+    background: url('./logo.png');
+}

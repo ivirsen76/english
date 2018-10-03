@@ -1,8 +1,42 @@
 $borderColor: #c9c9c9;
 
+.title {
+    display: flex;
+    padding: 2em 0;
+
+    .books {
+        flex: 3 3 30%;
+        margin-right: 2em;
+
+        img {
+            width: 100%;
+        }
+    }
+    .registration {
+        flex: 2 2 20%;
+        text-align: center;
+
+        h1,
+        h2 {
+            line-height: 1.2;
+        }
+        h1 {
+            font-size: 6em;
+            margin: 0;
+        }
+        h2 {
+            font-size: 2em;
+            margin: 0 0 0.5em;
+        }
+        button {
+            margin: 0;
+        }
+    }
+}
 .slogan {
     display: flex;
-    width: 100%;
+    background: #fff;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%);
 
     > div {
         flex: 1 1 10%;
@@ -14,8 +48,6 @@ $borderColor: #c9c9c9;
         border-left-width: 0;
         font-size: 2.6em;
         font-weight: bold;
-        background: #fff;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%);
 
         &:first-child {
             border-left-width: 1px;
@@ -28,8 +60,9 @@ $borderColor: #c9c9c9;
 }
 .sloganDesc {
     display: flex;
-    width: 100%;
     position: relative;
+    background: rgb(77, 157, 255);
+    background: linear-gradient(180deg, rgba(101, 170, 255, 1) 0%, rgba(77, 157, 255, 1) 100%);
 
     &:before {
         position: absolute;
@@ -45,8 +78,6 @@ $borderColor: #c9c9c9;
         display: flex;
         align-items: center;
         flex-direction: column;
-        background: rgb(77, 157, 255);
-        background: linear-gradient(180deg, rgba(101, 170, 255, 1) 0%, rgba(77, 157, 255, 1) 100%);
         border-left: 1px solid #4b8aff;
         padding: 2em 1em;
 
@@ -69,7 +100,6 @@ $borderColor: #c9c9c9;
 }
 .grid {
     display: flex;
-    width: 100%;
     position: relative;
 
     &:before {
