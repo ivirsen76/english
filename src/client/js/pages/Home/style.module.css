@@ -37,6 +37,8 @@ $borderColor: #c9c9c9;
     display: flex;
 
     > div {
+        display: flex;
+        flex-direction: column;
         flex: 1 1 10%;
         border: 1px solid $borderColor;
         border-bottom-width: 0;
@@ -64,6 +66,7 @@ $borderColor: #c9c9c9;
             );
         }
         .desc {
+            flex: 1;
             display: flex;
             align-items: center;
             flex-direction: column;
@@ -75,12 +78,25 @@ $borderColor: #c9c9c9;
             );
             background-repeat: no-repeat;
 
-            .picture {
-                width: 100px;
-                height: 100px;
+            .add,
+            .remember,
+            .write {
+                width: 120px;
+                height: 120px;
                 background: #f0c43a;
+                background-size: 120px 120px;
+            }
+            .add {
+                background: url('./bases.png');
+            }
+            .remember {
+                background: url('./remember.png');
+            }
+            .write {
+                background: url('./write.png');
             }
             .text {
+                flex: 1;
                 padding: 2em 0;
                 text-align: center;
             }

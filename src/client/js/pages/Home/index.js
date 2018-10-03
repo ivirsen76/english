@@ -24,7 +24,7 @@ export default class Component extends React.Component {
                     <div>
                         <div className={style.title}>Добавь</div>
                         <div className={style.desc}>
-                            <div className={style.picture} />
+                            <div className={style.add} />
                             <div className={style.text}>
                                 Добавь свои слова либо используй базы слов. Большинство баз основаны
                                 на популярных учебниках.
@@ -39,7 +39,7 @@ export default class Component extends React.Component {
                     <div>
                         <div className={style.title}>Запомни</div>
                         <div className={style.desc}>
-                            <div className={style.picture} />
+                            <div className={style.remember} />
                             <div className={style.text}>
                                 Ипользуй словарные карточки для запоминания слов. Слова качественно
                                 озвучены - транскрипция не нужна.
@@ -54,7 +54,7 @@ export default class Component extends React.Component {
                     <div>
                         <div className={style.title}>Напиши</div>
                         <div className={style.desc}>
-                            <div className={style.picture} />
+                            <div className={style.write} />
                             <div className={style.text}>
                                 Напиши изученные слова. Вы научитесь не только писать без ошибок, но
                                 и закрепите слова в памяти еще раз.
