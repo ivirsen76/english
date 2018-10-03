@@ -7,3 +7,22 @@
 .text-nowrap {
     white-space: nowrap;
 }
+body {
+    position: relative;
+    background-color: #fff;
+
+    &:before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 500px;
+        background: radial-gradient(
+            ellipse,
+            rgba(255, 255, 255, 1) 40%,
+            rgba(200, 200, 200, 1) 100%
+        );
+        background-size: 170% 200%;
+        background-position: -35vw 0;
+        z-index: -1;
+    }
+}

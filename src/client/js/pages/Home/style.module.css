@@ -1,0 +1,50 @@
+.slogan {
+    display: flex;
+    width: 100%;
+
+    > div {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 2.2em;
+        border: 1px solid #c9c9c9;
+        border-left-width: 0;
+        font-size: 2.6em;
+        font-weight: bold;
+        background: #fff;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%);
+
+        &:first-child {
+            border-left-width: 1px;
+            border-top-left-radius: 5px;
+        }
+        &:last-child {
+            border-top-right-radius: 5px;
+        }
+    }
+}
+.sloganDesc {
+    display: flex;
+    width: 100%;
+
+    > div {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background: rgb(77, 157, 255);
+        background: linear-gradient(180deg, rgba(101, 170, 255, 1) 0%, rgba(77, 157, 255, 1) 100%);
+        padding: 2em 1em;
+
+        .picture {
+            width: 100px;
+            height: 100px;
+            background: #f00;
+        }
+        .text {
+            padding: 2em 0;
+            text-align: center;
+        }
+    }
+}
