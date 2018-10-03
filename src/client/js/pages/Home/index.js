@@ -18,7 +18,9 @@ export default class Component extends React.Component {
                             популярных учебниках.
                         </div>
                         <div className={style.button}>
-                            <button className="ui secondary button">Список баз</button>
+                            <button className="circular ui compact big secondary button">
+                                Список баз
+                            </button>
                         </div>
                     </div>
                     <div>
@@ -28,7 +30,9 @@ export default class Component extends React.Component {
                             озвучены - транскрипция не нужна.
                         </div>
                         <div className={style.button}>
-                            <button className="ui secondary button">Демо</button>
+                            <button className="circular ui compact big secondary button">
+                                Демо
+                            </button>
                         </div>
                     </div>
                     <div>
@@ -38,8 +42,33 @@ export default class Component extends React.Component {
                             закрепите слова в памяти еще раз.
                         </div>
                         <div className={style.button}>
-                            <button className="ui secondary button">Демо</button>
+                            <button className="circular ui compact big secondary button">
+                                Демо
+                            </button>
                         </div>
+                    </div>
+                </div>
+                <div className={style.grid}>
+                    <div className={style.left}>
+                        <h2>Новости</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis
+                            aspernatur veniam minima reiciendis odit quod sint maxime aut, optio
+                            suscipit at distinctio ut inventore nam eveniet, neque quisquam? Sequi,
+                            eius.
+                        </p>
+                    </div>
+                    <div className={style.right}>
+                        <h2>Цена</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
+                            distinctio facilis sit, eos omnis, laboriosam quos repudiandae sint
+                            voluptas! Nostrum provident fugiat sed assumenda quae quas incidunt id,
+                            laboriosam facere, doloremque numquam aliquam maiores officiis
+                            perferendis quos recusandae aliquid, cum, tempora dolores cumque! Facere
+                            voluptas quas ad tempora inventore aliquam cupiditate pariatur! Tempora
+                            consectetur, molestias commodi illum praesentium aut quia.
+                        </p>
                     </div>
                 </div>
             </div>
