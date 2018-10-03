@@ -8,56 +8,56 @@ import { hasRole } from 'client/js/utils/auth.js'
 const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
     <Menu vertical fluid size="huge">
         <Menu.Item>
-            <Menu.Header>Vocabulary</Menu.Header>
+            <Menu.Header>Словарь</Menu.Header>
 
             <Menu.Menu>
                 <MenuLink to="/user/cards">
                     <Icon type="books" />
-                    My cards
+                    Мои слова
                     <div className="ui label" id="cardTotal">
                         {cardTotal}
                     </div>
                 </MenuLink>
                 <MenuLink to="/user/baseBrowser">
                     <Icon type="download" />
-                    Add from bases
+                    Добавить из баз
                 </MenuLink>
             </Menu.Menu>
         </Menu.Item>
 
         <Menu.Item>
-            <Menu.Header>Learning</Menu.Header>
+            <Menu.Header>Обучение</Menu.Header>
 
             <Menu.Menu>
                 <MenuLink to="/user/remember">
                     <Icon type="bubble2" />
-                    Remember
+                    Запомнить
                     <div className="ui label">{cardRememberTotal}</div>
                 </MenuLink>
                 <MenuLink to="/user/write">
                     <Icon type="pencil2" />
-                    Write
+                    Написать
                     <div className="ui label">{cardWriteTotal}</div>
                 </MenuLink>
                 <MenuLink to="/user/mp3">
                     <Icon type="headphones" />
-                    Download MP3
+                    Скачать MP3
                 </MenuLink>
             </Menu.Menu>
         </Menu.Item>
 
         <Menu.Item>
-            <Menu.Header>Other</Menu.Header>
+            <Menu.Header>Другое</Menu.Header>
 
             <Menu.Menu>
                 <MenuLink to="/user/statistics">
                     <Icon type="stats-dots" />
-                    Statistics
+                    Статистика
                 </MenuLink>
                 {hasRole('admin') && (
                     <MenuLink to="/user/base">
                         <Icon type="library" />
-                        Bases
+                        Базы
                     </MenuLink>
                 )}
             </Menu.Menu>

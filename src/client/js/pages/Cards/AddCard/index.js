@@ -23,13 +23,13 @@ export default class Component extends React.Component {
     render() {
         const trigger = (
             <button id="addCardButton" className="ui compact primary button">
-                Add card
+                Добавить слово
             </button>
         )
 
         return (
             <Modal size="small" closeIcon trigger={trigger}>
-                <Modal.Header>Add card</Modal.Header>
+                <Modal.Header>Добавить слово</Modal.Header>
                 <Modal.Content>
                     <Form
                         key={this.props.nextNewId}

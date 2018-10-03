@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getCardTotal, getRememberTotalCards, getWriteTotalCards } from 'client/js/selectors/card'
 import { loadCards } from 'client/js/reducers/card'
 import SideMenu from './SideMenu'
+import LogoBar from 'client/js/components/LogoBar'
 import NavBar from 'client/js/components/NavBar'
 
 class Component extends React.Component {
@@ -33,6 +34,7 @@ class Component extends React.Component {
 
         return (
             <div className="ui container">
+                <LogoBar />
                 <NavBar />
                 <div className="ui grid">
                     <div className="four wide column">

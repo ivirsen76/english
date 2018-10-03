@@ -11,15 +11,15 @@ export default class NavBar extends React.Component {
         return (
             <Menu inverted>
                 <MenuLink to="/" exact>
-                    Home
+                    Главная
                 </MenuLink>
-                <MenuLink to="/features">Features</MenuLink>
-                <MenuLink to="/bases">Card base</MenuLink>
-                <Dropdown item text="Helpers">
+                <MenuLink to="/features">Возможности</MenuLink>
+                <MenuLink to="/bases">Базы карточек</MenuLink>
+                <Dropdown item text="Помощники">
                     <Dropdown.Menu>
-                        <MenuLink to="/helpers/simpleMatrix">Matrix Simple</MenuLink>
-                        <MenuLink to="/helpers/continuousMatrix">Matrix Continuous</MenuLink>
-                        <MenuLink to="/helpers/numbers">Numbers</MenuLink>
+                        <MenuLink to="/helpers/simpleMatrix">Матрица Simple</MenuLink>
+                        <MenuLink to="/helpers/continuousMatrix">Матрица Continuous</MenuLink>
+                        <MenuLink to="/helpers/numbers">Номера</MenuLink>
                     </Dropdown.Menu>
                 </Dropdown>
                 {isLoggedIn() ? (
@@ -34,15 +34,15 @@ export default class NavBar extends React.Component {
                             }
                         >
                             <Dropdown.Menu>
-                                <Dropdown.Item>Change password</Dropdown.Item>
-                                <MenuLink to="/logout">Log out</MenuLink>
+                                <Dropdown.Item>Сменить пароль</Dropdown.Item>
+                                <MenuLink to="/logout">Выйти</MenuLink>
                             </Dropdown.Menu>
                         </Dropdown>
                     </Menu.Menu>
                 ) : (
                     <Menu.Menu position="right">
-                        <Modal size="tiny" closeIcon trigger={<a className="item">Log in</a>}>
-                            <Modal.Header>Log in</Modal.Header>
+                        <Modal size="tiny" closeIcon trigger={<a className="item">Войти</a>}>
+                            <Modal.Header>Войти</Modal.Header>
                             <Modal.Content>
                                 <LoginForm />
                             </Modal.Content>
