@@ -6,7 +6,7 @@ export default class Component extends React.Component {
     render() {
         return (
             <div>
-                <div className={style.title}>
+                <div className={style.main}>
                     <div className={style.books}>
                         <img src={books} alt="books" />
                     </div>
@@ -21,45 +21,49 @@ export default class Component extends React.Component {
                     </div>
                 </div>
                 <div className={style.slogan}>
-                    <div>Добавь</div>
-                    <div>Запомни</div>
-                    <div>Напиши</div>
-                </div>
-                <div className={style.sloganDesc}>
                     <div>
-                        <div className={style.picture} />
-                        <div className={style.text}>
-                            Добавь свои слова либо используй базы слов. Большинство баз основаны на
-                            популярных учебниках.
-                        </div>
-                        <div className={style.button}>
-                            <button className="circular ui compact big secondary button">
-                                Список баз
-                            </button>
+                        <div className={style.title}>Добавь</div>
+                        <div className={style.desc}>
+                            <div className={style.picture} />
+                            <div className={style.text}>
+                                Добавь свои слова либо используй базы слов. Большинство баз основаны
+                                на популярных учебниках.
+                            </div>
+                            <div className={style.button}>
+                                <button className="circular ui compact big secondary button">
+                                    Список баз
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div>
-                        <div className={style.picture} />
-                        <div className={style.text}>
-                            Ипользуй словарные карточки для запоминания слов. Слова качественно
-                            озвучены - транскрипция не нужна.
-                        </div>
-                        <div className={style.button}>
-                            <button className="circular ui compact big secondary button">
-                                Демо
-                            </button>
+                        <div className={style.title}>Запомни</div>
+                        <div className={style.desc}>
+                            <div className={style.picture} />
+                            <div className={style.text}>
+                                Ипользуй словарные карточки для запоминания слов. Слова качественно
+                                озвучены - транскрипция не нужна.
+                            </div>
+                            <div className={style.button}>
+                                <button className="circular ui compact big secondary button">
+                                    Демо
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div>
-                        <div className={style.picture} />
-                        <div className={style.text}>
-                            Напиши изученные слова. Вы научитесь не только писать без ошибок, но и
-                            закрепите слова в памяти еще раз.
-                        </div>
-                        <div className={style.button}>
-                            <button className="circular ui compact big secondary button">
-                                Демо
-                            </button>
+                        <div className={style.title}>Напиши</div>
+                        <div className={style.desc}>
+                            <div className={style.picture} />
+                            <div className={style.text}>
+                                Напиши изученные слова. Вы научитесь не только писать без ошибок, но
+                                и закрепите слова в памяти еще раз.
+                            </div>
+                            <div className={style.button}>
+                                <button className="circular ui compact big secondary button">
+                                    Демо
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
