@@ -35,7 +35,6 @@ $borderColor: #c9c9c9;
 }
 .slogan {
     display: flex;
-    background: #fff;
     background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%);
 
     > div {
@@ -61,8 +60,8 @@ $borderColor: #c9c9c9;
 .sloganDesc {
     display: flex;
     position: relative;
-    background: rgb(77, 157, 255);
     background: linear-gradient(180deg, rgba(101, 170, 255, 1) 0%, rgba(77, 157, 255, 1) 100%);
+    background-repeat: no-repeat;
 
     &:before {
         position: absolute;
@@ -78,14 +77,14 @@ $borderColor: #c9c9c9;
         display: flex;
         align-items: center;
         flex-direction: column;
-        border-left: 1px solid #4b8aff;
+        border-right: 1px solid #4b8aff;
         padding: 2em 1em;
 
         &:first-child {
-            border-left-color: $borderColor;
+            border-left: 1px solid $borderColor;
         }
         &:last-child {
-            border-right: 1px solid $borderColor;
+            border-right-color: $borderColor;
         }
         .picture {
             width: 100px;
@@ -114,13 +113,14 @@ $borderColor: #c9c9c9;
     .left,
     .right {
         border: 1px solid $borderColor;
+        border-left-width: 0;
         padding: 1em;
     }
     .left {
         flex: 1 1 10%;
+        border-left-width: 1px;
     }
     .right {
         flex: 2 2 20%;
-        border-left-width: 0;
     }
 }
