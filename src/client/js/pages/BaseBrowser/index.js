@@ -20,6 +20,32 @@ class Component extends React.Component {
         this.props.loadBases()
     }
 
+    getBreadcrumbs = id => {
+        const result = []
+
+        const processParent = parentId => {
+            const parent = this.props.list.find(item => item.id === parentId)
+            if (!parent) {
+                return
+            }
+
+            result.push(parent)
+            processParent(parent.parentId)
+        }
+
+        const node = this.props.list.find(item => item.id === id)
+        if (node) {
+            processParent(node.parentId)
+        }
+
+        // Add top level
+        if (id !== 0) {
+            result.push({ title: 'Базы', id: 0 })
+        }
+
+        return result.reverse()
+    }
+
     getSubtree = id => {
         const getChildren = parentId =>
             this.props.list.filter(item => item.parentId === parentId).map(item => {
@@ -35,25 +61,23 @@ class Component extends React.Component {
 
         return {
             ...parent,
+            isMain: false,
             children: getChildren(id),
         }
     }
 
-    showTree = (parent, level = 0) => {
-        const maxLevel = 3
-        const isLastLevel = level === maxLevel
-
+    showTree = parent => {
         let title
         if (parent.type === 'cards') {
             title = (
                 <div>
-                    <Link to={`/user/baseBrowser/${parent.id}`}>
+                    <Link to={`/user/baseBrowser/${parent.id}`} style={{ position: 'relative' }}>
                         {parent.title}
-                        {` (${parent.count})`}
+                        <div className={style.count}>{parent.count}</div>
                     </Link>
                 </div>
             )
-        } else if (isLastLevel) {
+        } else if (parent.isMain) {
             title = (
                 <div>
                     <Link to={`/user/baseBrowser/${parent.id}`}>{parent.title}</Link>
@@ -66,11 +90,11 @@ class Component extends React.Component {
         return (
             <div>
                 {title}
-                {level < maxLevel &&
-                    parent.children && (
-                        <div className={[1, 12].includes(parent.id) && style.table}>
+                {parent.children &&
+                    !parent.isMain && (
+                        <div className={parent.arrangeChildren === 'table' && style.table}>
                             {parent.children.map(child => (
-                                <div key={child.id}>{this.showTree(child, level + 1)}</div>
+                                <div key={child.id}>{this.showTree(child)}</div>
                             ))}
                         </div>
                     )}
@@ -80,10 +104,30 @@ class Component extends React.Component {
 
     render() {
         const { loading, base } = this.props
+        const breadcrumbs = this.getBreadcrumbs(base.id)
 
         return (
             <Loader loading={loading}>
                 <h2>{base.title}</h2>
+                <div className={style.breadcrumb}>
+                    <div className="ui breadcrumb">
+                        {breadcrumbs.map(item => [
+                            <Link
+                                className="section"
+                                key={item.id}
+                                to={
+                                    item.id === 0
+                                        ? `/user/baseBrowser`
+                                        : `/user/baseBrowser/${item.id}`
+                                }
+                            >
+                                {item.title}
+                            </Link>,
+                            <i className="right angle icon divider" key="divider" />,
+                        ])}
+                        <div className="section">{base.title}</div>
+                    </div>
+                </div>
                 {base.type === 'cards' ? (
                     <CardsView base={base} />
                 ) : (
@@ -98,7 +142,11 @@ const mapStateToProps = (state, props) => {
     const baseId = +props.match.params.id
 
     return {
-        base: state.app.base.list.find(item => item.id === baseId) || { id: 0, title: 'Bases' },
+        base: state.app.base.list.find(item => item.id === baseId) || {
+            id: 0,
+            title: 'Базы',
+            isMain: true,
+        },
         loading: state.app.base.loading,
         list: getSortedList(state.app.base),
     }

@@ -24,6 +24,16 @@ module.exports = {
                 allowNull: false,
                 defaultValue: 'folder',
             },
+            isMain: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+                defaultValue: false,
+            },
+            arrangeChildren: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                defaultValue: 'list',
+            },
             label: {
                 type: Sequelize.STRING,
                 allowNull: false,
