@@ -12,7 +12,7 @@ fixture('Bases page').beforeEach(async t => {
 // Selectors
 const Title = Selector('h2')
 const AddCardButton = Selector('#addCardButton')
-const AddCardSubmitButton = Selector('button[type=submit').withText('Add card')
+const AddCardSubmitButton = Selector('button[type=submit').withText('Добавить слово')
 const UpdateCardSubmitButton = Selector('button[type=submit').withText('Update card')
 const Alert = ReactSelector('Alert')
 const Table = ReactSelector('Table')

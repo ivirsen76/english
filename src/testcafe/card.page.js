@@ -12,9 +12,9 @@ fixture('Cards page').beforeEach(async t => {
 
 // Selectors
 const Modal = Selector('.ui.modal')
-const AddCardButton = Selector('button').withText('Add card')
+const AddCardButton = Selector('button').withText('Добавить слово')
 const UpdateCardSubmitButton = Selector('button[type=submit').withText('Update card')
-const AddCardSubmitButton = Selector('button[type=submit').withText('Add card')
+const AddCardSubmitButton = Selector('button[type=submit').withText('Добавить слово')
 const TextInput = Selector('input[name=text]')
 const TranslateInput = Selector('input[name=translate]')
 const Alert = ReactSelector('Alert')

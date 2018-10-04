@@ -8,9 +8,9 @@ fixture('Login and Logout').beforeEach(async t => {
 
 // Selectors
 const Body = Selector('body')
-const LoginLink = Selector('a').withText('Log in')
-const LoginSubmitButton = Selector('button').withText('Log in')
-const LogoutLink = Selector('a').withText('Log out')
+const LoginLink = Selector('a').withText('Войти')
+const LoginSubmitButton = Selector('button').withText('Войти')
+const LogoutLink = Selector('a').withText('Выйти')
 const UserMenuLink = Selector('span').withText('admin@gmail.com')
 
 test('Should log in and log out using menu options', async t => {
@@ -26,7 +26,7 @@ test('Should log in and log out using menu options', async t => {
 
     await t.click(UserMenuLink)
     await t.click(LogoutLink)
-    await t.expect(Body.innerText).contains('Log in')
+    await t.expect(Body.innerText).contains('Войти')
 })
 
 test('Should log in and log out using pages', async t => {
@@ -40,7 +40,7 @@ test('Should log in and log out using pages', async t => {
     await t.expect(Body.innerText).contains('admin@gmail.com')
 
     await t.navigateTo(url('/logout'))
-    await t.expect(Body.innerText).contains('Log in')
+    await t.expect(Body.innerText).contains('Войти')
 })
 
 test('Should show 404 error for non found page', async t => {

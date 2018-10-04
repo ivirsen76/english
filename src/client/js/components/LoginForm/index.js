@@ -47,7 +47,7 @@ class Component extends React.Component {
                             className={'ui ' + (isSubmitting && 'loading') + ' compact button'}
                             type="submit"
                         >
-                            Log in
+                            Войти
                         </button>
                     </Form>
                 )}
