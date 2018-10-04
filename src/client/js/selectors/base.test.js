@@ -33,7 +33,7 @@ describe('getTree()', () => {
     it('Should return list as a tree', () => {
         const state = {
             list: [
-                { id: 4, parentId: 0, position: 0, title: 'Books', type: 'folder' },
+                { id: 4, parentId: 0, position: 0, title: 'Учебники', type: 'folder' },
                 { id: 5, parentId: 0, position: 1, title: 'Dialogs', type: 'folder' },
                 { id: 1, parentId: 4, position: 0, title: 'face2face', type: 'folder' },
                 { id: 2, parentId: 1, position: 1, title: 'Chapter 2', type: 'cards' },
@@ -45,7 +45,7 @@ describe('getTree()', () => {
             children: [
                 {
                     id: 4,
-                    title: 'Books',
+                    title: 'Учебники',
                     type: 'folder',
                     isAdult: true,
                     children: [

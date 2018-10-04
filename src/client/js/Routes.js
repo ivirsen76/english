@@ -29,13 +29,12 @@ export default () => (
         <AppRoute path="/login" component={Login} />
         <AppRoute path="/logout" component={Logout} />
         <AppRoute path="/features" component={ComingSoon} />
-        <AppRoute path="/bases" component={ComingSoon} />
+        <AppRoute path="/bases/:id?" component={BaseBrowser} />
         <AppRoute path="/helpers" component={ComingSoon} />
 
         {/* User pages */}
         <Redirect exact from="/user" to="/user/cards" />
         <AppRoute path="/user/cards" component={Cards} layout={UserLayout} />
-        <AppRoute path="/user/baseBrowser/:id?" component={BaseBrowser} layout={UserLayout} />
         <AppRoute path="/user/remember" component={Remember} layout={UserLayout} />
         <AppRoute path="/user/write" component={Write} layout={UserLayout} />
         <AppRoute path="/user/mp3" component={DownloadMp3} layout={UserLayout} />
