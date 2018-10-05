@@ -4,6 +4,7 @@ import Table from '@ieremeev/table'
 import { connect } from 'react-redux'
 import { loadCards } from 'client/js/reducers/base.js'
 import { addCardsFromBase } from 'client/js/reducers/card.js'
+import { getBaseCardsToAdd } from 'client/js/selectors/common.js'
 import Loader from '@ieremeev/loader'
 import notification from '@ieremeev/notification'
 import AudioLink from 'client/js/components/AudioLink'
@@ -15,6 +16,7 @@ class ShowBase extends React.Component {
         cardsLoaded: PropTypes.bool,
         loadCards: PropTypes.func,
         addCardsFromBase: PropTypes.func,
+        cardsToAdd: PropTypes.array,
     }
 
     state = {
@@ -55,6 +57,11 @@ class ShowBase extends React.Component {
                 sort: true,
                 render: (value, row) => <AudioLink text={value} audioUrl={row.ruSoundFile} />,
             },
+            {
+                name: 'isNew',
+                label: 'Новое?',
+                render: (value, row) => (this.props.cardsToAdd.includes(row.id) ? 'yes' : 'no'),
+            },
         ]
 
         return (
@@ -81,6 +88,7 @@ const mapStateToProps = (state, props) => {
     return {
         cardsLoaded: !!state.app.base.cards.find(item => item.baseId === baseId),
         list: state.app.base.cards.filter(item => item.baseId === baseId),
+        cardsToAdd: getBaseCardsToAdd(state),
     }
 }
 
