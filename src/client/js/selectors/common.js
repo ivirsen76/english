@@ -4,7 +4,7 @@ import { stripBrackets } from 'server/services/card/hooks/validate.js'
 const getBasecards = state => state.app.base.cards
 const getCards = state => state.app.card.list
 
-export const getAddedCards = createSelector(getBasecards, getCards, (basecards, cards) => {
+export const getBaseCardsToAdd = createSelector(getBasecards, getCards, (basecards, cards) => {
     if (basecards.length === 0 || cards.length === 0) {
         return []
     }

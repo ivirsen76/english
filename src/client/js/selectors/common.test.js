@@ -1,6 +1,6 @@
-import { getAddedCards } from './common'
+import { getBaseCardsToAdd } from './common'
 
-describe('getAddedCards()', () => {
+describe('getBaseCardsToAdd()', () => {
     it('Should return added cards', () => {
         const state = {
             app: {
@@ -17,6 +17,6 @@ describe('getAddedCards()', () => {
             },
         }
 
-        expect(getAddedCards(state)).toEqual([4, 5])
+        expect(getBaseCardsToAdd(state)).toEqual([4, 5])
     })
 })

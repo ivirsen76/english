@@ -65,7 +65,7 @@ class ShowBase extends React.Component {
                             className={`ui ${adding && 'loading'} compact primary button`}
                             onClick={this.addCards}
                         >
-                            Add all cards
+                            Добавить все новые карточки
                         </button>
                     </div>
                     <Table data={this.props.list} columns={columns} showRowNumber />
