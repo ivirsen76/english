@@ -34,7 +34,7 @@
         "@ieremeev/formik": "^1.2.1",
         "@ieremeev/loader": "^1.2.2",
         "@ieremeev/notification": "^2.0.6",
-        "@ieremeev/semantic-ui": "^1.0.1",
+        "@ieremeev/semantic-ui": "^1.0.2",
         "@ieremeev/table": "^2.2.1",
         "@ieremeev/tree": "^1.0.3",
         "aws-sdk": "^2.54.0",
