@@ -34,6 +34,7 @@
         "@ieremeev/formik": "^1.2.1",
         "@ieremeev/loader": "^1.2.1",
         "@ieremeev/notification": "^2.0.6",
+        "@ieremeev/semantic-ui": "^1.0.0",
         "@ieremeev/table": "^2.2.1",
         "@ieremeev/tree": "^1.0.3",
         "aws-sdk": "^2.54.0",
@@ -79,8 +80,7 @@
         "redux-thunk": "^2.2.0",
         "request-promise-native": "^1.0.4",
         "reselect": "^3.0.1",
-        "semantic-ui-css": "2.2.14",
-        "semantic-ui-react": "^0.79.0",
+        "semantic-ui-react": "^0.81.3",
         "sequelize": "^3.30.4",
         "sequelize-cli": "^2.7.0",
         "serve-favicon": "^2.4.3",
@@ -91,7 +91,7 @@
         "winston": "^2.3.1"
     },
     "devDependencies": {
-        "@ieremeev/app": "^3.0.9",
+        "@ieremeev/app": "^3.1.0",
         "supertest": "^3.3.0",
         "testcafe": "^0.20.3",
         "testcafe-live": "^0.1.3",
