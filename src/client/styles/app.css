@@ -25,3 +25,7 @@ body {
         z-index: -1;
     }
 }
+@font-face {
+    font-family: Znanium;
+    src: url(./fonts/myriad-webfont.ttf);
+}

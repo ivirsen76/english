@@ -1,6 +1,6 @@
 // Import common global styles
-import '../styles/semantic-ui/semantic.less'
 import '../styles/app.css'
+import '../styles/semantic-ui/semantic.less'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
