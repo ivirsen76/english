@@ -2,11 +2,11 @@ $borderColor: #c9c9c9;
 
 .main {
     display: flex;
-    padding: 2em 0;
+    padding: 1.8em 0;
 
     .books {
         flex: 3 3 30%;
-        margin-right: 2em;
+        margin-right: 1.8em;
 
         img {
             width: 100%;
@@ -17,13 +17,13 @@ $borderColor: #c9c9c9;
         text-align: center;
 
         h1 {
-            font-size: 6.5em;
+            font-size: 5.7em;
             margin: 0;
             line-height: 1;
         }
         h2 {
-            font-size: 2.5em;
-            margin: 0 0 1em;
+            font-size: 2.2em;
+            margin: 0 0 0.8em;
             line-height: 1;
         }
         button {
@@ -55,7 +55,7 @@ $borderColor: #c9c9c9;
             justify-content: center;
             align-items: center;
             height: 1.8em;
-            font-size: 3.2em;
+            font-size: 2.8em;
             font-weight: bold;
             font-family: Znanium;
             background: linear-gradient(
@@ -70,7 +70,7 @@ $borderColor: #c9c9c9;
             display: flex;
             align-items: center;
             flex-direction: column;
-            padding: 1.5em 1em 2em;
+            padding: 1.4em 1em 1.8em;
             background: linear-gradient(
                 180deg,
                 rgba(101, 170, 255, 1) 0%,
@@ -109,7 +109,7 @@ $borderColor: #c9c9c9;
             }
             .text {
                 flex: 1;
-                padding: 1.5em 0 2em;
+                padding: 1.5em 0 1.8em;
                 text-align: center;
             }
         }
