@@ -6,6 +6,7 @@ import { loadCards } from 'client/js/reducers/card'
 import SideMenu from './SideMenu'
 import LogoBar from 'client/js/components/LogoBar'
 import NavBar from 'client/js/components/NavBar'
+import Loader from '@ieremeev/loader'
 
 class Component extends React.Component {
     static propTypes = {
@@ -18,36 +19,30 @@ class Component extends React.Component {
     }
 
     componentDidMount() {
-        this.props.loadCards()
+        if (this.props.cardTotal === 0) {
+            this.props.loadCards()
+        }
     }
 
     render() {
-        const { loading } = this.props
-
-        if (loading) {
-            return (
-                <div className="ui active inverted dimmer">
-                    <div className="ui big text loader">Loading</div>
-                </div>
-            )
-        }
-
         return (
             <div className="ui container">
                 <LogoBar />
                 <NavBar />
-                <div className="ui grid">
-                    <div className="four wide column">
-                        <SideMenu
-                            cardTotal={this.props.cardTotal}
-                            cardRememberTotal={this.props.cardRememberTotal}
-                            cardWriteTotal={this.props.cardWriteTotal}
-                        />
+                <Loader loading={this.props.loading} removeChildren>
+                    <div className="ui grid">
+                        <div className="four wide column">
+                            <SideMenu
+                                cardTotal={this.props.cardTotal}
+                                cardRememberTotal={this.props.cardRememberTotal}
+                                cardWriteTotal={this.props.cardWriteTotal}
+                            />
+                        </div>
+                        <div id="body" className="twelve wide column">
+                            {this.props.children}
+                        </div>
                     </div>
-                    <div id="body" className="twelve wide column">
-                        {this.props.children}
-                    </div>
-                </div>
+                </Loader>
             </div>
         )
     }
