@@ -71,7 +71,7 @@ class Component extends React.Component {
         if (parent.type === 'cards') {
             title = (
                 <div>
-                    <Link to={`/bases/${parent.id}`} style={{ position: 'relative' }}>
+                    <Link to={`/user/baseBrowser/${parent.id}`} style={{ position: 'relative' }}>
                         {parent.title}
                         <div className={style.count}>{parent.count}</div>
                     </Link>
@@ -80,7 +80,7 @@ class Component extends React.Component {
         } else if (parent.isMain) {
             title = (
                 <div>
-                    <Link to={`/bases/${parent.id}`}>{parent.title}</Link>
+                    <Link to={`/user/baseBrowser/${parent.id}`}>{parent.title}</Link>
                 </div>
             )
         } else {
@@ -115,7 +115,11 @@ class Component extends React.Component {
                             <Link
                                 className="section"
                                 key={item.id}
-                                to={item.id === 0 ? `/bases` : `/bases/${item.id}`}
+                                to={
+                                    item.id === 0
+                                        ? `/user/baseBrowser`
+                                        : `/user/baseBrowser/${item.id}`
+                                }
                             >
                                 {item.title}
                             </Link>,

@@ -18,6 +18,10 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
                         {cardTotal}
                     </div>
                 </MenuLink>
+                <MenuLink to="/user/baseBrowser">
+                    <Icon type="books" />
+                    Добавить из баз
+                </MenuLink>
             </Menu.Menu>
         </Menu.Item>
 
