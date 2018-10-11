@@ -19,7 +19,7 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
                     </div>
                 </MenuLink>
                 <MenuLink to="/user/baseBrowser">
-                    <Icon type="books" />
+                    <Icon type="download" />
                     Добавить из баз
                 </MenuLink>
             </Menu.Menu>
