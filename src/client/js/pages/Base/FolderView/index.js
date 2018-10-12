@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import BaseTree from 'client/js/components/BaseTree'
 import { Formik, Form, Field, SemanticInput, SemanticSelect } from '@ieremeev/formik'
 
 export const errorMessages = {
@@ -30,32 +31,40 @@ export default class Component extends React.Component {
         return (
             <div>
                 <h2>{this.props.base.title}</h2>
-                <Formik
-                    initialValues={{
-                        title: this.props.base.title,
-                        arrangeChildren: this.props.base.arrangeChildren,
-                    }}
-                    isInitialValid
-                    validate={validate}
-                    onValidChange={this.updateBase}
-                    render={props => (
-                        <Form className="ui form">
-                            <Field name="title" component={SemanticInput} label="Title" autoFocus />
-                            <div className="fields">
+                <div className="ui raised segment">
+                    <Formik
+                        initialValues={{
+                            title: this.props.base.title,
+                            arrangeChildren: this.props.base.arrangeChildren,
+                        }}
+                        isInitialValid
+                        validate={validate}
+                        onValidChange={this.updateBase}
+                        render={props => (
+                            <Form className="ui form">
                                 <Field
-                                    name="arrangeChildren"
-                                    component={SemanticSelect}
-                                    label="Arrange children method"
-                                    options={[
-                                        { value: 'table', label: 'Table' },
-                                        { value: 'list', label: 'List' },
-                                    ]}
-                                    type="button"
+                                    name="title"
+                                    component={SemanticInput}
+                                    label="Title"
+                                    autoFocus
                                 />
-                            </div>
-                        </Form>
-                    )}
-                />
+                                <div className="fields">
+                                    <Field
+                                        name="arrangeChildren"
+                                        component={SemanticSelect}
+                                        label="Arrange children method"
+                                        options={[
+                                            { value: 'table', label: 'Table' },
+                                            { value: 'list', label: 'List' },
+                                        ]}
+                                        type="button"
+                                    />
+                                </div>
+                            </Form>
+                        )}
+                    />
+                </div>
+                <BaseTree baseId={this.props.base.id} />
             </div>
         )
     }
