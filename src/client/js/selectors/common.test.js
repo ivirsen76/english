@@ -1,7 +1,7 @@
 import { getBaseCardsToAdd } from './common'
 
 describe('getBaseCardsToAdd()', () => {
-    it('Should return added cards', () => {
+    it('Should return cards to add', () => {
         const state = {
             app: {
                 card: {
@@ -17,6 +17,6 @@ describe('getBaseCardsToAdd()', () => {
             },
         }
 
-        expect(getBaseCardsToAdd(state)).toEqual([4, 5])
+        expect(getBaseCardsToAdd(state)).toEqual([6])
     })
 })

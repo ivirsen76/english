@@ -16,7 +16,7 @@ class ShowBase extends React.Component {
         cardsLoaded: PropTypes.bool,
         loadCards: PropTypes.func,
         addCardsFromBase: PropTypes.func,
-        cardsToAdd: PropTypes.array,
+        baseCardsToAdd: PropTypes.array,
     }
 
     state = {
@@ -41,6 +41,7 @@ class ShowBase extends React.Component {
 
     render() {
         const { adding, loading } = this.state
+        const newCardsCount = this.props.baseCardsToAdd.length
 
         const columns = [
             {
@@ -60,7 +61,11 @@ class ShowBase extends React.Component {
             {
                 name: 'isNew',
                 label: 'Новое?',
-                render: (value, row) => (this.props.cardsToAdd.includes(row.id) ? 'yes' : 'no'),
+                className: 'center aligned',
+                render: (value, row) =>
+                    this.props.baseCardsToAdd.includes(row.id) ? (
+                        <i className="icon-checkmark" />
+                    ) : null,
             },
         ]
 
@@ -68,12 +73,18 @@ class ShowBase extends React.Component {
             <div>
                 <Loader type="inline" loading={loading}>
                     <div className="margin1">
-                        <button
-                            className={`ui ${adding && 'loading'} compact primary button`}
-                            onClick={this.addCards}
-                        >
-                            Добавить все новые карточки
-                        </button>
+                        {newCardsCount === 0 ? (
+                            <div className="ui positive message">Все карточки уже добавлены</div>
+                        ) : (
+                            <button
+                                className={`ui ${adding && 'loading'} compact primary button`}
+                                style={{ position: 'relative' }}
+                                onClick={this.addCards}
+                            >
+                                Добавить все новые карточки
+                                <div className="floating ui small red label">{newCardsCount}</div>
+                            </button>
+                        )}
                     </div>
                     <Table data={this.props.list} columns={columns} showRowNumber />
                 </Loader>
@@ -88,7 +99,7 @@ const mapStateToProps = (state, props) => {
     return {
         cardsLoaded: !!state.app.base.cards.find(item => item.baseId === baseId),
         list: state.app.base.cards.filter(item => item.baseId === baseId),
-        cardsToAdd: getBaseCardsToAdd(state),
+        baseCardsToAdd: getBaseCardsToAdd(state),
     }
 }
 

@@ -5,8 +5,8 @@ const getBasecards = state => state.app.base.cards
 const getCards = state => state.app.card.list
 
 export const getBaseCardsToAdd = createSelector(getBasecards, getCards, (basecards, cards) => {
-    if (basecards.length === 0 || cards.length === 0) {
-        return []
+    if (cards.length === 0) {
+        return basecards.map(item => item.id)
     }
 
     const cardsTexts = cards.map(item => stripBrackets(item.text))
@@ -14,7 +14,7 @@ export const getBaseCardsToAdd = createSelector(getBasecards, getCards, (basecar
 
     const result = basecards
         .filter(
-            item => basecardIds.includes(item.id) || cardsTexts.includes(stripBrackets(item.text))
+            item => !basecardIds.includes(item.id) && !cardsTexts.includes(stripBrackets(item.text))
         )
         .map(item => item.id)
 
