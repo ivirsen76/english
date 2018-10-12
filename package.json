@@ -31,7 +31,7 @@
         "@ieremeev/axios": "^1.1.2",
         "@ieremeev/boilerplate": "^2.0.3",
         "@ieremeev/button": "^2.0.3",
-        "@ieremeev/formik": "^1.3.0",
+        "@ieremeev/formik": "^1.3.1",
         "@ieremeev/loader": "^1.2.2",
         "@ieremeev/notification": "^2.0.6",
         "@ieremeev/semantic-ui": "^1.0.2",
