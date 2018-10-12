@@ -141,7 +141,6 @@ class Component extends React.Component {
                     </div>
                     {base.id !== 0 && (
                         <div className={style.body}>
-                            <h2>{base.title}</h2>
                             {base.type === 'cards' ? (
                                 <CardsView
                                     key={base.id}

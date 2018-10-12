@@ -22,7 +22,15 @@ const orderList = list => {
 const getUpdates = (originalList, list) => {
     list = orderList(list)
 
-    const affectedKeys = ['id', 'parentId', 'position', 'title', 'type']
+    const affectedKeys = [
+        'id',
+        'parentId',
+        'position',
+        'title',
+        'type',
+        'arrangeChildren',
+        'isMain',
+    ]
     const originalIds = originalList.map(item => item.id)
     const newIds = list.map(item => item.id)
 

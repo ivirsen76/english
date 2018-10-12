@@ -100,6 +100,7 @@ class ShowBase extends React.Component {
 
         return (
             <div>
+                <h2>{this.props.base.title}</h2>
                 <div className="margin1">
                     <Formik
                         initialValues={{ title: this.props.base.title }}
