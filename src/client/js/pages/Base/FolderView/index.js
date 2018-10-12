@@ -48,7 +48,7 @@ export default class Component extends React.Component {
                                     label="Title"
                                     autoFocus
                                 />
-                                <div className="fields">
+                                <div className="fields" style={{ marginBottom: '0' }}>
                                     <Field
                                         name="arrangeChildren"
                                         component={SemanticSelect}
@@ -64,7 +64,7 @@ export default class Component extends React.Component {
                         )}
                     />
                 </div>
-                <BaseTree baseId={this.props.base.id} />
+                <BaseTree baseId={this.props.base.id} url="/user/base" />
             </div>
         )
     }

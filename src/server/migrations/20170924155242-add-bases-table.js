@@ -19,6 +19,7 @@ module.exports = {
                 allowNull: false,
             },
             info: Sequelize.TEXT('tiny'),
+            image: Sequelize.STRING,
             type: {
                 type: Sequelize.STRING,
                 allowNull: false,
