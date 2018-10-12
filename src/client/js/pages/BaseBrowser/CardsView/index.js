@@ -74,7 +74,7 @@ class ShowBase extends React.Component {
                 <Loader type="inline" loading={loading}>
                     <div className="margin1">
                         {newCardsCount === 0 ? (
-                            <div className="ui positive message">Все карточки уже добавлены</div>
+                            <div className="ui warning message">Все карточки уже добавлены</div>
                         ) : (
                             <button
                                 className={`ui ${adding && 'loading'} compact primary button`}
