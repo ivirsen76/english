@@ -8,6 +8,7 @@ import { getBaseCardsToAdd } from 'client/js/selectors/common.js'
 import Loader from '@ieremeev/loader'
 import notification from '@ieremeev/notification'
 import AudioLink from 'client/js/components/AudioLink'
+import classnames from 'classnames'
 
 class ShowBase extends React.Component {
     static propTypes = {
@@ -42,6 +43,7 @@ class ShowBase extends React.Component {
     render() {
         const { adding, loading } = this.state
         const newCardsCount = this.props.baseCardsToAdd.length
+        const noNewCards = newCardsCount === 0
 
         const columns = [
             {
@@ -73,18 +75,26 @@ class ShowBase extends React.Component {
             <div>
                 <Loader type="inline" loading={loading}>
                     <div className="margin1">
-                        {newCardsCount === 0 ? (
+                        {noNewCards && (
                             <div className="ui warning message">Все карточки уже добавлены</div>
-                        ) : (
-                            <button
-                                className={`ui ${adding && 'loading'} compact primary button`}
-                                style={{ position: 'relative' }}
-                                onClick={this.addCards}
-                            >
-                                Добавить все новые карточки
-                                <div className="floating ui small red label">{newCardsCount}</div>
-                            </button>
                         )}
+                        <button
+                            className={classnames(
+                                'ui',
+                                {
+                                    loading: adding,
+                                    disabled: noNewCards,
+                                },
+                                'compact primary button'
+                            )}
+                            style={{ position: 'relative' }}
+                            onClick={this.addCards}
+                        >
+                            Добавить все новые карточки
+                            {!noNewCards && (
+                                <div className="floating ui small red label">{newCardsCount}</div>
+                            )}
+                        </button>
                     </div>
                     <Table data={this.props.list} columns={columns} showRowNumber />
                 </Loader>
