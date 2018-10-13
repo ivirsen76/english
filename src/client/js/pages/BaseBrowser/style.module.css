@@ -34,14 +34,3 @@
     color: #333;
     font-size: 0.9em;
 }
-.info {
-    display: flex;
-    margin-bottom: 1em;
-
-    img {
-        width: 120px;
-        height: 150px;
-        border: 1px solid #ccc;
-        margin-right: 1em;
-    }
-}

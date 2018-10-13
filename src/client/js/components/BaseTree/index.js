@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { getSortedList } from 'client/js/selectors/base'
 import { connect } from 'react-redux'
+import Html from 'client/js/components/Html'
 import style from './style.module.css'
 
 class BaseTree extends React.Component {
     static propTypes = {
         list: PropTypes.array,
-        baseId: PropTypes.number,
+        base: PropTypes.object,
         url: PropTypes.string,
     }
 
@@ -49,8 +50,16 @@ class BaseTree extends React.Component {
             )
         } else if (parent.isMain) {
             title = (
-                <div>
-                    <Link to={`${this.props.url}/${parent.id}`}>{parent.title}</Link>
+                <div className={style.main}>
+                    <Link to={`${this.props.url}/${parent.id}`}>
+                        {parent.title}
+                        {parent.image && (
+                            <img
+                                src={`${process.env.IE_SOUND_URL}images/${parent.image}`}
+                                alt={parent.title}
+                            />
+                        )}
+                    </Link>
                 </div>
             )
         } else {
@@ -59,7 +68,7 @@ class BaseTree extends React.Component {
 
         return (
             <div>
-                {parent.id !== this.props.baseId && title}
+                {parent.id !== this.props.base.id && title}
                 {parent.children &&
                     !parent.isMain && (
                         <div className={parent.arrangeChildren === 'table' && style.table}>
@@ -73,9 +82,23 @@ class BaseTree extends React.Component {
     }
 
     render() {
-        const subtree = this.getSubtree(this.props.baseId)
+        const { base } = this.props
+        const subtree = this.getSubtree(base.id)
 
-        return <div>{this.showTree(subtree)}</div>
+        return (
+            <div>
+                {base.image && (
+                    <div className={style.info}>
+                        <img
+                            src={`${process.env.IE_SOUND_URL}images/${base.image}`}
+                            alt={base.title}
+                        />
+                        <Html>{base.info}</Html>
+                    </div>
+                )}
+                {this.showTree(subtree)}
+            </div>
+        )
     }
 }
 

@@ -64,7 +64,7 @@ export default class Component extends React.Component {
                         )}
                     />
                 </div>
-                <BaseTree baseId={this.props.base.id} url="/user/base" />
+                <BaseTree base={this.props.base} url="/user/base" />
             </div>
         )
     }

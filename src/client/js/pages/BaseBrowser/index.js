@@ -7,7 +7,6 @@ import Loader from '@ieremeev/loader'
 import { Link } from 'react-router-dom'
 import CardsView from './CardsView'
 import BaseTree from 'client/js/components/BaseTree'
-import Html from 'client/js/components/Html'
 import style from './style.module.css'
 
 class Component extends React.Component {
@@ -74,16 +73,7 @@ class Component extends React.Component {
                         <div className="section">{base.title}</div>
                     </div>
                 </div>
-                {base.image && (
-                    <div className={style.info}>
-                        <img
-                            src={`${process.env.IE_SOUND_URL}images/${base.image}`}
-                            alt={base.title}
-                        />
-                        <Html>{base.info}</Html>
-                    </div>
-                )}
-                {base.type === 'cards' ? <CardsView base={base} /> : <BaseTree baseId={base.id} />}
+                {base.type === 'cards' ? <CardsView base={base} /> : <BaseTree base={base} />}
             </Loader>
         )
     }
