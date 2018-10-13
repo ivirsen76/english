@@ -125,7 +125,8 @@ VALUES
     (4,0,0,'Учебники',NULL,NULL,'folder',0,'list','',0,NULL,'2018-06-10 06:17:13','2018-06-10 06:17:13'),
     (5,13,2,'At the Mouline Rouge',NULL,NULL,'cards',0,'list','',0,NULL,'2018-09-29 03:02:00','2018-09-30 00:30:35'),
     (6,13,3,'The Devil\'s Dictionary',NULL,NULL,'cards',0,'list','',0,NULL,'2018-09-29 03:02:00','2018-09-30 00:30:35'),
-    (12,1,1,'Pre-intermediate','Год: 1998<br>ISBN: 324-454354-45645645','english_file_pre_intermediate.jpg','folder',1,'table','',0,NULL,'2018-09-30 00:25:20','2018-09-30 00:35:46'),
+    (12,1,1,'Pre-intermediate','Год: 1998
+ISBN: 324-454354-45645645','english_file_pre_intermediate.jpg','folder',1,'table','',0,NULL,'2018-09-30 00:25:20','2018-09-30 00:35:46'),
     (13,12,0,'Chapter 1',NULL,NULL,'folder',0,'list','',0,NULL,'2018-09-30 00:25:20','2018-09-30 00:25:20'),
     (14,12,1,'Chapter 2',NULL,NULL,'folder',0,'list','',0,NULL,'2018-09-30 00:25:20','2018-09-30 00:25:20'),
     (15,12,2,'Chapter 3',NULL,NULL,'folder',0,'list','',0,NULL,'2018-09-30 00:25:20','2018-09-30 00:25:20'),

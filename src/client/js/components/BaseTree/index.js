@@ -93,7 +93,7 @@ class BaseTree extends React.Component {
                             src={`${process.env.IE_SOUND_URL}images/${base.image}`}
                             alt={base.title}
                         />
-                        <Html>{base.info}</Html>
+                        <Html convertLineBreaks>{base.info}</Html>
                     </div>
                 )}
                 {this.showTree(subtree)}
