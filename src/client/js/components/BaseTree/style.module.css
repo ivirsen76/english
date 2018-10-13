@@ -33,6 +33,11 @@
     color: #333;
     font-size: 0.9em;
 }
+.baseCount {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
 .info {
     display: flex;
     margin-bottom: 1em;
