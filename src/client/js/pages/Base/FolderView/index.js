@@ -75,6 +75,7 @@ export default class Component extends React.Component {
                             isInitialValid
                             validate={validate}
                             onValidChange={this.updateBase}
+                            prepareValues={values => ({ ...values, price: +values.price })}
                             render={props => (
                                 <Form className="ui form">
                                     <Field
