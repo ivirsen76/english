@@ -49,6 +49,7 @@ export default class Component extends React.Component {
             <div>
                 <h2>{this.props.base.title}</h2>
                 <div className="ui raised segment">
+                    <h3>Settings</h3>
                     <Formik
                         initialValues={_pick(this.props.base, [
                             'title',

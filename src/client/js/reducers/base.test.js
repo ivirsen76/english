@@ -11,6 +11,7 @@ import reducer, {
     moveElement,
     addElement,
     updateBaseIds,
+    toggleShowBaseSettings,
 } from './base'
 
 describe('setLoadingBasesState()', () => {
@@ -317,5 +318,15 @@ describe('updateBaseIds()', () => {
         const resultedState = reducer(state, updateBaseIds({ 100: 1, 101: 2, 102: 3 }))
         expect(resultedState.list).toEqual(expectedList)
         expect(resultedState.savedList).toEqual(expectedList)
+    })
+})
+
+describe('toggleShowBaseSettings()', () => {
+    it('Should toggle showBaseSettings', () => {
+        const state = {
+            showBaseSettings: true,
+        }
+        const resultedState = reducer(state, toggleShowBaseSettings())
+        expect(resultedState.showBaseSettings).toBe(false)
     })
 })

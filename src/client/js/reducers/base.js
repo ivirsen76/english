@@ -12,6 +12,7 @@ export const initialState = {
     savedList: [],
     cards: [],
     newId: startNewId,
+    showBaseSettings: true,
 }
 
 // Actions
@@ -26,6 +27,7 @@ const SET_CARDS_FOR_BASE = 'english/base/SET_CARDS_FOR_BASE'
 const MOVE_ELEMENT = 'english/base/MOVE_ELEMENT'
 const ADD_ELEMENT = 'english/base/ADD_ELEMENT'
 const UPDATE_BASE_IDS = 'english/base/UPDATE_BASE_IDS'
+const TOGGLE_SHOW_BASE_SETTINGS = 'english/base/TOGGLE_SHOW_BASE_SETTINGS'
 
 // Action Creators
 export const deleteBase = createAction(DELETE_BASE)
@@ -39,6 +41,7 @@ export const setCardsForBase = createAction(SET_CARDS_FOR_BASE)
 export const moveElement = createAction(MOVE_ELEMENT)
 export const addElement = createAction(ADD_ELEMENT)
 export const updateBaseIds = createAction(UPDATE_BASE_IDS)
+export const toggleShowBaseSettings = createAction(TOGGLE_SHOW_BASE_SETTINGS)
 
 export const saveBaseTree = () => async (dispatch, getState) => {
     const state = getState().app.base
@@ -251,6 +254,10 @@ export default handleActions(
                 savedList: newList,
             }
         },
+        [TOGGLE_SHOW_BASE_SETTINGS]: (state, action) => ({
+            ...state,
+            showBaseSettings: !state.showBaseSettings,
+        }),
     },
     initialState
 )
