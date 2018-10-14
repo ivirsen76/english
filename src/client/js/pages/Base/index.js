@@ -7,6 +7,7 @@ import {
     saveBaseTree,
     updateBase,
     deleteBase,
+    toggleShowBaseSettings,
 } from 'client/js/reducers/base'
 import {
     getTree,
@@ -30,6 +31,7 @@ class Component extends React.Component {
     static propTypes = {
         tree: PropTypes.object,
         base: PropTypes.object,
+        showBaseSettings: PropTypes.bool,
         loadBases: PropTypes.func,
         addElement: PropTypes.func,
         moveElement: PropTypes.func,
@@ -40,6 +42,7 @@ class Component extends React.Component {
         hasTreeChanges: PropTypes.bool,
         updateBase: PropTypes.func,
         deleteBase: PropTypes.func,
+        toggleShowBaseSettings: PropTypes.func,
         loading: PropTypes.bool,
         match: PropTypes.object,
     }
@@ -152,6 +155,8 @@ class Component extends React.Component {
                                     key={base.id}
                                     base={base}
                                     updateBase={this.props.updateBase}
+                                    showBaseSettings={this.props.showBaseSettings}
+                                    toggleShowBaseSettings={this.props.toggleShowBaseSettings}
                                 />
                             )}
                         </div>
@@ -173,6 +178,7 @@ const mapStateToProps = (state, props) => {
         updatedIds: getUpdatedIds(state.app.base),
         protectedIds: getProtectedIds(state.app.base),
         hasTreeChanges: getHasTreeChanges(state.app.base),
+        showBaseSettings: state.app.base.showBaseSettings,
     }
 }
 
@@ -183,4 +189,5 @@ export default connect(mapStateToProps, {
     saveBaseTree,
     updateBase,
     deleteBase,
+    toggleShowBaseSettings,
 })(Component)

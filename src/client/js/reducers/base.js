@@ -3,6 +3,7 @@ import axios from '@ieremeev/axios'
 import _pick from 'lodash/pick'
 import _isEmpty from 'lodash/isEmpty'
 
+export const persistedKeys = ['showBaseSettings']
 export const startNewId = 1000000000
 
 // Initial state
