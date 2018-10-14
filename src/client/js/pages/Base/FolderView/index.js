@@ -80,7 +80,7 @@ export default class Component extends React.Component {
                                             <Field
                                                 name="arrangeChildren"
                                                 component={SemanticSelect}
-                                                label="Arrange children method"
+                                                label="Порядок"
                                                 options={[
                                                     { value: 'table', label: 'Table' },
                                                     { value: 'list', label: 'List' },
