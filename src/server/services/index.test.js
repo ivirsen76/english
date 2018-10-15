@@ -63,6 +63,47 @@ describe('base', () => {
         })
     })
 
+    describe('get', () => {
+        it('should return 405', async () => {
+            const token = await loginAsAdmin()
+            await request
+                .get('/bases/1')
+                .set('Authorization', token)
+                .expect(405)
+        })
+    })
+
+    describe('create', () => {
+        it('should return 405', async () => {
+            const token = await loginAsAdmin()
+            await request
+                .post('/bases')
+                .send({ title: 'some title' })
+                .set('Authorization', token)
+                .expect(405)
+        })
+    })
+
+    describe('update', () => {
+        it('should return 405', async () => {
+            const token = await loginAsAdmin()
+            await request
+                .put('/bases/1')
+                .set('Authorization', token)
+                .expect(405)
+        })
+    })
+
+    describe('patch', () => {
+        it('should return 405', async () => {
+            const token = await loginAsAdmin()
+            await request
+                .patch('/bases/1')
+                .set('Authorization', token)
+                .expect(405)
+        })
+    })
+
     describe('delete', () => {
         it('should return 405', async () => {
             const token = await loginAsAdmin()

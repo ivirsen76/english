@@ -5,10 +5,10 @@ const auth = require('feathers-authentication').hooks
 exports.before = {
     all: [auth.verifyToken(), auth.populateUser(), hasRole('admin')],
     find: [],
-    get: [],
-    create: [],
-    update: [],
-    patch: [],
+    get: [hooks.disable('rest')],
+    create: [hooks.disable('rest')],
+    update: [hooks.disable('rest')],
+    patch: [hooks.disable('rest')],
     remove: [hooks.disable('rest')],
 }
 
