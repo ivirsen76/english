@@ -29,7 +29,7 @@ export default () => (
         <AppRoute path="/login" component={Login} />
         <AppRoute path="/logout" component={Logout} />
         <AppRoute path="/features" component={ComingSoon} />
-        <AppRoute path="/bases" component={ComingSoon} />
+        <AppRoute path="/bases/:id?" component={BaseBrowser} />
         <AppRoute path="/helpers" component={ComingSoon} />
 
         {/* User pages */}

@@ -42,75 +42,41 @@ const loginAsAdmin = async () => {
 
 describe('base', () => {
     describe('find', () => {
-        it('should return 401 for not logged in', async () => {
-            await request.get('/bases').expect(401)
-        })
-
-        it('should return 403 for student role', async () => {
-            const token = await loginAsStudent()
-            await request
-                .get('/bases')
-                .set('Authorization', token)
-                .expect(403)
-        })
-
-        it('should return 200 for admin role', async () => {
-            const token = await loginAsAdmin()
-            await request
-                .get('/bases')
-                .set('Authorization', token)
-                .expect(200)
+        it('should return 200 for not logged in', async () => {
+            await request.get('/bases').expect(200)
         })
     })
 
     describe('get', () => {
         it('should return 405', async () => {
-            const token = await loginAsAdmin()
-            await request
-                .get('/bases/1')
-                .set('Authorization', token)
-                .expect(405)
+            await request.get('/bases/1').expect(405)
         })
     })
 
     describe('create', () => {
         it('should return 405', async () => {
-            const token = await loginAsAdmin()
             await request
                 .post('/bases')
-                .send({ title: 'some title' })
-                .set('Authorization', token)
+                .send({ title: 'some' })
                 .expect(405)
         })
     })
 
     describe('update', () => {
         it('should return 405', async () => {
-            const token = await loginAsAdmin()
-            await request
-                .put('/bases/1')
-                .set('Authorization', token)
-                .expect(405)
+            await request.put('/bases/1').expect(405)
         })
     })
 
     describe('patch', () => {
         it('should return 405', async () => {
-            const token = await loginAsAdmin()
-            await request
-                .patch('/bases/1')
-                .set('Authorization', token)
-                .expect(405)
+            await request.patch('/bases/1').expect(405)
         })
     })
 
     describe('delete', () => {
         it('should return 405', async () => {
-            const token = await loginAsAdmin()
-            await request
-                .delete('/bases/1')
-                .set('Authorization', token)
-                .expect(405)
+            await request.delete('/bases/1').expect(405)
         })
     })
 })
