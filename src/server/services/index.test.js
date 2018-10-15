@@ -99,28 +99,40 @@ describe('basetree', () => {
 
 describe('basecard', () => {
     describe('find', () => {
+        it('should return 200 for not logged in student', async () => {
+            await request.get('/basecards').expect(200)
+        })
+    })
+
+    describe('get', () => {
+        it('should return 405', async () => {
+            await request.get('/basecards/1').expect(405)
+        })
+    })
+
+    describe('update', () => {
+        it('should return 405', async () => {
+            await request.put('/basecards/1').expect(405)
+        })
+    })
+
+    describe('create', () => {
         it('should return 401 for not logged in', async () => {
-            await request.get('/basecards').expect(401)
+            await request
+                .post('/basecards')
+                .send({ text: 'new test one', translate: 'новая' })
+                .expect(401)
         })
 
         it('should return 403 for student role', async () => {
             const token = await loginAsStudent()
             await request
-                .get('/basecards')
+                .post('/basecards')
+                .send({ text: 'new test one', translate: 'новая' })
                 .set('Authorization', token)
                 .expect(403)
         })
 
-        it('should return 200 for admin role', async () => {
-            const token = await loginAsAdmin()
-            await request
-                .get('/basecards')
-                .set('Authorization', token)
-                .expect(200)
-        })
-    })
-
-    describe('create', () => {
         it('should increment base cards count', async () => {
             const initialCount = (await getRecord('bases', { id: 2 })).count
 
@@ -133,6 +145,56 @@ describe('basecard', () => {
 
             const resultedCount = (await getRecord('bases', { id: 2 })).count
             expect(resultedCount).toBe(initialCount + 1)
+        })
+    })
+
+    describe('patch', () => {
+        it('should return 401 for not logged in', async () => {
+            await request.patch('/basecards/26').expect(401)
+        })
+
+        it('should return 403 for student role', async () => {
+            const token = await loginAsStudent()
+            await request
+                .patch('/basecards/1')
+                .set('Authorization', token)
+                .expect(403)
+        })
+
+        it('should return 200 for admin', async () => {
+            const token = await loginAsAdmin()
+            await request
+                .patch('/basecards/1')
+                .send({
+                    text: 'bla-bla',
+                    translate: 'сон',
+                    label: 'tutorial',
+                    ukSoundFile: 'wrong',
+                })
+                .set('Authorization', token)
+                .expect(200)
+        })
+    })
+
+    describe('delete', () => {
+        it('should return 401 for not logged in', async () => {
+            await request.delete('/basecards/1').expect(401)
+        })
+
+        it('should return 403 for student', async () => {
+            const token = await loginAsStudent()
+            await request
+                .delete('/basecards/1')
+                .set('Authorization', token)
+                .expect(403)
+        })
+
+        it('should return 200 for admin', async () => {
+            const token = await loginAsAdmin()
+            await request
+                .delete('/basecards/1')
+                .set('Authorization', token)
+                .expect(200)
         })
     })
 })
