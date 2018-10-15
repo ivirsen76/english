@@ -15,6 +15,7 @@ class Component extends React.Component {
         base: PropTypes.object,
         loadBases: PropTypes.func,
         loading: PropTypes.bool,
+        match: PropTypes.object,
     }
 
     componentDidMount() {
@@ -50,6 +51,7 @@ class Component extends React.Component {
     render() {
         const { loading, base } = this.props
         const breadcrumbs = this.getBreadcrumbs(base.id)
+        const basePath = this.props.match.path.replace('/:id?', '')
 
         return (
             <Loader loading={loading}>
@@ -60,11 +62,7 @@ class Component extends React.Component {
                             <Link
                                 className="section"
                                 key={item.id}
-                                to={
-                                    item.id === 0
-                                        ? `/user/baseBrowser`
-                                        : `/user/baseBrowser/${item.id}`
-                                }
+                                to={item.id === 0 ? basePath : `${basePath}/${item.id}`}
                             >
                                 {item.title}
                             </Link>,
@@ -73,7 +71,11 @@ class Component extends React.Component {
                         <div className="section">{base.title}</div>
                     </div>
                 </div>
-                {base.type === 'cards' ? <CardsView base={base} /> : <BaseTree base={base} />}
+                {base.type === 'cards' ? (
+                    <CardsView base={base} />
+                ) : (
+                    <BaseTree base={base} url={basePath} />
+                )}
             </Loader>
         )
     }
