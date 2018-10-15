@@ -48,7 +48,11 @@ module.exports = function(sequelize) {
                 allowNull: false,
                 defaultValue: 0,
             },
-            price: Sequelize.INTEGER,
+            price: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                defaultValue: 0,
+            },
         },
         {
             freezeTableName: true,
