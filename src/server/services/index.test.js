@@ -164,6 +164,15 @@ describe('cards', () => {
             await request.post('/cards').expect(401)
         })
 
+        it('should return 400 when there are errors during creating the card', async () => {
+            const token = await loginAsStudent()
+            await request
+                .post('/cards')
+                .send({ text: 'русский', translate: 'english', label: '' })
+                .set('Authorization', token)
+                .expect(400)
+        })
+
         it('should return 200 when creating the card', async () => {
             const token = await loginAsStudent()
             await request
