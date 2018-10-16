@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import AddCard from './AddCard'
 import EditCard from './EditCard'
 import DeleteCard from './DeleteCard'
-import { addCard, deleteCard, updateCard, loadCards } from 'client/js/reducers/base.js'
+import { addCard, deleteCard, updateCard, loadBaseCards } from 'client/js/reducers/base.js'
 import Loader from '@ieremeev/loader'
 import AudioLink from 'client/js/components/AudioLink'
 import { Formik, Form, Field, SemanticInput } from '@ieremeev/formik'
@@ -35,7 +35,7 @@ class ShowBase extends React.Component {
         addCard: PropTypes.func,
         deleteCard: PropTypes.func,
         updateCard: PropTypes.func,
-        loadCards: PropTypes.func,
+        loadBaseCards: PropTypes.func,
     }
 
     state = {
@@ -45,7 +45,7 @@ class ShowBase extends React.Component {
     componentDidMount = async () => {
         if (!this.props.cardsLoaded) {
             this.setState({ loading: true })
-            await this.props.loadCards(this.props.base.id)
+            await this.props.loadBaseCards(this.props.base.id)
             this.setState({ loading: false })
         }
     }
@@ -139,4 +139,6 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-export default connect(mapStateToProps, { addCard, deleteCard, updateCard, loadCards })(ShowBase)
+export default connect(mapStateToProps, { addCard, deleteCard, updateCard, loadBaseCards })(
+    ShowBase
+)

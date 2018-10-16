@@ -285,6 +285,7 @@ describe('card reducer', () => {
             const state = {
                 ...initialState,
                 list: [{ id: 1, text: 'Ball', translate: 'Some', label: '1' }],
+                loaded: false,
             }
             const expectedList = [
                 { id: 3, text: 'One', translate: 'Some', label: '123', status: 1 },
@@ -325,6 +326,7 @@ describe('card reducer', () => {
                 ])
             )
             expect(resultedState.list).toEqual(expectedList)
+            expect(resultedState.loaded).toBe(true)
         })
     })
 

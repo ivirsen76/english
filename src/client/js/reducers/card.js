@@ -37,6 +37,7 @@ export const acceptedFields = [
 // Initial state
 export const initialState = {
     loading: true,
+    loaded: false,
     list: [],
     remember: {
         list: [],
@@ -124,7 +125,13 @@ export const rememberCard = cardId => async (dispatch, getState) => {
     await axios.patch(`/cards/${cardId}`, { status: 1 })
 }
 
-export const loadCards = ({ loading = true } = {}) => async (dispatch, getState) => {
+export const loadCards = ({ loading = true, force = false } = {}) => async (dispatch, getState) => {
+    const state = getState().app.card
+    // Don't load cards twice
+    if (state.loaded && !force) {
+        return
+    }
+
     loading && dispatch(setLoadingCardsState(true))
     const res = await axios.get('/cards')
     dispatch(setCards(res.data.data))
@@ -133,7 +140,7 @@ export const loadCards = ({ loading = true } = {}) => async (dispatch, getState)
 
 export const addCardsFromBase = baseId => async (dispatch, getState) => {
     await axios.put(`/basetocard/${baseId}`)
-    dispatch(loadCards({ loading: false }))
+    dispatch(loadCards({ loading: false, force: true }))
 }
 
 export const setRememberCards = () => (dispatch, getState) => {
@@ -233,6 +240,7 @@ export default handleActions(
         [SET_CARDS]: (state, action) => ({
             ...state,
             list: action.payload.map(item => _pick(item, ['id', ...acceptedFields])),
+            loaded: true,
         }),
         [SET_REMEMBER_CARDS]: (state, action) => {
             let rememberList

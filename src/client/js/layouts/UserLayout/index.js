@@ -19,9 +19,7 @@ class Component extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.cardTotal === 0) {
-            this.props.loadCards()
-        }
+        this.props.loadCards()
     }
 
     render() {
