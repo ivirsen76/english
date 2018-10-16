@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { loadBases } from 'client/js/reducers/base'
+import { loadCards } from 'client/js/reducers/card'
 import { getSortedList } from 'client/js/selectors/base'
 import { connect } from 'react-redux'
 import Loader from '@ieremeev/loader'
 import { Link } from 'react-router-dom'
 import CardsView from './CardsView'
 import BaseTree from 'client/js/components/BaseTree'
+import { isLoggedIn } from 'client/js/utils/auth.js'
 import style from './style.module.css'
 
 class Component extends React.Component {
@@ -14,12 +16,16 @@ class Component extends React.Component {
         list: PropTypes.array,
         base: PropTypes.object,
         loadBases: PropTypes.func,
+        loadCards: PropTypes.func,
         loading: PropTypes.bool,
         match: PropTypes.object,
     }
 
     componentDidMount() {
         this.props.loadBases()
+        if (isLoggedIn()) {
+            this.props.loadCards()
+        }
     }
 
     getBreadcrumbs = id => {
@@ -95,4 +101,4 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-export default connect(mapStateToProps, { loadBases })(Component)
+export default connect(mapStateToProps, { loadBases, loadCards })(Component)

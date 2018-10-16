@@ -38,7 +38,7 @@ class ShowBase extends React.Component {
         this.setState({ adding: true })
         await this.props.addCardsFromBase(this.props.base.id)
         this.setState({ adding: false })
-        notification('The cards have been added')
+        notification('Все новые слова добавлены')
     }
 
     render() {
@@ -84,6 +84,7 @@ class ShowBase extends React.Component {
                                 <div className="ui warning message">Все карточки уже добавлены</div>
                             )}
                             <button
+                                id="addCardsFromBaseButton"
                                 className={classnames(
                                     'ui',
                                     {
