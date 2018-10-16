@@ -216,13 +216,13 @@ describe('cards', () => {
 
     describe('get', () => {
         it('should return 401 for not logged in', async () => {
-            await request.get('/cards/25').expect(401)
+            await request.get('/cards/26').expect(401)
         })
 
         it('should return 405 when getting card', async () => {
             const token = await loginAsStudent()
             await request
-                .get('/cards/25')
+                .get('/cards/26')
                 .set('Authorization', token)
                 .expect(405)
         })
@@ -258,13 +258,13 @@ describe('cards', () => {
 
     describe('update', () => {
         it('should return 401 for not logged in', async () => {
-            await request.put('/cards/25').expect(401)
+            await request.put('/cards/26').expect(401)
         })
 
         it('should return 405 for logged in user', async () => {
             const token = await loginAsStudent()
             await request
-                .put('/cards/25')
+                .put('/cards/26')
                 .set('Authorization', token)
                 .expect(405)
         })
@@ -272,13 +272,13 @@ describe('cards', () => {
 
     describe('patch', () => {
         it('should return 401 for not logged in', async () => {
-            await request.patch('/cards/26').expect(401)
+            await request.patch('/cards/25').expect(401)
         })
 
         it('should return 403 for patching different user card', async () => {
             const token = await loginAsStudent()
             await request
-                .patch('/cards/25')
+                .patch('/cards/26')
                 .set('Authorization', token)
                 .expect(403)
         })
@@ -286,7 +286,7 @@ describe('cards', () => {
         it('should return 200 for patching your card', async () => {
             const token = await loginAsStudent()
             await request
-                .patch('/cards/26')
+                .patch('/cards/25')
                 .send({
                     text: 'bla-bla',
                     translate: 'сон',
@@ -311,13 +311,13 @@ describe('cards', () => {
 
     describe('delete', () => {
         it('should return 401 for not logged in', async () => {
-            await request.delete('/cards/26').expect(401)
+            await request.delete('/cards/25').expect(401)
         })
 
         it('should return 403 for deleting different user card', async () => {
             const token = await loginAsStudent()
             await request
-                .delete('/cards/25')
+                .delete('/cards/26')
                 .set('Authorization', token)
                 .expect(403)
         })
@@ -325,14 +325,11 @@ describe('cards', () => {
         it('should return 200 for patching your card', async () => {
             const token = await loginAsStudent()
             await request
-                .delete('/cards/26')
+                .delete('/cards/25')
                 .set('Authorization', token)
                 .expect(200)
 
-            const num = await getNumRecords('cards', {
-                text: 'calendar',
-                userId: 2,
-            })
+            const num = await getNumRecords('cards', { text: 'calendar', userId: 2 })
             expect(num).toBe(0)
         })
     })
@@ -352,7 +349,7 @@ describe('basetocards', () => {
                 .expect(200)
 
             const afterNum = await getNumRecords('cards', { userId })
-            expect(afterNum).toBe(beforeNum + 9)
+            expect(afterNum).toBe(beforeNum + 8)
         })
     })
 })
