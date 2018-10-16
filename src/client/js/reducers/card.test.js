@@ -18,6 +18,7 @@ import reducer, {
     goNextWriteCardInSet as goNextWriteCard,
     updateWriteInput,
     saveWriteResults,
+    resetState,
 } from './card'
 
 describe('card reducer', () => {
@@ -562,5 +563,17 @@ describe('card reducer', () => {
                 { id: 1, text: 'some', status: 1, writeRightAttempts: 0 },
             ])
         })
+    })
+})
+
+describe('resetState()', () => {
+    it('Should reset state', () => {
+        const state = {
+            ...initialState,
+            list: [{}, {}],
+        }
+
+        const resultedState = reducer(state, resetState())
+        expect(resultedState).toBe(initialState)
     })
 })

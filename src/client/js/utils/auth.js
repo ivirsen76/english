@@ -3,10 +3,12 @@ import cookie from 'js-cookie'
 import _set from 'lodash/set'
 import _unset from 'lodash/unset'
 import _get from 'lodash/get'
+import { resetState } from 'client/js/reducers/card.js'
 
 export const logout = () => {
     cookie.remove('token')
     _unset(window, 'ieremeev.user')
+    window.ieremeev.store.dispatch(resetState())
 }
 
 export const setCurrentUser = userData => {

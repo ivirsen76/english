@@ -68,6 +68,7 @@ const DELETE_CARD = 'english/card/DELETE_CARD'
 const UPDATE_CARD = 'english/card/UPDATE_CARD'
 const SET_CARDS = 'english/card/SET_CARDS'
 const SET_LOADING_CARDS_STATE = 'english/card/SET_LOADING_CARDS_STATE'
+const RESET_STATE = 'english/card/RESET_STATE'
 // Remember actions
 const SET_REMEMBER_CARDS = 'english/card/SET_REMEMBER_CARDS'
 const RESET_REMEMBER_CARDS = 'english/card/RESET_REMEMBER_CARDS'
@@ -90,6 +91,7 @@ export const deleteCardWithoutSaving = createAction(DELETE_CARD)
 export const updateCardWithoutSaving = createAction(UPDATE_CARD)
 export const setCards = createAction(SET_CARDS)
 export const setLoadingCardsState = createAction(SET_LOADING_CARDS_STATE)
+export const resetState = createAction(RESET_STATE)
 export const setRememberCardsWithOrder = createAction(SET_REMEMBER_CARDS)
 export const resetRememberCards = createAction(RESET_REMEMBER_CARDS)
 export const goNextRememberCard = createAction(GO_NEXT_REMEMBER_CARD)
@@ -203,6 +205,7 @@ export default handleActions(
                 ...savedData.remember.params,
             }))
         },
+        [RESET_STATE]: (state, action) => initialState,
         [ADD_CARD]: (state, action) => ({
             ...state,
             list: [...state.list, { ..._pick(action.payload, acceptedFields) }],
