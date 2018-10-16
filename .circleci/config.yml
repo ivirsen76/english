@@ -8,10 +8,6 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      # Update npm version
-      # - run: sudo npm i -g npm@6.4.0
-      - run: npm -v
-
       - checkout
 
       # Download and cache dependencies
