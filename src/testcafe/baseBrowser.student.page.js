@@ -17,7 +17,7 @@ const AddCardsButton = Selector('#addCardsFromBaseButton')
 const NewWordsCounter = AddCardsButton.find('.ui.label')
 const Alert = ReactSelector('Alert')
 const Message = Selector('.ui.warning.message')
-// const Table = ReactSelector('Table')
+const Table = ReactSelector('Table')
 
 test('Should render title', async t => {
     await t.navigateTo(url('/bases'))
@@ -30,6 +30,9 @@ test('Should add all 8 new words', async t => {
     await t.click(ChapterLink)
 
     await t.expect(NewWordsCounter.innerText).contains('8')
+    await t.expect(Table.innerText).contains('Новое?')
+    await t.expect(Table.innerText).contains('calendar')
+    await t.expect(Table.innerText).contains('календарь')
 
     await t.click(AddCardsButton)
     await t.expect(Alert.innerText).contains('Все новые слова добавлены')
