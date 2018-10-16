@@ -1,12 +1,12 @@
 import { Selector } from 'testcafe'
 import { ReactSelector } from 'testcafe-react-selectors'
-import { adminUser } from './roles.js'
+import { studentUser } from './roles.js'
 import { restoreDb, getNumRecords } from './db/utils.js'
 import { url } from './config.js'
 
 fixture('Write page').beforeEach(async t => {
     restoreDb()
-    await t.useRole(adminUser)
+    await t.useRole(studentUser)
     await t.navigateTo(url('/user/write'))
 })
 
