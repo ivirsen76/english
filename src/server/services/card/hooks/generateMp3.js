@@ -3,7 +3,8 @@ const temp = require('temp')
 const fs = require('fs-extra')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
-const { mediaPath, lameCommand, mediainfoCommand } = require('../../../utils.js')
+const { lameCommand, mediainfoCommand } = require('../../../utils.js')
+const { getPath } = require('../../../media.js')
 const AWS = require('aws-sdk')
 
 const polly = new AWS.Polly()
@@ -37,9 +38,10 @@ module.exports = async (folder, text, language) => {
         .promise()
 
     const tmpFilename = await getTmpFile(data.AudioStream)
-    const filename = `${mediaPath}/${folder}/${language}_${randomstring.generate(10)}.mp3`
+    const fileFolder = getPath(folder)
+    const filename = `${fileFolder}/${language}_${randomstring.generate(10)}.mp3`
 
-    await fs.ensureDir(`${mediaPath}/${folder}`)
+    await fs.ensureDir(fileFolder)
 
     // Encode with standard bitrate
     await exec(template(lameCommand, { scale: 3, filein: tmpFilename, fileout: filename }))
@@ -51,5 +53,5 @@ module.exports = async (folder, text, language) => {
     // Remove temp file
     await fs.unlink(tmpFilename)
 
-    return { language, filename, duration }
+    return { language, filename: filename.replace(`${getPath()}/`, ''), duration }
 }

@@ -13,12 +13,12 @@ module.exports = options => async hook => {
         if (text && currentData.text !== text) {
             removes.push(removeMp3(currentData.ukSoundFile))
             removes.push(removeMp3(currentData.usSoundFile))
-            generates.push(generateMp3(`basecards/${currentData.baseId}`, text, 'uk'))
-            generates.push(generateMp3(`basecards/${currentData.baseId}`, text, 'us'))
+            generates.push(generateMp3(`sounds/basecards/${currentData.baseId}`, text, 'uk'))
+            generates.push(generateMp3(`sounds/basecards/${currentData.baseId}`, text, 'us'))
         }
         if (translate && currentData.translate !== translate) {
             removes.push(removeMp3(currentData.ruSoundFile))
-            generates.push(generateMp3(`basecards/${currentData.baseId}`, translate, 'ru'))
+            generates.push(generateMp3(`sounds/basecards/${currentData.baseId}`, translate, 'ru'))
         }
 
         // Add new sounds

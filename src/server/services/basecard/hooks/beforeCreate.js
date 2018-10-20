@@ -6,9 +6,9 @@ module.exports = options => async hook => {
 
         if (process.env.NODE_ENV !== 'test') {
             const results = await Promise.all([
-                generateMp3(`basecards/${baseId}`, text, 'uk'),
-                generateMp3(`basecards/${baseId}`, text, 'us'),
-                generateMp3(`basecards/${baseId}`, translate, 'ru'),
+                generateMp3(`sounds/basecards/${baseId}`, text, 'uk'),
+                generateMp3(`sounds/basecards/${baseId}`, text, 'us'),
+                generateMp3(`sounds/basecards/${baseId}`, translate, 'ru'),
             ])
 
             results.forEach(result => {
