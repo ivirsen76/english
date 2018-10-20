@@ -2,8 +2,7 @@ const hooks = require('./hooks')
 const shuffle = require('lodash/shuffle')
 const pick = require('lodash/pick')
 const md5 = require('md5')
-const fs = require('fs')
-const fsp = require('fs-promise')
+const fs = require('fs-extra')
 const temp = require('temp')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
@@ -41,7 +40,7 @@ class Service {
     async getPauseFiles() {
         const pause = {}
         for (let i = minPause; i <= maxPause; i += 500) {
-            pause[i] = await fsp.readFile(`${__dirname}/pause/${i}.mp3`)
+            pause[i] = await fs.readFile(`${__dirname}/pause/${i}.mp3`)
         }
         return pause
     }
@@ -107,7 +106,7 @@ class Service {
 
         // Write file to the AWS S3 bucket
         const filename = `${userId}/${md5(userId)}/word-word.mp3`
-        const content = await fsp.readFile(encodedTmpFilename)
+        const content = await fs.readFile(encodedTmpFilename)
         await s3
             .putObject({
                 Bucket: process.env.AWS_S3_BUCKET,
@@ -119,7 +118,7 @@ class Service {
             .promise()
 
         // Remove temp files
-        await Promise.all([fsp.unlink(tmpFilename), fsp.unlink(encodedTmpFilename)])
+        await Promise.all([fs.unlink(tmpFilename), fs.unlink(encodedTmpFilename)])
 
         return Promise.resolve({ status: 'OK', filename })
     }

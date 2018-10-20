@@ -54,7 +54,7 @@
         "feathers-hooks": "^1.8.1",
         "feathers-rest": "^1.7.2",
         "feathers-sequelize": "^1.4.5",
-        "fs-promise": "^2.0.3",
+        "fs-extra": "^7.0.0",
         "history": "^4.7.2",
         "js-cookie": "^2.2.0",
         "lodash": "^4.17.4",
