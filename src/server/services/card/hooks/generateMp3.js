@@ -1,14 +1,12 @@
 const randomstring = require('randomstring')
 const temp = require('temp')
-const fs = require('fs')
-const fsp = require('fs-promise')
+const fs = require('fs-extra')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
-const { lameCommand, mediainfoCommand } = require('../../../utils.js')
+const { mediaPath, lameCommand, mediainfoCommand } = require('../../../utils.js')
 const AWS = require('aws-sdk')
 
 const polly = new AWS.Polly()
-const s3 = new AWS.S3()
 const voices = {
     uk: 'Amy',
     us: 'Salli',
@@ -35,45 +33,23 @@ module.exports = async (folder, text, language) => {
 
     // Generate mp3 using AWS Polly
     const data = await polly
-        .synthesizeSpeech({
-            OutputFormat: 'mp3',
-            SampleRate: '22050',
-            Text: text,
-            VoiceId: voice,
-        })
+        .synthesizeSpeech({ OutputFormat: 'mp3', SampleRate: '22050', Text: text, VoiceId: voice })
         .promise()
 
     const tmpFilename = await getTmpFile(data.AudioStream)
-    const encodedTmpFilename = tmpFilename + '.mp3'
+    const filename = `${mediaPath}/${folder}/${language}_${randomstring.generate(10)}.mp3`
+
+    await fs.ensureDir(`${mediaPath}/${folder}`)
 
     // Encode with standard bitrate
-    await exec(
-        template(lameCommand, { scale: 3, filein: tmpFilename, fileout: encodedTmpFilename })
-    )
+    await exec(template(lameCommand, { scale: 3, filein: tmpFilename, fileout: filename }))
 
     // Get the duration
-    const info = await exec(template(mediainfoCommand, { filename: encodedTmpFilename }))
+    const info = await exec(template(mediainfoCommand, { filename }))
     const duration = +/###(\d+)###/g.exec(info.stdout)[1]
 
-    // Write file to the AWS S3 bucket
-    const filename = `${folder}/${language}_${randomstring.generate(10)}.mp3`
-    const content = await fsp.readFile(encodedTmpFilename)
-    await s3
-        .putObject({
-            Bucket: process.env.AWS_S3_BUCKET,
-            Key: `public/sounds/${filename}`,
-            ACL: 'public-read',
-            Body: content,
-            ContentType: data.ContentType,
-        })
-        .promise()
+    // Remove temp file
+    await fs.unlink(tmpFilename)
 
-    // Remove temp files
-    await Promise.all([fsp.unlink(tmpFilename), fsp.unlink(encodedTmpFilename)])
-
-    return {
-        language,
-        filename,
-        duration,
-    }
+    return { language, filename, duration }
 }
