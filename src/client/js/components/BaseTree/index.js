@@ -54,9 +54,7 @@ class BaseTree extends React.Component {
                 <div className={style.main}>
                     <Link to={`${this.props.url}/${parent.id}`}>
                         {parent.title}
-                        {parent.image && (
-                            <img src={getMediaUrl(`images/${parent.image}`)} alt={parent.title} />
-                        )}
+                        {parent.image && <img src={getMediaUrl(parent.image)} alt={parent.title} />}
                     </Link>
                 </div>
             )
@@ -87,7 +85,7 @@ class BaseTree extends React.Component {
             <div>
                 {base.image && (
                     <div className={style.info}>
-                        <img src={getMediaUrl(`images/${base.image}`)} alt={base.title} />
+                        <img src={getMediaUrl(base.image)} alt={base.title} />
                         <div>
                             <div className={style.baseCount}>{base.count} слов</div>
                             <Html convertLineBreaks>{base.info}</Html>
