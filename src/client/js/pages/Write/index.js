@@ -9,6 +9,7 @@ import {
     checkWriting,
 } from 'client/js/reducers/card'
 import mp3 from 'client/js/utils/mp3.js'
+import { getMediaUrl } from 'client/js/utils/media.js'
 import Counter from 'client/js/pages/Remember/Counter'
 import InputField from './InputField'
 import DiffResult from './DiffResult'
@@ -60,9 +61,7 @@ class Component extends React.Component {
 
         if (process.env.NODE_ENV !== 'test') {
             // Preload mp3 for the next card
-            this.props.nextSounds.map(soundFile =>
-                mp3.preload(process.env.IE_SOUND_URL + 'sounds/' + soundFile)
-            )
+            this.props.nextSounds.map(soundFile => mp3.preload(getMediaUrl(soundFile)))
         }
     }
 
@@ -88,7 +87,7 @@ class Component extends React.Component {
         const currentCard = this.props.currentCard
         e && e.preventDefault()
 
-        mp3.play(process.env.IE_SOUND_URL + 'sounds/' + currentCard.usSoundFile)
+        mp3.play(getMediaUrl(currentCard.usSoundFile))
     }
 
     goNext = e => {

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import mp3 from 'client/js/utils/mp3.js'
+import { getMediaUrl } from 'client/js/utils/media.js'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -10,7 +11,7 @@ export default class Component extends React.Component {
 
     play = e => {
         e.preventDefault()
-        mp3.play(process.env.IE_SOUND_URL + 'sounds/' + this.props.audioUrl)
+        mp3.play(getMediaUrl(this.props.audioUrl))
     }
 
     render() {

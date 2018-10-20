@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from '@ieremeev/axios'
 import classnames from 'classnames'
+import { getMediaUrl } from 'client/js/utils/media.js'
 
 class Component extends React.Component {
     state = {
@@ -14,7 +15,7 @@ class Component extends React.Component {
         const { filename } = response.data
         this.setState({ loading: false })
 
-        window.location = `${process.env.IE_SOUND_URL}sounds/users/${filename}?${Date.now()}`
+        window.location = getMediaUrl(`sounds/users/${filename}?${Date.now()}`)
     }
 
     render() {

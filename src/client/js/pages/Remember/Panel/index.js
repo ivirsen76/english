@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import style from './style.module.scss'
+import { getMediaUrl } from 'client/js/utils/media.js'
 import mp3 from 'client/js/utils/mp3.js'
 import SoundIcon from './SoundIcon.js'
 
@@ -47,7 +48,7 @@ export default class Component extends React.Component {
         e && e.preventDefault()
 
         if (this.props.soundFile) {
-            mp3.play(process.env.IE_SOUND_URL + 'sounds/' + this.props.soundFile)
+            mp3.play(getMediaUrl(this.props.soundFile))
         }
     }
 

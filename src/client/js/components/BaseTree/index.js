@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { getSortedList } from 'client/js/selectors/base'
 import { connect } from 'react-redux'
 import Html from 'client/js/components/Html'
+import { getMediaUrl } from 'client/js/utils/media.js'
 import style from './style.module.css'
 
 class BaseTree extends React.Component {
@@ -54,10 +55,7 @@ class BaseTree extends React.Component {
                     <Link to={`${this.props.url}/${parent.id}`}>
                         {parent.title}
                         {parent.image && (
-                            <img
-                                src={`${process.env.IE_SOUND_URL}images/${parent.image}`}
-                                alt={parent.title}
-                            />
+                            <img src={getMediaUrl(`images/${parent.image}`)} alt={parent.title} />
                         )}
                     </Link>
                 </div>
@@ -89,10 +87,7 @@ class BaseTree extends React.Component {
             <div>
                 {base.image && (
                     <div className={style.info}>
-                        <img
-                            src={`${process.env.IE_SOUND_URL}images/${base.image}`}
-                            alt={base.title}
-                        />
+                        <img src={getMediaUrl(`images/${base.image}`)} alt={base.title} />
                         <div>
                             <div className={style.baseCount}>{base.count} слов</div>
                             <Html convertLineBreaks>{base.info}</Html>

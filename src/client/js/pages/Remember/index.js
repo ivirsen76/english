@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import _pick from 'lodash/pick'
 import mp3 from 'client/js/utils/mp3.js'
+import { getMediaUrl } from 'client/js/utils/media.js'
 import {
     getRememberTotalCards,
     getRememberCurrentCard,
@@ -82,9 +83,7 @@ class RememberPage extends React.Component {
 
         if (process.env.NODE_ENV !== 'test') {
             // Preload mp3 for the next card
-            this.props.nextSounds.map(soundFile =>
-                mp3.preload(process.env.IE_SOUND_URL + 'sounds/' + soundFile)
-            )
+            this.props.nextSounds.map(soundFile => mp3.preload(getMediaUrl(soundFile)))
         }
     }
 
