@@ -8,6 +8,7 @@ module.exports = shipit => {
         default: {
             repositoryUrl: 'git@github.com:ivirsen76/english.git',
             keepReleases: 3,
+            ignores: ['.git', 'node_modules', 'build'],
         },
         production: {
             deployTo: '/home/admin/sites/word-word',
