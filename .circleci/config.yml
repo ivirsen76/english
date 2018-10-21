@@ -31,7 +31,7 @@ jobs:
 
 
       # Deploy
-      - run: yarn run deploy
+      - run: npm run deploy
 
       # install deps
       - run: sudo apt-get update
