@@ -15,26 +15,29 @@ module.exports = shipit => {
         },
     })
 
-    shipit.blTask('installDeps', async () => {
+    shipit.blTask('prepareBuild', async () => {
         await shipit.remote(`cd ${shipit.releasePath} && npm install`)
-    })
-
-    shipit.blTask('copyEnv', async () => {
         await shipit.remote(`cp ${shipit.config.deployTo}/.env ${shipit.releasePath}/.env`)
+        await shipit.remote(`cd ${shipit.releasePath} && npm run build`)
     })
 
-    shipit.blTask('build', async () => {
-        await shipit.remote(`cd ${shipit.releasePath} && npm run build`)
+    shipit.blTask('stopOldServer', async () => {
+        await shipit.remote(`pm2 stop word-word`)
+    })
+
+    shipit.blTask('startNewServer', async () => {
+        await shipit.remote(`cd ${shipit.releasePath} && npm run migrate`)
+        await shipit.remote(`pm2 start word-word`)
     })
 
     utils.registerTask(shipit, 'deploy', [
         'deploy:init',
         'deploy:fetch',
         'deploy:update',
-        'installDeps',
-        'copyEnv',
-        'build',
+        'prepareBuild',
+        'stopOldServer',
         'deploy:publish',
+        'startNewServer',
         'deploy:clean',
         'deploy:finish',
     ])
