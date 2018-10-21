@@ -1,15 +1,13 @@
 const hooks = require('./hooks')
 const shuffle = require('lodash/shuffle')
 const pick = require('lodash/pick')
-const md5 = require('md5')
 const fs = require('fs-extra')
 const temp = require('temp')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
 const { lameCommand } = require('../../utils.js')
-const AWS = require('aws-sdk')
-
-const s3 = new AWS.S3()
+const { getFileContent, getPath, getBaseFilename } = require('../../media.js')
+const md5 = require('md5')
 
 const minPause = 500
 const maxPause = 5000
@@ -75,52 +73,34 @@ class Service {
         const buffers = []
         // eslint-disable-next-line no-restricted-syntax
         for (let card of list) {
-            const ruFile = await s3
-                .getObject({
-                    Bucket: process.env.AWS_S3_BUCKET,
-                    Key: `public/sounds/${card.ruSoundFile}`,
-                })
-                .promise()
-            buffers.push(ruFile.Body)
+            // ru
+            const ruFile = await getFileContent(card.ruSoundFile)
+            buffers.push(ruFile)
 
+            // pause between
             buffers.push(pauseFiles[getPauseLength(card.usSoundLength + 500)])
 
-            const usFile = await s3
-                .getObject({
-                    Bucket: process.env.AWS_S3_BUCKET,
-                    Key: `public/sounds/${card.usSoundFile}`,
-                })
-                .promise()
-            buffers.push(usFile.Body)
+            // en
+            const usFile = await getFileContent(card.usSoundFile)
+            buffers.push(usFile)
 
+            // pause at the end
             buffers.push(pauseFiles[getPauseLength(5000)])
         }
 
         const tmpFilename = await this.writeToTmpFile(Buffer.concat(buffers))
-        const encodedTmpFilename = tmpFilename + '.mp3'
+        const folder = getPath(`temp/${userId}_${md5(userId)}`)
+        const filename = `${folder}/word-word.mp3`
+
+        await fs.ensureDir(folder)
 
         // Reencode file to clean up resulted mp3
-        await exec(
-            template(lameCommand, { scale: 1, filein: tmpFilename, fileout: encodedTmpFilename })
-        )
+        await exec(template(lameCommand, { scale: 1, filein: tmpFilename, fileout: filename }))
 
-        // Write file to the AWS S3 bucket
-        const filename = `${userId}/${md5(userId)}/word-word.mp3`
-        const content = await fs.readFile(encodedTmpFilename)
-        await s3
-            .putObject({
-                Bucket: process.env.AWS_S3_BUCKET,
-                Key: `public/sounds/users/${filename}`,
-                ACL: 'public-read',
-                Body: content,
-                ContentType: 'application/octet-stream',
-            })
-            .promise()
+        // Remove temp file
+        await fs.unlink(tmpFilename)
 
-        // Remove temp files
-        await Promise.all([fs.unlink(tmpFilename), fs.unlink(encodedTmpFilename)])
-
-        return Promise.resolve({ status: 'OK', filename })
+        return Promise.resolve({ status: 'OK', filename: getBaseFilename(filename) })
     }
 }
 

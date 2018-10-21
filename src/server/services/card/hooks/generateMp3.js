@@ -4,7 +4,7 @@ const fs = require('fs-extra')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
 const { lameCommand, mediainfoCommand } = require('../../../utils.js')
-const { getPath } = require('../../../media.js')
+const { getPath, getBaseFilename } = require('../../../media.js')
 const AWS = require('aws-sdk')
 
 const polly = new AWS.Polly()
@@ -53,5 +53,5 @@ module.exports = async (folder, text, language) => {
     // Remove temp file
     await fs.unlink(tmpFilename)
 
-    return { language, filename: filename.replace(`${getPath()}/`, ''), duration }
+    return { language, filename: getBaseFilename(filename), duration }
 }

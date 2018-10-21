@@ -5,6 +5,8 @@ const mediaPath = process.env.IE_MEDIA_PATH || path.join(__dirname, '..', '..', 
 
 const getPath = filename => (filename ? `${mediaPath}/${filename}` : mediaPath)
 
+const getBaseFilename = filename => filename.replace(`${getPath()}/`, '')
+
 const removeFile = async filename => {
     const fullFilename = getPath(filename)
 
@@ -25,6 +27,7 @@ const getFileContent = async filename => {
 
 module.exports = {
     getPath,
+    getBaseFilename,
     removeFile,
     getFileContent,
 }

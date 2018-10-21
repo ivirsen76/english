@@ -15,7 +15,7 @@ class Component extends React.Component {
         const { filename } = response.data
         this.setState({ loading: false })
 
-        window.location = getMediaUrl(`sounds/users/${filename}?${Date.now()}`)
+        window.location = getMediaUrl(`${filename}?${Date.now()}`)
     }
 
     render() {

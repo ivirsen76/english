@@ -302,7 +302,7 @@ describe('cards', () => {
                 text: 'bla-bla',
                 translate: 'сон',
                 label: 'tutorial',
-                ukSoundFile: 'sample.mp3',
+                ukSoundFile: 'samples/sample.mp3',
                 userId: 2,
             })
             expect(num).toBe(1)
@@ -322,7 +322,7 @@ describe('cards', () => {
                 .expect(403)
         })
 
-        it('should return 200 for patching your card', async () => {
+        it('should return 200 for deleting your card', async () => {
             const token = await loginAsStudent()
             await request
                 .delete('/cards/25')
