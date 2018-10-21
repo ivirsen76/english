@@ -1,6 +1,11 @@
 version: 2
 jobs:
   build:
+    branches:
+      only:
+        - master
+        - dev
+
     docker:
       - image: circleci/node:10.9.0-browsers
       - image: circleci/mysql:5.7.23-ram
