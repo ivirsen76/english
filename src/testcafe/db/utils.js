@@ -6,7 +6,13 @@ const { execSync } = require('child_process')
 const _map = require('lodash/map')
 const path = require('path')
 
-const { IE_DB_NAME, IE_DB_HOSTNAME, IE_DB_USERNAME, IE_DB_PASSWORD } = process.env
+const {
+    IE_DB_NAME,
+    IE_DB_HOSTNAME,
+    IE_DB_USERNAME,
+    IE_DB_PASSWORD,
+    IE_ALLOW_RESTORING_DB,
+} = process.env
 const dumpPath = path.join(__dirname, 'dump.sql')
 
 const connectionConfig = {
@@ -22,6 +28,10 @@ const command = `mysql -h ${IE_DB_HOSTNAME} -u ${IE_DB_USERNAME} --password=${IE
 
 module.exports = {
     restoreDb: () => {
+        if (!IE_ALLOW_RESTORING_DB) {
+            throw new Error('Cannot restore DB on production')
+        }
+
         execSync(command, { stdio: 'ignore' })
     },
     restoreSamples: () => {
