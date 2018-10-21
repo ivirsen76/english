@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+const fs = require('fs-extra')
 const mysql = require('mysql')
 const { execSync } = require('child_process')
 const _map = require('lodash/map')
@@ -22,6 +23,12 @@ const command = `mysql -h ${IE_DB_HOSTNAME} -u ${IE_DB_USERNAME} --password=${IE
 module.exports = {
     restoreDb: () => {
         execSync(command, { stdio: 'ignore' })
+    },
+    restoreSamples: () => {
+        const src = path.join(__dirname, 'sample.mp3')
+        const dest = path.join(__dirname, '../../../media/samples', 'sample.mp3')
+
+        fs.copyFileSync(src, dest)
     },
     getNumRecords: (table, conditions) => {
         const where = conditions

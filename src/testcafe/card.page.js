@@ -1,11 +1,12 @@
 import { Selector } from 'testcafe'
 import { studentUser } from './roles.js'
-import { restoreDb, getNumRecords } from './db/utils.js'
+import { restoreDb, restoreSamples, getNumRecords } from './db/utils.js'
 import { url } from './config.js'
 import { ReactSelector } from 'testcafe-react-selectors'
 
 fixture('Cards page').beforeEach(async t => {
     restoreDb()
+    restoreSamples()
     await t.useRole(studentUser)
     await t.navigateTo(url('/user/cards'))
 })
