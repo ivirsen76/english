@@ -30,6 +30,9 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
 
+      # Deploy
+      - run: yarn run deploy
+
       # install deps
       - run: sudo apt-get update
       - run: sudo apt-get install mysql-client lame mediainfo
