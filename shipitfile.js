@@ -31,11 +31,11 @@ module.exports = shipit => {
         'deploy:init',
         'deploy:fetch',
         'deploy:update',
-        'deploy:publish',
-        'deploy:clean',
-        'deploy:finish',
         'installDeps',
         'copyEnv',
         'build',
+        'deploy:publish',
+        'deploy:clean',
+        'deploy:finish',
     ])
 }
