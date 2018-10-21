@@ -4,7 +4,7 @@ import { studentUser } from './roles.js'
 import { restoreDb, getNumRecords } from './db/utils.js'
 import { url } from './config.js'
 
-fixture('Bases page').beforeEach(async t => {
+fixture('Base browser for students').beforeEach(async t => {
     restoreDb()
     await t.useRole(studentUser)
 })

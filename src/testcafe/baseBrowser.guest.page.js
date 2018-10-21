@@ -3,7 +3,7 @@ import { ReactSelector } from 'testcafe-react-selectors'
 import { restoreDb } from './db/utils.js'
 import { url } from './config.js'
 
-fixture('Bases page').beforeEach(async t => {
+fixture('Base browser for guests').beforeEach(async t => {
     restoreDb()
 })
 
