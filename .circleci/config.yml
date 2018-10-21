@@ -49,6 +49,8 @@ jobs:
       # Run browser tests
       - run: npm run testcafe
   deploy:
+    machine:
+        enabled: true
     steps:
       - run: npm run deploy
 workflows:
