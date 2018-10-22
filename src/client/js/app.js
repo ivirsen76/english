@@ -17,7 +17,7 @@ const start = async () => {
     const store = createStore(reducers)
 
     // Setup axios
-    axios.defaults.baseURL = `//${process.env.IE_SERVER_HOST}:${process.env.IE_SERVER_PORT}`
+    axios.defaults.baseURL = `//${process.env.IE_SERVER_URL}`
     axios.setLoginRedirect(() => {
         history.push('/login')
     })

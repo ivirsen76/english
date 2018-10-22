@@ -1,3 +1,3 @@
-const mediaUrl = `//${process.env.IE_SERVER_HOST}:${process.env.IE_SERVER_PORT}/media`
+const mediaUrl = `//${process.env.IE_SERVER_URL}/media`
 
 export const getMediaUrl = path => (path ? `${mediaUrl}/${path}` : mediaUrl)

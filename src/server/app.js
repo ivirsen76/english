@@ -27,6 +27,7 @@ app
     .configure(hooks())
     .configure(rest())
     .configure(services)
+    .use('/', express.static('build'))
     .get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, '..', '..', 'build', 'index.html'))
     })
