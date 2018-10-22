@@ -28,7 +28,7 @@ module.exports = shipit => {
 
     shipit.blTask('startNewServer', async () => {
         await shipit.remote(`cd ${shipit.releasePath} && npm run migrate`)
-        await shipit.remote(`pm2 start word-word`)
+        await shipit.remote(`cd ${shipit.releasePath} && pm2 start word-word`)
     })
 
     utils.registerTask(shipit, 'deploy', [
