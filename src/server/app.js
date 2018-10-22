@@ -1,6 +1,5 @@
 const path = require('path')
 const favicon = require('serve-favicon')
-const compress = require('compression')
 const cors = require('cors')
 const feathers = require('feathers')
 const configuration = require('feathers-configuration')
@@ -17,8 +16,6 @@ const app = feathers()
 app.configure(configuration(path.join(__dirname, '.')))
 
 app
-    .use('/media', express.static('media'))
-    .use(compress())
     .options('*', cors())
     .use(cors())
     .use(favicon(path.join(app.get('public'), 'favicon.ico')))
@@ -27,6 +24,7 @@ app
     .configure(hooks())
     .configure(rest())
     .configure(services)
+    .use('/media', express.static('media'))
     .use('/', express.static('build'))
     .get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, '..', '..', 'build', 'index.html'))
