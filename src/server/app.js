@@ -27,7 +27,7 @@ app
         }
         next()
     })
-    .use('/media', express.static('media'))
+    .use('/media', express.static(process.env.IE_MEDIA_PATH || 'media'))
     .use('/', express.static('build'))
     .use(cors())
     .use(favicon(path.join(app.get('public'), 'favicon.ico')))
