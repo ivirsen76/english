@@ -21,6 +21,16 @@ app
     .use(favicon(path.join(app.get('public'), 'favicon.ico')))
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: true }))
+    .use((req, res, next) => {
+        if (/\.mp3$/.test(req.url)) {
+            res.setHeader('Cache-Control', `max-age=${365 * 24 * 3600}`)
+        } else if (/\.(css|js|jpg|png|gif|svg|ttf|eot|woff|woff2)$/.test(req.url)) {
+            res.setHeader('Cache-Control', `max-age=${7 * 24 * 3600}`)
+        } else {
+            res.setHeader('Cache-Control', 'private, no-store')
+        }
+        next()
+    })
     .configure(hooks())
     .configure(rest())
     .configure(services)
