@@ -17,10 +17,6 @@ app.configure(configuration(path.join(__dirname, '.')))
 
 app
     .options('*', cors())
-    .use(cors())
-    .use(favicon(path.join(app.get('public'), 'favicon.ico')))
-    .use(bodyParser.json())
-    .use(bodyParser.urlencoded({ extended: true }))
     .use((req, res, next) => {
         if (/\.mp3$/.test(req.url)) {
             res.setHeader('Cache-Control', `max-age=${365 * 24 * 3600}`)
@@ -31,11 +27,15 @@ app
         }
         next()
     })
+    .use('/media', express.static('media'))
+    .use('/', express.static('build'))
+    .use(cors())
+    .use(favicon(path.join(app.get('public'), 'favicon.ico')))
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: true }))
     .configure(hooks())
     .configure(rest())
     .configure(services)
-    .use('/media', express.static('media'))
-    .use('/', express.static('build'))
     .get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, '..', '..', 'build', 'index.html'))
     })
