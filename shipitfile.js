@@ -23,12 +23,15 @@ module.exports = shipit => {
     })
 
     shipit.blTask('stopOldServer', async () => {
-        await shipit.remote(`pm2 stop word-word`)
+        await shipit.remote(`pm2 delete word-word`)
     })
 
     shipit.blTask('startNewServer', async () => {
         await shipit.remote(`cd ${shipit.releasePath} && npm run migrate`)
-        await shipit.remote(`cd ${shipit.releasePath} && pm2 start word-word`)
+        await shipit.remote(
+            `cd ${shipit.releasePath} && pm2 start src/server/index.js --name=word-word`
+        )
+        await shipit.remote(`pm2 save`)
     })
 
     utils.registerTask(shipit, 'deploy', [
