@@ -32,11 +32,17 @@ describe('Pages', () => {
     })
 
     it('should check return 404 for non existing sound', async () => {
-        await request.get('/media/nonexistingsample.mp3').expect(404)
+        await request
+            .get('/media/nonexistingsample.mp3')
+            .expect('Cache-Control', /private, no-store/)
+            .expect(404)
     })
 
     it('should check return 404 for non existing image', async () => {
-        await request.get('/nonexistingimage.png').expect(404)
+        await request
+            .get('/nonexistingimage.png')
+            .expect('Cache-Control', /private, no-store/)
+            .expect(404)
     })
 
     it('should check right API call', async () => {

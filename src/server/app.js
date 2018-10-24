@@ -34,6 +34,7 @@ app
     .use((req, res, next) => {
         if (/\.(css|js|jpg|png|gif|svg|ttf|eot|woff|woff2|mp3)$/.test(req.url)) {
             res.status(404)
+            res.setHeader('Cache-Control', 'private, no-store')
         }
         next()
     })
