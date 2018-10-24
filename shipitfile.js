@@ -23,7 +23,7 @@ module.exports = shipit => {
     })
 
     shipit.blTask('stopOldServer', async () => {
-        await shipit.remote(`pm2 delete word-word`)
+        await shipit.remote(`pm2 delete --silent word-word`)
     })
 
     shipit.blTask('startNewServer', async () => {
