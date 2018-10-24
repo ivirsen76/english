@@ -12,7 +12,7 @@ module.exports = shipit => {
         },
         production: {
             deployTo: '/home/admin/sites/word-word',
-            servers: 'admin@185.72.246.73',
+            servers: 'admin@199.192.26.100',
         },
     })
 
