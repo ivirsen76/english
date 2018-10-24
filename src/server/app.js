@@ -31,6 +31,12 @@ app
     })
     .use('/media', express.static(process.env.IE_MEDIA_PATH || 'media'))
     .use('/', express.static('build'))
+    .use((req, res, next) => {
+        if (/\.(css|js|jpg|png|gif|svg|ttf|eot|woff|woff2|mp3)$/.test(req.url)) {
+            res.status(404)
+        }
+        next()
+    })
     .use(cors())
     .use(favicon(path.join(app.get('public'), 'favicon.ico')))
     .use(bodyParser.json())
