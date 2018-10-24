@@ -108,7 +108,7 @@ CREATE TABLE `bases` (
   `arrangeChildren` varchar(255) NOT NULL DEFAULT 'list',
   `label` varchar(255) NOT NULL,
   `count` int(11) NOT NULL DEFAULT '0',
-  `price` int(11) DEFAULT NULL,
+  `price` int(11) NOT NULL DEFAULT '0',
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)

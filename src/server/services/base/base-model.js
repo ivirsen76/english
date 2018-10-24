@@ -21,6 +21,7 @@ module.exports = function(sequelize) {
             info: {
                 type: Sequelize.TEXT('tiny'),
                 allowNull: false,
+                defaultValue: '',
             },
             image: Sequelize.STRING,
             type: {
