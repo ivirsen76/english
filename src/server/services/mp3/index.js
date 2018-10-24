@@ -8,6 +8,8 @@ const exec = require('child-process-promise').exec
 const { lameCommand } = require('../../utils.js')
 const { getFileContent, getPath, getBaseFilename } = require('../../media.js')
 const md5 = require('md5')
+const AWS = require('aws-sdk')
+const { GeneralError, MethodNotAllowed } = require('feathers-errors')
 
 const minPause = 500
 const maxPause = 5000
@@ -54,6 +56,33 @@ class Service {
                 })
             })
         })
+    }
+
+    /** The test route to check if AWS Polly is working */
+    async get(id, params) {
+        if (id !== '3478') {
+            throw new MethodNotAllowed()
+        }
+
+        try {
+            const polly = new AWS.Polly()
+            const data = await polly
+                .synthesizeSpeech({
+                    OutputFormat: 'mp3',
+                    SampleRate: '22050',
+                    Text: 'Get me the sound',
+                    VoiceId: 'Amy',
+                })
+                .promise()
+
+            if (data.AudioStream) {
+                return Promise.resolve('OK')
+            }
+        } catch (e) {
+            throw new GeneralError()
+        }
+
+        throw new GeneralError()
     }
 
     async create(data, params) {

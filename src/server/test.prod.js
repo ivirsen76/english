@@ -64,6 +64,23 @@ describe('Pages', () => {
     })
 })
 
+describe('AWS', () => {
+    it('Should return 405', async () => {
+        await request
+            .get('/mp3/1')
+            .expect('Cache-Control', /private, no-store/)
+            .expect(405)
+    })
+
+    // 3478 is a special ID
+    it('Should return 200', async () => {
+        await request
+            .get('/mp3/3478')
+            .expect('Cache-Control', /private, no-store/)
+            .expect(200)
+    })
+})
+
 describe('Responses', () => {
     it('should check redirection', async () => {
         await supertest('http://word-word.club')
