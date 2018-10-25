@@ -101,7 +101,7 @@ CREATE TABLE `bases` (
   `parentId` int(11) NOT NULL,
   `position` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `info` tinytext NOT NULL DEFAULT '',
+  `info` tinytext NOT NULL,
   `image` varchar(255),
   `type` varchar(255) NOT NULL DEFAULT 'folder',
   `isMain` tinyint(1) NOT NULL DEFAULT '0',
