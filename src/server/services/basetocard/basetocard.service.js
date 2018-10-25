@@ -13,10 +13,10 @@ module.exports = function() {
     }
 
     // Initialize our service with any options it requires
-    app.use('/basetocard', createService(options))
+    app.use('/api/basetocard', createService(options))
 
     // Get our initialized service so that we can register hooks and filters
-    const service = app.service('basetocard')
+    const service = app.service('/api/basetocard')
 
     service.hooks(hooks)
 

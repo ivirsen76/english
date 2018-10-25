@@ -137,10 +137,10 @@ module.exports = function() {
     const app = this
 
     // Initialize our service with any options it requires
-    app.use('/mp3', new Service())
+    app.use('/api/mp3', new Service())
 
     // Get our initialize service to that we can bind hooks
-    const mp3Service = app.service('/mp3')
+    const mp3Service = app.service('/api/mp3')
 
     // Set up our before hooks
     mp3Service.before(hooks.before)

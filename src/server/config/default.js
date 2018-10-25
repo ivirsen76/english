@@ -21,5 +21,10 @@ module.exports = {
             secret: IE_API_AUTH_TOKEN_SECRET,
         },
         local: {},
+        successRedirect: '/api/auth/success',
+        failureRedirect: '/api/auth/failure',
+        tokenEndpoint: '/api/auth/token',
+        localEndpoint: '/api/auth/local',
+        userEndpoint: '/api/users',
     },
 }

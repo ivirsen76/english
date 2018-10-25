@@ -14,10 +14,10 @@ module.exports = function() {
     }
 
     // Initialize our service with any options it requires
-    app.use('/basecards', service(options))
+    app.use('/api/basecards', service(options))
 
     // Get our initialize service to that we can bind hooks
-    const basecardService = app.service('/basecards')
+    const basecardService = app.service('/api/basecards')
 
     // Set up our before hooks
     basecardService.before(hooks.before)
