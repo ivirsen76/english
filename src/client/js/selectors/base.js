@@ -72,3 +72,7 @@ export const getProtectedIds = createSelector(getList, list => {
 
     return _uniq([...parents, ...withCards])
 })
+
+export const getSavingList = createSelector(getList, list =>
+    list.map(item => ({ ...item, price: item.price || 0, info: item.info || '' }))
+)

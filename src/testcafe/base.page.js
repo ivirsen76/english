@@ -1,7 +1,7 @@
-import { Selector } from 'testcafe'
+import { Selector, ClientFunction } from 'testcafe'
 import { ReactSelector } from 'testcafe-react-selectors'
 import { adminUser } from './roles.js'
-import { restoreDb, restoreSamples, getNumRecords } from './db/utils.js'
+import { restoreDb, restoreSamples, getNumRecords, runQuery } from './db/utils.js'
 import { url } from './config.js'
 
 fixture('Bases page').beforeEach(async t => {
@@ -10,6 +10,8 @@ fixture('Bases page').beforeEach(async t => {
     await t.useRole(adminUser)
 })
 
+const getLocation = ClientFunction(() => window.location.href)
+
 // Selectors
 const Title = Selector('h2')
 const AddCardButton = Selector('#addCardButton')
@@ -17,10 +19,45 @@ const AddCardSubmitButton = Selector('button[type=submit').withText('Добав�
 const UpdateCardSubmitButton = Selector('button[type=submit').withText('Update card')
 const Alert = ReactSelector('Alert')
 const Table = ReactSelector('Table')
+const FolderElement = Selector('#elementFolder')
+const CardsElement = Selector('#elementCards')
+const SaveButton = Selector('#saveButton')
+const BaseTitle = Selector('h2#baseTitle')
 
 test('Should render base title', async t => {
     await t.navigateTo(url('/user/base'))
     await t.expect(Title.innerText).contains('Bases')
+})
+
+test('Should add two folders and cards', async t => {
+    await runQuery('DELETE FROM basecards')
+    await runQuery('DELETE FROM bases')
+
+    await t.navigateTo(url('/user/base'))
+    await t.expect(await SaveButton.classNames).notContains('orange')
+
+    // Add first folder
+    await t.click(FolderElement)
+    const currentFolder = Selector('.testcafeTreeItem').withText('Folder')
+    await t.click(currentFolder)
+    await t.expect((await currentFolder.classNames).join(' ')).contains('active')
+    await t.expect(getLocation()).contains('/user/base/1000000000')
+
+    // Change folder title
+    await t.typeText('input[name=title]', 'First one', { replace: true })
+    await t.expect(Selector('.testcafeTreeItem').withText('First one')).ok()
+    await t.expect(BaseTitle.innerText).contains('First one')
+
+    // Add other folders
+    await t.click(FolderElement)
+    await t.click(currentFolder)
+    await t.click(CardsElement)
+    await t.expect(await SaveButton.classNames).contains('orange')
+
+    // Saving
+    await t.click(SaveButton)
+    await t.expect(await SaveButton.classNames).notContains('orange')
+    await t.expect(await getNumRecords('bases')).eql(3)
 })
 
 test('Should add card', async t => {

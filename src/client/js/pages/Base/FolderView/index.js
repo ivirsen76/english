@@ -51,7 +51,7 @@ export default class Component extends React.Component {
 
         return (
             <div>
-                <h2>{this.props.base.title}</h2>
+                <h2 id="baseTitle">{this.props.base.title}</h2>
                 <div className="ui raised segment">
                     <h3
                         style={{

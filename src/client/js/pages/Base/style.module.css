@@ -23,6 +23,7 @@ $markSize: 0.7em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: pointer;
 
     &.active {
         color: #22566c;

@@ -69,7 +69,7 @@ class Component extends React.Component {
             result.component = (
                 <Link to={`/user/base/${element.id}`}>
                     <div
-                        className={classnames(style.item, style[element.type], {
+                        className={classnames('testcafeTreeItem', style.item, style[element.type], {
                             [style.active]: isActive,
                         })}
                     >
@@ -110,6 +110,14 @@ class Component extends React.Component {
         }
     }
 
+    onElementClick = element => {
+        let parentId = 0
+        if (this.props.base.type === 'folder') {
+            parentId = this.props.base.id
+        }
+        this.props.addElement({ element, parentId })
+    }
+
     render() {
         const { loading, base, hasTreeChanges } = this.props
 
@@ -120,11 +128,18 @@ class Component extends React.Component {
                     <div className={style.tree}>
                         <div className={style.topArea}>
                             <div className={style.elementArea}>
-                                <Element element={{ type: 'folder', title: 'Folder' }} />
-                                <Element element={{ type: 'cards', title: 'Cards' }} />
+                                <Element
+                                    element={{ type: 'folder', title: 'Folder' }}
+                                    onClick={this.onElementClick}
+                                />
+                                <Element
+                                    element={{ type: 'cards', title: 'Cards' }}
+                                    onClick={this.onElementClick}
+                                />
                             </div>
                             <div>
                                 <button
+                                    id="saveButton"
                                     onClick={this.props.saveBaseTree}
                                     className={`fluid compact ui ${
                                         hasTreeChanges ? 'orange' : ''

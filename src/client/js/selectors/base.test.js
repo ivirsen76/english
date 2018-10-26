@@ -6,6 +6,7 @@ import {
     getRemovedIds,
     getHasTreeChanges,
     getProtectedIds,
+    getSavingList,
 } from './base'
 
 describe('getSortedList()', () => {
@@ -136,5 +137,23 @@ describe('getProtectedIds()', () => {
             ],
         }
         expect(getProtectedIds(state)).toEqual([1, 2])
+    })
+})
+
+describe('getSavingList()', () => {
+    it('Should add default price and info', () => {
+        const state = {
+            list: [
+                { id: 1, price: null, info: null },
+                { id: 2 },
+                { id: 3, price: 10, info: 'some' },
+            ],
+        }
+        const expectedList = [
+            { id: 1, price: 0, info: '' },
+            { id: 2, price: 0, info: '' },
+            { id: 3, price: 10, info: 'some' },
+        ]
+        expect(getSavingList(state)).toEqual(expectedList)
     })
 })

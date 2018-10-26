@@ -2,6 +2,7 @@ import { handleActions, createAction } from 'redux-actions'
 import axios from '@ieremeev/axios'
 import _pick from 'lodash/pick'
 import _isEmpty from 'lodash/isEmpty'
+import { getSavingList } from 'client/js/selectors/base.js'
 
 export const persistedKeys = ['showBaseSettings']
 export const startNewId = 1000000000
@@ -46,7 +47,7 @@ export const toggleShowBaseSettings = createAction(TOGGLE_SHOW_BASE_SETTINGS)
 
 export const saveBaseTree = () => async (dispatch, getState) => {
     const state = getState().app.base
-    const response = await axios.post('/basetree', state.list)
+    const response = await axios.post('/basetree', getSavingList(state))
     dispatch(updateBaseIds(response.data))
 }
 

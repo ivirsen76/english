@@ -23,13 +23,27 @@ class Element extends React.Component {
         connectDragSource: PropTypes.func.isRequired,
         connectDragPreview: PropTypes.func.isRequired,
         element: PropTypes.object,
+        onClick: PropTypes.func,
+    }
+
+    onClick = () => {
+        this.props.onClick(this.props.element)
+    }
+
+    getCamelCaseType = () => {
+        const { type } = this.props.element
+        return type.charAt(0).toUpperCase() + type.slice(1)
     }
 
     render() {
         const { element, connectDragSource, connectDragPreview } = this.props
 
         return connectDragSource(
-            <div className={style.item}>
+            <div
+                id={`element${this.getCamelCaseType()}`}
+                className={style.item}
+                onClick={this.onClick}
+            >
                 {connectDragPreview(<span />)}
                 {element.title}
             </div>
