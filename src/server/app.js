@@ -27,12 +27,9 @@ app.getService = name => app.service(app.get('prefix') + '/' + name)
 app
     .options('*', cors())
     .use((req, res, next) => {
-        if (/\.mp3$/.test(req.url)) {
+        if (/\.(css|js|jpg|png|gif|svg|ttf|eot|woff|woff2|mp3)$/.test(req.url)) {
             res.setHeader('Surrogate-Control', `max-age=${365 * 24 * 3600}`)
-            res.setHeader('Cache-Control', `max-age=${24 * 3600}`)
-        } else if (/\.(css|js|jpg|png|gif|svg|ttf|eot|woff|woff2)$/.test(req.url)) {
-            res.setHeader('Surrogate-Control', `max-age=${7 * 24 * 3600}`)
-            res.setHeader('Cache-Control', `max-age=${24 * 3600}`)
+            res.setHeader('Cache-Control', `max-age=${7 * 24 * 3600}`)
         } else {
             res.setHeader('Cache-Control', 'private, no-store')
         }

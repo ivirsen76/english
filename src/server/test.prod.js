@@ -16,7 +16,7 @@ describe('Pages', () => {
     it('should check some image', async () => {
         await request
             .get('/logo-3254c39614bc43d5f03eebf607256350.png')
-            .expect('Cache-Control', /max-age=86400/)
+            .expect('Cache-Control', /max-age=604800/)
             .expect('Content-Type', /image\/png/)
             .expect('X-Served-By', /^cache-/)
             .expect(200)
@@ -25,7 +25,7 @@ describe('Pages', () => {
     it('should check some sound', async () => {
         await request
             .get('/media/sample.mp3')
-            .expect('Cache-Control', /max-age=86400/)
+            .expect('Cache-Control', /max-age=604800/)
             .expect('Content-Type', /audio\/mpeg/)
             .expect('X-Served-By', /^cache-/)
             .expect(200)
@@ -47,7 +47,7 @@ describe('Pages', () => {
 
     it('should check right API call', async () => {
         await request
-            .get('/bases')
+            .get('/api/bases')
             .expect('Cache-Control', /private, no-store/)
             .expect('Content-Type', /application\/json/)
             .expect('X-Served-By', /^cache-/)
@@ -67,7 +67,7 @@ describe('Pages', () => {
 describe('AWS', () => {
     it('Should return 405', async () => {
         await request
-            .get('/mp3/1')
+            .get('/api/mp3/1')
             .expect('Cache-Control', /private, no-store/)
             .expect(405)
     })
@@ -75,7 +75,7 @@ describe('AWS', () => {
     // 3478 is a special ID
     it('Should return 200', async () => {
         await request
-            .get('/mp3/3478')
+            .get('/api/mp3/3478')
             .expect('Cache-Control', /private, no-store/)
             .expect(200)
     })
