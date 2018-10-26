@@ -26,21 +26,29 @@ const command = `mysql -h ${IE_DB_HOSTNAME} -u ${IE_DB_USERNAME} --password=${IE
     IE_DB_NAME
 } < ${dumpPath}`
 
+const checkPermissions = () => {
+    if (!IE_ALLOW_RESTORING_DB) {
+        throw new Error('Cannot change DB on production')
+    }
+}
+
 module.exports = {
     restoreDb: () => {
-        if (!IE_ALLOW_RESTORING_DB) {
-            throw new Error('Cannot restore DB on production')
-        }
+        checkPermissions()
 
         execSync(command, { stdio: 'ignore' })
     },
     restoreSamples: () => {
+        checkPermissions()
+
         const src = path.join(__dirname, 'sample.mp3')
         const dest = path.join(__dirname, '../../../media/samples', 'sample.mp3')
 
         fs.copyFileSync(src, dest)
     },
     getNumRecords: (table, conditions) => {
+        checkPermissions()
+
         const where = conditions
             ? 'WHERE ' + _map(conditions, (item, key) => `${key}="${item}"`).join(' AND ')
             : ''
@@ -55,16 +63,21 @@ module.exports = {
             connection.end()
         })
     },
-    runQuery: query =>
-        new Promise((resolve, reject) => {
+    runQuery: query => {
+        checkPermissions()
+
+        return new Promise((resolve, reject) => {
             const connection = mysql.createConnection(connectionConfig)
             connection.connect()
             connection.query(query, (error, results, fields) => {
                 resolve(results)
             })
             connection.end()
-        }),
+        })
+    },
     getRecord: (table, conditions) => {
+        checkPermissions()
+
         const where = conditions
             ? 'WHERE ' + _map(conditions, (item, key) => `${key}="${item}"`).join(' AND ')
             : ''
