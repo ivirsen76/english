@@ -55,6 +55,15 @@ module.exports = {
             connection.end()
         })
     },
+    runQuery: query =>
+        new Promise((resolve, reject) => {
+            const connection = mysql.createConnection(connectionConfig)
+            connection.connect()
+            connection.query(query, (error, results, fields) => {
+                resolve(results)
+            })
+            connection.end()
+        }),
     getRecord: (table, conditions) => {
         const where = conditions
             ? 'WHERE ' + _map(conditions, (item, key) => `${key}="${item}"`).join(' AND ')

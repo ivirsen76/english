@@ -6,6 +6,7 @@ const {
     restoreSamples,
     getNumRecords,
     getRecord,
+    runQuery,
 } = require('../../testcafe/db/utils.js')
 
 let server
@@ -100,6 +101,22 @@ describe('basetree', () => {
                 .post('/api/basetree')
                 .set('Authorization', token)
                 .expect(403)
+        })
+
+        it('should return 201 for admin role', async () => {
+            await runQuery('TRUNCATE TABLE basecards')
+            await runQuery('TRUNCATE TABLE bases')
+
+            const token = await loginAsAdmin()
+            await request
+                .post('/api/basetree')
+                .send([
+                    { type: 'folder', title: 'Folder', id: 1000000000, parentId: 0, position: 0 },
+                ])
+                .set('Authorization', token)
+                .expect(201)
+
+            expect(await getNumRecords('bases')).toBe(1)
         })
     })
 })
