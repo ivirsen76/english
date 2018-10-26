@@ -24,7 +24,7 @@ const run = async () => {
     const answers = await getAnswers()
 
     try {
-        await app.service('users').create(answers)
+        await app.getService('users').create(answers)
     } catch (e) {
         const message = e.errors ? e.errors.map(item => item.message).join('\n') : e.message
         console.error(colors.red(message))
