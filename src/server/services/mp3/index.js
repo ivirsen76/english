@@ -87,7 +87,7 @@ class Service {
 
     async create(data, params) {
         const userId = params.user.id
-        const cards = await this.app.service('cards').find({
+        const cards = await this.app.getService('cards').find({
             query: {
                 userId,
                 status: 0,
@@ -137,10 +137,7 @@ module.exports = function() {
     const app = this
 
     // Initialize our service with any options it requires
-    app.use('/api/mp3', new Service())
-
-    // Get our initialize service to that we can bind hooks
-    const mp3Service = app.service('/api/mp3')
+    const mp3Service = app.declareService('mp3', new Service())
 
     // Set up our before hooks
     mp3Service.before(hooks.before)

@@ -13,10 +13,7 @@ module.exports = function() {
     }
 
     // Initialize our service with any options it requires
-    app.use('/api/basetree', createService(options))
-
-    // Get our initialized service so that we can register hooks and filters
-    const service = app.service('/api/basetree')
+    const service = app.declareService('basetree', createService(options))
 
     service.hooks(hooks)
 

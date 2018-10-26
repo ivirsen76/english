@@ -5,5 +5,5 @@ module.exports = options => async hook => {
     const result = await hook.service.find({ query: { baseId } })
     const count = result.data.length
 
-    await hook.app.service('/bases').patch(baseId, { count })
+    await hook.app.getService('bases').patch(baseId, { count })
 }

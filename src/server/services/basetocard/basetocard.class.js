@@ -12,8 +12,8 @@ class Service {
 
     async update(baseId, data, params) {
         const userId = params.user.id
-        const cardService = this.app.service('cards')
-        const basecardService = this.app.service('basecards')
+        const cardService = this.app.getService('cards')
+        const basecardService = this.app.getService('basecards')
 
         const existingTexts = (await cardService.find({ query: { userId } })).data.map(item =>
             stripBrackets(item.text)

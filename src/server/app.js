@@ -15,6 +15,15 @@ const app = feathers()
 
 app.configure(configuration(path.join(__dirname, '.')))
 
+// Enchance app to add prefix ability
+app.declareService = (name, service) => {
+    const url = app.get('prefix') + '/' + name
+    app.use(url, service)
+
+    return app.getService(name)
+}
+app.getService = name => app.service(app.get('prefix') + '/' + name)
+
 app
     .options('*', cors())
     .use((req, res, next) => {

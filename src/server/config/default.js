@@ -10,7 +10,10 @@ const {
     IE_API_AUTH_TOKEN_SECRET,
 } = process.env
 
+const PREFIX = '/api'
+
 module.exports = {
+    prefix: PREFIX,
     host: IE_SERVER_HOST,
     port: IE_SERVER_PORT,
     mysql: `mysql://${IE_DB_USERNAME}:${IE_DB_PASSWORD}@${IE_DB_HOSTNAME}:3306/${IE_DB_NAME}`,
@@ -21,10 +24,10 @@ module.exports = {
             secret: IE_API_AUTH_TOKEN_SECRET,
         },
         local: {},
-        successRedirect: '/api/auth/success',
-        failureRedirect: '/api/auth/failure',
-        tokenEndpoint: '/api/auth/token',
-        localEndpoint: '/api/auth/local',
-        userEndpoint: '/api/users',
+        successRedirect: `${PREFIX}/auth/success`,
+        failureRedirect: `${PREFIX}/auth/failure`,
+        tokenEndpoint: `${PREFIX}/auth/token`,
+        localEndpoint: `${PREFIX}/auth/local`,
+        userEndpoint: `${PREFIX}/users`,
     },
 }

@@ -11,7 +11,7 @@ class Service {
     }
 
     async create(data, params) {
-        const bases = this.app.service('bases')
+        const bases = this.app.getService('bases')
 
         const result = await bases.find()
         const updates = getUpdates(result.data, data)
