@@ -1,7 +1,7 @@
 import { Selector, ClientFunction } from 'testcafe'
 import { ReactSelector } from 'testcafe-react-selectors'
 import { adminUser } from './roles.js'
-import { restoreDb, restoreSamples, getNumRecords, runQuery } from './db/utils.js'
+import { restoreDb, restoreSamples, getRecord, getNumRecords, runQuery } from './db/utils.js'
 import { url } from './config.js'
 
 fixture('Bases page').beforeEach(async t => {
@@ -23,6 +23,8 @@ const FolderElement = Selector('#elementFolder')
 const CardsElement = Selector('#elementCards')
 const SaveButton = Selector('#saveButton')
 const BaseTitle = Selector('h2#baseTitle')
+const ListButton = Selector('button').withText('List')
+const TableButton = Selector('button').withText('Table')
 
 test('Should render base title', async t => {
     await t.navigateTo(url('/user/base'))
@@ -42,6 +44,11 @@ test('Should add two folders and cards', async t => {
     await t.click(currentFolder)
     await t.expect((await currentFolder.classNames).join(' ')).contains('active')
     await t.expect(getLocation()).contains('/user/base/1000000000')
+    await t.expect(await ListButton.classNames).contains('active')
+
+    // Change folder arrange children method
+    await t.click(TableButton)
+    await t.expect(await TableButton.classNames).contains('active')
 
     // Change folder title
     await t.typeText('input[name=title]', 'First one', { replace: true })
@@ -57,7 +64,24 @@ test('Should add two folders and cards', async t => {
     // Saving
     await t.click(SaveButton)
     await t.expect(await SaveButton.classNames).notContains('orange')
+
+    // Check the db
     await t.expect(await getNumRecords('bases')).eql(3)
+    const parent = await getRecord('bases', {
+        title: 'First one',
+        arrangeChildren: 'table',
+        type: 'folder',
+    })
+    await t
+        .expect(
+            await getNumRecords('bases', {
+                title: 'Folder',
+                arrangeChildren: 'list',
+                type: 'folder',
+                parentId: parent.id,
+            })
+        )
+        .eql(1)
 })
 
 test('Should add card', async t => {

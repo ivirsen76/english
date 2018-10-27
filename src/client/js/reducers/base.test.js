@@ -275,7 +275,13 @@ describe('addElement()', () => {
                 { id: 1, parentId: 0, position: 0 },
                 { id: 2, parentId: 1, position: 0 },
                 { id: 3, parentId: 1, position: 2 },
-                { id: 1000000000, parentId: 1, position: 1, type: 'folder' },
+                {
+                    id: 1000000000,
+                    parentId: 1,
+                    position: 1,
+                    type: 'folder',
+                    arrangeChildren: 'list',
+                },
             ],
             newId: 1000000001,
         }

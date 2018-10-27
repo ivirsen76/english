@@ -229,7 +229,13 @@ export default handleActions(
                 ...state,
                 list: [
                     ...list,
-                    { ...element, id: state.newId, parentId, position: beforePosition },
+                    {
+                        arrangeChildren: 'list',
+                        ...element,
+                        id: state.newId,
+                        parentId,
+                        position: beforePosition,
+                    },
                 ],
                 newId: state.newId + 1,
             }

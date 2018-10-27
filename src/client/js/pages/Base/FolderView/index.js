@@ -85,31 +85,35 @@ export default class Component extends React.Component {
                                         showErrorImmediately
                                         autoFocus
                                     />
-                                    <Field
-                                        name="isMain"
-                                        component={SemanticCheckbox}
-                                        label="главная база?"
-                                    />
+                                    <div
+                                        className="fields"
+                                        style={{
+                                            ...(!props.values.isMain && { marginBottom: '0' }),
+                                        }}
+                                    >
+                                        <Field
+                                            name="arrangeChildren"
+                                            component={SemanticSelect}
+                                            options={[
+                                                { value: 'table', label: 'Table' },
+                                                { value: 'list', label: 'List' },
+                                            ]}
+                                            type="button"
+                                        />
+                                        <Field
+                                            name="isMain"
+                                            component={SemanticCheckbox}
+                                            label="главная база?"
+                                        />
+                                    </div>
                                     {props.values.isMain && (
                                         <div>
-                                            <div className="fields">
-                                                <Field
-                                                    name="arrangeChildren"
-                                                    component={SemanticSelect}
-                                                    label="Порядок"
-                                                    options={[
-                                                        { value: 'table', label: 'Table' },
-                                                        { value: 'list', label: 'List' },
-                                                    ]}
-                                                    type="button"
-                                                />
-                                                <Field
-                                                    name="price"
-                                                    component={SemanticInput}
-                                                    label="Стоимость"
-                                                    showErrorImmediately
-                                                />
-                                            </div>
+                                            <Field
+                                                name="price"
+                                                component={SemanticInput}
+                                                label="Стоимость"
+                                                showErrorImmediately
+                                            />
                                             <Field
                                                 name="info"
                                                 component={SemanticTextarea}
