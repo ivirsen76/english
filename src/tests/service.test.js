@@ -1,5 +1,5 @@
 // Testing rest API
-const app = require('../app')
+const app = require('../server/app')
 const supertest = require('supertest')
 const {
     restoreDb,
@@ -7,7 +7,7 @@ const {
     getNumRecords,
     getRecord,
     runQuery,
-} = require('../../testcafe/db/utils.js')
+} = require('../testcafe/db/utils.js')
 
 let server
 let request
@@ -118,6 +118,34 @@ describe('basetree', () => {
 
             expect(await getNumRecords('bases')).toBe(1)
         })
+    })
+
+    describe('patch', () => {
+        it('should return 401 for not logged in', async () => {
+            await request.patch('/api/basetree/29').expect(401)
+        })
+
+        it('should return 403 for student role', async () => {
+            const token = await loginAsStudent()
+            await request
+                .patch('/api/basetree/29')
+                .set('Authorization', token)
+                .expect(403)
+        })
+
+        // it('should return 200 for admin', async () => {
+        //     const token = await loginAsAdmin()
+        //     await request
+        //         .patch('/api/basetree/29')
+        //         .send({
+        //             text: 'bla-bla',
+        //             translate: 'сон',
+        //             label: 'tutorial',
+        //             ukSoundFile: 'wrong',
+        //         })
+        //         .set('Authorization', token)
+        //         .expect(200)
+        // })
     })
 })
 
