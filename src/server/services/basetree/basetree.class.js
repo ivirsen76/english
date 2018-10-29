@@ -70,13 +70,15 @@ class Service {
                 .toBuffer()
             const hash = md5(buffer).substring(0, 10)
             const newImage = `images/base_${id}_${hash}.jpg`
-            await addFile(newImage, buffer)
 
-            await bases.patch(id, { image: newImage })
+            if (currentImage !== newImage) {
+                await addFile(newImage, buffer)
+                await bases.patch(id, { image: newImage })
 
-            // Remove old image
-            if (currentImage && currentImage !== newImage) {
-                await removeFile(currentImage)
+                // Remove old image
+                if (currentImage) {
+                    await removeFile(currentImage)
+                }
             }
 
             return newImage
