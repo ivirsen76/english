@@ -69,17 +69,17 @@ class Service {
                 .toFormat('jpeg')
                 .toBuffer()
             const hash = md5(buffer).substring(0, 10)
-            const filename = `images/base_${id}_${hash}.jpg`
-            addFile(filename, buffer)
+            const newImage = `images/base_${id}_${hash}.jpg`
+            await addFile(newImage, buffer)
 
-            bases.patch(id, { image: filename })
+            await bases.patch(id, { image: newImage })
 
             // Remove old image
-            if (currentImage) {
-                removeFile(currentImage)
+            if (currentImage && currentImage !== newImage) {
+                await removeFile(currentImage)
             }
 
-            return filename
+            return newImage
         } catch (errors) {
             throw new BadRequest(errors.message)
         }

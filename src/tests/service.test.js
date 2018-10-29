@@ -154,6 +154,14 @@ describe('basetree', () => {
             const { size } = fs.statSync(getPath(filename))
             expect(size).toBeGreaterThan(25000)
             expect(size).toBeLessThan(30000)
+
+            // Change once again to check that file is still there
+            const { body: newFilename } = await request
+                .put('/api/basetree/20')
+                .attach('file', bigImage)
+                .set('Authorization', token)
+                .expect(200)
+            expect(fs.existsSync(getPath(newFilename))).toBe(true)
         })
 
         it('should return 400 for small image', async () => {
