@@ -1,6 +1,7 @@
 // Testing rest API
 const app = require('../server/app')
 const supertest = require('supertest')
+const { getPath } = require('../server/media.js')
 const {
     restoreDb,
     restoreSamples,
@@ -8,6 +9,8 @@ const {
     getRecord,
     runQuery,
 } = require('../testcafe/db/utils.js')
+const fs = require('fs-extra')
+const path = require('path')
 
 let server
 let request
@@ -120,32 +123,68 @@ describe('basetree', () => {
         })
     })
 
-    describe('patch', () => {
+    describe('put', () => {
+        const bigImage = path.join(__dirname, 'assets', 'bigImage.jpg')
+        const smallImage = path.join(__dirname, 'assets', 'smallImage.jpg')
+        const wrongImage = path.join(__dirname, 'assets', 'wrongImage.jpg')
+
         it('should return 401 for not logged in', async () => {
-            await request.patch('/api/basetree/29').expect(401)
+            await request.put('/api/basetree/20').expect(401)
         })
 
         it('should return 403 for student role', async () => {
             const token = await loginAsStudent()
             await request
-                .patch('/api/basetree/29')
+                .put('/api/basetree/20')
                 .set('Authorization', token)
                 .expect(403)
         })
 
-        // it('should return 200 for admin', async () => {
-        //     const token = await loginAsAdmin()
-        //     await request
-        //         .patch('/api/basetree/29')
-        //         .send({
-        //             text: 'bla-bla',
-        //             translate: 'сон',
-        //             label: 'tutorial',
-        //             ukSoundFile: 'wrong',
-        //         })
-        //         .set('Authorization', token)
-        //         .expect(200)
-        // })
+        it('should return 200 for admin and big image', async () => {
+            const token = await loginAsAdmin()
+            const result = await request
+                .put('/api/basetree/20')
+                .attach('file', bigImage)
+                .set('Authorization', token)
+                .expect(200)
+            const filename = result.body
+
+            expect(await getNumRecords('bases', { id: 20, image: filename })).toBe(1)
+
+            const { size } = fs.statSync(getPath(filename))
+            expect(size).toBeGreaterThan(25000)
+            expect(size).toBeLessThan(30000)
+        })
+
+        it('should return 400 for small image', async () => {
+            const token = await loginAsAdmin()
+            const result = await request
+                .put('/api/basetree/20')
+                .attach('file', smallImage)
+                .set('Authorization', token)
+                .expect(400)
+            expect(result.body.message).toContain('Image has to be at least 320x400')
+        })
+
+        it('should return 400 for wrong image', async () => {
+            const token = await loginAsAdmin()
+            const result = await request
+                .put('/api/basetree/20')
+                .attach('file', wrongImage)
+                .set('Authorization', token)
+                .expect(400)
+            expect(result.body.message).toContain('Input buffer contains unsupported image format')
+        })
+
+        it('should return 400 for wrong base id', async () => {
+            const token = await loginAsAdmin()
+            const result = await request
+                .put('/api/basetree/2000')
+                .attach('file', wrongImage)
+                .set('Authorization', token)
+                .expect(400)
+            expect(result.body.message).toContain('No record found')
+        })
     })
 })
 

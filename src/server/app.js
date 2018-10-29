@@ -7,6 +7,7 @@ const hooks = require('feathers-hooks')
 const rest = require('feathers-rest')
 const bodyParser = require('body-parser')
 const express = require('express') // eslint-disable-line import/no-extraneous-dependencies
+const fileUpload = require('express-fileupload')
 
 const middleware = require('./middleware')
 const services = require('./services')
@@ -48,8 +49,13 @@ app
     .use(favicon(path.join(app.get('public'), 'favicon.ico')))
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: true }))
+    .use(fileUpload())
     .configure(hooks())
     .configure(rest())
+    .use((req, res, next) => {
+        req.feathers.files = req.files
+        next()
+    })
     .configure(services)
     .get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, '..', '..', 'build', 'index.html'))

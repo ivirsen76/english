@@ -1,5 +1,9 @@
 const { getUpdates } = require('./utils.js')
 const _omit = require('lodash/omit')
+const { addFile, removeFile } = require('../../media.js')
+const { BadRequest } = require('feathers-errors')
+const sharp = require('sharp')
+const md5 = require('md5')
 
 class Service {
     setup(app) {
@@ -37,6 +41,48 @@ class Service {
         }
 
         return newIds
+    }
+
+    async update(id, data, params) {
+        const acceptedFormats = ['jpeg', 'png']
+        const desiredWidth = 320
+        const desiredHeight = 400
+
+        try {
+            const bases = this.app.getService('bases')
+            const baseInfo = await bases.get(id)
+            const currentImage = baseInfo.dataValues.image
+
+            const image = sharp(params.files.file.data)
+            const { format, width, height } = await image.metadata()
+
+            if (!acceptedFormats.includes(format)) {
+                throw new Error('Wrong format')
+            }
+
+            if (width < desiredWidth || height < desiredHeight) {
+                throw new Error(`Image has to be at least ${desiredWidth}x${desiredHeight}`)
+            }
+
+            const buffer = await image
+                .resize(desiredWidth, desiredHeight)
+                .toFormat('jpeg')
+                .toBuffer()
+            const hash = md5(buffer).substring(0, 10)
+            const filename = `images/base_${id}_${hash}.jpg`
+            addFile(filename, buffer)
+
+            bases.patch(id, { image: filename })
+
+            // Remove old image
+            if (currentImage) {
+                removeFile(currentImage)
+            }
+
+            return filename
+        } catch (errors) {
+            throw new BadRequest(errors.message)
+        }
     }
 }
 

@@ -7,6 +7,15 @@ const getPath = filename => (filename ? `${mediaPath}/${filename}` : mediaPath)
 
 const getBaseFilename = filename => filename.replace(`${getPath()}/`, '')
 
+const addFile = async (filename, content) => {
+    const fullFilename = getPath(filename)
+
+    if (await fs.exists(fullFilename)) {
+        await fs.unlink(fullFilename)
+    }
+    await fs.writeFile(fullFilename, content)
+}
+
 const removeFile = async filename => {
     const fullFilename = getPath(filename)
 
@@ -26,6 +35,7 @@ const getFileContent = async filename => {
 }
 
 module.exports = {
+    addFile,
     getPath,
     getBaseFilename,
     removeFile,
