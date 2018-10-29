@@ -83,7 +83,7 @@ class Service {
 
             return newImage
         } catch (errors) {
-            throw new BadRequest(errors.message)
+            throw new BadRequest(errors.message, { errors: { message: errors.message } })
         }
     }
 }

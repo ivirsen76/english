@@ -23,6 +23,7 @@ const FolderElement = Selector('#elementFolder')
 const CardsElement = Selector('#elementCards')
 const SaveButton = Selector('#saveButton')
 const BaseTitle = Selector('h2#baseTitle')
+const BaseSettings = Selector('#baseSettings')
 const ListButton = Selector('button').withText('List')
 const TableButton = Selector('button').withText('Table')
 
@@ -55,6 +56,14 @@ test('Should add two folders and cards', async t => {
     await t.expect(Selector('.testcafeTreeItem').withText('First one')).ok()
     await t.expect(BaseTitle.innerText).contains('First one')
 
+    // Change price and info
+    await t.click(Selector('label').withText('главная база'))
+    await t.typeText('input[name=price]', '100', { replace: true })
+    await t.typeText('textarea[name=info]', 'ISBN', { replace: true })
+    await t
+        .expect(BaseSettings.innerText)
+        .contains('Вы сможете загрузить картинку после сохранения')
+
     // Add other folders
     await t.click(FolderElement)
     await t.click(currentFolder)
@@ -71,6 +80,9 @@ test('Should add two folders and cards', async t => {
         title: 'First one',
         arrangeChildren: 'table',
         type: 'folder',
+        isMain: 1,
+        price: 100,
+        info: 'ISBN',
     })
     await t
         .expect(
@@ -82,6 +94,10 @@ test('Should add two folders and cards', async t => {
             })
         )
         .eql(1)
+
+    // Check that the image is available now
+    await t.click(Selector('.testcafeTreeItem').withText('First one'))
+    await t.expect(Selector('button').withText('Загрузить картинку').innerText).ok()
 })
 
 test('Should add card', async t => {

@@ -20,6 +20,7 @@ export const initialState = {
 // Actions
 const DELETE_BASE = 'english/base/DELETE_BASE'
 const UPDATE_BASE = 'english/base/UPDATE_BASE'
+const UPDATE_SAVED_BASE = 'english/base/UPDATE_SAVED_BASE'
 const SET_LOADING_BASES_STATE = 'english/base/SET_LOADING_BASES_STATE'
 const SET_BASES = 'english/base/SET_BASES'
 const ADD_CARD = 'english/base/ADD_CARD'
@@ -34,6 +35,7 @@ const TOGGLE_SHOW_BASE_SETTINGS = 'english/base/TOGGLE_SHOW_BASE_SETTINGS'
 // Action Creators
 export const deleteBase = createAction(DELETE_BASE)
 export const updateBase = createAction(UPDATE_BASE)
+export const updateSavedBase = createAction(UPDATE_SAVED_BASE)
 export const setLoadingBasesState = createAction(SET_LOADING_BASES_STATE)
 export const setBases = createAction(SET_BASES)
 export const addCardWithoutSaving = createAction(ADD_CARD)
@@ -49,6 +51,15 @@ export const saveBaseTree = () => async (dispatch, getState) => {
     const state = getState().app.base
     const response = await axios.post('/basetree', getSavingList(state))
     dispatch(updateBaseIds(response.data))
+}
+
+export const saveBaseImage = ({ baseId, file }) => async (dispatch, getState) => {
+    const data = new FormData()
+    data.append('file', file)
+
+    const response = await axios.put(`/basetree/${baseId}`, data)
+    dispatch(updateBase({ id: baseId, image: response.data }))
+    dispatch(updateSavedBase({ id: baseId, image: response.data }))
 }
 
 export const loadBases = () => async (dispatch, getState) => {
@@ -97,6 +108,19 @@ export default handleActions(
         [UPDATE_BASE]: (state, action) => ({
             ...state,
             list: state.list.map(item => {
+                if (item.id === action.payload.id) {
+                    return {
+                        ...item,
+                        ...action.payload,
+                    }
+                }
+
+                return item
+            }),
+        }),
+        [UPDATE_SAVED_BASE]: (state, action) => ({
+            ...state,
+            savedList: state.savedList.map(item => {
                 if (item.id === action.payload.id) {
                     return {
                         ...item,

@@ -12,6 +12,7 @@ import {
     SemanticCheckbox,
     SemanticTextarea,
 } from '@ieremeev/formik'
+import notification from '@ieremeev/notification'
 
 export const errorMessages = {
     noTitle: 'You have to provide title',
@@ -40,19 +41,44 @@ export default class Component extends React.Component {
         updateBase: PropTypes.func,
         showBaseSettings: PropTypes.bool,
         toggleShowBaseSettings: PropTypes.func,
+        saveBaseImage: PropTypes.func,
+    }
+
+    state = {
+        uploadingImage: false,
     }
 
     updateBase = values => {
         this.props.updateBase({ ...values, id: this.props.base.id })
     }
 
+    pickImage = () => {
+        this.file.click()
+    }
+
+    uploadImage = async event => {
+        try {
+            this.setState({ uploadingImage: true })
+            await this.props.saveBaseImage({
+                baseId: this.props.base.id,
+                file: event.target.files[0],
+            })
+            notification('Картинка успешно загружена')
+        } catch (errors) {
+            notification({ type: 'negative', message: errors.message })
+        }
+
+        this.setState({ uploadingImage: false })
+    }
+
     render() {
         const { showBaseSettings } = this.props
+        const isNew = this.props.base.id > 999999999
 
         return (
             <div>
                 <h2 id="baseTitle">{this.props.base.title}</h2>
-                <div className="ui raised segment">
+                <div id="baseSettings" className="ui raised segment">
                     <h3
                         style={{
                             cursor: 'pointer',
@@ -76,7 +102,7 @@ export default class Component extends React.Component {
                             validate={validate}
                             onValidChange={this.updateBase}
                             prepareValues={values => ({ ...values, price: +values.price })}
-                            render={props => (
+                            render={({ values }) => (
                                 <Form className="ui form">
                                     <Field
                                         name="title"
@@ -88,7 +114,7 @@ export default class Component extends React.Component {
                                     <div
                                         className="fields"
                                         style={{
-                                            ...(!props.values.isMain && { marginBottom: '0' }),
+                                            ...(!values.isMain && { marginBottom: '0' }),
                                         }}
                                     >
                                         <Field
@@ -106,7 +132,7 @@ export default class Component extends React.Component {
                                             label="главная база?"
                                         />
                                     </div>
-                                    {props.values.isMain && (
+                                    {values.isMain && (
                                         <div>
                                             <Field
                                                 name="price"
@@ -120,6 +146,36 @@ export default class Component extends React.Component {
                                                 label="Информация"
                                                 style={{ height: '5em', minHeight: '5em' }}
                                             />
+                                            <div className="field">
+                                                {isNew ? (
+                                                    <div
+                                                        className="ui warning message"
+                                                        style={{ display: 'block' }}
+                                                    >
+                                                        Вы сможете загрузить картинку после
+                                                        сохранения
+                                                    </div>
+                                                ) : (
+                                                    <div>
+                                                        <input
+                                                            type="file"
+                                                            accept="image/*"
+                                                            style={{ display: 'none' }}
+                                                            onChange={this.uploadImage}
+                                                            ref={elem => (this.file = elem)}
+                                                        />
+                                                        <button
+                                                            className={`compact ui ${this.state
+                                                                .uploadingImage &&
+                                                                'loading'} button`}
+                                                            type="button"
+                                                            onClick={this.pickImage}
+                                                        >
+                                                            Загрузить картинку
+                                                        </button>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                     )}
                                 </Form>

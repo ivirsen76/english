@@ -2,6 +2,7 @@ import reducer, {
     initialState,
     deleteBase,
     updateBase,
+    updateSavedBase,
     addCardWithoutSaving as addCard,
     deleteCardWithoutSaving as deleteCard,
     updateCardWithoutSaving as updateCard,
@@ -45,6 +46,18 @@ describe('updateBase()', () => {
         const expectedList = [{ id: 2, title: 'TreeUpdated', price: 800 }]
         const resultedState = reducer(state, updateBase({ id: 2, title: 'TreeUpdated' }))
         expect(resultedState.list).toEqual(expectedList)
+    })
+})
+
+describe('updateSavedBase()', () => {
+    it('Should update saved base', () => {
+        const state = {
+            ...initialState,
+            savedList: [{ id: 2, title: 'Tree2', price: 800 }],
+        }
+        const expectedList = [{ id: 2, title: 'TreeUpdated', price: 800 }]
+        const resultedState = reducer(state, updateSavedBase({ id: 2, title: 'TreeUpdated' }))
+        expect(resultedState.savedList).toEqual(expectedList)
     })
 })
 
