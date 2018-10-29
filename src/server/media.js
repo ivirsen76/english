@@ -9,7 +9,9 @@ const getBaseFilename = filename => filename.replace(`${getPath()}/`, '')
 
 const addFile = async (filename, content) => {
     const fullFilename = getPath(filename)
+    const folder = fullFilename.replace(/\/[^/]*$/, '')
 
+    await fs.ensureDir(folder)
     if (await fs.exists(fullFilename)) {
         await fs.unlink(fullFilename)
     }
