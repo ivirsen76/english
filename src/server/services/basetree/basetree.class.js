@@ -66,7 +66,7 @@ class Service {
 
             const buffer = await image
                 .resize(desiredWidth, desiredHeight)
-                .toFormat('jpeg')
+                .jpeg({ quality: 80 })
                 .toBuffer()
             const hash = md5(buffer).substring(0, 10)
             const newImage = `images/base_${id}_${hash}.jpg`
