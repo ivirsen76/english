@@ -30,6 +30,8 @@ const getUpdates = (originalList, list) => {
         'type',
         'arrangeChildren',
         'isMain',
+        'info',
+        'price',
     ]
     const originalIds = originalList.map(item => item.id)
     const newIds = list.map(item => item.id)

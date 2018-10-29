@@ -98,6 +98,23 @@ test('Should add two folders and cards', async t => {
     // Check that the image is available now
     await t.click(Selector('.testcafeTreeItem').withText('First one'))
     await t.expect(Selector('button').withText('Загрузить картинку').innerText).ok()
+    await t.typeText('input[name=title]', 'First new one', { replace: true })
+    await t.typeText('input[name=price]', '200', { replace: true })
+    await t.typeText('textarea[name=info]', 'newISBN', { replace: true })
+    await t.click(ListButton)
+    await t.click(SaveButton)
+
+    await t
+        .expect(
+            await getNumRecords('bases', {
+                title: 'First new one',
+                arrangeChildren: 'list',
+                type: 'folder',
+                price: 200,
+                info: 'newISBN',
+            })
+        )
+        .eql(1)
 })
 
 test('Should add card', async t => {
