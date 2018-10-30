@@ -2,7 +2,7 @@ import { Selector, ClientFunction } from 'testcafe'
 
 fixture('Production tests')
 
-const isSentry = ClientFunction(() => window.Raven && window.Raven.captureMessage)
+const isSentry = ClientFunction(() => window.ieremeev && window.ieremeev.sentry)
 const url = (path = '') => `http://www.word-word.club${path}`
 
 // Selectors
