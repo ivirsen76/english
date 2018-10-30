@@ -2,7 +2,7 @@ import { Selector, ClientFunction } from 'testcafe'
 
 fixture('Production tests')
 
-const isSentry = ClientFunction(() => window.ieremeev && window.ieremeev.sentry)
+const isSentry = ClientFunction(() => window.__SENTRY__)
 const url = (path = '') => `http://www.word-word.club${path}`
 
 // Selectors
