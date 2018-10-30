@@ -1,8 +1,8 @@
-import { Selector } from 'testcafe'
-// import { ReactSelector } from 'testcafe-react-selectors'
+import { Selector, ClientFunction } from 'testcafe'
 
 fixture('Production tests')
 
+const isSentry = ClientFunction(() => window.Raven && window.Raven.captureMessage)
 const url = (path = '') => `http://www.word-word.club${path}`
 
 // Selectors
@@ -32,4 +32,9 @@ test('Should check wrong image page', async t => {
 test('Should check feature page', async t => {
     await t.navigateTo(url('/features'))
     await t.expect(TitleH2.innerText).contains('Coming soon')
+})
+
+test('Should check Sentry setup', async t => {
+    await t.navigateTo(url())
+    await t.expect(isSentry()).ok()
 })
