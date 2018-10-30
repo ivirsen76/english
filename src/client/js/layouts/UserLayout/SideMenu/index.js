@@ -6,7 +6,7 @@ import Icon from './Icon'
 import { hasRole } from 'client/js/utils/auth.js'
 
 const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
-    <Menu vertical fluid size="huge">
+    <Menu id="sideMenu" vertical fluid size="huge">
         <Menu.Item>
             <Menu.Header>Словарь</Menu.Header>
 
@@ -39,29 +39,29 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
                     Написать
                     <div className="ui label">{cardWriteTotal}</div>
                 </MenuLink>
-                <MenuLink to="/user/mp3">
-                    <Icon type="headphones" />
-                    Скачать MP3
-                </MenuLink>
+                {/* <MenuLink to="/user/mp3"> */}
+                {/*     <Icon type="headphones" /> */}
+                {/*     Скачать MP3 */}
+                {/* </MenuLink> */}
             </Menu.Menu>
         </Menu.Item>
 
-        <Menu.Item>
-            <Menu.Header>Другое</Menu.Header>
+        {hasRole('admin') && (
+            <Menu.Item>
+                <Menu.Header>Другое</Menu.Header>
 
-            <Menu.Menu>
-                <MenuLink to="/user/statistics">
-                    <Icon type="stats-dots" />
-                    Статистика
-                </MenuLink>
-                {hasRole('admin') && (
+                <Menu.Menu>
+                    <MenuLink to="/user/statistics">
+                        <Icon type="stats-dots" />
+                        Статистика
+                    </MenuLink>
                     <MenuLink to="/user/base">
                         <Icon type="library" />
                         Базы
                     </MenuLink>
-                )}
-            </Menu.Menu>
-        </Menu.Item>
+                </Menu.Menu>
+            </Menu.Item>
+        )}
     </Menu>
 )
 
