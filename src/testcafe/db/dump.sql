@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.39)
 # Database: feather
-# Generation Time: 2018-09-30 22:52:01 +0000
+# Generation Time: 2018-11-07 20:15:39 +0000
 # ************************************************************
 
 
@@ -41,7 +41,8 @@ VALUES
     ('20170503033121-add-cards-table.js'),
     ('20170701065301-add-write-fields.js'),
     ('20170924155242-add-bases-table.js'),
-    ('20170924164013-add-basecards-table.js');
+    ('20170924164013-add-basecards-table.js'),
+    ('20181107181837-add-words-column-for-bases-table.js');
 
 /*!40000 ALTER TABLE `_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -102,7 +103,7 @@ CREATE TABLE `bases` (
   `position` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `info` tinytext NOT NULL,
-  `image` varchar(255),
+  `image` varchar(255) DEFAULT NULL,
   `type` varchar(255) NOT NULL DEFAULT 'folder',
   `isMain` tinyint(1) NOT NULL DEFAULT '0',
   `arrangeChildren` varchar(255) NOT NULL DEFAULT 'list',
@@ -111,52 +112,52 @@ CREATE TABLE `bases` (
   `price` int(11) NOT NULL DEFAULT '0',
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
+  `words` tinytext NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `bases` WRITE;
 /*!40000 ALTER TABLE `bases` DISABLE KEYS */;
 
-INSERT INTO `bases` (`id`, `parentId`, `position`, `title`, `info`, `image`, `type`, `isMain`, `arrangeChildren`, `label`, `count`, `price`, `createdAt`, `updatedAt`)
+INSERT INTO `bases` (`id`, `parentId`, `position`, `title`, `info`, `image`, `type`, `isMain`, `arrangeChildren`, `label`, `count`, `price`, `createdAt`, `updatedAt`, `words`)
 VALUES
-    (1,4,0,'English File','',NULL,'folder',0,'table','',0,0,'2018-06-12 06:17:13','2018-09-30 00:29:19'),
-    (2,13,0,'Who\'s who?','',NULL,'cards',0,'list','',10,0,'2018-06-12 06:17:26','2018-09-30 00:30:35'),
-    (3,13,1,'Who knows you better?','',NULL,'cards',0,'list','',0,0,'2018-06-13 06:17:26','2018-09-30 00:30:35'),
-    (4,0,0,'Учебники','',NULL,'folder',0,'list','',0,0,'2018-06-10 06:17:13','2018-06-10 06:17:13'),
-    (5,13,2,'At the Mouline Rouge','',NULL,'cards',0,'list','',0,0,'2018-09-29 03:02:00','2018-09-30 00:30:35'),
-    (6,13,3,'The Devil\'s Dictionary','',NULL,'cards',0,'list','',0,0,'2018-09-29 03:02:00','2018-09-30 00:30:35'),
-    (12,1,1,'Pre-intermediate','Год: 1998
-ISBN: 324-454354-45645645','samples/english_file_pre_intermediate.jpg','folder',1,'table','',10,0,'2018-09-30 00:25:20','2018-09-30 00:35:46'),
-    (13,12,0,'Chapter 1','',NULL,'folder',0,'list','',0,0,'2018-09-30 00:25:20','2018-09-30 00:25:20'),
-    (14,12,1,'Chapter 2','',NULL,'folder',0,'list','',0,0,'2018-09-30 00:25:20','2018-09-30 00:25:20'),
-    (15,12,2,'Chapter 3','',NULL,'folder',0,'list','',0,0,'2018-09-30 00:25:20','2018-09-30 00:25:20'),
-    (16,12,3,'Chapter 4','',NULL,'folder',0,'list','',0,0,'2018-09-30 00:25:20','2018-09-30 00:25:20'),
-    (17,14,0,'Right place, wrong time','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:31:45','2018-09-30 00:31:45'),
-    (18,14,1,'A moment in time','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:31:45','2018-09-30 00:31:45'),
-    (19,14,2,'Fifty years of pop','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:31:45','2018-09-30 00:31:45'),
-    (20,14,3,'One October evening','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:31:45','2018-09-30 00:31:45'),
-    (21,15,0,'Where are you going?','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:33:10','2018-09-30 00:33:10'),
-    (22,15,1,'The pessimist\'s phrase book','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:33:10','2018-09-30 00:33:10'),
-    (23,15,2,'I\'ll always love you','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:33:10','2018-09-30 00:33:10'),
-    (24,15,3,'I was only dreaming','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:33:10','2018-09-30 00:33:10'),
-    (25,16,0,'From rags to riches','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:34:40','2018-09-30 00:34:40'),
-    (26,16,1,'Family conflicts','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:34:40','2018-09-30 00:34:40'),
-    (27,16,2,'Faster, faster!','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:34:40','2018-09-30 00:34:40'),
-    (28,16,3,'The world\'s friendliest city','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:34:40','2018-09-30 00:34:40'),
-    (29,1,0,'Elementary','','samples/english_file_elementary.jpg','folder',1,'list','',0,0,'2018-09-30 00:35:46','2018-09-30 00:35:46'),
-    (30,1,2,'Intermediate','','samples/english_file_intermediate.jpg','folder',1,'list','',0,0,'2018-09-30 00:35:46','2018-09-30 00:35:46'),
-    (31,1,3,'Upper-intermediate','','samples/english_file_upper_intermediate.jpg','folder',1,'list','',0,0,'2018-09-30 00:35:46','2018-09-30 00:35:46'),
-    (32,1,4,'Advanced','','samples/english_file_advanced.jpg','folder',1,'list','',0,0,'2018-09-30 00:35:46','2018-09-30 00:35:46'),
-    (33,12,4,'Chapter 5','',NULL,'folder',0,'list','',0,0,'2018-09-30 22:32:43','2018-09-30 22:32:43'),
-    (34,33,0,'Are you a party animal?','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:32:43','2018-09-30 22:32:43'),
-    (35,33,1,'What makes you feel good?','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:32:43','2018-09-30 22:32:43'),
-    (36,33,2,'How much can you learn in a month?','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:32:43','2018-09-30 22:32:43'),
-    (37,33,3,'The name of the game','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:32:43','2018-09-30 22:32:43'),
-    (38,12,5,'Chapter 6','',NULL,'folder',0,'list','',0,0,'2018-09-30 22:37:08','2018-09-30 22:37:08'),
-    (39,38,0,'If something bad can happen, it will','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:37:08','2018-09-30 22:37:08'),
-    (40,38,1,'Never smile at a crocodile','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:37:08','2018-09-30 22:37:08'),
-    (41,38,2,'Decisions, decisions','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:37:08','2018-09-30 22:37:08'),
-    (42,38,3,'What should I do?','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:37:08','2018-09-30 22:37:08');
+    (1,4,0,'English File','',NULL,'folder',0,'table','',0,0,'2018-06-12 06:17:13','2018-09-30 00:29:19',''),
+    (2,13,0,'Who\'s who?','',NULL,'cards',0,'list','',10,0,'2018-06-12 06:17:26','2018-09-30 00:30:35',''),
+    (3,13,1,'Who knows you better?','',NULL,'cards',0,'list','',0,0,'2018-06-13 06:17:26','2018-09-30 00:30:35',''),
+    (4,0,0,'Учебники','',NULL,'folder',0,'list','',0,0,'2018-06-10 06:17:13','2018-06-10 06:17:13',''),
+    (5,13,2,'At the Mouline Rouge','',NULL,'cards',0,'list','',0,0,'2018-09-29 03:02:00','2018-09-30 00:30:35',''),
+    (6,13,3,'The Devil\'s Dictionary','',NULL,'cards',0,'list','',0,0,'2018-09-29 03:02:00','2018-09-30 00:30:35',''),
+    (12,1,1,'Pre-intermediate','Год: 1998\nISBN: 324-454354-45645645','samples/english_file_pre_intermediate.jpg','folder',1,'table','',10,0,'2018-09-30 00:25:20','2018-09-30 00:35:46',''),
+    (13,12,0,'Chapter 1','',NULL,'folder',0,'list','',0,0,'2018-09-30 00:25:20','2018-09-30 00:25:20',''),
+    (14,12,1,'Chapter 2','',NULL,'folder',0,'list','',0,0,'2018-09-30 00:25:20','2018-09-30 00:25:20',''),
+    (15,12,2,'Chapter 3','',NULL,'folder',0,'list','',0,0,'2018-09-30 00:25:20','2018-09-30 00:25:20',''),
+    (16,12,3,'Chapter 4','',NULL,'folder',0,'list','',0,0,'2018-09-30 00:25:20','2018-09-30 00:25:20',''),
+    (17,14,0,'Right place, wrong time','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:31:45','2018-09-30 00:31:45',''),
+    (18,14,1,'A moment in time','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:31:45','2018-09-30 00:31:45',''),
+    (19,14,2,'Fifty years of pop','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:31:45','2018-09-30 00:31:45',''),
+    (20,14,3,'One October evening','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:31:45','2018-09-30 00:31:45',''),
+    (21,15,0,'Where are you going?','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:33:10','2018-09-30 00:33:10',''),
+    (22,15,1,'The pessimist\'s phrase book','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:33:10','2018-09-30 00:33:10',''),
+    (23,15,2,'I\'ll always love you','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:33:10','2018-09-30 00:33:10',''),
+    (24,15,3,'I was only dreaming','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:33:10','2018-09-30 00:33:10',''),
+    (25,16,0,'From rags to riches','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:34:40','2018-09-30 00:34:40',''),
+    (26,16,1,'Family conflicts','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:34:40','2018-09-30 00:34:40',''),
+    (27,16,2,'Faster, faster!','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:34:40','2018-09-30 00:34:40',''),
+    (28,16,3,'The world\'s friendliest city','',NULL,'cards',0,'list','',0,0,'2018-09-30 00:34:40','2018-09-30 00:34:40',''),
+    (29,1,0,'Elementary','','samples/english_file_elementary.jpg','folder',1,'list','',0,0,'2018-09-30 00:35:46','2018-09-30 00:35:46',''),
+    (30,1,2,'Intermediate','','samples/english_file_intermediate.jpg','folder',1,'list','',0,0,'2018-09-30 00:35:46','2018-09-30 00:35:46',''),
+    (31,1,3,'Upper-intermediate','','samples/english_file_upper_intermediate.jpg','folder',1,'list','',0,0,'2018-09-30 00:35:46','2018-09-30 00:35:46',''),
+    (32,1,4,'Advanced','','samples/english_file_advanced.jpg','folder',1,'list','',0,0,'2018-09-30 00:35:46','2018-09-30 00:35:46',''),
+    (33,12,4,'Chapter 5','',NULL,'folder',0,'list','',0,0,'2018-09-30 22:32:43','2018-09-30 22:32:43',''),
+    (34,33,0,'Are you a party animal?','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:32:43','2018-09-30 22:32:43',''),
+    (35,33,1,'What makes you feel good?','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:32:43','2018-09-30 22:32:43',''),
+    (36,33,2,'How much can you learn in a month?','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:32:43','2018-09-30 22:32:43',''),
+    (37,33,3,'The name of the game','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:32:43','2018-09-30 22:32:43',''),
+    (38,12,5,'Chapter 6','',NULL,'folder',0,'list','',0,0,'2018-09-30 22:37:08','2018-09-30 22:37:08',''),
+    (39,38,0,'If something bad can happen, it will','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:37:08','2018-09-30 22:37:08',''),
+    (40,38,1,'Never smile at a crocodile','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:37:08','2018-09-30 22:37:08',''),
+    (41,38,2,'Decisions, decisions','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:37:08','2018-09-30 22:37:08',''),
+    (42,38,3,'What should I do?','',NULL,'cards',0,'list','',0,0,'2018-09-30 22:37:08','2018-09-30 22:37:08','');
 
 /*!40000 ALTER TABLE `bases` ENABLE KEYS */;
 UNLOCK TABLES;
