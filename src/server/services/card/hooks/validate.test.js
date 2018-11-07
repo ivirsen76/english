@@ -50,5 +50,6 @@ describe('validate', () => {
         validTranslate('Обычный текст')
         validTranslate('Обычный текст (with english inside brackets)')
         validTranslate('Обычный-текст, да: ты. Нет? Да! за; (with english inside brackets)')
+        validTranslate('Всё будет ВСЁ')
     })
 })

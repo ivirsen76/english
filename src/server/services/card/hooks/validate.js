@@ -34,7 +34,7 @@ const validate = values => {
 
         if (translate === '') {
             errors.translate = errorMessages.noTranslate
-        } else if (!/^[\s\dа-яА-Я.,\-!?;:'"]+$/.test(translate)) {
+        } else if (!/^[\s\dа-яА-ЯёЁ.,\-!?;:'"]+$/.test(translate)) {
             errors.translate = errorMessages.invalidTranslate
         }
     }
