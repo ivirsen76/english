@@ -12,6 +12,7 @@ import cookie from 'js-cookie'
 import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { setCurrentUserFromToken } from './utils/auth.js'
+import './json/mount.js'
 
 const start = async () => {
     const store = createStore(reducers)
