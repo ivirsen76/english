@@ -133,6 +133,14 @@ test('Should add card', async t => {
         .eql(1)
 })
 
+test('Should change cards words', async t => {
+    await t.navigateTo(url('/user/base/2'))
+    await t.typeText('textarea[name=words]', 'some')
+    await t.click(SaveButton)
+
+    await t.expect(await getNumRecords('bases', { id: 2, words: 'some' })).eql(1)
+})
+
 test('Should edit card', async t => {
     await t.navigateTo(url('/user/base/2'))
 

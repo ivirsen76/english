@@ -54,6 +54,11 @@ module.exports = function(sequelize) {
                 allowNull: false,
                 defaultValue: 0,
             },
+            words: {
+                type: Sequelize.TEXT('tiny'),
+                allowNull: false,
+                defaultValue: '',
+            },
         },
         {
             freezeTableName: true,

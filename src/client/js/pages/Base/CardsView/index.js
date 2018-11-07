@@ -9,7 +9,7 @@ import DeleteCard from './DeleteCard'
 import { addCard, deleteCard, updateCard, loadBaseCards } from 'client/js/reducers/base.js'
 import Loader from '@ieremeev/loader'
 import AudioLink from 'client/js/components/AudioLink'
-import { Formik, Form, Field, SemanticInput } from '@ieremeev/formik'
+import { Formik, Form, Field, SemanticInput, SemanticTextarea } from '@ieremeev/formik'
 import style from './style.module.css'
 
 export const errorMessages = {
@@ -103,7 +103,10 @@ class ShowBase extends React.Component {
                 <h2>{this.props.base.title}</h2>
                 <div className="margin1">
                     <Formik
-                        initialValues={{ title: this.props.base.title }}
+                        initialValues={{
+                            title: this.props.base.title,
+                            words: this.props.base.words,
+                        }}
                         isInitialValid
                         validate={validate}
                         onValidChange={this.updateBase}
@@ -115,6 +118,7 @@ class ShowBase extends React.Component {
                                     label="Title"
                                     autoFocus
                                 />
+                                <Field name="words" component={SemanticTextarea} label="Words" />
                             </Form>
                         )}
                     />

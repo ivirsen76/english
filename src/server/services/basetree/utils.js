@@ -31,6 +31,7 @@ const getUpdates = (originalList, list) => {
         'arrangeChildren',
         'isMain',
         'info',
+        'words',
         'price',
     ]
     const originalIds = originalList.map(item => item.id)
