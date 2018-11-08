@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import EditCard from 'client/js/pages/Cards/EditCard'
+import IconPencil from '@ieremeev/icons/pencil'
 
 export default class EditButton extends React.Component {
     static propTypes = {
@@ -10,7 +11,7 @@ export default class EditButton extends React.Component {
     render() {
         const trigger = (
             <button className="ui tiny green icon button">
-                <i className="icon-pencil" />
+                <IconPencil />
             </button>
         )
 

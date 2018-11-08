@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import IconArrowRight from '@ieremeev/icons/arrow-right'
 
 export default class NextButton extends React.Component {
     static propTypes = {
@@ -9,7 +10,7 @@ export default class NextButton extends React.Component {
     render() {
         return (
             <a className="circular ui huge icon button" onClick={this.props.onClick}>
-                <i className="icon-arrow-right" />
+                <IconArrowRight />
             </a>
         )
     }

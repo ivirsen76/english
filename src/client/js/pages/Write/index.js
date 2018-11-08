@@ -16,6 +16,7 @@ import DiffResult from './DiffResult'
 import NextButton from './NextButton'
 import { isTextEqual } from 'client/js/utils/text.js'
 import style from './index.module.scss'
+import IconPlay from '@ieremeev/icons/play3'
 
 class Component extends React.Component {
     static propTypes = {
@@ -117,7 +118,7 @@ class Component extends React.Component {
                     <div className={style.buttonWrapper}>
                         <NextButton goNext={this.goNext} />
                         <button className="huge circular ui icon button" onClick={this.playSound}>
-                            <i className="icon-play3" />
+                            <IconPlay />
                         </button>
                     </div>
                     {!isChecked ? (

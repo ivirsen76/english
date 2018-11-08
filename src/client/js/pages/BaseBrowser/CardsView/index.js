@@ -9,6 +9,7 @@ import Loader from '@ieremeev/loader'
 import notification from '@ieremeev/notification'
 import AudioLink from 'client/js/components/AudioLink'
 import { isLoggedIn } from 'client/js/utils/auth.js'
+import IconCheckmark from '@ieremeev/icons/checkmark'
 import classnames from 'classnames'
 
 class ShowBase extends React.Component {
@@ -69,9 +70,7 @@ class ShowBase extends React.Component {
                 label: 'Новое?',
                 className: 'center aligned',
                 render: (value, row) =>
-                    this.props.baseCardsToAdd.includes(row.id) ? (
-                        <i className="icon-checkmark" />
-                    ) : null,
+                    this.props.baseCardsToAdd.includes(row.id) ? <IconCheckmark /> : null,
             })
         }
 

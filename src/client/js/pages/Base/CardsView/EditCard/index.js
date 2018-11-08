@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Modal } from 'semantic-ui-react'
 import notification from '@ieremeev/notification'
 import Form from 'client/js/pages/Cards/AddCard/form.js'
+import IconPencil from '@ieremeev/icons/pencil'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -23,7 +24,7 @@ export default class Component extends React.Component {
                 className="ui green compact mini icon button"
                 id={`updateCardButton${this.props.id}`}
             >
-                <i className="icon-pencil" />
+                <IconPencil />
             </button>
         )
 

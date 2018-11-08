@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import IconPlay from '@ieremeev/icons/play3'
 
 export default class PlayButton extends React.Component {
     static propTypes = {
@@ -13,7 +14,7 @@ export default class PlayButton extends React.Component {
 
         return (
             <button className={classname} onClick={this.props.onClick}>
-                <i className="icon-play3" />
+                <IconPlay />
             </button>
         )
     }

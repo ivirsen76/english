@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ClickButton from '@ieremeev/button'
+import IconCross from '@ieremeev/icons/cross'
 
 export default class DeleteButton extends React.Component {
     static propTypes = {
@@ -17,7 +18,7 @@ export default class DeleteButton extends React.Component {
         return (
             <ClickButton
                 className="ui tiny red icon button"
-                title={<i className="icon-cross" />}
+                title={<IconCross />}
                 isConfirm
                 onClick={this.deleteCard}
             />

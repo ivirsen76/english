@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import notification from '@ieremeev/notification'
+import IconCross from '@ieremeev/icons/cross'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -20,7 +21,7 @@ export default class Component extends React.Component {
                 className="ui red compact mini icon button"
                 onClick={this.onClick}
             >
-                <i className="icon-cross" />
+                <IconCross />
             </button>
         )
     }

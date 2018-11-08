@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import IconCross from '@ieremeev/icons/cross'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -18,7 +19,7 @@ export default class Component extends React.Component {
                 id={`deleteCardButton${this.props.id}`}
                 onClick={this.onClick}
             >
-                <i className="icon-cross" />
+                <IconCross />
             </button>
         )
     }

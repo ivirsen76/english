@@ -26,6 +26,7 @@ import _pick from 'lodash/pick'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import Element from './Element'
+import IconCross from '@ieremeev/icons/cross'
 import style from './style.module.css'
 
 class Component extends React.Component {
@@ -86,7 +87,7 @@ class Component extends React.Component {
                         <div className={style.actions}>
                             {!this.props.protectedIds.includes(element.id) && (
                                 <div onClick={this.deleteBase.bind(this, element.id)}>
-                                    <i className="icon-cross" />
+                                    <IconCross />
                                 </div>
                             )}
                         </div>

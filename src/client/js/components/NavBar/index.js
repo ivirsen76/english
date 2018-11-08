@@ -3,6 +3,7 @@ import { Dropdown, Menu, Modal } from 'semantic-ui-react'
 import MenuLink from '../MenuLink'
 import LoginForm from 'client/js/components/LoginForm'
 import { isLoggedIn, getCurrentUser } from 'client/js/utils/auth.js'
+import IconUser from '@ieremeev/icons/user'
 
 export default class NavBar extends React.Component {
     render() {
@@ -29,7 +30,8 @@ export default class NavBar extends React.Component {
                             item
                             trigger={
                                 <span>
-                                    <i className="icon-user" /> {user.email}
+                                    <IconUser spaceRight />
+                                    {user.email}
                                 </span>
                             }
                         >

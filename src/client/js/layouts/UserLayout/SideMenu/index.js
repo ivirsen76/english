@@ -2,8 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu } from 'semantic-ui-react'
 import MenuLink from 'client/js/components/MenuLink'
-import Icon from './Icon'
 import { hasRole } from 'client/js/utils/auth.js'
+import IconDownload from '@ieremeev/icons/download'
+import IconBooks from '@ieremeev/icons/books'
+import IconBubble from '@ieremeev/icons/bubble2'
+import IconPencil from '@ieremeev/icons/pencil2'
+import IconStats from '@ieremeev/icons/stats-dots'
+import IconLibrary from '@ieremeev/icons/library'
 
 const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
     <Menu id="sideMenu" vertical fluid size="huge">
@@ -12,14 +17,14 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
 
             <Menu.Menu>
                 <MenuLink to="/user/cards">
-                    <Icon type="books" />
+                    <IconBooks spaceRight />
                     Мои слова
                     <div className="ui label" id="cardTotal">
                         {cardTotal}
                     </div>
                 </MenuLink>
                 <MenuLink to="/user/baseBrowser">
-                    <Icon type="download" />
+                    <IconDownload spaceRight />
                     Добавить из баз
                 </MenuLink>
             </Menu.Menu>
@@ -30,12 +35,12 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
 
             <Menu.Menu>
                 <MenuLink to="/user/remember">
-                    <Icon type="bubble2" />
+                    <IconBubble spaceRight />
                     Запомнить
                     <div className="ui label">{cardRememberTotal}</div>
                 </MenuLink>
                 <MenuLink to="/user/write">
-                    <Icon type="pencil2" />
+                    <IconPencil spaceRight />
                     Написать
                     <div className="ui label">{cardWriteTotal}</div>
                 </MenuLink>
@@ -52,11 +57,11 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
 
                 <Menu.Menu>
                     <MenuLink to="/user/statistics">
-                        <Icon type="stats-dots" />
+                        <IconStats spaceRight />
                         Статистика
                     </MenuLink>
                     <MenuLink to="/user/base">
-                        <Icon type="library" />
+                        <IconLibrary spaceRight />
                         Базы
                     </MenuLink>
                 </Menu.Menu>

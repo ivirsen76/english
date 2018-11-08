@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import IconPause from '@ieremeev/icons/pause2'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -13,7 +14,7 @@ export default class Component extends React.Component {
 
         return (
             <button className={classname} onClick={this.props.onClick}>
-                <i className="icon-pause2" />
+                <IconPause />
             </button>
         )
     }
