@@ -10,7 +10,6 @@ import { addCard, deleteCard, updateCard, loadBaseCards } from 'client/js/reduce
 import Loader from '@ieremeev/loader'
 import AudioLink from 'client/js/components/AudioLink'
 import { Formik, Form, Field, SemanticInput, SemanticTextarea } from '@ieremeev/formik'
-import WordHelper from './WordHelper'
 import style from './style.module.css'
 
 export const errorMessages = {
@@ -123,10 +122,9 @@ class ShowBase extends React.Component {
                             </Form>
                         )}
                     />
-                    <WordHelper base={this.props.base} />
                 </div>
                 <div className="margin1">
-                    <AddCard addCard={this.addCard} />
+                    <AddCard addCard={this.addCard} base={this.props.base} />
                 </div>
                 <Loader type="inline" loading={this.state.loading}>
                     <Table data={this.props.list} columns={columns} showRowNumber />

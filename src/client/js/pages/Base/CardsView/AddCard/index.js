@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 import { Modal } from 'semantic-ui-react'
 import notification from '@ieremeev/notification'
 import Form from 'client/js/pages/Cards/AddCard/form.js'
+import WordHelper from '../WordHelper'
 
 export default class Component extends React.Component {
     static propTypes = {
+        base: PropTypes.object,
         addCard: PropTypes.func,
     }
 
@@ -30,6 +32,7 @@ export default class Component extends React.Component {
             <Modal size="small" closeIcon trigger={trigger}>
                 <Modal.Header>Добавить слово</Modal.Header>
                 <Modal.Content>
+                    <WordHelper base={this.props.base} />
                     <div key={this.state.count}>
                         <Form
                             form={'addCardForBase' + this.state.count}
