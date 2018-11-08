@@ -13,6 +13,7 @@ import reducer, {
     addElement,
     updateBaseIds,
     toggleShowBaseSettings,
+    toggleShowWordHelper,
 } from './base'
 
 describe('setLoadingBasesState()', () => {
@@ -347,5 +348,21 @@ describe('toggleShowBaseSettings()', () => {
         }
         const resultedState = reducer(state, toggleShowBaseSettings())
         expect(resultedState.showBaseSettings).toBe(false)
+    })
+})
+
+describe('toggleShowWordHelper()', () => {
+    it('Should toggle show word helper to false', () => {
+        const state = {
+            showWordHelper: true,
+        }
+        expect(reducer(state, toggleShowWordHelper()).showWordHelper).toBe(false)
+    })
+
+    it('Should toggle show word helper to true', () => {
+        const state = {
+            showWordHelper: false,
+        }
+        expect(reducer(state, toggleShowWordHelper()).showWordHelper).toBe(true)
     })
 })
