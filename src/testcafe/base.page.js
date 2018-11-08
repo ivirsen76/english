@@ -26,6 +26,9 @@ const BaseTitle = Selector('h2#baseTitle')
 const BaseSettings = Selector('#baseSettings')
 const ListButton = Selector('button').withText('List')
 const TableButton = Selector('button').withText('Table')
+const InSentenceWords = Selector('#inSentenceWords')
+const AdjectiveWords = Selector('#adjectiveWords')
+const OtherWords = Selector('#otherWords')
 
 test('Should render base title', async t => {
     await t.navigateTo(url('/user/base'))
@@ -135,10 +138,22 @@ test('Should add card', async t => {
 
 test('Should change cards words', async t => {
     await t.navigateTo(url('/user/base/2'))
-    await t.typeText('textarea[name=words]', 'some')
+    await t.typeText('textarea[name=words]', 'some', { paste: true })
     await t.click(SaveButton)
 
     await t.expect(await getNumRecords('bases', { id: 2, words: 'some' })).eql(1)
+})
+
+test('Should see used words', async t => {
+    await t.navigateTo(url('/user/base/2'))
+    await t.typeText('textarea[name=words]', 'come on, moreover, personal, calendar', {
+        paste: true,
+    })
+
+    await t.expect(InSentenceWords.innerText).contains('moreover')
+    await t.expect(AdjectiveWords.innerText).contains('personal')
+    await t.expect(OtherWords.innerText).contains('come on')
+    await t.expect(OtherWords.innerText).notContains('calendar')
 })
 
 test('Should edit card', async t => {
