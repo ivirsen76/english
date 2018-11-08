@@ -13,17 +13,20 @@ class WordHelper extends React.Component {
     }
 
     getWords = () => {
+        const getBaseWord = word => word[1]
+        const isInSentence = word => inSentence.includes(word[0])
+        const isAdjective = word => adjectives.includes(word[0])
+        const isOther = word => word[0] && !isInSentence(word) && !isAdjective(word)
+
         const words = this.props.base.words
             .split(',')
-            .map(item => item.toLowerCase().trim())
-            .filter(item => !this.props.existingWords.includes(item))
+            .map(item => [item.trim().toLowerCase(), item.trim()])
+            .filter(item => !this.props.existingWords.includes(item[0]))
 
         const result = {}
-        result.inSentence = words.filter(word => inSentence.includes(word))
-        result.adjectives = words.filter(word => adjectives.includes(word))
-        result.others = words.filter(
-            word => word && !inSentence.includes(word) && !adjectives.includes(word)
-        )
+        result.inSentence = words.filter(isInSentence).map(getBaseWord)
+        result.adjectives = words.filter(isAdjective).map(getBaseWord)
+        result.others = words.filter(isOther).map(getBaseWord)
 
         return result
     }
