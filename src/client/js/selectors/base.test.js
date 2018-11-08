@@ -7,6 +7,7 @@ import {
     getHasTreeChanges,
     getProtectedIds,
     getSavingList,
+    getWords,
 } from './base'
 
 describe('getSortedList()', () => {
@@ -155,5 +156,19 @@ describe('getSavingList()', () => {
             { id: 3, price: 10, info: 'some' },
         ]
         expect(getSavingList(state)).toEqual(expectedList)
+    })
+})
+
+describe('getWords', () => {
+    it('Should return words', () => {
+        const state = {
+            cards: [
+                { id: 1, text: 'Some Stuff (figure)' },
+                { id: 2, text: 'Another stuff' },
+                { id: 3, text: 'More, than usual!' },
+            ],
+        }
+        const expectedResult = ['some', 'stuff', 'another', 'more', 'than', 'usual']
+        expect(getWords(state)).toEqual(expectedResult)
     })
 })
