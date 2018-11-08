@@ -38,7 +38,7 @@
         "@ieremeev/button": "^2.0.3",
         "@ieremeev/formik": "^1.4.0",
         "@ieremeev/hidden-block": "^1.0.1",
-        "@ieremeev/icons": "^1.0.5",
+        "@ieremeev/icons": "^1.1.0",
         "@ieremeev/loader": "^1.2.2",
         "@ieremeev/notification": "^2.0.6",
         "@ieremeev/semantic-ui": "^1.0.2",
