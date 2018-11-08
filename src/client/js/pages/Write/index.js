@@ -16,7 +16,7 @@ import DiffResult from './DiffResult'
 import NextButton from './NextButton'
 import { isTextEqual } from 'client/js/utils/text.js'
 import style from './index.module.scss'
-import IconPlay from '@ieremeev/icons/play3'
+import IconPlay from '@ieremeev/icons/play4'
 
 class Component extends React.Component {
     static propTypes = {

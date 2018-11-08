@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import IconPlay from '@ieremeev/icons/play3'
+import IconPlay from '@ieremeev/icons/play4'
 
 export default class PlayButton extends React.Component {
     static propTypes = {

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import IconArrowRight from '@ieremeev/icons/arrow-right'
+import IconArrowRight from '@ieremeev/icons/arrow-right6'
 
 export default class NextButton extends React.Component {
     static propTypes = {
