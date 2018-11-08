@@ -1,15 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import HiddenBlock from '@ieremeev/hidden-block'
 import adjectives from 'client/js/json/adjectives.json'
 import inSentence from 'client/js/json/inSentence.json'
 import { connect } from 'react-redux'
 import { getWords } from 'client/js/selectors/base.js'
+import { toggleShowWordHelper } from 'client/js/reducers/base.js'
 import style from './style.module.css'
 
 class WordHelper extends React.Component {
     static propTypes = {
         base: PropTypes.object,
         existingWords: PropTypes.array,
+        showWordHelper: PropTypes.bool,
+        toggleShowWordHelper: PropTypes.func,
     }
 
     getWords = () => {
@@ -41,28 +45,35 @@ class WordHelper extends React.Component {
         const words = this.getWords()
 
         return (
-            <table className="ui celled compact table">
-                <thead>
-                    <tr>
-                        <th>Use in sentence</th>
-                        <th>Adjectives</th>
-                        <th>Others</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="inSentenceWords">{words.inSentence.map(this.renderWord)}</td>
-                        <td id="adjectiveWords">{words.adjectives.map(this.renderWord)}</td>
-                        <td id="otherWords">{words.others.map(this.renderWord)}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <HiddenBlock
+                title="Word helper"
+                show={this.props.showWordHelper}
+                handleClick={this.props.toggleShowWordHelper}
+            >
+                <table className="ui celled compact table">
+                    <thead>
+                        <tr>
+                            <th>Use in sentence</th>
+                            <th>Adjectives</th>
+                            <th>Others</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="inSentenceWords">{words.inSentence.map(this.renderWord)}</td>
+                            <td id="adjectiveWords">{words.adjectives.map(this.renderWord)}</td>
+                            <td id="otherWords">{words.others.map(this.renderWord)}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </HiddenBlock>
         )
     }
 }
 
 const mapStateToProps = (state, props) => ({
+    showWordHelper: state.app.base.showWordHelper,
     existingWords: getWords(state.app.base),
 })
 
-export default connect(mapStateToProps)(WordHelper)
+export default connect(mapStateToProps, { toggleShowWordHelper })(WordHelper)

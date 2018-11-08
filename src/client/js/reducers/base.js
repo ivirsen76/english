@@ -4,7 +4,7 @@ import _pick from 'lodash/pick'
 import _isEmpty from 'lodash/isEmpty'
 import { getSavingList } from 'client/js/selectors/base.js'
 
-export const persistedKeys = ['showBaseSettings']
+export const persistedKeys = ['showBaseSettings', 'showWordHelper']
 export const startNewId = 1000000000
 
 // Initial state

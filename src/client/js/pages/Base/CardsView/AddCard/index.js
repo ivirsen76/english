@@ -32,7 +32,9 @@ export default class Component extends React.Component {
             <Modal size="small" closeIcon trigger={trigger}>
                 <Modal.Header>Добавить слово</Modal.Header>
                 <Modal.Content>
-                    <WordHelper base={this.props.base} />
+                    <div style={{ marginBottom: '1em' }}>
+                        <WordHelper base={this.props.base} />
+                    </div>
                     <div key={this.state.count}>
                         <Form
                             form={'addCardForBase' + this.state.count}
