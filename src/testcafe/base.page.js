@@ -146,12 +146,13 @@ test('Should change cards words', async t => {
 
 test('Should see used words', async t => {
     await t.navigateTo(url('/user/base/2'))
-    await t.typeText('textarea[name=words]', 'come on, moreover, personal, calendar', {
+    await t.typeText('textarea[name=words]', 'come on, moreover, Personal, calendar', {
         paste: true,
     })
+    await t.click(AddCardButton)
 
     await t.expect(InSentenceWords.innerText).contains('moreover')
-    await t.expect(AdjectiveWords.innerText).contains('personal')
+    await t.expect(AdjectiveWords.innerText).contains('Personal')
     await t.expect(OtherWords.innerText).contains('come on')
     await t.expect(OtherWords.innerText).notContains('calendar')
 })
