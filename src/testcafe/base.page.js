@@ -155,6 +155,11 @@ test('Should see used words', async t => {
     await t.expect(AdjectiveWords.innerText).contains('Personal')
     await t.expect(OtherWords.innerText).contains('come on')
     await t.expect(OtherWords.innerText).notContains('calendar')
+
+    const Moreover = Selector('.ui.label').withText('moreover')
+    await t.typeText('input[name=text]', 'Another ')
+    await t.click(Moreover)
+    await t.expect(Selector('input[name=text]').value).eql('Another moreover')
 })
 
 test('Should edit card', async t => {

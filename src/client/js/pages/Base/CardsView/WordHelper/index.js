@@ -14,6 +14,7 @@ class WordHelper extends React.Component {
         existingWords: PropTypes.array,
         showWordHelper: PropTypes.bool,
         toggleShowWordHelper: PropTypes.func,
+        onClick: PropTypes.func,
     }
 
     getWords = () => {
@@ -36,7 +37,11 @@ class WordHelper extends React.Component {
     }
 
     renderWord = word => (
-        <div key={word} className={`ui label ${style.word}`}>
+        <div
+            key={word}
+            className={`ui label ${style.word}`}
+            onClick={this.props.onClick.bind(null, word)}
+        >
             {word}
         </div>
     )

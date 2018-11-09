@@ -21,6 +21,17 @@ export default class Component extends React.Component {
         this.setState({ count: this.state.count + 1 })
     }
 
+    addWord = word => {
+        const input = document.getElementById('inputText')
+        if (!input) {
+            console.error('There is no input with id="inputText"')
+            return
+        }
+
+        input.value += word
+        input.focus()
+    }
+
     render() {
         const trigger = (
             <button id="addCardButton" className="ui compact primary button">
@@ -33,7 +44,7 @@ export default class Component extends React.Component {
                 <Modal.Header>Добавить слово</Modal.Header>
                 <Modal.Content>
                     <div style={{ marginBottom: '1em' }}>
-                        <WordHelper base={this.props.base} />
+                        <WordHelper base={this.props.base} onClick={this.addWord} />
                     </div>
                     <div key={this.state.count}>
                         <Form
