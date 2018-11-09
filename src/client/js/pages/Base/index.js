@@ -113,12 +113,13 @@ class Component extends React.Component {
         }
     }
 
-    onElementClick = element => {
+    onElementClick = (expandElement, element) => {
         let parentId = 0
         if (this.props.base.type === 'folder') {
             parentId = this.props.base.id
         }
         this.props.addElement({ element, parentId })
+        expandElement(parentId)
     }
 
     render() {
@@ -129,35 +130,44 @@ class Component extends React.Component {
                 <h2>Bases</h2>
                 <div className={style.grid}>
                     <div className={style.tree}>
-                        <div className={style.topArea}>
-                            <div className={style.elementArea}>
-                                <Element
-                                    element={{ type: 'folder', title: 'Folder' }}
-                                    onClick={this.onElementClick}
-                                />
-                                <Element
-                                    element={{ type: 'cards', title: 'Cards' }}
-                                    onClick={this.onElementClick}
-                                />
-                            </div>
-                            <div>
-                                <button
-                                    id="saveButton"
-                                    onClick={this.props.saveBaseTree}
-                                    className={`fluid compact ui ${
-                                        hasTreeChanges ? 'orange' : ''
-                                    } button`}
-                                >
-                                    Save
-                                </button>
-                            </div>
-                        </div>
-
                         <Tree
                             tree={this.getTree()}
                             dragDropType="BUILDER"
                             onDrop={this.onDrop}
                             indentSize={20}
+                            render={({ tree, expandElement }) => {
+                                const onElementClick = this.onElementClick.bind(this, expandElement)
+
+                                return (
+                                    <div>
+                                        <div className={style.topArea}>
+                                            <div className={style.elementArea}>
+                                                <Element
+                                                    element={{ type: 'folder', title: 'Folder' }}
+                                                    onClick={onElementClick}
+                                                />
+                                                <Element
+                                                    element={{ type: 'cards', title: 'Cards' }}
+                                                    onClick={onElementClick}
+                                                />
+                                            </div>
+                                            <div>
+                                                <button
+                                                    id="saveButton"
+                                                    onClick={this.props.saveBaseTree}
+                                                    className={`fluid compact ui ${
+                                                        hasTreeChanges ? 'orange' : ''
+                                                    } button`}
+                                                >
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        {tree}
+                                    </div>
+                                )
+                            }}
                         />
                     </div>
                     {base.id !== 0 && (
