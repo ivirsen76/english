@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.39)
 # Database: feather
-# Generation Time: 2018-11-07 20:15:39 +0000
+# Generation Time: 2018-11-10 02:37:53 +0000
 # ************************************************************
 
 
@@ -42,7 +42,8 @@ VALUES
     ('20170701065301-add-write-fields.js'),
     ('20170924155242-add-bases-table.js'),
     ('20170924164013-add-basecards-table.js'),
-    ('20181107181837-add-words-column-for-bases-table.js');
+    ('20181107181837-add-words-column-for-bases-table.js'),
+    ('20181107189999-change-words-column-for-bases-table.js');
 
 /*!40000 ALTER TABLE `_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -112,7 +113,7 @@ CREATE TABLE `bases` (
   `price` int(11) NOT NULL DEFAULT '0',
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `words` tinytext NOT NULL,
+  `words` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

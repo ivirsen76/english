@@ -114,7 +114,15 @@ describe('basetree', () => {
             await request
                 .post('/api/basetree')
                 .send([
-                    { type: 'folder', title: 'Folder', id: 1000000000, parentId: 0, position: 0 },
+                    {
+                        type: 'folder',
+                        title: 'Folder',
+                        id: 1000000000,
+                        parentId: 0,
+                        position: 0,
+                        words:
+                            'fresh, frozen, low-fat, raw, spice, takeaway, tinned, squid, chicken, spicy, grilled, beef, steamed, beans, breakfast, prawns, salmon, lamb, cabbage, margarine, carton, jar, warm, sausages, roast, chocolate, box, raw, fork, boiled, salt, cook, sugar, mushrooms, food, cucumber, beetroot, fruit, duck',
+                    },
                 ])
                 .set('Authorization', token)
                 .expect(201)

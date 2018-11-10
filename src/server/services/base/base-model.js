@@ -55,7 +55,7 @@ module.exports = function(sequelize) {
                 defaultValue: 0,
             },
             words: {
-                type: Sequelize.TEXT('tiny'),
+                type: Sequelize.TEXT('medium'),
                 allowNull: false,
                 defaultValue: '',
             },
