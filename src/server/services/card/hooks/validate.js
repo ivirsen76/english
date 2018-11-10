@@ -48,7 +48,7 @@ const validateCreate = options => async hook => {
         const { total } = await hook.service.find({
             query: {
                 userId: hook.data.userId,
-                text: hook.data.text,
+                text: hook.data.text.trim(),
                 $select: ['id'],
             },
         })

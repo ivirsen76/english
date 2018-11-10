@@ -6,8 +6,14 @@ const { stripBrackets } = require('../../../utils.js')
 module.exports = options => async hook => {
     try {
         const id = hook.id
-        const { text, translate, status, writeRightAttempts } = hook.data
+        const { status, writeRightAttempts } = hook.data
+        const text = hook.data.text.trim()
+        const translate = hook.data.translate.trim()
         const { dataValues: currentData } = await hook.service.get(id)
+
+        // save trimmed values
+        hook.data.text = text
+        hook.data.translate = translate
 
         // restrict only to these fields
         hook.data = _pick(hook.data, ['text', 'translate', 'label', 'status', 'writeRightAttempts'])
