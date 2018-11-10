@@ -32,7 +32,17 @@ export default class Component extends React.Component {
             return
         }
 
+        // This is a hack method to change React input value directly
+        const lastValue = input.value
         input.value += word
+        const event = new Event('input', { bubbles: true })
+        event.simulated = true
+        const tracker = input._valueTracker
+        if (tracker) {
+            tracker.setValue(lastValue)
+        }
+        input.dispatchEvent(event)
+
         input.focus()
     }
 

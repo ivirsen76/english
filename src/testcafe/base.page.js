@@ -30,9 +30,6 @@ const BaseTitle = Selector('h2#baseTitle')
 const BaseSettings = Selector('#baseSettings')
 const ListButton = Selector('button').withText('List')
 const TableButton = Selector('button').withText('Table')
-const InSentenceWords = Selector('#inSentenceWords')
-const AdjectiveWords = Selector('#adjectiveWords')
-const OtherWords = Selector('#otherWords')
 const Modal = Selector('.ui.modal')
 
 test('Should render base title', async t => {
@@ -197,14 +194,21 @@ test('Should see used words', async t => {
     await t.typeText('textarea[name=words]', 'come on, moreover, Personal, calendar', {
         paste: true,
     })
+    await t.expect(Selector('#table_inSentenceWords').innerText).contains('moreover')
+    await t.expect(Selector('#table_adjectiveWords').innerText).contains('Personal')
+    await t.expect(Selector('#table_otherWords').innerText).contains('come on')
+    await t.expect(Selector('#table_otherWords').innerText).notContains('calendar')
+
     await t.click(AddCardButton)
 
-    await t.expect(InSentenceWords.innerText).contains('moreover')
-    await t.expect(AdjectiveWords.innerText).contains('Personal')
-    await t.expect(OtherWords.innerText).contains('come on')
-    await t.expect(OtherWords.innerText).notContains('calendar')
+    await t.expect(Selector('#inSentenceWords').innerText).contains('moreover')
+    await t.expect(Selector('#adjectiveWords').innerText).contains('Personal')
+    await t.expect(Selector('#otherWords').innerText).contains('come on')
+    await t.expect(Selector('#otherWords').innerText).notContains('calendar')
 
-    const Moreover = Selector('.ui.label').withText('moreover')
+    const Moreover = Selector('#inSentenceWords')
+        .find('.ui.label')
+        .withText('moreover')
     await t.typeText('input[name=text]', 'Another ')
     await t.click(Moreover)
     await t.expect(Selector('input[name=text]').value).eql('Another moreover')

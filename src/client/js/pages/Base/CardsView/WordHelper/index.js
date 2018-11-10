@@ -15,6 +15,12 @@ class WordHelper extends React.Component {
         showWordHelper: PropTypes.bool,
         toggleShowWordHelper: PropTypes.func,
         onClick: PropTypes.func,
+        idPrefix: PropTypes.string,
+    }
+
+    static defaultProps = {
+        idPrefix: '',
+        onClick: () => {},
     }
 
     getWords = () => {
@@ -47,12 +53,13 @@ class WordHelper extends React.Component {
     )
 
     render() {
+        const { idPrefix, showWordHelper } = this.props
         const words = this.getWords()
 
         return (
             <HiddenBlock
                 title="Word helper"
-                show={this.props.showWordHelper}
+                show={showWordHelper}
                 handleClick={this.props.toggleShowWordHelper}
             >
                 <table className="ui celled compact table">
@@ -65,9 +72,19 @@ class WordHelper extends React.Component {
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="inSentenceWords">{words.inSentence.map(this.renderWord)}</td>
-                            <td id="adjectiveWords">{words.adjectives.map(this.renderWord)}</td>
-                            <td id="otherWords">{words.others.map(this.renderWord)}</td>
+                            <td id={`${idPrefix}inSentenceWords`}>
+                                {words.inSentence.length > 0
+                                    ? words.inSentence.map(this.renderWord)
+                                    : '-'}
+                            </td>
+                            <td id={`${idPrefix}adjectiveWords`}>
+                                {words.adjectives.length > 0
+                                    ? words.adjectives.map(this.renderWord)
+                                    : '-'}
+                            </td>
+                            <td id={`${idPrefix}otherWords`}>
+                                {words.others.length > 0 ? words.others.map(this.renderWord) : '-'}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
