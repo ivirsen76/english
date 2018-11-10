@@ -1,14 +1,4 @@
-import { validate, errorMessages, stripBrackets } from './validate.js'
-
-describe('stripBrackets()', () => {
-    it('Should strip brackets', () => {
-        expect(stripBrackets('some (one)')).toBe('some')
-    })
-
-    it('Should strip brackets with brackets inside', () => {
-        expect(stripBrackets('some (on(e)two)')).toBe('some two)')
-    })
-})
+import { validate, errorMessages } from './validate.js'
 
 describe('validate', () => {
     function invalidText(text, message) {

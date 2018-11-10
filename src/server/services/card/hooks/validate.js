@@ -1,7 +1,6 @@
 const { BadRequest } = require('feathers-errors')
 const _isEmpty = require('lodash/isEmpty')
-
-const stripBrackets = text => text.replace(/\([^)]*\)/g, '').trim()
+const { stripBrackets } = require('../../../utils.js')
 
 const errorMessages = {
     noText: 'Text is required',

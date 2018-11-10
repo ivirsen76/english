@@ -1,5 +1,5 @@
 const _pick = require('lodash/pick')
-const { stripBrackets } = require('../card/hooks/validate.js')
+const { stripBrackets } = require('../../utils.js')
 
 class Service {
     setup(app) {
