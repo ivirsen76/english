@@ -1,6 +1,7 @@
 const generateMp3 = require('./generateMp3')
 const removeMp3 = require('./removeMp3')
 const _pick = require('lodash/pick')
+const { stripBrackets } = require('../../../utils.js')
 
 module.exports = options => async hook => {
     try {
@@ -12,23 +13,25 @@ module.exports = options => async hook => {
         hook.data = _pick(hook.data, ['text', 'translate', 'label', 'status', 'writeRightAttempts'])
 
         if (process.env.NODE_ENV !== 'test') {
-            // Check if we need new sound
+            const stripedText = stripBrackets(text)
+            const stripedTranslate = stripBrackets(translate)
+
             const generates = []
-            const removes = []
             if (text && currentData.text !== text) {
-                removes.push(removeMp3(currentData.ukSoundFile))
-                removes.push(removeMp3(currentData.usSoundFile))
-                generates.push(generateMp3(`sounds/users/${currentData.userId}`, text, 'uk'))
-                generates.push(generateMp3(`sounds/users/${currentData.userId}`, text, 'us'))
+                await removeMp3(currentData.ukSoundFile)
+                await removeMp3(currentData.usSoundFile)
+                generates.push(generateMp3(`sounds/users/${currentData.userId}`, stripedText, 'uk'))
+                generates.push(generateMp3(`sounds/users/${currentData.userId}`, stripedText, 'us'))
             }
             if (translate && currentData.translate !== translate) {
-                removes.push(removeMp3(currentData.ruSoundFile))
-                generates.push(generateMp3(`sounds/users/${currentData.userId}`, translate, 'ru'))
+                await removeMp3(currentData.ruSoundFile)
+                generates.push(
+                    generateMp3(`sounds/users/${currentData.userId}`, stripedTranslate, 'ru')
+                )
             }
 
             // Add new sounds
             if (generates.length > 0) {
-                await Promise.all(removes)
                 const results = await Promise.all(generates)
 
                 results.forEach(result => {

@@ -5,14 +5,17 @@ module.exports = options => async hook => {
     try {
         const { text, translate, userId } = hook.data
 
+        hook.data.text = text.trim()
+        hook.data.translate = translate.trim()
+
         if (process.env.NODE_ENV !== 'test') {
-            const adjustedText = stripBrackets(text)
-            const adjustedTranslate = stripBrackets(translate)
+            const stripedText = stripBrackets(text)
+            const stripedTranslate = stripBrackets(translate)
 
             const results = await Promise.all([
-                generateMp3(`sounds/users/${userId}`, adjustedText, 'uk'),
-                generateMp3(`sounds/users/${userId}`, adjustedText, 'us'),
-                generateMp3(`sounds/users/${userId}`, adjustedTranslate, 'ru'),
+                generateMp3(`sounds/users/${userId}`, stripedText, 'uk'),
+                generateMp3(`sounds/users/${userId}`, stripedText, 'us'),
+                generateMp3(`sounds/users/${userId}`, stripedTranslate, 'ru'),
             ])
 
             results.forEach(result => {
