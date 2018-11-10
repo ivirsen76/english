@@ -4,8 +4,13 @@ const removeMp3 = require('../../card/hooks/removeMp3')
 module.exports = options => async hook => {
     try {
         const id = hook.id
-        const { text, translate } = hook.data
+        const text = hook.data.text.trim()
+        const translate = hook.data.translate.trim()
         const { dataValues: currentData } = await hook.service.get(id)
+
+        // save trimmed values
+        hook.data.text = text
+        hook.data.translate = translate
 
         if (process.env.NODE_ENV !== 'test') {
             // Check if we need new sound
