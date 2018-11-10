@@ -36,7 +36,7 @@
         "@ieremeev/axios": "^1.1.2",
         "@ieremeev/boilerplate": "^2.1.2",
         "@ieremeev/button": "^2.0.3",
-        "@ieremeev/formik": "^1.5.0",
+        "@ieremeev/formik": "^1.5.1",
         "@ieremeev/hidden-block": "^1.0.3",
         "@ieremeev/icons": "^1.2.1",
         "@ieremeev/loader": "^1.2.2",

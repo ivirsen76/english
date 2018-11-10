@@ -26,8 +26,14 @@ export default class AddCardForm extends React.Component {
                             component={SemanticInput}
                             label="Text"
                             autoFocus
+                            autoComplete="off"
                         />
-                        <Field name="translate" component={SemanticInput} label="Translation" />
+                        <Field
+                            name="translate"
+                            component={SemanticInput}
+                            label="Translation"
+                            autoComplete="off"
+                        />
                         {!this.props.hideLabel && (
                             <Field name="label" component={SemanticInput} label="Tag" />
                         )}
