@@ -1,4 +1,5 @@
-const { IE_LAME_PATH = '/usr/bin/lame', IE_MEDIAINFO_PATH = '/usr/bin/mediainfo' } = process.env
+const IE_LAME_PATH = process.env.IE_LAME_PATH || '/usr/bin/lame'
+const IE_MEDIAINFO_PATH = process.env.IE_MEDIAINFO_PATH || '/usr/bin/mediainfo'
 
 const stripBrackets = text => text.replace(/\([^)]*\)/g, '').trim()
 
