@@ -50,9 +50,9 @@ class ShowBase extends React.Component {
         }
     }
 
-    addCard = values => {
+    addCard = async values => {
         const baseId = this.props.base.id
-        this.props.addCard({ ...values, baseId })
+        await this.props.addCard({ ...values, baseId })
     }
 
     updateBase = values => {

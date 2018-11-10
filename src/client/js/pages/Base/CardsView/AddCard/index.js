@@ -15,10 +15,14 @@ export default class Component extends React.Component {
         count: 1,
     }
 
-    handleSubmit = values => {
-        this.props.addCard(values)
-        notification('Card has been added')
-        this.setState({ count: this.state.count + 1 })
+    handleSubmit = async values => {
+        try {
+            await this.props.addCard(values)
+            notification('Card has been added')
+            this.setState({ count: this.state.count + 1 })
+        } catch (errors) {
+            throw errors
+        }
     }
 
     addWord = word => {
