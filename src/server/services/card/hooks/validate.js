@@ -92,4 +92,3 @@ module.exports.validateCreate = validateCreate
 module.exports.validatePatch = validatePatch
 module.exports.validate = validate
 module.exports.errorMessages = errorMessages
-module.exports.stripBrackets = stripBrackets
