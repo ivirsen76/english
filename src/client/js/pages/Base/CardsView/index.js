@@ -129,7 +129,14 @@ class ShowBase extends React.Component {
                     <AddCard addCard={this.addCard} base={this.props.base} />
                 </div>
                 <Loader type="inline" loading={this.state.loading}>
-                    <Table data={this.props.list} columns={columns} perPage={500} showRowNumber />
+                    <Table
+                        data={this.props.list}
+                        columns={columns}
+                        perPage={500}
+                        showRowNumber
+                        orderBy="createdAt"
+                        isAscentOrder={false}
+                    />
                 </Loader>
             </div>
         )
