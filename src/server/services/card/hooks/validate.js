@@ -49,6 +49,7 @@ const validateCreate = options => async hook => {
             query: {
                 userId: hook.data.userId,
                 text: hook.data.text,
+                $select: ['id'],
             },
         })
         if (total > 0) {
