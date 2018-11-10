@@ -1,15 +1,19 @@
 import { Selector } from 'testcafe'
 import { studentUser } from './roles.js'
-import { restoreDb, restoreSamples, getNumRecords } from './db/utils.js'
+import { restoreDb, restoreSamples, getNumRecords, getRecord } from './db/utils.js'
 import { url } from './config.js'
 import { ReactSelector } from 'testcafe-react-selectors'
 
-fixture('Cards page').beforeEach(async t => {
-    restoreDb()
-    restoreSamples()
-    await t.useRole(studentUser)
-    await t.navigateTo(url('/user/cards'))
-})
+fixture('Cards page')
+    .beforeEach(async t => {
+        restoreDb()
+        restoreSamples()
+        await t.useRole(studentUser)
+        await t.navigateTo(url('/user/cards'))
+    })
+    .afterEach(t => {
+        restoreSamples()
+    })
 
 // Selectors
 const Modal = Selector('.ui.modal')
@@ -37,7 +41,7 @@ test('Should show validation error when adding a card', async t => {
 
 test('Should show duplication error when adding a card', async t => {
     await t.click(AddCardButton)
-    await t.typeText(TextInput, 'text')
+    await t.typeText(TextInput, ' text ')
     await t.typeText(TranslateInput, 'перевод')
 
     await t.click(AddCardSubmitButton)
@@ -45,16 +49,33 @@ test('Should show duplication error when adding a card', async t => {
 })
 
 test('Should add card', async t => {
+    const text = 'new card (and more words which should not be in the sound)'
+    const translate = 'новая карточка (и еще много всяких слов, которые не должны быть в звуке)'
+
     await t.click(AddCardButton)
-    await t.typeText(TextInput, 'new card')
-    await t.typeText(TranslateInput, 'новая карточка')
+    await t.typeText(TextInput, text, { paste: true })
+    await t.typeText(TranslateInput, translate, { paste: true })
 
     await t.click(AddCardSubmitButton)
     await t.expect(Alert.innerText).contains('has been added')
-    await t.expect(Table.innerText).contains('new card')
-    await t.expect(Table.innerText).contains('новая карточка')
+    await t.expect(Table.innerText).contains(text)
+    await t.expect(Table.innerText).contains(translate)
     await t.expect(CardTotalBadge.innerText).contains('9')
 
+    await t.expect(await getNumRecords('cards', { text, translate })).eql(1)
+
+    const record = await getRecord('cards', { text, translate })
+    await t.expect(record.ukSoundLength).lt(2000)
+    await t.expect(record.usSoundLength).lt(2000)
+    await t.expect(record.ruSoundLength).lt(2000)
+})
+
+test('Should strip spaces when adding card', async t => {
+    await t.click(AddCardButton)
+    await t.typeText(TextInput, ' new card ', { paste: true })
+    await t.typeText(TranslateInput, ' новая карточка ', { paste: true })
+
+    await t.click(AddCardSubmitButton)
     await t
         .expect(await getNumRecords('cards', { text: 'new card', translate: 'новая карточка' }))
         .eql(1)
@@ -68,29 +89,50 @@ test('Should show validation error when updating card', async t => {
     await t.expect(Modal.innerText).contains('Text has to be in English')
 })
 
-test('Should show duplication error when editing a card', async t => {
+test('Should show duplication error when updating a card', async t => {
     await t.click(Selector('#updateCardButton19'))
-    await t.typeText(TextInput, 'text', { replace: true })
+    await t.typeText(TextInput, ' text ', { replace: true })
 
     await t.click(UpdateCardSubmitButton)
     await t.expect(Modal.innerText).contains('Text already exists')
 })
 
 test('Should update card', async t => {
+    const text = 'updated card (and more words which should not be in the sound)'
+    const translate =
+        'обновлённая карточка (и еще много всяких слов, которые не должны быть в звуке)'
+
     await t.click(Selector('#updateCardButton19'))
-    await t.typeText(TextInput, 'updated card', { replace: true })
-    await t.typeText(TranslateInput, 'обновленная карточка', { replace: true })
+    await t.typeText(TextInput, text, { replace: true, paste: true })
+    await t.typeText(TranslateInput, translate, { replace: true, paste: true })
 
     await t.click(UpdateCardSubmitButton)
     await t.expect(Alert.innerText).contains('has been updated')
-    await t.expect(Table.innerText).contains('updated card')
-    await t.expect(Table.innerText).contains('обновленная карточка')
+    await t.expect(Table.innerText).contains(text)
+    await t.expect(Table.innerText).contains(translate)
 
+    await t.expect(await getNumRecords('cards', { text, translate })).eql(1)
+
+    const record = await getRecord('cards', { text, translate })
+    await t.expect(record.ukSoundFile).notContains('sample')
+    await t.expect(record.usSoundFile).notContains('sample')
+    await t.expect(record.ruSoundFile).notContains('sample')
+    await t.expect(record.ukSoundLength).lt(2000)
+    await t.expect(record.usSoundLength).lt(2000)
+    await t.expect(record.ruSoundLength).lt(2000)
+})
+
+test('Should strip spaces when updating card', async t => {
+    await t.click(Selector('#updateCardButton19'))
+    await t.typeText(TextInput, ' updated card ', { replace: true, paste: true })
+    await t.typeText(TranslateInput, ' обновлённая карточка ', { replace: true, paste: true })
+
+    await t.click(UpdateCardSubmitButton)
     await t
         .expect(
             await getNumRecords('cards', {
                 text: 'updated card',
-                translate: 'обновленная карточка',
+                translate: 'обновлённая карточка',
             })
         )
         .eql(1)

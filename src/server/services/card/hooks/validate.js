@@ -75,7 +75,7 @@ const validatePatch = options => async hook => {
         const { total } = await hook.service.find({
             query: {
                 userId: data.userId,
-                text: data.text,
+                text: data.text.trim(),
                 id: { $ne: hook.id },
             },
         })
