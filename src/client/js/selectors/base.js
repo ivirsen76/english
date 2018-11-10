@@ -2,7 +2,6 @@ import { createSelector } from 'reselect'
 import _omit from 'lodash/omit'
 import _isEqual from 'lodash/isEqual'
 import _uniq from 'lodash/uniq'
-import _flatten from 'lodash/flatten'
 import { startNewId } from '../reducers/base.js'
 
 const getList = state => state.list
@@ -80,15 +79,15 @@ export const getSavingList = createSelector(getList, list =>
 )
 
 export const getWords = createSelector(getCards, cards => {
-    let result = cards.map(item =>
-        item.text
-            .toLowerCase()
-            .replace(/\([^)]*\)/g, '')
-            .replace(/[.,!?;:'"]/g, '')
-            .split(' ')
-    )
+    let result = cards
+        .map(item =>
+            item.text
+                .toLowerCase()
+                .replace(/\([^)]*\)/g, '')
+                .replace(/[.,!?;:'"]/g, '')
+                .trim()
+        )
+        .join(' ')
 
-    result = _uniq(_flatten(result)).filter(item => item)
-
-    return result
+    return ` ${result} `
 })

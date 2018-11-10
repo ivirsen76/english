@@ -32,7 +32,7 @@ class WordHelper extends React.Component {
         const words = this.props.base.words
             .split(',')
             .map(item => [item.trim().toLowerCase(), item.trim()])
-            .filter(item => !this.props.existingWords.includes(item[0]))
+            .filter(item => !this.props.existingWords.includes(` ${item[0]} `))
 
         const result = {}
         result.inSentence = words.filter(isInSentence).map(getBaseWord)

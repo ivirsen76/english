@@ -84,8 +84,8 @@ VALUES
     (5,2,'fifth','пятый','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:50:27','2018-09-30 22:50:27'),
     (6,2,'sixth','шестой','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:50:34','2018-09-30 22:50:34'),
     (7,2,'sevens-teen','седьмой','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:50:46','2018-09-30 22:50:46'),
-    (8,2,'eidht','восьмой','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:05','2018-09-30 22:51:05'),
-    (9,2,'ninth','девятый','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:11','2018-09-30 22:51:11'),
+    (8,2,'eight','восьмой','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:05','2018-09-30 22:51:05'),
+    (9,2,'ninth pen','девятый','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:11','2018-09-30 22:51:11'),
     (10,2,'calendar (another)','календарь','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:18','2018-09-30 22:51:18'),
     (11,3,'both','оба','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:18','2018-09-30 22:51:18');
 

@@ -168,7 +168,7 @@ describe('getWords', () => {
                 { id: 3, text: 'More, than usual!' },
             ],
         }
-        const expectedResult = ['some-stuff', 'another', 'than', 'more', 'usual']
+        const expectedResult = ' some-stuff another than more than usual '
         expect(getWords(state)).toEqual(expectedResult)
     })
 })
