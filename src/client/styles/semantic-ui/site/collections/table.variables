@@ -1,1 +1,2 @@
 @headerVerticalPadding: 0.5em;
+@compactHorizontalPadding: 0.5em;
