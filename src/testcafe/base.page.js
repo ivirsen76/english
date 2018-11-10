@@ -4,11 +4,15 @@ import { adminUser } from './roles.js'
 import { restoreDb, restoreSamples, getRecord, getNumRecords, runQuery } from './db/utils.js'
 import { url } from './config.js'
 
-fixture('Bases page').beforeEach(async t => {
-    restoreDb()
-    restoreSamples()
-    await t.useRole(adminUser)
-})
+fixture('Bases page')
+    .beforeEach(async t => {
+        restoreDb()
+        restoreSamples()
+        await t.useRole(adminUser)
+    })
+    .afterEach(t => {
+        restoreSamples()
+    })
 
 const getLocation = ClientFunction(() => window.location.href)
 
@@ -29,6 +33,7 @@ const TableButton = Selector('button').withText('Table')
 const InSentenceWords = Selector('#inSentenceWords')
 const AdjectiveWords = Selector('#adjectiveWords')
 const OtherWords = Selector('#otherWords')
+const Modal = Selector('.ui.modal')
 
 test('Should render base title', async t => {
     await t.navigateTo(url('/user/base'))
@@ -121,19 +126,62 @@ test('Should add two folders and cards', async t => {
 })
 
 test('Should add card', async t => {
+    const text = 'new card (and more words which should not be in the sound)'
+    const translate = 'новая карточка (и еще много всяких слов, которые не должны быть в звуке)'
+
     await t.navigateTo(url('/user/base/2'))
 
     await t.click(AddCardButton)
-    await t.typeText('input[name=text]', 'Some word')
-    await t.typeText('input[name=translate]', 'слово')
+    await t.typeText('input[name=text]', text, { paste: true })
+    await t.typeText('input[name=translate]', translate, { paste: true })
 
     await t.click(AddCardSubmitButton)
     await t.expect(Alert.innerText).contains('has been added')
-    await t.expect(Table.innerText).contains('Some word')
+    await t.expect(Table.innerText).contains(text)
+    await t.expect(Table.innerText).contains(translate)
+
+    await t.expect(await getNumRecords('basecards', { baseId: 2, text, translate })).eql(1)
+
+    const record = await getRecord('basecards', { baseId: 2, text, translate })
+    await t.expect(record.ukSoundLength).lt(2000)
+    await t.expect(record.usSoundLength).lt(2000)
+    await t.expect(record.ruSoundLength).lt(2000)
+})
+
+test('Should trim spaces before adding', async t => {
+    await t.navigateTo(url('/user/base/2'))
+
+    await t.click(AddCardButton)
+    await t.typeText('input[name=text]', ' Some word ')
+    await t.typeText('input[name=translate]', ' слово ')
+
+    await t.click(AddCardSubmitButton)
 
     await t
         .expect(await getNumRecords('basecards', { text: 'Some word', translate: 'слово' }))
         .eql(1)
+})
+
+test('Should show validation error when adding a card', async t => {
+    await t.navigateTo(url('/user/base/2'))
+
+    await t.click(AddCardButton)
+    await t.typeText('input[name=text]', 'русский текст')
+
+    await t.click(AddCardSubmitButton)
+    await t.expect(Modal.innerText).contains('Text has to be in English')
+    await t.expect(Modal.innerText).contains('Translation is required')
+})
+
+test('Should show duplication error when adding a card', async t => {
+    await t.navigateTo(url('/user/base/2'))
+
+    await t.click(AddCardButton)
+    await t.typeText('input[name=text]', ' second ')
+    await t.typeText('input[name=translate]', 'слово')
+
+    await t.click(AddCardSubmitButton)
+    await t.expect(Modal.innerText).contains('Text already exists')
 })
 
 test('Should change cards words', async t => {
@@ -162,21 +210,55 @@ test('Should see used words', async t => {
     await t.expect(Selector('input[name=text]').value).eql('Another moreover')
 })
 
-test('Should edit card', async t => {
+test('Should update card', async t => {
+    const text = 'updated card (and more words which should not be in the sound)'
+    const translate =
+        'обновлённая карточка (и еще много всяких слов, которые не должны быть в звуке)'
+
     await t.navigateTo(url('/user/base/2'))
 
     await t.click(Selector('#updateCardButton1'))
-    await t.typeText('input[name=text]', 'Second one', { replace: true })
-    await t.typeText('input[name=translate]', 'второй раз', { replace: true })
+    await t.typeText('input[name=text]', text, { paste: true, replace: true })
+    await t.typeText('input[name=translate]', translate, { paste: true, replace: true })
 
     await t.click(UpdateCardSubmitButton)
     await t.expect(Alert.innerText).contains('has been updated')
-    await t.expect(Table.innerText).contains('Second one')
-    await t.expect(Table.innerText).contains('второй раз')
+    await t.expect(Table.innerText).contains(text)
+    await t.expect(Table.innerText).contains(translate)
+
+    await t.expect(await getNumRecords('basecards', { text, translate })).eql(1)
+
+    const record = await getRecord('basecards', { text, translate })
+    await t.expect(record.ukSoundFile).notContains('sample')
+    await t.expect(record.usSoundFile).notContains('sample')
+    await t.expect(record.ruSoundFile).notContains('sample')
+    await t.expect(record.ukSoundLength).lt(2000)
+    await t.expect(record.usSoundLength).lt(2000)
+    await t.expect(record.ruSoundLength).lt(2000)
+})
+
+test('Should strip spaces when updating card', async t => {
+    await t.navigateTo(url('/user/base/2'))
+
+    await t.click(Selector('#updateCardButton1'))
+    await t.typeText('input[name=text]', ' Second one ', { replace: true })
+    await t.typeText('input[name=translate]', ' второй раз ', { replace: true })
+
+    await t.click(UpdateCardSubmitButton)
 
     await t
         .expect(await getNumRecords('basecards', { text: 'Second one', translate: 'второй раз' }))
         .eql(1)
+})
+
+test('Should show duplication error when updating a card', async t => {
+    await t.navigateTo(url('/user/base/2'))
+
+    await t.click(Selector('#updateCardButton1'))
+    await t.typeText('input[name=text]', ' second ', { replace: true })
+
+    await t.click(UpdateCardSubmitButton)
+    await t.expect(Modal.innerText).contains('Text already exists')
 })
 
 test('Should delete card', async t => {

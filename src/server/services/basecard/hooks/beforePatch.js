@@ -1,5 +1,6 @@
 const generateMp3 = require('../../card/hooks/generateMp3')
 const removeMp3 = require('../../card/hooks/removeMp3')
+const { stripBrackets } = require('../../../utils.js')
 
 module.exports = options => async hook => {
     try {
@@ -13,25 +14,29 @@ module.exports = options => async hook => {
         hook.data.translate = translate
 
         if (process.env.NODE_ENV !== 'test') {
-            // Check if we need new sound
+            const stripedText = stripBrackets(text)
+            const stripedTranslate = stripBrackets(translate)
+
             const generates = []
-            const removes = []
             if (text && currentData.text !== text) {
-                removes.push(removeMp3(currentData.ukSoundFile))
-                removes.push(removeMp3(currentData.usSoundFile))
-                generates.push(generateMp3(`sounds/basecards/${currentData.baseId}`, text, 'uk'))
-                generates.push(generateMp3(`sounds/basecards/${currentData.baseId}`, text, 'us'))
+                await removeMp3(currentData.ukSoundFile)
+                await removeMp3(currentData.usSoundFile)
+                generates.push(
+                    generateMp3(`sounds/basecards/${currentData.baseId}`, stripedText, 'uk')
+                )
+                generates.push(
+                    generateMp3(`sounds/basecards/${currentData.baseId}`, stripedText, 'us')
+                )
             }
             if (translate && currentData.translate !== translate) {
-                removes.push(removeMp3(currentData.ruSoundFile))
+                await removeMp3(currentData.ruSoundFile)
                 generates.push(
-                    generateMp3(`sounds/basecards/${currentData.baseId}`, translate, 'ru')
+                    generateMp3(`sounds/basecards/${currentData.baseId}`, stripedTranslate, 'ru')
                 )
             }
 
             // Add new sounds
             if (generates.length > 0) {
-                await Promise.all(removes)
                 const results = await Promise.all(generates)
 
                 results.forEach(result => {
