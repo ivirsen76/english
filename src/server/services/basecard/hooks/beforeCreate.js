@@ -4,6 +4,9 @@ module.exports = options => async hook => {
     try {
         const { text, translate, baseId } = hook.data
 
+        hook.data.text = text.trim()
+        hook.data.translate = translate.trim()
+
         if (process.env.NODE_ENV !== 'test') {
             const results = await Promise.all([
                 generateMp3(`sounds/basecards/${baseId}`, text, 'uk'),
