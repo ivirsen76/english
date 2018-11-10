@@ -163,12 +163,12 @@ describe('getWords', () => {
     it('Should return words', () => {
         const state = {
             cards: [
-                { id: 1, text: 'Some Stuff (figure)' },
-                { id: 2, text: 'Another stuff' },
+                { id: 1, text: 'Some-Stuff (figure)' },
+                { id: 2, text: 'Another than' },
                 { id: 3, text: 'More, than usual!' },
             ],
         }
-        const expectedResult = ['some', 'stuff', 'another', 'more', 'than', 'usual']
+        const expectedResult = ['some-stuff', 'another', 'than', 'more', 'usual']
         expect(getWords(state)).toEqual(expectedResult)
     })
 })

@@ -84,7 +84,7 @@ export const getWords = createSelector(getCards, cards => {
         item.text
             .toLowerCase()
             .replace(/\([^)]*\)/g, '')
-            .replace(/[.,\-!?;:'"]/g, '')
+            .replace(/[.,!?;:'"]/g, '')
             .split(' ')
     )
 
