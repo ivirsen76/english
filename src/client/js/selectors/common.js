@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { stripBrackets } from 'server/services/card/hooks/validate.js'
+import { stripBrackets } from 'server/utils.js'
 
 const getBasecards = state => state.app.base.cards
 const getCards = state => state.app.card.list
