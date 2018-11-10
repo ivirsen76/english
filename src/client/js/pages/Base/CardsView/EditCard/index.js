@@ -12,10 +12,14 @@ export default class Component extends React.Component {
         updateCard: PropTypes.func,
     }
 
-    handleSubmit = values => {
-        this.props.updateCard(values)
-        notification('Card has been updated')
-        this.modal.handleClose()
+    handleSubmit = async values => {
+        try {
+            await this.props.updateCard(values)
+            notification('Card has been updated')
+            this.modal.handleClose()
+        } catch (errors) {
+            throw errors
+        }
     }
 
     render() {
