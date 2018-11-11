@@ -11,6 +11,7 @@ import Loader from '@ieremeev/loader'
 import AudioLink from 'client/js/components/AudioLink'
 import { Formik, Form, Field, SemanticInput, SemanticTextarea } from '@ieremeev/formik'
 import WordHelper from './WordHelper'
+import { removeMeta } from 'client/js/utils/text.js'
 import style from './style.module.css'
 
 export const errorMessages = {
@@ -82,14 +83,18 @@ class ShowBase extends React.Component {
                 label: 'Text',
                 filter: true,
                 sort: true,
-                render: (value, row) => <AudioLink text={value} audioUrl={row.usSoundFile} />,
+                render: (value, row) => (
+                    <AudioLink text={removeMeta(value)} audioUrl={row.usSoundFile} />
+                ),
             },
             {
                 name: 'translate',
                 label: 'Translate',
                 filter: true,
                 sort: true,
-                render: (value, row) => <AudioLink text={value} audioUrl={row.ruSoundFile} />,
+                render: (value, row) => (
+                    <AudioLink text={removeMeta(value)} audioUrl={row.ruSoundFile} />
+                ),
             },
             {
                 name: 'createdAt',

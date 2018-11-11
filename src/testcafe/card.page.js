@@ -50,7 +50,7 @@ test('Should show duplication error when adding a card', async t => {
 
 test('Should add card', async t => {
     const text = 'new card (and more words which should not be in the sound)'
-    const translate = 'новая карточка (и еще много всяких слов, которые не должны быть в звуке)'
+    const translate = 'новая к`арточка (и еще много всяких слов, которые не должны быть в звуке)'
 
     await t.click(AddCardButton)
     await t.typeText(TextInput, text, { paste: true })
@@ -59,7 +59,7 @@ test('Should add card', async t => {
     await t.click(AddCardSubmitButton)
     await t.expect(Alert.innerText).contains('has been added')
     await t.expect(Table.innerText).contains(text)
-    await t.expect(Table.innerText).contains(translate)
+    await t.expect(Table.innerText).contains(translate.replace('`', ''))
     await t.expect(CardTotalBadge.innerText).contains('9')
 
     await t.expect(await getNumRecords('cards', { text, translate })).eql(1)

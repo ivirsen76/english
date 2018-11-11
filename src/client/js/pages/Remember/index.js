@@ -35,6 +35,7 @@ import SwitchButton from './SwitchButton'
 import GoNextPanel from './GoNextPanel'
 import Label from './label.js'
 import Panel from './Panel'
+import { removeMeta } from 'client/js/utils/text.js'
 import style from './index.module.scss'
 
 class RememberPage extends React.Component {
@@ -175,14 +176,14 @@ class RememberPage extends React.Component {
                             <div key={iteration} className={style.panelWrapper}>
                                 <SwitchButton onClick={this.switchOrder} />
                                 <Panel
-                                    word={firstWord.word}
+                                    word={removeMeta(firstWord.word)}
                                     language={firstWord.language}
                                     isSound={firstWord.isSound}
                                     soundFile={firstWord.soundFile}
                                     toggleSound={toggleSound}
                                 />
                                 <Panel
-                                    word={secondWord.word}
+                                    word={removeMeta(secondWord.word)}
                                     language={secondWord.language}
                                     isSound={secondWord.isSound}
                                     soundFile={secondWord.soundFile}

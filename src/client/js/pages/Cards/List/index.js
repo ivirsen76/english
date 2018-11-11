@@ -5,6 +5,7 @@ import format from 'date-fns/format'
 import EditCard from '../EditCard'
 import DeleteCard from '../DeleteCard'
 import AudioLink from 'client/js/components/AudioLink'
+import { removeMeta } from 'client/js/utils/text.js'
 import style from './style.module.scss'
 
 export const Cards = ({ data, deleteCard, updateCard }) => {
@@ -25,14 +26,18 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
             label: 'Текст',
             filter: true,
             sort: true,
-            render: (value, row) => <AudioLink text={value} audioUrl={row.usSoundFile} />,
+            render: (value, row) => (
+                <AudioLink text={removeMeta(value)} audioUrl={row.usSoundFile} />
+            ),
         },
         {
             name: 'translate',
             label: 'Перевод',
             filter: true,
             sort: true,
-            render: (value, row) => <AudioLink text={value} audioUrl={row.ruSoundFile} />,
+            render: (value, row) => (
+                <AudioLink text={removeMeta(value)} audioUrl={row.ruSoundFile} />
+            ),
         },
         {
             name: 'label',

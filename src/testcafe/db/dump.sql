@@ -197,7 +197,7 @@ LOCK TABLES `cards` WRITE;
 
 INSERT INTO `cards` (`id`, `userId`, `text`, `translate`, `label`, `ukSoundFile`, `ukSoundLength`, `usSoundFile`, `usSoundLength`, `ruSoundFile`, `ruSoundLength`, `status`, `statusUpdatedAt`, `createdAt`, `updatedAt`, `writeRightAttempts`, `writeLastDate`)
 VALUES
-    (18,2,'text','текст','alone','samples/sample.mp3',600,'samples/sample.mp3',653,'samples/sample.mp3',600,0,'2017-05-12 19:31:05','2017-05-12 19:31:05','2017-07-05 15:26:50',0,NULL),
+    (18,2,'text','т`екст','alone','samples/sample.mp3',600,'samples/sample.mp3',653,'samples/sample.mp3',600,0,'2017-05-12 19:31:05','2017-05-12 19:31:05','2017-07-05 15:26:50',0,NULL),
     (19,2,'block','блок','','samples/sample.mp3',548,'samples/sample.mp3',574,'samples/sample.mp3',600,0,'2017-05-12 19:32:34','2017-05-12 19:32:33','2017-06-24 18:54:24',0,NULL),
     (20,2,'Ramble','бормотать','test','samples/sample.mp3',679,'samples/sample.mp3',679,'samples/sample.mp3',835,0,'2017-05-12 19:33:40','2017-05-12 19:33:40','2017-06-01 21:37:58',0,NULL),
     (21,2,'One more time together','Еще один раз','test','samples/sample.mp3',1384,'samples/sample.mp3',1593,'samples/sample.mp3',1123,0,'2017-05-12 19:34:49','2017-05-12 19:34:49','2017-05-14 01:22:27',0,NULL),

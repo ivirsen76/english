@@ -124,7 +124,7 @@ test('Should add two folders and cards', async t => {
 
 test('Should add card', async t => {
     const text = 'new card (and more words which should not be in the sound)'
-    const translate = 'новая карточка (и еще много всяких слов, которые не должны быть в звуке)'
+    const translate = 'новая к`арточка (и еще много всяких слов, которые не должны быть в звуке)'
 
     await t.navigateTo(url('/user/base/2'))
 
@@ -135,7 +135,7 @@ test('Should add card', async t => {
     await t.click(AddCardSubmitButton)
     await t.expect(Alert.innerText).contains('has been added')
     await t.expect(Table.innerText).contains(text)
-    await t.expect(Table.innerText).contains(translate)
+    await t.expect(Table.innerText).contains(translate.replace('`', ''))
 
     await t.expect(await getNumRecords('basecards', { baseId: 2, text, translate })).eql(1)
 
