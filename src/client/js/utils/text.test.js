@@ -1,4 +1,4 @@
-import { convertText, isTextEqual } from './text.js'
+import { convertText, isTextEqual, removeMeta } from './text.js'
 
 describe('convertText()', () => {
     it('Should return converted text', () => {
@@ -13,5 +13,11 @@ describe('isTextEqual', () => {
 
     it('Should not be equal', () => {
         expect(isTextEqual('Some', 'Mome')).toBe(false)
+    })
+})
+
+describe('removeMeta', () => {
+    it('Should remove stress character', () => {
+        expect(removeMeta('Som`e')).toBe('Some')
     })
 })
