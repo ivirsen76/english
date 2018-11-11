@@ -11,7 +11,7 @@ import style from './style.module.css'
 class WordHelper extends React.Component {
     static propTypes = {
         base: PropTypes.object,
-        existingWords: PropTypes.array,
+        existingWords: PropTypes.string,
         showWordHelper: PropTypes.bool,
         toggleShowWordHelper: PropTypes.func,
         onClick: PropTypes.func,
