@@ -72,6 +72,7 @@ $markSize: 0.7em;
     display: flex;
     margin-bottom: 1em;
     justify-content: space-between;
+    align-items: flex-start;
 }
 .elementArea {
     display: flex;

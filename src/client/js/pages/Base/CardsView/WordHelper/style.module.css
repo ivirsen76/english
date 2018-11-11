@@ -1,4 +1,5 @@
 .word {
-    margin-bottom: 1em;
+    margin-top: 0.125em !important;
+    margin-bottom: 0.125em !important;
     cursor: pointer;
 }
