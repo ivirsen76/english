@@ -14,7 +14,7 @@ import Counter from 'client/js/pages/Remember/Counter'
 import InputField from './InputField'
 import DiffResult from './DiffResult'
 import NextButton from './NextButton'
-import { isTextEqual } from 'client/js/utils/text.js'
+import { removeMeta, isTextEqual } from 'client/js/utils/text.js'
 import style from './index.module.scss'
 import IconPlay from '@ieremeev/icons/play4'
 
@@ -151,18 +151,18 @@ class Component extends React.Component {
                                 }
                                 id="result"
                             >
-                                <DiffResult str1={input} str2={currentCard.text} />
+                                <DiffResult str1={input} str2={removeMeta(currentCard.text)} />
                             </div>
                             <div className={style.resultBlock}>
                                 <div className={style.text} id="rightText">
                                     <DiffResult
-                                        str1={currentCard.text}
+                                        str1={removeMeta(currentCard.text)}
                                         str2={input}
                                         diffStyle="added"
                                     />
                                 </div>
                                 <div className={style.translate} id="translate">
-                                    {currentCard.translate}
+                                    {removeMeta(currentCard.translate)}
                                 </div>
                             </div>
                         </div>

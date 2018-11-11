@@ -1,4 +1,4 @@
-const ignoredRegex = /(\s|-|%|,|\.|:|!|\?|\[|]|\/)/g
+const ignoredRegex = /(\s|-|`|%|,|\.|:|!|\?|\[|]|\/)/g
 
 export const convertText = text => text.replace(ignoredRegex, '').toLowerCase()
 

@@ -202,7 +202,7 @@ VALUES
     (20,2,'Ramble','бормотать','test','samples/sample.mp3',679,'samples/sample.mp3',679,'samples/sample.mp3',835,0,'2017-05-12 19:33:40','2017-05-12 19:33:40','2017-06-01 21:37:58',0,NULL),
     (21,2,'One more time together','Еще один раз','test','samples/sample.mp3',1384,'samples/sample.mp3',1593,'samples/sample.mp3',1123,0,'2017-05-12 19:34:49','2017-05-12 19:34:49','2017-05-14 01:22:27',0,NULL),
     (22,2,'Try it now immediately','Попробуй это немедленно','','samples/sample.mp3',1515,'samples/sample.mp3',1358,'samples/sample.mp3',1410,0,'2017-05-12 19:35:48','2017-05-12 19:35:48','2017-05-14 01:57:19',0,NULL),
-    (23,2,'person','человек','','samples/sample.mp3',783,'samples/sample.mp3',626,'samples/sample.mp3',757,1,'2017-06-25 10:43:28','2017-06-25 10:42:51','2017-06-25 10:43:28',2,NULL),
+    (23,2,'p`erson','челов`ек','','samples/sample.mp3',783,'samples/sample.mp3',626,'samples/sample.mp3',757,1,'2017-06-25 10:43:28','2017-06-25 10:42:51','2017-06-25 10:43:28',2,NULL),
     (24,2,'car','машина','','samples/sample.mp3',496,'samples/sample.mp3',522,'samples/sample.mp3',653,1,'2017-06-25 10:43:29','2017-06-25 10:42:59','2017-06-25 10:43:29',2,NULL),
     (25,2,'calendar','календарь','','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,1,'2017-06-25 10:43:30','2017-06-25 10:43:06','2017-06-25 10:43:30',0,NULL),
     (26,1,'calendar (some)','календарь','','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,1,'2017-06-25 10:43:30','2017-06-25 10:43:06','2017-06-25 10:43:30',0,NULL);
