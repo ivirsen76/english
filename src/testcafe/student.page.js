@@ -23,3 +23,13 @@ test('Should not see admin stuff', async t => {
     await t.expect(SideMenu.innerText).notContains('Базы')
     await t.expect(SideMenu.innerText).notContains('Статистика')
 })
+
+test('Should go to remember page without global clicking', async t => {
+    await t.click(Selector('#rememberMenuItem'))
+    await t.expect(Selector('#globalPlayButton').exists).notOk()
+})
+
+test('Should go to write page without global clicking', async t => {
+    await t.click(Selector('#writeMenuItem'))
+    await t.expect(Selector('#globalPlayButton').exists).notOk()
+})
