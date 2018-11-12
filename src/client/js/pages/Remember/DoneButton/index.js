@@ -9,7 +9,7 @@ export default class DoneButton extends React.Component {
     render() {
         return (
             <button className="ui button" onClick={this.props.onClick}>
-                Done
+                Запомнил!
             </button>
         )
     }

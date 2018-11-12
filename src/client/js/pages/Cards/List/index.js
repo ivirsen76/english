@@ -53,7 +53,16 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
         },
     ]
 
-    return <Table data={data} columns={columns} showRowNumber />
+    return (
+        <Table
+            data={data}
+            columns={columns}
+            showRowNumber
+            orderBy="createdAt"
+            isAscentOrder={false}
+            saveSettings
+        />
+    )
 }
 
 Cards.propTypes = {
