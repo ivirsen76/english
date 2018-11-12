@@ -14,7 +14,7 @@ import reducer, {
     toggleRememberSound,
     switchRememberOrder,
     updateRememberLabel,
-    setWriteCards,
+    setWriteCardsWithOrder as setWriteCards,
     goNextWriteCardInSet as goNextWriteCard,
     updateWriteInput,
     saveWriteResults,
@@ -449,6 +449,16 @@ describe('card reducer', () => {
             expect(resultedState.write.currentCardIndex).toBe(0)
             expect(resultedState.write.isChecked).toBe(false)
             expect(resultedState.write.iteration).toBe(1)
+        })
+
+        it('Should set order', () => {
+            const state = {
+                ...initialState,
+                list: [{ id: 1, status: 1 }, { id: 2, status: 0 }, { id: 3, status: 1 }],
+            }
+            const order = [2, 0, 1]
+            const resultedState = reducer(state, setWriteCards(order))
+            expect(resultedState.write.list).toEqual([3, 1])
         })
 
         it('Respect card limit', () => {

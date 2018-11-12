@@ -101,7 +101,7 @@ export const toggleRememberSound = createAction(TOGGLE_REMEMBER_SOUND)
 export const switchRememberOrder = createAction(SWITCH_REMEMBER_ORDER)
 export const updateRememberLabel = createAction(UPDATE_REMEMBER_LABEL)
 export const rememberCardWithoutSaving = createAction(REMEMBER_CARD)
-export const setWriteCards = createAction(SET_WRITE_CARDS)
+export const setWriteCardsWithOrder = createAction(SET_WRITE_CARDS)
 export const goNextWriteCardInSet = createAction(GO_NEXT_WRITE_CARD)
 export const updateWriteInput = createAction(UPDATE_WRITE_INPUT)
 export const saveWriteResults = createAction(SAVE_WRITE_RESULTS)
@@ -180,6 +180,16 @@ export const checkWriting = () => async (dispatch, getState) => {
         const correctTotal = total - getWriteErrorsTotal(state.app.card)
         notification(`Correct ${correctTotal} of ${total}`)
     }
+}
+
+export const setWriteCards = () => (dispatch, getState) => {
+    let order
+    if (process.env.IE_SHUFFLE_CARDS) {
+        const state = getState()
+        order = _shuffle(Array.from(Array(state.app.card.list.length).keys()))
+    }
+
+    dispatch(setWriteCardsWithOrder(order))
 }
 
 export const goNextWriteCard = () => async (dispatch, getState) => {
@@ -394,10 +404,12 @@ export default handleActions(
             }
         },
         [SET_WRITE_CARDS]: (state, action) => {
-            const writeList = state.list
+            const list = action.payload ? action.payload.map(item => state.list[item]) : state.list
+            const writeList = list
                 .filter(card => card.status === 1)
                 .slice(0, state.write.limit)
                 .map(card => card.id)
+
             return {
                 ...state,
                 write: {
