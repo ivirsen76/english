@@ -3,6 +3,7 @@ import { Selector, ClientFunction } from 'testcafe'
 fixture('Production tests')
 
 const isSentry = ClientFunction(() => window.__SENTRY__)
+const isShuffleCards = ClientFunction(() => window.ieremeev.check.shuffleCards)
 const url = (path = '') => `http://www.word-word.club${path}`
 
 // Selectors
@@ -37,4 +38,9 @@ test('Should check feature page', async t => {
 test('Should check Sentry setup', async t => {
     await t.navigateTo(url())
     await t.expect(isSentry()).ok()
+})
+
+test('Should check that cards are shuffled', async t => {
+    await t.navigateTo(url())
+    await t.expect(isShuffleCards()).ok()
 })

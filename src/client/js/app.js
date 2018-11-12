@@ -2,6 +2,9 @@
 import '../styles/app.css'
 import '../styles/semantic-ui/semantic.less'
 
+// Run some production checks
+import './check.js'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { App, createStore, history } from '@ieremeev/boilerplate'
