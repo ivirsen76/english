@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import IconSoundOn from '@ieremeev/icons/volume-high'
+import IconSoundOff from '@ieremeev/icons/volume-mute2'
 import style from './style.module.scss'
 
 export default class SoundIcon extends React.Component {
@@ -11,13 +13,12 @@ export default class SoundIcon extends React.Component {
     }
 
     render() {
-        const className = classnames(
-            style.sound,
-            style[this.props.iconPosition],
-            { [style.on]: this.props.isSound },
-            { [style.off]: !this.props.isSound }
-        )
+        const className = classnames(style.sound, style[this.props.iconPosition])
 
-        return <div className={className} onClick={this.props.toggleSound} />
+        return (
+            <div className={className} onClick={this.props.toggleSound}>
+                {this.props.isSound ? <IconSoundOn /> : <IconSoundOff />}
+            </div>
+        )
     }
 }

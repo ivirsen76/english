@@ -20,7 +20,7 @@
 
 .language {
     position: absolute;
-    left: .5em;
+    left: 0.5em;
     width: 1.6em;
     height: 1.2em;
     background-size: 1.6em 1.2em;
@@ -31,28 +31,23 @@
     &.uk {
         background-image: url('./flags/uk.svg');
     }
-
     &.ru {
         background-image: url('./flags/ru.svg');
     }
-
     &.us {
         background-image: url('./flags/us.svg');
     }
-
     &.top {
-        top: .5em;
+        top: 0.5em;
     }
-
     &.bottom {
-        bottom: .5em;
+        bottom: 0.5em;
     }
 }
 
 .sound {
     position: absolute;
-    right: .5em;
-    font-family: 'icomoon';
+    right: 0.5em;
     font-size: 1.2em;
     cursor: pointer;
     width: 1em;
@@ -60,20 +55,10 @@
     &:hover {
         color: #666;
     }
-
-    &.on::before {
-        content: '\ea26';
-    }
-
-    &.off::before {
-        content: '\ea2a';
-    }
-
     &.top {
-        top: .4em;
+        top: 0.4em;
     }
-
     &.bottom {
-        bottom: .4em;
+        bottom: 0.4em;
     }
 }
