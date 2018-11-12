@@ -23,6 +23,7 @@ export default class InputField extends React.Component {
                 onChange={this.onChange}
                 style={{ height: this.props.height }}
                 autoFocus
+                spellCheck={false}
             />
         )
     }
