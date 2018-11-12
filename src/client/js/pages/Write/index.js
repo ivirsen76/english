@@ -108,6 +108,9 @@ class Component extends React.Component {
     render() {
         const { currentCard, input, currentCardNumber, totalCards, isChecked } = this.props
 
+        // Strip text in brackets
+        const text = currentCard.text && currentCard.text.replace(/\([^)]*\)/g, '').trim()
+
         return (
             <div>
                 <h2>Write</h2>
@@ -145,18 +148,16 @@ class Component extends React.Component {
                                 className={
                                     style.input +
                                     ' ' +
-                                    (isTextEqual(currentCard.text, input)
-                                        ? style.positive
-                                        : style.negative)
+                                    (isTextEqual(text, input) ? style.positive : style.negative)
                                 }
                                 id="result"
                             >
-                                <DiffResult str1={input} str2={removeMeta(currentCard.text)} />
+                                <DiffResult str1={input} str2={removeMeta(text)} />
                             </div>
                             <div className={style.resultBlock}>
                                 <div className={style.text} id="rightText">
                                     <DiffResult
-                                        str1={removeMeta(currentCard.text)}
+                                        str1={removeMeta(text)}
                                         str2={input}
                                         diffStyle="added"
                                     />
