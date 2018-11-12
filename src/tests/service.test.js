@@ -414,6 +414,22 @@ describe('cards', () => {
             })
             expect(num).toBe(1)
         })
+
+        it('should return 200 for patching just writing information', async () => {
+            const token = await loginAsStudent()
+            await request
+                .patch('/api/cards/25')
+                .send({ writeRightAttempts: 10, status: 10 })
+                .set('Authorization', token)
+                .expect(200)
+
+            // It should set userId to 2 anyway
+            const num = await getNumRecords('cards', {
+                writeRightAttempts: 10,
+                status: 10,
+            })
+            expect(num).toBe(1)
+        })
     })
 
     describe('delete', () => {

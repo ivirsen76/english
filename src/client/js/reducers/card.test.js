@@ -526,7 +526,7 @@ describe('card reducer', () => {
         it('Should save write result for the right word', () => {
             const state = {
                 ...initialState,
-                list: [{ id: 1, text: 'some', writeRightAttempts: 1 }],
+                list: [{ id: 1, text: 's`ome (another)', writeRightAttempts: 1 }],
                 write: {
                     ...initialState.write,
                     list: [1],
@@ -536,7 +536,9 @@ describe('card reducer', () => {
                 },
             }
             const resultedState = reducer(state, saveWriteResults())
-            expect(resultedState.list).toEqual([{ id: 1, text: 'some', writeRightAttempts: 2 }])
+            expect(resultedState.list).toEqual([
+                { id: 1, text: 's`ome (another)', writeRightAttempts: 2 },
+            ])
             expect(resultedState.write.isChecked).toBe(true)
         })
 

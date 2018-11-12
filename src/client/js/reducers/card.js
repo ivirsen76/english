@@ -15,6 +15,7 @@ import {
     getCurrentWriteCard,
     isLastRememberCard,
 } from 'client/js/selectors/card.js'
+import { stripBrackets } from 'server/utils.js'
 
 export const maxWriteAttempts = 3
 
@@ -450,8 +451,9 @@ export default handleActions(
         [SAVE_WRITE_RESULTS]: (state, action) => {
             const id = state.write.list[state.write.currentCardIndex]
             const card = _cloneDeep(_find(state.list, { id }))
+            const text = stripBrackets(card.text)
 
-            if (isTextEqual(card.text, state.write.input)) {
+            if (isTextEqual(text, state.write.input)) {
                 card.writeRightAttempts++
                 if (card.writeRightAttempts >= maxWriteAttempts) {
                     card.status = 2

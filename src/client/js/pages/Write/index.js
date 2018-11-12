@@ -17,6 +17,7 @@ import NextButton from './NextButton'
 import { removeMeta, isTextEqual } from 'client/js/utils/text.js'
 import style from './index.module.scss'
 import IconPlay from '@ieremeev/icons/play4'
+import { stripBrackets } from 'server/utils.js'
 
 class Component extends React.Component {
     static propTypes = {
@@ -109,7 +110,7 @@ class Component extends React.Component {
         const { currentCard, input, currentCardNumber, totalCards, isChecked } = this.props
 
         // Strip text in brackets
-        const text = currentCard.text && currentCard.text.replace(/\([^)]*\)/g, '').trim()
+        const text = currentCard.text && stripBrackets(currentCard.text)
 
         return (
             <div>
