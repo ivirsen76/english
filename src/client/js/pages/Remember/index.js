@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import globalClickRequired from 'client/js/helpers/globalClickRequired'
 import _pick from 'lodash/pick'
 import mp3 from 'client/js/utils/mp3.js'
 import { getMediaUrl } from 'client/js/utils/media.js'
@@ -217,15 +218,17 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {
-    setRememberCards,
-    resetRememberCards,
-    goNext: goNextRememberStep,
-    rememberCard,
-    updateCard,
-    deleteCard,
-    togglePlayMode: toggleRememberPlayMode,
-    toggleSound: toggleRememberSound,
-    switchOrder: switchRememberOrder,
-    updateLabel: updateRememberLabel,
-})(RememberPage)
+export default globalClickRequired(
+    connect(mapStateToProps, {
+        setRememberCards,
+        resetRememberCards,
+        goNext: goNextRememberStep,
+        rememberCard,
+        updateCard,
+        deleteCard,
+        togglePlayMode: toggleRememberPlayMode,
+        toggleSound: toggleRememberSound,
+        switchOrder: switchRememberOrder,
+        updateLabel: updateRememberLabel,
+    })(RememberPage)
+)

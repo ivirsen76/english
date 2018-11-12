@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import globalClickRequired from 'client/js/helpers/globalClickRequired'
 import { getWriteCurrentCard, getNextWriteCardSounds } from 'client/js/selectors/card'
 import {
     setWriteCards,
@@ -188,9 +189,11 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {
-    setWriteCards,
-    goNextWriteCard,
-    updateWriteInput,
-    checkWriting,
-})(Component)
+export default globalClickRequired(
+    connect(mapStateToProps, {
+        setWriteCards,
+        goNextWriteCard,
+        updateWriteInput,
+        checkWriting,
+    })(Component)
+)
