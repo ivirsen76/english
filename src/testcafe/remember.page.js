@@ -8,8 +8,8 @@ fixture('Remember page').beforeEach(async t => {
     restoreDb()
     restoreSamples()
     await t.useRole(studentUser)
-    await t.navigateTo(url('/user/cards'))
-    await t.click(Selector('a.item').withText('Запомнить'))
+    await t.navigateTo(url('/user/remember'))
+    await t.click(Selector('#globalPlayButton'))
 })
 
 // Selectors

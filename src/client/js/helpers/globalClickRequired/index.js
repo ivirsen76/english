@@ -10,7 +10,7 @@ export default WrappedComponent => {
         if (!props.globalClickCaptured) {
             return (
                 <div className={style.wrapper}>
-                    <div>
+                    <div id="globalPlayButton">
                         <IconPlay />
                         <div>Click anywhere to start</div>
                     </div>

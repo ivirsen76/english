@@ -34,12 +34,12 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
             <Menu.Header>Обучение</Menu.Header>
 
             <Menu.Menu>
-                <MenuLink to="/user/remember">
+                <MenuLink id="rememberMenuItem" to="/user/remember">
                     <IconBubble spaceRight />
                     Запомнить
                     <div className="ui label">{cardRememberTotal}</div>
                 </MenuLink>
-                <MenuLink to="/user/write">
+                <MenuLink id="writeMenuItem" to="/user/write">
                     <IconPencil spaceRight />
                     Написать
                     <div className="ui label">{cardWriteTotal}</div>

@@ -87,10 +87,12 @@ class Component extends React.Component {
     }
 
     playSound = e => {
-        const currentCard = this.props.currentCard
         e && e.preventDefault()
+        const currentCard = this.props.currentCard
 
-        mp3.play(getMediaUrl(currentCard.usSoundFile))
+        if (currentCard.usSoundFile) {
+            mp3.play(getMediaUrl(currentCard.usSoundFile))
+        }
     }
 
     goNext = e => {
@@ -116,61 +118,68 @@ class Component extends React.Component {
         return (
             <div>
                 <h2>Write</h2>
-                <div className={style.wrapper}>
-                    <div className={style.counter}>
-                        <Counter current={currentCardNumber} total={totalCards} />
-                    </div>
-                    <div className={style.buttonWrapper}>
-                        <NextButton goNext={this.goNext} />
-                        <button className="huge circular ui icon button" onClick={this.playSound}>
-                            <IconPlay />
-                        </button>
-                    </div>
-                    {!isChecked ? (
-                        <div>
-                            <InputField
-                                value={input}
-                                onChange={this.props.updateWriteInput}
-                                height={this.state.height}
-                            />
-                            <div style={{ height: 0, overflow: 'hidden' }}>
-                                <div
-                                    className={style.input}
-                                    ref={div => {
-                                        this.heightMeter = div
-                                    }}
-                                >
-                                    {input || '1'}
-                                </div>
-                            </div>
+                {totalCards === 0 ? (
+                    <div className="ui warning message">Слов для написания нет</div>
+                ) : (
+                    <div className={style.wrapper}>
+                        <div className={style.counter}>
+                            <Counter current={currentCardNumber} total={totalCards} />
                         </div>
-                    ) : (
-                        <div>
-                            <div
-                                className={
-                                    style.input +
-                                    ' ' +
-                                    (isTextEqual(text, input) ? style.positive : style.negative)
-                                }
-                                id="result"
+                        <div className={style.buttonWrapper}>
+                            <NextButton goNext={this.goNext} />
+                            <button
+                                className="huge circular ui icon button"
+                                onClick={this.playSound}
                             >
-                                <DiffResult str1={input} str2={removeMeta(text)} />
-                            </div>
-                            <div className={style.resultBlock}>
-                                <div className={style.text} id="rightText">
-                                    <DiffResult
-                                        str1={removeMeta(text)}
-                                        str2={input}
-                                        diffStyle="added"
-                                    />
-                                </div>
-                                <div className={style.translate} id="translate">
-                                    {removeMeta(currentCard.translate)}
-                                </div>
-                            </div>
+                                <IconPlay />
+                            </button>
                         </div>
-                    )}
-                </div>
+                        {!isChecked ? (
+                            <div>
+                                <InputField
+                                    value={input}
+                                    onChange={this.props.updateWriteInput}
+                                    height={this.state.height}
+                                />
+                                <div style={{ height: 0, overflow: 'hidden' }}>
+                                    <div
+                                        className={style.input}
+                                        ref={div => {
+                                            this.heightMeter = div
+                                        }}
+                                    >
+                                        {input || '1'}
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div>
+                                <div
+                                    className={
+                                        style.input +
+                                        ' ' +
+                                        (isTextEqual(text, input) ? style.positive : style.negative)
+                                    }
+                                    id="result"
+                                >
+                                    <DiffResult str1={input} str2={removeMeta(text)} />
+                                </div>
+                                <div className={style.resultBlock}>
+                                    <div className={style.text} id="rightText">
+                                        <DiffResult
+                                            str1={removeMeta(text)}
+                                            str2={input}
+                                            diffStyle="added"
+                                        />
+                                    </div>
+                                    <div className={style.translate} id="translate">
+                                        {removeMeta(currentCard.translate)}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
         )
     }

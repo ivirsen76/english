@@ -1,18 +1,19 @@
 import { Selector } from 'testcafe'
 import { ReactSelector } from 'testcafe-react-selectors'
 import { studentUser } from './roles.js'
-import { restoreDb, restoreSamples, getRecord } from './db/utils.js'
+import { restoreDb, restoreSamples, runQuery, getRecord } from './db/utils.js'
 import { url } from './config.js'
 
 fixture('Write page').beforeEach(async t => {
     restoreDb()
     restoreSamples()
     await t.useRole(studentUser)
-    await t.navigateTo(url('/user/cards'))
-    await t.click(Selector('a.item').withText('Написать'))
+    await t.navigateTo(url('/user/write'))
+    await t.click(Selector('#globalPlayButton'))
 })
 
 // Selectors
+const Body = Selector('body')
 const Counter = ReactSelector('Counter')
 const Input = ReactSelector('InputField')
 const NextButton = ReactSelector('NextButton')
@@ -20,6 +21,16 @@ const Result = Selector('#result')
 const RightText = Selector('#rightText')
 const Translate = Selector('#translate')
 const Alert = ReactSelector('Alert')
+
+test('Should show no cards message', async t => {
+    await runQuery('DELETE FROM cards')
+
+    // Reload the page just to update the data in redux
+    await t.eval(() => location.reload(true))
+    await t.click(Selector('#globalPlayButton'))
+
+    await t.expect(Body.innerText).contains('Слов для написания нет')
+})
 
 test('Should go to the next word', async t => {
     await t.expect(Counter.innerText).contains('1 / 3')
