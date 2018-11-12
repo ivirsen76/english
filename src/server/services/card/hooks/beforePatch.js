@@ -55,6 +55,6 @@ module.exports = options => async hook => {
             hook.data.writeLastDate = new Date()
         }
     } catch (err) {
-        console.log(err) // eslint-disable-line no-console
+        console.error(err)
     }
 }
