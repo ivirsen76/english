@@ -25,6 +25,7 @@ describe('validate', () => {
     it('Should not return text error', () => {
         validText('Normal text')
         validText('Normal text (с чем нибудь русским в скобках)')
+        validText('S`tressed word')
         validText('Normal-text, with: that. Whay? Hey! next; (с чем нибудь русским в скобках)')
     })
 
