@@ -143,37 +143,42 @@ class RememberPage extends React.Component {
         return (
             <div>
                 <h2>Remember</h2>
-                <div className={style.wrapper}>
-                    <div className={style.counter}>
-                        <Counter current={currentCardNumber} total={totalCards} />
-                    </div>
-
-                    <div className={style.mainButtons}>
-                        <EditButton card={currentCard} updateCard={this.props.updateCard} />
-                        <NextButton onClick={this.goNext} />
-                        <DeleteButton card={currentCard} deleteCard={this.props.deleteCard} />
-                    </div>
-
-                    <div className={style.otherButtons}>
-                        <div className={style.playPauseButtons}>
-                            <PlayButton onClick={this.togglePlayMode} disabled={isAutoPlayMode} />
-                            <PauseButton onClick={this.togglePlayMode} disabled={!isAutoPlayMode} />
+                {totalCards === 0 ? (
+                    <div className="ui warning message">Слов для запоминания нет</div>
+                ) : (
+                    <div className={style.wrapper}>
+                        <div className={style.counter}>
+                            <Counter current={currentCardNumber} total={totalCards} />
                         </div>
 
-                        <div className={style.doneButton}>
-                            <DoneButton onClick={this.rememberCard} />
+                        <div className={style.mainButtons}>
+                            <EditButton card={currentCard} updateCard={this.props.updateCard} />
+                            <NextButton onClick={this.goNext} />
+                            <DeleteButton card={currentCard} deleteCard={this.props.deleteCard} />
                         </div>
 
-                        <div className={style.label}>
-                            <Label value={label} onChange={this.props.updateLabel} />
-                        </div>
-                    </div>
+                        <div className={style.otherButtons}>
+                            <div className={style.playPauseButtons}>
+                                <PlayButton
+                                    onClick={this.togglePlayMode}
+                                    disabled={isAutoPlayMode}
+                                />
+                                <PauseButton
+                                    onClick={this.togglePlayMode}
+                                    disabled={!isAutoPlayMode}
+                                />
+                            </div>
 
-                    {totalCards === 0 && (
-                        <div className={style.noCardsMessage}>No cards to show</div>
-                    )}
-                    {totalCards !== 0 &&
-                        currentCard.text && (
+                            <div className={style.doneButton}>
+                                <DoneButton onClick={this.rememberCard} />
+                            </div>
+
+                            <div className={style.label}>
+                                <Label value={label} onChange={this.props.updateLabel} />
+                            </div>
+                        </div>
+
+                        {currentCard.text && (
                             <div key={iteration} className={style.panelWrapper}>
                                 <SwitchButton onClick={this.switchOrder} />
                                 <Panel
@@ -195,8 +200,9 @@ class RememberPage extends React.Component {
                             </div>
                         )}
 
-                    <GoNextPanel onClick={this.goNext} />
-                </div>
+                        <GoNextPanel onClick={this.goNext} />
+                    </div>
+                )}
             </div>
         )
     }

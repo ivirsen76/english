@@ -1,7 +1,7 @@
 import { Selector } from 'testcafe'
 import { ReactSelector } from 'testcafe-react-selectors'
 import { studentUser } from './roles.js'
-import { restoreDb, restoreSamples, getNumRecords } from './db/utils.js'
+import { restoreDb, restoreSamples, getNumRecords, runQuery } from './db/utils.js'
 import { url } from './config.js'
 
 fixture('Remember page').beforeEach(async t => {
@@ -13,6 +13,7 @@ fixture('Remember page').beforeEach(async t => {
 })
 
 // Selectors
+const Body = Selector('body')
 const Counter = ReactSelector('Counter')
 const Label = ReactSelector('Label').find('input')
 const RememberPage = ReactSelector('RememberPage')
@@ -26,6 +27,16 @@ const EditButton = ReactSelector('EditButton')
 const DeleteButton = ReactSelector('DeleteButton')
 const EditSubmitButton = Selector('button').withText('Update card')
 const Alert = ReactSelector('Alert')
+
+test('Should show no cards message', async t => {
+    await runQuery('DELETE FROM cards')
+
+    // Reload the page just to update the data in redux
+    await t.eval(() => location.reload(true))
+    await t.click(Selector('#globalPlayButton'))
+
+    await t.expect(Body.innerText).contains('Слов для запоминания нет')
+})
 
 test('Should render right counter', async t => {
     await t.expect(Counter.innerText).contains('1 / 5')
