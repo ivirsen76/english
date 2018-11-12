@@ -21,7 +21,7 @@ const validate = values => {
 
         if (text === '') {
             errors.text = errorMessages.noText
-        } else if (!/^[\s\da-zA-Z.,\-!?;:`"]+$/.test(text)) {
+        } else if (!/^[\s\da-zA-Z.,\-!?;:'`"]+$/.test(text)) {
             errors.text = errorMessages.invalidText
         }
     }
@@ -33,7 +33,7 @@ const validate = values => {
 
         if (translate === '') {
             errors.translate = errorMessages.noTranslate
-        } else if (!/^[\s\dа-яА-ЯёЁ.,\-!?;:`"]+$/.test(translate)) {
+        } else if (!/^[\s\dа-яА-ЯёЁ.,\-!?;:'`"]+$/.test(translate)) {
             errors.translate = errorMessages.invalidTranslate
         }
     }

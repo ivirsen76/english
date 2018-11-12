@@ -26,7 +26,7 @@ describe('validate', () => {
         validText('Normal text')
         validText('Normal text (с чем нибудь русским в скобках)')
         validText('S`tressed word')
-        validText('Normal-text, with: that. Whay? Hey! next; (с чем нибудь русским в скобках)')
+        validText("I'm Normal-text, with: that. Whay? Hey! next; (с чем нибудь русским в скобках)")
     })
 
     it('Should return translate error', () => {
@@ -40,7 +40,7 @@ describe('validate', () => {
     it('Should not return translate error', () => {
         validTranslate('Обычный текст')
         validTranslate('Обычный текст (with english inside brackets)')
-        validTranslate('Текст с удар`ением')
+        validTranslate("Тек'ст с удар`ением")
         validTranslate('Обычный-текст, да: ты. Нет? Да! за; (with english inside brackets)')
         validTranslate('Всё будет ВСЁ')
     })
