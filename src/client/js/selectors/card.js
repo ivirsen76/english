@@ -45,16 +45,21 @@ export const getLatestLabel = createSelector(getList, list => {
 
 export const getCardTotal = createSelector(getList, list => list.length)
 
-export const getRememberTotalCards = createSelector(
+export const getRememberFilteredTotalCards = createSelector(
     getRememberList,
     getRememberParams,
     (list, params) => {
-        if (params.label === '') {
+        if (!params || params.label === '') {
             return list.length
         }
 
         return list.filter(item => item.label.includes(params.label)).length
     }
+)
+
+export const getRememberTotalCards = createSelector(
+    getList,
+    list => list.filter(item => item.status === 0).length
 )
 
 export const getWriteTotalCards = createSelector(
