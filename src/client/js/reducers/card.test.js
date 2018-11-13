@@ -26,15 +26,15 @@ describe('card reducer', () => {
         it('Should update remember label', () => {
             const state = {
                 remember: {
-                    params: {
-                        label: '',
-                    },
                     currentCardIndex: 1,
                     step: 2,
                 },
+                rememberParams: {
+                    label: '',
+                },
             }
 
-            expect(reducer(state, updateRememberLabel('new')).remember.params.label).toBe('new')
+            expect(reducer(state, updateRememberLabel('new')).rememberParams.label).toBe('new')
             expect(reducer(state, updateRememberLabel('new')).remember.currentCardIndex).toBe(0)
             expect(reducer(state, updateRememberLabel('new')).remember.step).toBe(1)
         })
@@ -43,14 +43,12 @@ describe('card reducer', () => {
     describe('toggleRememberPlayMode()', () => {
         it('Should toggle play mode', () => {
             const state = {
-                remember: {
-                    params: {
-                        isAutoPlayMode: false,
-                    },
+                rememberParams: {
+                    isAutoPlayMode: false,
                 },
             }
 
-            expect(reducer(state, toggleRememberPlayMode()).remember.params.isAutoPlayMode).toBe(
+            expect(reducer(state, toggleRememberPlayMode()).rememberParams.isAutoPlayMode).toBe(
                 true
             )
         })
@@ -60,14 +58,14 @@ describe('card reducer', () => {
         it('Should switch order', () => {
             const state = {
                 remember: {
-                    params: {
-                        isEnFirst: true,
-                    },
                     step: 2,
+                },
+                rememberParams: {
+                    isEnFirst: true,
                 },
             }
 
-            expect(reducer(state, switchRememberOrder()).remember.params.isEnFirst).toBe(false)
+            expect(reducer(state, switchRememberOrder()).rememberParams.isEnFirst).toBe(false)
             expect(reducer(state, switchRememberOrder()).remember.step).toBe(1)
         })
     })
@@ -75,23 +73,21 @@ describe('card reducer', () => {
     describe('toggleRememberSound()', () => {
         it('Should toggle sound', () => {
             const state = {
-                remember: {
-                    params: {
-                        isEnSound: false,
-                        isRuSound: false,
-                    },
+                rememberParams: {
+                    isEnSound: false,
+                    isRuSound: false,
                 },
             }
 
-            expect(reducer(state, toggleRememberSound('us')).remember.params).toEqual({
+            expect(reducer(state, toggleRememberSound('us')).rememberParams).toEqual({
                 isEnSound: true,
                 isRuSound: false,
             })
-            expect(reducer(state, toggleRememberSound('uk')).remember.params).toEqual({
+            expect(reducer(state, toggleRememberSound('uk')).rememberParams).toEqual({
                 isEnSound: true,
                 isRuSound: false,
             })
-            expect(reducer(state, toggleRememberSound('ru')).remember.params).toEqual({
+            expect(reducer(state, toggleRememberSound('ru')).rememberParams).toEqual({
                 isEnSound: false,
                 isRuSound: true,
             })
@@ -99,11 +95,9 @@ describe('card reducer', () => {
 
         it('Should ignore unknow language', () => {
             const state = {
-                remember: {
-                    params: {
-                        isEnSound: false,
-                        isRuSound: false,
-                    },
+                rememberParams: {
+                    isEnSound: false,
+                    isRuSound: false,
                 },
             }
 
@@ -154,14 +148,12 @@ describe('card reducer', () => {
     describe('updateRememberParams()', () => {
         it('Should update only one param', () => {
             const state = {
-                remember: {
-                    params: {
-                        isEnFirst: true,
-                        isAutoPlayMode: false,
-                        isEnSound: true,
-                        isRuSound: false,
-                        label: '',
-                    },
+                rememberParams: {
+                    isEnFirst: true,
+                    isAutoPlayMode: false,
+                    isEnSound: true,
+                    isRuSound: false,
+                    label: '',
                 },
             }
             const expectedParams = {
@@ -172,20 +164,18 @@ describe('card reducer', () => {
                 label: '',
             }
             expect(
-                reducer(state, updateRememberParams({ isEnSound: false })).remember.params
+                reducer(state, updateRememberParams({ isEnSound: false })).rememberParams
             ).toEqual(expectedParams)
         })
 
         it('Should ignore non-acceptable params', () => {
             const state = {
-                remember: {
-                    params: {
-                        isEnFirst: true,
-                        isAutoPlayMode: false,
-                        isEnSound: true,
-                        isRuSound: false,
-                        label: '',
-                    },
+                rememberParams: {
+                    isEnFirst: true,
+                    isAutoPlayMode: false,
+                    isEnSound: true,
+                    isRuSound: false,
+                    label: '',
                 },
             }
             expect(reducer(state, updateRememberParams({ badOne: false }))).toEqual(state)

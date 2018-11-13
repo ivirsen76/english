@@ -1,12 +1,10 @@
 import { handleActions, createAction } from 'redux-actions'
-import { REHYDRATE } from 'redux-persist/constants'
 import _pick from 'lodash/pick'
 import _keys from 'lodash/keys'
 import _find from 'lodash/find'
 import _shuffle from 'lodash/shuffle'
 import _cloneDeep from 'lodash/cloneDeep'
 import axios from '@ieremeev/axios'
-import { set } from 'dot-prop-immutable'
 import { isTextEqual } from 'client/js/utils/text.js'
 import notification from '@ieremeev/notification'
 import {
@@ -43,15 +41,15 @@ export const initialState = {
     remember: {
         list: [],
         iteration: 0,
-        params: {
-            isEnFirst: true,
-            isAutoPlayMode: false,
-            isEnSound: true,
-            isRuSound: false,
-            label: '',
-        },
         currentCardIndex: 0,
         step: 1,
+    },
+    rememberParams: {
+        isEnFirst: false,
+        isAutoPlayMode: false,
+        isEnSound: true,
+        isRuSound: false,
+        label: '',
     },
     write: {
         list: [],
@@ -206,16 +204,6 @@ export const goNextWriteCard = () => async (dispatch, getState) => {
 // Reducer
 export default handleActions(
     {
-        [REHYDRATE]: (state, action) => {
-            const savedData = action.payload.card
-            if (!savedData) {
-                return state
-            }
-            return set(state, 'remember.params', params => ({
-                ...params,
-                ...savedData.remember.params,
-            }))
-        },
         [RESET_STATE]: (state, action) => initialState,
         [ADD_CARD]: (state, action) => ({
             ...state,
@@ -316,45 +304,39 @@ export default handleActions(
         },
         [UPDATE_REMEMBER_PARAMS]: (state, action) => ({
             ...state,
-            remember: {
-                ...state.remember,
-                params: {
-                    ...state.remember.params,
-                    ..._pick(action.payload, _keys(initialState.remember.params)),
-                },
+            rememberParams: {
+                ...state.rememberParams,
+                ..._pick(action.payload, _keys(initialState.rememberParams)),
             },
         }),
         [TOGGLE_REMEMBER_PLAY_MODE]: (state, action) => ({
             ...state,
-            remember: {
-                ...state.remember,
-                params: {
-                    ...state.remember.params,
-                    isAutoPlayMode: !state.remember.params.isAutoPlayMode,
-                },
+            rememberParams: {
+                ...state.rememberParams,
+                isAutoPlayMode: !state.rememberParams.isAutoPlayMode,
             },
         }),
         [SWITCH_REMEMBER_ORDER]: (state, action) => ({
             ...state,
             remember: {
                 ...state.remember,
-                params: {
-                    ...state.remember.params,
-                    isEnFirst: !state.remember.params.isEnFirst,
-                },
                 step: 1,
+            },
+            rememberParams: {
+                ...state.rememberParams,
+                isEnFirst: !state.rememberParams.isEnFirst,
             },
         }),
         [UPDATE_REMEMBER_LABEL]: (state, action) => ({
             ...state,
             remember: {
                 ...state.remember,
-                params: {
-                    ...state.remember.params,
-                    label: action.payload,
-                },
                 currentCardIndex: 0,
                 step: 1,
+            },
+            rememberParams: {
+                ...state.rememberParams,
+                label: action.payload,
             },
         }),
         [TOGGLE_REMEMBER_SOUND]: (state, action) => {
@@ -371,12 +353,9 @@ export default handleActions(
 
             return {
                 ...state,
-                remember: {
-                    ...state.remember,
-                    params: {
-                        ...state.remember.params,
-                        [key]: !state.remember.params[key],
-                    },
+                rememberParams: {
+                    ...state.rememberParams,
+                    [key]: !state.rememberParams[key],
                 },
             }
         },
