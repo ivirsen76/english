@@ -26,11 +26,11 @@ describe('Should return first word', () => {
             remember: {
                 list: [1],
                 currentCardIndex: 0,
-                params: {
-                    isEnFirst: true,
-                    isEnSound: true,
-                    isRuSound: false,
-                },
+            },
+            rememberParams: {
+                isEnFirst: true,
+                isEnSound: true,
+                isRuSound: false,
             },
         }
 
@@ -57,11 +57,11 @@ describe('Should return first word', () => {
             remember: {
                 list: [1],
                 currentCardIndex: 0,
-                params: {
-                    isEnFirst: false,
-                    isEnSound: true,
-                    isRuSound: false,
-                },
+            },
+            rememberParams: {
+                isEnFirst: false,
+                isEnSound: true,
+                isRuSound: false,
             },
         }
 
@@ -82,11 +82,11 @@ describe('Should return second word', () => {
             remember: {
                 list: [1],
                 currentCardIndex: 0,
-                params: {
-                    isEnFirst: false,
-                    isEnSound: true,
-                    isRuSound: false,
-                },
+            },
+            rememberParams: {
+                isEnFirst: false,
+                isEnSound: true,
+                isRuSound: false,
             },
         }
 
@@ -113,11 +113,11 @@ describe('Should return second word', () => {
             remember: {
                 list: [1],
                 currentCardIndex: 0,
-                params: {
-                    isEnFirst: true,
-                    isEnSound: true,
-                    isRuSound: false,
-                },
+            },
+            rememberParams: {
+                isEnFirst: true,
+                isEnSound: true,
+                isRuSound: false,
             },
         }
 
@@ -139,11 +139,11 @@ describe('Should return next step delay', () => {
                 list: [1],
                 currentCardIndex: 0,
                 step: 1,
-                params: {
-                    isEnFirst: true,
-                    isEnSound: true,
-                    isRuSound: false,
-                },
+            },
+            rememberParams: {
+                isEnFirst: true,
+                isEnSound: true,
+                isRuSound: false,
             },
         }
 
@@ -157,11 +157,11 @@ describe('Should return next step delay', () => {
                 list: [1],
                 currentCardIndex: 0,
                 step: 1,
-                params: {
-                    isEnFirst: true,
-                    isEnSound: false,
-                    isRuSound: false,
-                },
+            },
+            rememberParams: {
+                isEnFirst: true,
+                isEnSound: false,
+                isRuSound: false,
             },
         }
 
@@ -175,11 +175,11 @@ describe('Should return next step delay', () => {
                 list: [1],
                 currentCardIndex: 0,
                 step: 2,
-                params: {
-                    isEnFirst: true,
-                    isEnSound: true,
-                    isRuSound: false,
-                },
+            },
+            rememberParams: {
+                isEnFirst: true,
+                isEnSound: true,
+                isRuSound: false,
             },
         }
 
@@ -193,11 +193,11 @@ describe('Should return next step delay', () => {
                 list: [1],
                 currentCardIndex: 0,
                 step: 1,
-                params: {
-                    isEnFirst: false,
-                    isEnSound: true,
-                    isRuSound: false,
-                },
+            },
+            rememberParams: {
+                isEnFirst: false,
+                isEnSound: true,
+                isRuSound: false,
             },
         }
 
@@ -211,11 +211,11 @@ describe('Should return next step delay', () => {
                 list: [1],
                 currentCardIndex: 0,
                 step: 2,
-                params: {
-                    isEnFirst: false,
-                    isEnSound: true,
-                    isRuSound: true,
-                },
+            },
+            rememberParams: {
+                isEnFirst: false,
+                isEnSound: true,
+                isRuSound: true,
             },
         }
 
@@ -244,10 +244,8 @@ it('Should return total filtered cards to remember', () => {
             { id: 2, status: 1 },
             { id: 3, status: 0, label: 'testing' },
         ],
-        remember: {
-            params: {
-                label: 'test',
-            },
+        rememberParams: {
+            label: 'test',
         },
     }
     expect(getRememberFilteredTotalCards(state)).toBe(1)
@@ -274,10 +272,8 @@ it('Should get remember list', () => {
             { id: 2, status: 1 },
             { id: 3, status: 0, label: 'testing' },
         ],
-        remember: {
-            params: {
-                label: 'test',
-            },
+        rememberParams: {
+            label: 'test',
         },
     }
     expect(getRememberList(state)).toEqual([{ id: 3, status: 0, label: 'testing' }])
@@ -324,8 +320,8 @@ describe('isLastRememberCard()', () => {
             remember: {
                 currentCardIndex: 2,
                 step: 2,
-                params: { label: '' },
             },
+            rememberParams: { label: '' },
         }
         expect(isLastRememberCard(state)).toBe(true)
     })
@@ -337,8 +333,8 @@ describe('isLastRememberCard()', () => {
                 list: [1, 2, 3],
                 currentCardIndex: 0,
                 step: 2,
-                params: { label: 'alone' },
             },
+            rememberParams: { label: 'alone' },
         }
         expect(isLastRememberCard(state)).toBe(true)
     })
@@ -349,8 +345,8 @@ describe('isLastRememberCard()', () => {
             remember: {
                 currentCardIndex: 2,
                 step: 1,
-                params: { label: '' },
             },
+            rememberParams: { label: '' },
         }
         expect(isLastRememberCard(state)).toBe(false)
     })
@@ -361,8 +357,8 @@ describe('isLastRememberCard()', () => {
             remember: {
                 currentCardIndex: 1,
                 step: 2,
-                params: { label: '' },
             },
+            rememberParams: { label: '' },
         }
         expect(isLastRememberCard(state)).toBe(false)
     })

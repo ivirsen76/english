@@ -5,7 +5,7 @@ import _find from 'lodash/find'
 
 const getList = state => state.list
 const getRememberStep = state => state.remember.step
-const getRememberParams = state => state.remember.params
+const getRememberParams = state => state.rememberParams
 const getRememberSortedList = state => state.remember.list
 const getRememberCurrentCardIndex = state => state.remember.currentCardIndex
 const getWriteSortedList = state => state.write.list
