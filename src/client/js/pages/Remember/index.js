@@ -7,6 +7,7 @@ import mp3 from 'client/js/utils/mp3.js'
 import { getMediaUrl } from 'client/js/utils/media.js'
 import {
     getRememberTotalCards,
+    getRememberFilteredTotalCards,
     getRememberCurrentCard,
     getNextRememberCardSounds,
     getNextStepDelay,
@@ -42,6 +43,7 @@ import style from './index.module.scss'
 class RememberPage extends React.Component {
     static propTypes = {
         totalCards: PropTypes.number,
+        totalFilteredCards: PropTypes.number,
         currentCardNumber: PropTypes.number,
         currentCard: PropTypes.object,
         firstWord: PropTypes.object,
@@ -131,6 +133,7 @@ class RememberPage extends React.Component {
             currentCard,
             currentCardNumber,
             totalCards,
+            totalFilteredCards,
             step,
             isAutoPlayMode,
             toggleSound,
@@ -148,7 +151,7 @@ class RememberPage extends React.Component {
                 ) : (
                     <div className={style.wrapper}>
                         <div className={style.counter}>
-                            <Counter current={currentCardNumber} total={totalCards} />
+                            <Counter current={currentCardNumber} total={totalFilteredCards} />
                         </div>
 
                         <div className={style.mainButtons}>
@@ -178,27 +181,31 @@ class RememberPage extends React.Component {
                             </div>
                         </div>
 
-                        {currentCard.text && (
-                            <div key={iteration} className={style.panelWrapper}>
-                                <SwitchButton onClick={this.switchOrder} />
-                                <Panel
-                                    word={removeMeta(firstWord.word)}
-                                    language={firstWord.language}
-                                    isSound={firstWord.isSound}
-                                    soundFile={firstWord.soundFile}
-                                    toggleSound={toggleSound}
-                                />
-                                <Panel
-                                    word={removeMeta(secondWord.word)}
-                                    language={secondWord.language}
-                                    isSound={secondWord.isSound}
-                                    soundFile={secondWord.soundFile}
-                                    show={step === 2}
-                                    iconPosition="top"
-                                    toggleSound={toggleSound}
-                                />
-                            </div>
+                        {totalFilteredCards === 0 && (
+                            <div className={style.noCardsMessage}>No cards to show</div>
                         )}
+                        {totalFilteredCards !== 0 &&
+                            currentCard.text && (
+                                <div key={iteration} className={style.panelWrapper}>
+                                    <SwitchButton onClick={this.switchOrder} />
+                                    <Panel
+                                        word={removeMeta(firstWord.word)}
+                                        language={firstWord.language}
+                                        isSound={firstWord.isSound}
+                                        soundFile={firstWord.soundFile}
+                                        toggleSound={toggleSound}
+                                    />
+                                    <Panel
+                                        word={removeMeta(secondWord.word)}
+                                        language={secondWord.language}
+                                        isSound={secondWord.isSound}
+                                        soundFile={secondWord.soundFile}
+                                        show={step === 2}
+                                        iconPosition="top"
+                                        toggleSound={toggleSound}
+                                    />
+                                </div>
+                            )}
 
                         <GoNextPanel onClick={this.goNext} />
                     </div>
@@ -211,6 +218,7 @@ class RememberPage extends React.Component {
 function mapStateToProps(state) {
     return {
         totalCards: getRememberTotalCards(state.app.card),
+        totalFilteredCards: getRememberFilteredTotalCards(state.app.card),
         currentCardNumber: state.app.card.remember.currentCardIndex + 1,
         currentCard: getRememberCurrentCard(state.app.card),
         step: state.app.card.remember.step,

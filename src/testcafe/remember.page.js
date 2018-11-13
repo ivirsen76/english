@@ -27,6 +27,7 @@ const EditButton = ReactSelector('EditButton')
 const DeleteButton = ReactSelector('DeleteButton')
 const EditSubmitButton = Selector('button').withText('Update card')
 const Alert = ReactSelector('Alert')
+const RememberTotalBadge = Selector('#rememberTotal')
 
 test('Should show no cards message', async t => {
     await runQuery('DELETE FROM cards')
@@ -49,6 +50,7 @@ test('Should filter list using existing label', async t => {
 
 test('Should filter list using unknown label', async t => {
     await t.typeText(Label, 'unknown')
+    await t.expect(RememberTotalBadge.innerText).contains('5')
     await t.expect(RememberPage.innerText).contains('No cards to show')
 })
 
