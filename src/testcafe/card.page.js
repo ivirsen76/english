@@ -25,9 +25,13 @@ const TranslateInput = Selector('input[name=translate]')
 const Alert = ReactSelector('Alert')
 const Table = ReactSelector('Table')
 const CardTotalBadge = Selector('#cardTotal')
+const RememberTotalBadge = Selector('#rememberTotal')
+const WriteTotalBadge = Selector('#writeTotal')
 
 test('Should check environment', async t => {
     await t.expect(CardTotalBadge.innerText).contains('8')
+    await t.expect(RememberTotalBadge.innerText).contains('5')
+    await t.expect(WriteTotalBadge.innerText).contains('3')
 })
 
 test('Should show validation error when adding a card', async t => {
