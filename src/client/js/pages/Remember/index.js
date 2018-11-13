@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import globalClickRequired from 'client/js/helpers/globalClickRequired'
 import _pick from 'lodash/pick'
-import mp3 from 'client/js/utils/mp3.js'
+import { preload } from 'client/js/utils/mp3.js'
 import { getMediaUrl } from 'client/js/utils/media.js'
 import {
     getRememberTotalCards,
@@ -87,7 +87,7 @@ class RememberPage extends React.Component {
 
         if (process.env.NODE_ENV !== 'test') {
             // Preload mp3 for the next card
-            this.props.nextSounds.map(soundFile => mp3.preload(getMediaUrl(soundFile)))
+            this.props.nextSounds.map(soundFile => preload(getMediaUrl(soundFile)))
         }
     }
 
