@@ -228,7 +228,7 @@ function mapStateToProps(state) {
         firstWord: getRememberFirstWord(state.app.card),
         secondWord: getRememberSecondWord(state.app.card),
         iteration: state.app.card.remember.iteration,
-        ..._pick(state.app.card.remember.params, ['isAutoPlayMode', 'label']),
+        ..._pick(state.app.card.rememberParams, ['isAutoPlayMode', 'label']),
     }
 }
 
