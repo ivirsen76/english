@@ -15,6 +15,7 @@ import {
 } from 'client/js/selectors/card.js'
 import { stripBrackets } from 'server/utils.js'
 
+export const persistedKeys = ['rememberParams']
 export const maxWriteAttempts = 3
 
 export const acceptedFields = [

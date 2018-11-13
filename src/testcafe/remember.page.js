@@ -54,6 +54,18 @@ test('Should filter list using unknown label', async t => {
     await t.expect(RememberPage.innerText).contains('No cards to show')
 })
 
+test('Should remember params', async t => {
+    await t.typeText(Label, 'test')
+    await t.click(SwitchButton)
+
+    // Reload the page
+    await t.eval(() => location.reload(true))
+    await t.click(Selector('#globalPlayButton'))
+
+    await t.expect(Counter.innerText).contains('1 / 2')
+    await t.expect(PanelUs.innerText).contains('text')
+})
+
 test('Should go to the next card', async t => {
     await t.expect(PanelRu.innerText).contains('текст')
     await t.expect(PanelUs.innerText).notContains('text')
