@@ -55,22 +55,22 @@ test('Should filter list using unknown label', async t => {
 })
 
 test('Should go to the next card', async t => {
-    await t.expect(PanelUs.innerText).contains('text')
-    await t.expect(PanelRu.innerText).notContains('текст')
+    await t.expect(PanelRu.innerText).contains('текст')
+    await t.expect(PanelUs.innerText).notContains('text')
 
     await t.click(NextButton)
-    await t.expect(PanelRu.innerText).contains('текст')
+    await t.expect(PanelUs.innerText).contains('text')
 
     await t.click(NextButton)
     await t.expect(Counter.innerText).contains('2 / 5')
-    await t.expect(PanelUs.innerText).contains('block')
-    await t.expect(PanelRu.innerText).notContains('блок')
+    await t.expect(PanelRu.innerText).contains('блок')
+    await t.expect(PanelUs.innerText).notContains('block')
 })
 
 test('Should go to the next card when pressing space', async t => {
-    await t.expect(PanelRu.innerText).notContains('текст')
+    await t.expect(PanelUs.innerText).notContains('text')
     await t.pressKey('space')
-    await t.expect(PanelRu.innerText).contains('текст')
+    await t.expect(PanelUs.innerText).contains('text')
 })
 
 test('Should go to the next card with filter', async t => {
@@ -83,13 +83,13 @@ test('Should go to the next card with filter', async t => {
 })
 
 test('Should remember card', async t => {
-    await t.expect(PanelUs.innerText).contains('text')
+    await t.expect(PanelRu.innerText).contains('текст')
 
     await t.click(DoneButton)
-    await t.expect(PanelUs.innerText).contains('block')
+    await t.expect(PanelRu.innerText).contains('блок')
     await t.expect(Counter.innerText).contains('1 / 4')
 
-    await t.expect(await getNumRecords('cards', { text: 'text', status: 1 })).eql(1)
+    await t.expect(await getNumRecords('cards', { translate: 'т`екст', status: 1 })).eql(1)
 })
 
 test('Should start playing', async t => {
@@ -101,12 +101,12 @@ test('Should start playing', async t => {
 })
 
 test('Should switch panels', async t => {
-    await t.expect(PanelUs.innerText).contains('text')
-    await t.expect(PanelRu.innerText).notContains('текст')
+    await t.expect(PanelRu.innerText).contains('текст')
+    await t.expect(PanelUs.innerText).notContains('text')
 
     await t.click(SwitchButton)
-    await t.expect(PanelUs.innerText).notContains('text')
-    await t.expect(PanelRu.innerText).contains('текст')
+    await t.expect(PanelRu.innerText).notContains('текст')
+    await t.expect(PanelUs.innerText).contains('text')
 })
 
 test('Should edit card', async t => {
@@ -128,8 +128,8 @@ test('Should edit card', async t => {
 
 test('Should delete card', async t => {
     await t.click(DeleteButton)
-    await t.expect(PanelUs.innerText).contains('block')
+    await t.expect(PanelRu.innerText).contains('блок')
     await t.expect(Counter.innerText).contains('1 / 4')
 
-    await t.expect(await getNumRecords('cards', { text: 'text' })).eql(0)
+    await t.expect(await getNumRecords('cards', { translate: 'т`екст' })).eql(0)
 })
