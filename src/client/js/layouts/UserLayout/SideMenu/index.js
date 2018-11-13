@@ -37,12 +37,16 @@ const SideMenu = ({ cardTotal, cardRememberTotal, cardWriteTotal }) => (
                 <MenuLink id="rememberMenuItem" to="/user/remember">
                     <IconBubble spaceRight />
                     Запомнить
-                    <div className="ui label">{cardRememberTotal}</div>
+                    <div className="ui label" id="rememberTotal">
+                        {cardRememberTotal}
+                    </div>
                 </MenuLink>
                 <MenuLink id="writeMenuItem" to="/user/write">
                     <IconPencil spaceRight />
                     Написать
-                    <div className="ui label">{cardWriteTotal}</div>
+                    <div className="ui label" id="writeTotal">
+                        {cardWriteTotal}
+                    </div>
                 </MenuLink>
                 {/* <MenuLink to="/user/mp3"> */}
                 {/*     <Icon type="headphones" /> */}
