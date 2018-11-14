@@ -35,6 +35,11 @@ test('Should check environment', async t => {
     await t.expect(WriteTotalBadge.innerText).contains('3')
 })
 
+test('Should check that audio is playing', async t => {
+    await t.click(Selector('a').withText('calendar'))
+    await t.expect(isAudioPlaying()).ok()
+})
+
 test('Should show validation error when adding a card', async t => {
     await t.click(AddCardButton)
     await t.typeText(TextInput, 'русский текст')

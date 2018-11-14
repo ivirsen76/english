@@ -246,6 +246,12 @@ test('Should update card', async t => {
     await t.expect(record.ruSoundLength).lt(2000)
 })
 
+test('Should audio playing on word clicking', async t => {
+    await t.navigateTo(url('/user/base/2'))
+    await t.click(Selector('a').withText('календарь'))
+    await t.expect(isAudioPlaying()).ok()
+})
+
 test('Should strip spaces when updating card', async t => {
     await t.navigateTo(url('/user/base/2'))
 

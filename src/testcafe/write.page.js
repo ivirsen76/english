@@ -3,6 +3,7 @@ import { ReactSelector } from 'testcafe-react-selectors'
 import { studentUser } from './roles.js'
 import { restoreDb, restoreSamples, runQuery, getRecord } from './db/utils.js'
 import { url } from './config.js'
+import { isAudioPlaying } from './helpers.js'
 
 fixture('Write page').beforeEach(async t => {
     restoreDb()
@@ -33,6 +34,7 @@ test('Should show no cards message', async t => {
 })
 
 test('Should go to the next word', async t => {
+    await t.expect(isAudioPlaying()).ok()
     await t.expect(Counter.innerText).contains('1 / 3')
     await t.typeText(Input, 'Person')
     await t.pressKey('enter')

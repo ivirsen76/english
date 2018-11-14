@@ -3,6 +3,7 @@ import { ReactSelector } from 'testcafe-react-selectors'
 import { studentUser } from './roles.js'
 import { restoreDb, restoreSamples, getNumRecords, runQuery } from './db/utils.js'
 import { url } from './config.js'
+import { isAudioPlaying } from './helpers.js'
 
 fixture('Remember page').beforeEach(async t => {
     restoreDb()
@@ -69,9 +70,11 @@ test('Should remember params', async t => {
 test('Should go to the next card', async t => {
     await t.expect(PanelRu.innerText).contains('текст')
     await t.expect(PanelUs.innerText).notContains('text')
+    await t.expect(isAudioPlaying()).notOk()
 
     await t.click(NextButton)
     await t.expect(PanelUs.innerText).contains('text')
+    await t.expect(isAudioPlaying()).ok()
 
     await t.click(NextButton)
     await t.expect(Counter.innerText).contains('2 / 5')
