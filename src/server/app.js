@@ -27,6 +27,7 @@ app.getService = name => app.service(app.get('prefix') + '/' + name)
 
 app
     .options('*', cors())
+    // .use(cors({ origin: process.env.IE_CORS_ORIGIN || '' }))
     .use((req, res, next) => {
         if (/\.(css|js|jpg|png|gif|svg|ttf|eot|woff|woff2|mp3)$/.test(req.url)) {
             res.setHeader('Surrogate-Control', `max-age=${365 * 24 * 3600}`)
