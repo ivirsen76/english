@@ -25,9 +25,13 @@ app.declareService = (name, service) => {
 }
 app.getService = name => app.service(app.get('prefix') + '/' + name)
 
+// Enable CORS policy if necessary
+app.options('*', cors())
+if (process.env.IE_CORS_ORIGIN) {
+    app.use(cors({ origin: process.env.IE_CORS_ORIGIN }))
+}
+
 app
-    .options('*', cors())
-    .use(cors({ origin: process.env.IE_CORS_ORIGIN || '' }))
     .use((req, res, next) => {
         if (/\.(css|js|jpg|png|gif|svg|ttf|eot|woff|woff2|mp3)$/.test(req.url)) {
             res.setHeader('Surrogate-Control', `max-age=${365 * 24 * 3600}`)
