@@ -116,6 +116,7 @@ export const updateCard = cardInfo => async (dispatch, getState) => {
     const result = _pick(cardInfo, ['text', 'translate', 'label'])
     const response = await axios.patch(`/cards/${cardInfo.id}`, result)
     dispatch(updateCardWithoutSaving(response.data))
+    return response.data
 }
 
 export const deleteCard = cardId => async (dispatch, getState) => {

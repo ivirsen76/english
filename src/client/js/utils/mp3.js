@@ -1,8 +1,10 @@
 import { Howl } from 'howler'
 import _filter from 'lodash/filter'
 import notification from '@ieremeev/notification'
+import _set from 'lodash/set'
 
 const sounds = {}
+_set(window, 'ieremeev.sounds', sounds)
 
 export const preload = async url => {
     const interval = 100

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { Modal } from 'semantic-ui-react'
 import notification from '@ieremeev/notification'
 import Form from './form'
-import { play } from 'client/js/utils/mp3.js'
-import { getMediaUrl } from 'client/js/utils/media.js'
+import playCard from 'client/js/helpers/playCard.js'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -14,18 +13,12 @@ export default class Component extends React.Component {
     }
 
     handleSubmit = async values => {
-        let card
         try {
-            card = await this.props.addCard(values)
+            const card = await this.props.addCard(values)
             notification('Card has been added')
+            playCard(card)
         } catch (errors) {
             throw errors
-        }
-
-        if (card) {
-            await play(getMediaUrl(card.usSoundFile))
-            await new Promise(resolve => setTimeout(resolve, 500))
-            await play(getMediaUrl(card.ruSoundFile))
         }
     }
 

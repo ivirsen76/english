@@ -4,6 +4,7 @@ import { Modal } from 'semantic-ui-react'
 import notification from '@ieremeev/notification'
 import Form from '../AddCard/form'
 import IconPencil from '@ieremeev/icons/pencil'
+import playCard from 'client/js/helpers/playCard.js'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -15,9 +16,10 @@ export default class Component extends React.Component {
 
     handleSubmit = async values => {
         try {
-            await this.props.updateCard(values)
+            const card = await this.props.updateCard(values)
             notification('Card has been updated')
             this.modal.handleClose()
+            playCard(card)
         } catch (errors) {
             throw errors
         }
