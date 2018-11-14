@@ -70,7 +70,7 @@ test('Should add card', async t => {
     await t.expect(isAudioPlaying()).ok()
     await t.expect(Alert.innerText).contains('has been added')
     await t.expect(Table.innerText).contains(text)
-    await t.expect(Table.innerText).contains(translate.replace('`', ''))
+    await t.expect(Table.innerText).contains(translate.replace(/`/g, ''))
     await t.expect(CardTotalBadge.innerText).contains('9')
 
     await t.expect(await getNumRecords('cards', { text, translate })).eql(1)

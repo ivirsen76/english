@@ -9,7 +9,7 @@ export default class Component extends React.Component {
 
     render() {
         const html = this.props.convertLineBreaks
-            ? this.props.children.replace('\n', '<br>')
+            ? this.props.children.replace(/\n/g, '<br>')
             : this.props.children
 
         return <div dangerouslySetInnerHTML={{ __html: html }} />

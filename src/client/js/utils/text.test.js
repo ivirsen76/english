@@ -18,6 +18,6 @@ describe('isTextEqual', () => {
 
 describe('removeMeta', () => {
     it('Should remove stress character', () => {
-        expect(removeMeta('Som`e')).toBe('Some')
+        expect(removeMeta('So`m`e')).toBe('Some')
     })
 })
