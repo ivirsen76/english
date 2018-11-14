@@ -3,6 +3,7 @@ import { ReactSelector } from 'testcafe-react-selectors'
 import { adminUser } from './roles.js'
 import { restoreDb, restoreSamples, getRecord, getNumRecords, runQuery } from './db/utils.js'
 import { url } from './config.js'
+import { isAudioPlaying } from './helpers.js'
 
 fixture('Bases page')
     .beforeEach(async t => {
@@ -133,6 +134,7 @@ test('Should add card', async t => {
     await t.typeText('input[name=translate]', translate, { paste: true })
 
     await t.click(AddCardSubmitButton)
+    await t.expect(isAudioPlaying()).ok()
     await t.expect(Alert.innerText).contains('has been added')
     await t.expect(Table.innerText).contains(text)
     await t.expect(Table.innerText).contains(translate.replace('`', ''))
@@ -228,6 +230,7 @@ test('Should update card', async t => {
     await t.typeText('input[name=translate]', translate, { paste: true, replace: true })
 
     await t.click(UpdateCardSubmitButton)
+    await t.expect(isAudioPlaying()).ok()
     await t.expect(Alert.innerText).contains('has been updated')
     await t.expect(Table.innerText).contains(text)
     await t.expect(Table.innerText).contains(translate)

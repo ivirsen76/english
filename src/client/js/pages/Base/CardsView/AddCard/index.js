@@ -4,6 +4,7 @@ import { Modal } from 'semantic-ui-react'
 import notification from '@ieremeev/notification'
 import Form from 'client/js/pages/Cards/AddCard/form.js'
 import WordHelper from '../WordHelper'
+import playCard from 'client/js/helpers/playCard.js'
 
 export default class Component extends React.Component {
     static propTypes = {
@@ -17,9 +18,10 @@ export default class Component extends React.Component {
 
     handleSubmit = async values => {
         try {
-            await this.props.addCard(values)
+            const card = await this.props.addCard(values)
             notification('Card has been added')
             this.setState({ count: this.state.count + 1 })
+            playCard(card)
         } catch (errors) {
             throw errors
         }

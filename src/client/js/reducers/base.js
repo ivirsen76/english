@@ -88,6 +88,7 @@ export const addCard = cardInfo => async (dispatch, getState) => {
     }
 
     dispatch(addCardWithoutSaving(response.data))
+    return response.data
 }
 
 export const deleteCard = basecardId => async (dispatch, getState) => {
@@ -99,6 +100,7 @@ export const updateCard = cardInfo => async (dispatch, getState) => {
     const result = _pick(cardInfo, ['id', 'text', 'translate'])
     const response = await axios.patch(`/basecards/${cardInfo.id}`, result)
     dispatch(updateCardWithoutSaving(response.data))
+    return response.data
 }
 
 // Reducer
