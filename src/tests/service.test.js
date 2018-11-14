@@ -16,7 +16,7 @@ let server
 let request
 
 beforeAll(() => {
-    server = app.listen(5000)
+    server = app.listen(4999)
     request = supertest(server)
     return new Promise(resolve => server.on('listening', resolve))
 })
