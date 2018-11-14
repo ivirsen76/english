@@ -86,7 +86,7 @@ export default class Component extends React.Component {
                             laboriosam facere, doloremque numquam aliquam maiores officiis
                             perferendis quos recusandae aliquid, cum, tempora dolores cumque! Facere
                             voluptas quas ad tempora inventore aliquam cupiditate pariatur! Tempora
-                            consectetur, molestias commodi illum praesentium aut quia.
+                            consectetur, molestias commodi illu praesentium aut quia.
                         </p>
                     </div>
                 </div>
