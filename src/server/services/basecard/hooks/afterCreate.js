@@ -1,9 +1,27 @@
 module.exports = options => async hook => {
-    const { baseId } = hook.data
+    const bases = hook.app.getService('bases')
+    const sum = (result, value) => result + value
 
-    // get number of cards
-    const result = await hook.service.find({ query: { baseId } })
-    const count = result.data.length
+    const updateCount = async baseId => {
+        const baseInfo = (await bases.get(baseId)).dataValues
 
-    await hook.app.getService('bases').patch(baseId, { count })
+        let count
+        if (baseInfo.type === 'folder') {
+            count = (await bases.find({
+                query: { parentId: baseId, $select: ['count'] },
+            })).data
+                .map(item => item.dataValues.count)
+                .reduce(sum, 0)
+        } else {
+            count = (await hook.service.find({ query: { baseId, $select: ['id'] } })).data.length
+        }
+
+        await bases.patch(baseId, { count })
+
+        if (baseInfo.parentId !== 0) {
+            await updateCount(baseInfo.parentId)
+        }
+    }
+
+    await updateCount(hook.data.baseId)
 }

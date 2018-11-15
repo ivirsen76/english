@@ -241,7 +241,10 @@ describe('basecard', () => {
         })
 
         it('should increment base cards count', async () => {
-            const initialCount = (await getRecord('bases', { id: 2 })).count
+            const baseIds = [2, 13, 12, 1, 4]
+            const expectedCounts = await Promise.all(
+                baseIds.map(async id => (await getRecord('bases', { id })).count + 1)
+            )
 
             const token = await loginAsAdmin()
             await request
@@ -250,8 +253,10 @@ describe('basecard', () => {
                 .set('Authorization', token)
                 .expect(201)
 
-            const resultedCount = (await getRecord('bases', { id: 2 })).count
-            expect(resultedCount).toBe(initialCount + 1)
+            const resultedCounts = await Promise.all(
+                baseIds.map(async id => (await getRecord('bases', { id })).count)
+            )
+            expect(resultedCounts).toEqual(expectedCounts)
         })
     })
 
