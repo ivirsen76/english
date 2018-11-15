@@ -62,6 +62,7 @@ class ShowBase extends React.Component {
     }
 
     render() {
+        const isNew = this.props.base.id > 999999999
         const columns = [
             {
                 name: 'actions',
@@ -105,7 +106,7 @@ class ShowBase extends React.Component {
         ]
 
         return (
-            <div>
+            <div id="cardsBody">
                 <h2>{this.props.base.title}</h2>
                 <div className="margin1">
                     <Formik
@@ -130,19 +131,27 @@ class ShowBase extends React.Component {
                         )}
                     />
                 </div>
-                <div className="margin1">
-                    <AddCard addCard={this.addCard} base={this.props.base} />
-                </div>
-                <Loader type="inline" loading={this.state.loading}>
-                    <Table
-                        data={this.props.list}
-                        columns={columns}
-                        perPage={500}
-                        showRowNumber
-                        orderBy="createdAt"
-                        isAscentOrder={false}
-                    />
-                </Loader>
+                {isNew ? (
+                    <div className="ui warning message">
+                        Вы сможете добавить слова после сохранения
+                    </div>
+                ) : (
+                    <div>
+                        <div className="margin1">
+                            <AddCard addCard={this.addCard} base={this.props.base} />
+                        </div>
+                        <Loader type="inline" loading={this.state.loading}>
+                            <Table
+                                data={this.props.list}
+                                columns={columns}
+                                perPage={500}
+                                showRowNumber
+                                orderBy="createdAt"
+                                isAscentOrder={false}
+                            />
+                        </Loader>
+                    </div>
+                )}
             </div>
         )
     }

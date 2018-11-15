@@ -76,7 +76,7 @@ export default class Component extends React.Component {
         const isNew = this.props.base.id > 999999999
 
         return (
-            <div>
+            <div id="folderBody">
                 <h2 id="baseTitle">{this.props.base.title}</h2>
                 <div id="baseSettings" className="ui raised segment">
                     <h3

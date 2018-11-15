@@ -29,7 +29,7 @@ class WordHelper extends React.Component {
         const isAdjective = word => adjectives.includes(word[0])
         const isOther = word => word[0] && !isInSentence(word) && !isAdjective(word)
 
-        const words = this.props.base.words
+        const words = (this.props.base.words || '')
             .split(',')
             .map(item => [item.trim().toLowerCase(), item.trim()])
             .filter(item => !this.props.existingWords.includes(` ${item[0]} `))

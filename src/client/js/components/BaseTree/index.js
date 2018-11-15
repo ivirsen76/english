@@ -83,16 +83,15 @@ class BaseTree extends React.Component {
 
         return (
             <div>
-                {base.isMain &&
-                    base.image && (
-                        <div className={style.info}>
-                            <img src={getMediaUrl(base.image)} alt={base.title} />
-                            <div>
-                                <div className={style.baseCount}>{base.count} слов</div>
-                                <Html convertLineBreaks>{base.info}</Html>
-                            </div>
+                {base.isMain && (
+                    <div className={style.info}>
+                        {base.image && <img src={getMediaUrl(base.image)} alt={base.title} />}
+                        <div>
+                            <div className={style.baseCount}>{base.count} слов</div>
+                            <Html convertLineBreaks>{base.info}</Html>
                         </div>
-                    )}
+                    </div>
+                )}
                 {this.showTree(subtree)}
             </div>
         )
