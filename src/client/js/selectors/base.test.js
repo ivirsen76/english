@@ -92,12 +92,12 @@ describe('getUpdatedIds()', () => {
     it('Should return updated ids', () => {
         const state = {
             list: [
-                { id: 1, parentId: 0, position: 0 },
+                { id: 1, parentId: 0, position: 0, count: 1 },
                 { id: 2, parentId: 0, position: 1 },
                 { id: 1000000000, parentId: 2, position: 0 },
             ],
             savedList: [
-                { id: 1, parentId: 0, position: 0 },
+                { id: 1, parentId: 0, position: 0, count: 2 },
                 { id: 2, parentId: 1, position: 0 },
                 { id: 1000000001, parentId: 1, position: 1 },
             ],

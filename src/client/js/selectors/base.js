@@ -46,7 +46,7 @@ export const getUpdatedIds = createSelector(
                 }
 
                 const prevItem = savedList.find(obj => obj.id === item.id)
-                if (!_isEqual(item, prevItem)) {
+                if (!_isEqual(_omit(item, ['count']), _omit(prevItem, ['count']))) {
                     return true
                 }
 

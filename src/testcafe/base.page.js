@@ -32,6 +32,8 @@ const BaseSettings = Selector('#baseSettings')
 const ListButton = Selector('button').withText('List')
 const TableButton = Selector('button').withText('Table')
 const Modal = Selector('.ui.modal')
+const CardsBody = Selector('#cardsBody')
+const FolderBody = Selector('#folderBody')
 
 test('Should render base title', async t => {
     await t.navigateTo(url('/user/base'))
@@ -121,6 +123,27 @@ test('Should add two folders and cards', async t => {
             })
         )
         .eql(1)
+})
+
+test('Should increment count number', async t => {
+    await t.navigateTo(url('/user/base'))
+    await t.click(Selector('.testcafeTreeItem').withText('Учебники'))
+    await t.click(CardsElement)
+    await t.click(Selector('.testcafeTreeItem').withText('Cards'))
+    await t.expect(CardsBody.innerText).contains('Вы сможете добавить слова после сохранения')
+    await t.expect(AddCardButton.exists).notOk()
+    await t.click(SaveButton)
+
+    await t.click(Selector('.testcafeTreeItem').withText('Cards'))
+    await t.click(AddCardButton)
+    await t.typeText('input[name=text]', 'Word', { paste: true })
+    await t.typeText('input[name=translate]', 'Слово', { paste: true })
+    await t.click(AddCardSubmitButton)
+    await t.pressKey('esc')
+
+    await t.click(Selector('.testcafeTreeItem').withText('Учебники'))
+    await t.click(Selector('label').withText('главная база'))
+    await t.expect(FolderBody.innerText).contains('12 слов')
 })
 
 test('Should add card', async t => {

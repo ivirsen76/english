@@ -80,16 +80,27 @@ describe('setBases()', () => {
 })
 
 describe('addCard()', () => {
-    it('Should add card to base', () => {
-        const oldCard = { id: 4, baseId: 2, text: 'More', translate: 'Anymore' }
-        const newCard = { id: 5, baseId: 1, text: 'Some', translate: 'Another' }
+    it('Should add card to base and update counts', () => {
+        const oldCard = { id: 4, baseId: 3, text: 'More', translate: 'Anymore' }
+        const newCard = { id: 5, baseId: 4, text: 'Some', translate: 'Another' }
         const state = {
             ...initialState,
+            list: [
+                { id: 2, parentId: 0, count: 1 },
+                { id: 3, parentId: 2, count: 1 },
+                { id: 4, parentId: 2, count: 0 },
+            ],
             cards: [oldCard],
         }
+        const expectedList = [
+            { id: 2, parentId: 0, count: 2 },
+            { id: 3, parentId: 2, count: 1 },
+            { id: 4, parentId: 2, count: 1 },
+        ]
 
         const resultedState = reducer(state, addCard(newCard))
         expect(resultedState.cards).toEqual([oldCard, newCard])
+        expect(resultedState.list).toEqual(expectedList)
     })
 })
 

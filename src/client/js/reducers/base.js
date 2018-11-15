@@ -145,10 +145,28 @@ export default handleActions(
             ...state,
             loading: !!action.payload,
         }),
-        [ADD_CARD]: (state, action) => ({
-            ...state,
-            cards: [...state.cards, action.payload],
-        }),
+        [ADD_CARD]: (state, action) => {
+            const newCard = action.payload
+
+            const newList = [...state.list]
+            const updateCount = baseId => {
+                newList.forEach((item, index) => {
+                    if (item.id === baseId) {
+                        newList[index] = { ...item, count: item.count + 1 }
+                        if (item.parentId !== 0) {
+                            updateCount(item.parentId)
+                        }
+                    }
+                })
+            }
+            updateCount(newCard.baseId)
+
+            return {
+                ...state,
+                list: newList,
+                cards: [...state.cards, newCard],
+            }
+        },
         [DELETE_CARD]: (state, action) => ({
             ...state,
             cards: state.cards.filter(item => item.id !== action.payload),
