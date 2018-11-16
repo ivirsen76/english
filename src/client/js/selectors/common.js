@@ -9,13 +9,16 @@ export const getBaseCardsToAdd = createSelector(getBasecards, getCards, (basecar
         return basecards.map(item => item.id)
     }
 
-    const cardsTexts = cards.map(item => stripBrackets(item.text))
+    const simplify = string =>
+        stripBrackets(string)
+            .toLowerCase()
+            .replace(/\./gi, '')
+
+    const cardsTexts = cards.map(item => simplify(item.text))
     const basecardIds = cards.filter(item => item.basecardId).map(item => item.basecardId)
 
     const result = basecards
-        .filter(
-            item => !basecardIds.includes(item.id) && !cardsTexts.includes(stripBrackets(item.text))
-        )
+        .filter(item => !basecardIds.includes(item.id) && !cardsTexts.includes(simplify(item.text)))
         .map(item => item.id)
 
     return result
