@@ -27,6 +27,7 @@ const SET_BASES = 'english/base/SET_BASES'
 const ADD_CARD = 'english/base/ADD_CARD'
 const DELETE_CARD = 'english/base/DELETE_CARD'
 const UPDATE_CARD = 'english/base/UPDATE_CARD'
+const CLEAN_CARDS = 'english/base/CLEAN_CARDS'
 const SET_CARDS_FOR_BASE = 'english/base/SET_CARDS_FOR_BASE'
 const MOVE_ELEMENT = 'english/base/MOVE_ELEMENT'
 const ADD_ELEMENT = 'english/base/ADD_ELEMENT'
@@ -43,6 +44,7 @@ export const setBases = createAction(SET_BASES)
 export const addCardWithoutSaving = createAction(ADD_CARD)
 export const deleteCardWithoutSaving = createAction(DELETE_CARD)
 export const updateCardWithoutSaving = createAction(UPDATE_CARD)
+export const cleanCards = createAction(CLEAN_CARDS)
 export const setCardsForBase = createAction(SET_CARDS_FOR_BASE)
 export const moveElement = createAction(MOVE_ELEMENT)
 export const addElement = createAction(ADD_ELEMENT)
@@ -73,6 +75,7 @@ export const loadBases = () => async (dispatch, getState) => {
 }
 
 export const loadBaseCards = baseId => async (dispatch, getState) => {
+    dispatch(cleanCards())
     const response = await axios.get(`/basecards?baseId=${baseId}`)
     dispatch(setCardsForBase({ baseId, cards: response.data.data }))
 }
@@ -185,6 +188,10 @@ export default handleActions(
                 }),
             }
         },
+        [CLEAN_CARDS]: (state, action) => ({
+            ...state,
+            cards: [],
+        }),
         [SET_CARDS_FOR_BASE]: (state, action) => {
             const { baseId, cards } = action.payload
 

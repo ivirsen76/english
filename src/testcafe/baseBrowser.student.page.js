@@ -12,7 +12,8 @@ fixture('Base browser for students').beforeEach(async t => {
 // Selectors
 const Title = Selector('h2')
 const StudentBookLink = Selector('a').withExactText('Pre-intermediate')
-const ChapterLink = Selector('a').withText("Who's who?")
+const ChapterLink1 = Selector('a').withText("Who's who?")
+const ChapterLink2 = Selector('a').withText('Who knows you better?')
 const AddCardsButton = Selector('#addCardsFromBaseButton')
 const NewWordsCounter = AddCardsButton.find('.ui.label')
 const Alert = ReactSelector('Alert')
@@ -27,8 +28,11 @@ test('Should render title', async t => {
 test('Should add all 8 new words', async t => {
     await t.navigateTo(url('/bases'))
     await t.click(StudentBookLink)
-    await t.click(ChapterLink)
+    await t.click(ChapterLink2)
+    await t.expect(NewWordsCounter.innerText).contains('1')
 
+    await t.click(StudentBookLink)
+    await t.click(ChapterLink1)
     await t.expect(NewWordsCounter.innerText).contains('8')
     await t.expect(Table.innerText).contains('Новое?')
     await t.expect(Table.innerText).contains('calendar')

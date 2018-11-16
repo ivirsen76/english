@@ -8,6 +8,7 @@ import reducer, {
     updateCardWithoutSaving as updateCard,
     setBases,
     setLoadingBasesState,
+    cleanCards,
     setCardsForBase,
     moveElement,
     addElement,
@@ -378,4 +379,12 @@ describe('toggleShowWordHelper()', () => {
         }
         expect(reducer(state, toggleShowWordHelper()).showWordHelper).toBe(true)
     })
+})
+
+describe('cleanCards()', () => {
+    const state = {
+        ...initialState,
+        cards: [{ id: 5, baseId: 2, text: 'Old', translate: 'ReallyOld' }],
+    }
+    expect(reducer(state, cleanCards()).cards).toEqual([])
 })
