@@ -97,6 +97,7 @@ export default class Component extends React.Component {
                                 'isMain',
                                 'price',
                                 'info',
+                                'label',
                             ])}
                             isInitialValid
                             validate={validate}
@@ -145,6 +146,11 @@ export default class Component extends React.Component {
                                                 component={SemanticTextarea}
                                                 label="Информация"
                                                 style={{ height: '5em', minHeight: '5em' }}
+                                            />
+                                            <Field
+                                                name="label"
+                                                component={SemanticInput}
+                                                label="Label"
                                             />
                                             <div className="field">
                                                 {isNew ? (

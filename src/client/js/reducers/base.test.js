@@ -309,6 +309,7 @@ describe('addElement()', () => {
                     arrangeChildren: 'list',
                     info: '',
                     price: 0,
+                    label: '',
                 },
             ],
             newId: 1000000001,

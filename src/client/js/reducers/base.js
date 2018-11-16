@@ -287,6 +287,7 @@ export default handleActions(
                         arrangeChildren: 'list',
                         info: '',
                         price: 0,
+                        label: '',
                         ...element,
                         id: state.newId,
                         parentId,

@@ -60,14 +60,15 @@ test('Should add two folders and cards', async t => {
     await t.expect(await TableButton.classNames).contains('active')
 
     // Change folder title
-    await t.typeText('input[name=title]', 'First one', { replace: true })
+    await t.typeText('input[name=title]', 'First one', { replace: true, paste: true })
     await t.expect(Selector('.testcafeTreeItem').withText('First one')).ok()
     await t.expect(BaseTitle.innerText).contains('First one')
 
     // Change price and info
     await t.click(Selector('label').withText('главная база'))
-    await t.typeText('input[name=price]', '100', { replace: true })
-    await t.typeText('textarea[name=info]', 'ISBN', { replace: true })
+    await t.typeText('input[name=price]', '100', { replace: true, paste: true })
+    await t.typeText('input[name=label]', 'firstLabel', { replace: true, paste: true })
+    await t.typeText('textarea[name=info]', 'ISBN', { replace: true, paste: true })
     await t
         .expect(BaseSettings.innerText)
         .contains('Вы сможете загрузить картинку после сохранения')
@@ -90,6 +91,7 @@ test('Should add two folders and cards', async t => {
         type: 'folder',
         isMain: 1,
         price: 100,
+        label: 'firstLabel',
         info: 'ISBN',
     })
     await t
@@ -106,9 +108,14 @@ test('Should add two folders and cards', async t => {
     // Check that the image is available now
     await t.click(Selector('.testcafeTreeItem').withText('First one'))
     await t.expect(Selector('button').withText('Загрузить картинку').innerText).ok()
-    await t.typeText('input[name=title]', 'First new one', { replace: true })
-    await t.typeText('input[name=price]', '200', { replace: true })
-    await t.typeText('textarea[name=info]', 'newISBN', { replace: true })
+    await t.expect(Selector('input[name=title]').value).eql('First one')
+    await t.expect(Selector('input[name=price]').value).eql('100')
+    await t.expect(Selector('input[name=label]').value).eql('firstLabel')
+    await t.expect(Selector('textarea[name=info]').value).eql('ISBN')
+    await t.typeText('input[name=title]', 'First new one', { replace: true, paste: true })
+    await t.typeText('input[name=price]', '200', { replace: true, paste: true })
+    await t.typeText('input[name=label]', 'newLabel', { replace: true, paste: true })
+    await t.typeText('textarea[name=info]', 'newISBN', { replace: true, paste: true })
     await t.click(ListButton)
     await t.click(SaveButton)
 
@@ -119,6 +126,7 @@ test('Should add two folders and cards', async t => {
                 arrangeChildren: 'list',
                 type: 'folder',
                 price: 200,
+                label: 'newLabel',
                 info: 'newISBN',
             })
         )
@@ -279,8 +287,8 @@ test('Should strip spaces when updating card', async t => {
     await t.navigateTo(url('/user/base/2'))
 
     await t.click(Selector('#updateCardButton1'))
-    await t.typeText('input[name=text]', ' Second one ', { replace: true })
-    await t.typeText('input[name=translate]', ' второй раз ', { replace: true })
+    await t.typeText('input[name=text]', ' Second one ', { replace: true, paste: true })
+    await t.typeText('input[name=translate]', ' второй раз ', { replace: true, paste: true })
 
     await t.click(UpdateCardSubmitButton)
 
@@ -293,7 +301,7 @@ test('Should show duplication error when updating a card', async t => {
     await t.navigateTo(url('/user/base/2'))
 
     await t.click(Selector('#updateCardButton1'))
-    await t.typeText('input[name=text]', ' second ', { replace: true })
+    await t.typeText('input[name=text]', ' second ', { replace: true, paste: true })
 
     await t.click(UpdateCardSubmitButton)
     await t.expect(Modal.innerText).contains('Text already exists')
