@@ -48,7 +48,7 @@ class Component extends React.Component {
 
         // Add top level
         if (id !== 0) {
-            result.push({ title: 'Базы', id: 0 })
+            result.push({ title: 'Базы карточек', id: 0 })
         }
 
         return result.reverse()
@@ -93,8 +93,7 @@ const mapStateToProps = (state, props) => {
     return {
         base: state.app.base.list.find(item => item.id === baseId) || {
             id: 0,
-            title: 'Базы',
-            isMain: true,
+            title: 'Базы карточек',
         },
         loading: state.app.base.loading,
         list: getSortedList(state.app.base),

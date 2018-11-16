@@ -7,6 +7,10 @@ export default class Component extends React.Component {
         children: PropTypes.string,
     }
 
+    static defaultProps = {
+        children: '',
+    }
+
     render() {
         const html = this.props.convertLineBreaks
             ? this.props.children.replace(/\n/g, '<br>')
