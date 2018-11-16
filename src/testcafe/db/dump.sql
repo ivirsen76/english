@@ -123,7 +123,7 @@ LOCK TABLES `bases` WRITE;
 INSERT INTO `bases` (`id`, `parentId`, `position`, `title`, `info`, `image`, `type`, `isMain`, `arrangeChildren`, `label`, `count`, `price`, `createdAt`, `updatedAt`, `words`)
 VALUES
     (1,4,0,'English File','',NULL,'folder',0,'table','',11,0,'2018-06-12 06:17:13','2018-09-30 00:29:19',''),
-    (2,13,0,'Who\'s who?','',NULL,'cards',0,'list','',10,0,'2018-06-12 06:17:26','2018-09-30 00:30:35',''),
+    (2,13,0,'Who\'s who?','',NULL,'cards',0,'list','chapter1',10,0,'2018-06-12 06:17:26','2018-09-30 00:30:35',''),
     (3,13,1,'Who knows you better?','',NULL,'cards',0,'list','',1,0,'2018-06-13 06:17:26','2018-09-30 00:30:35',''),
     (4,0,0,'Учебники','',NULL,'folder',0,'list','',11,0,'2018-06-10 06:17:13','2018-06-10 06:17:13',''),
     (5,13,2,'At the Mouline Rouge','',NULL,'cards',0,'list','',0,0,'2018-09-29 03:02:00','2018-09-30 00:30:35',''),

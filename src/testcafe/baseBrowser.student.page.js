@@ -42,5 +42,15 @@ test('Should add all 8 new words', async t => {
     await t.expect(Alert.innerText).contains('Все новые слова добавлены')
 
     await t.expect(await getNumRecords('cards', { userId: 2 })).eql(16)
+    await t
+        .expect(
+            await getNumRecords('cards', {
+                userId: 2,
+                text: 'sevens-teen',
+                translate: 'седьмой',
+                label: 'chapter1',
+            })
+        )
+        .eql(1)
     await t.expect(Message.innerText).contains('Все карточки уже добавлены')
 })
