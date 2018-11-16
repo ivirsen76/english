@@ -13,6 +13,7 @@ export const getBaseCardsToAdd = createSelector(getBasecards, getCards, (basecar
         stripBrackets(string)
             .toLowerCase()
             .replace(/\./gi, '')
+            .trim()
 
     const cardsTexts = cards.map(item => simplify(item.text))
     const basecardIds = cards.filter(item => item.basecardId).map(item => item.basecardId)

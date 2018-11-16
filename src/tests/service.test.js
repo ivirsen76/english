@@ -477,7 +477,7 @@ describe('basetocards', () => {
                 .expect(200)
 
             const afterNum = await getNumRecords('cards', { userId })
-            expect(afterNum).toBe(beforeNum + 8)
+            expect(afterNum).toBe(beforeNum + 7)
         })
     })
 })

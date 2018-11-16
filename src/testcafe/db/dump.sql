@@ -84,9 +84,9 @@ VALUES
     (5,2,'fifth','пятый','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:50:27','2018-09-30 22:50:27'),
     (6,2,'s`ix\'th','ш\'ест`ой','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:50:34','2018-09-30 22:50:34'),
     (7,2,'sevens-teen','седьмой','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:50:46','2018-09-30 22:50:46'),
-    (8,2,'eight','восьмой','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:05','2018-09-30 22:51:05'),
+    (8,2,'Eight.','восьмой','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:05','2018-09-30 22:51:05'),
     (9,2,'ninth pen','девятый','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:11','2018-09-30 22:51:11'),
-    (10,2,'calendar (another)','календарь','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:18','2018-09-30 22:51:18'),
+    (10,2,'calendar (another).','календарь','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:18','2018-09-30 22:51:18'),
     (11,3,'both','оба','samples/sample.mp3',626,'samples/sample.mp3',679,'samples/sample.mp3',679,'2018-09-30 22:51:18','2018-09-30 22:51:18');
 
 /*!40000 ALTER TABLE `basecards` ENABLE KEYS */;
@@ -199,7 +199,7 @@ INSERT INTO `cards` (`id`, `userId`, `text`, `translate`, `label`, `ukSoundFile`
 VALUES
     (18,2,'text','т`екст','alone','samples/sample.mp3',600,'samples/sample.mp3',653,'samples/sample.mp3',600,0,'2017-05-12 19:31:05','2017-05-12 19:31:05','2017-07-05 15:26:50',0,NULL),
     (19,2,'block','блок','','samples/sample.mp3',548,'samples/sample.mp3',574,'samples/sample.mp3',600,0,'2017-05-12 19:32:34','2017-05-12 19:32:33','2017-06-24 18:54:24',0,NULL),
-    (20,2,'Ramble','бормотать','test','samples/sample.mp3',679,'samples/sample.mp3',679,'samples/sample.mp3',835,0,'2017-05-12 19:33:40','2017-05-12 19:33:40','2017-06-01 21:37:58',0,NULL),
+    (20,2,'eight','восемь','test','samples/sample.mp3',679,'samples/sample.mp3',679,'samples/sample.mp3',835,0,'2017-05-12 19:33:40','2017-05-12 19:33:40','2017-06-01 21:37:58',0,NULL),
     (21,2,'One more time together','Еще один раз','test','samples/sample.mp3',1384,'samples/sample.mp3',1593,'samples/sample.mp3',1123,0,'2017-05-12 19:34:49','2017-05-12 19:34:49','2017-05-14 01:22:27',0,NULL),
     (22,2,'Try it now immediately','Попробуй это немедленно','','samples/sample.mp3',1515,'samples/sample.mp3',1358,'samples/sample.mp3',1410,0,'2017-05-12 19:35:48','2017-05-12 19:35:48','2017-05-14 01:57:19',0,NULL),
     (23,2,'p`erson (some)','челов`ек','','samples/sample.mp3',783,'samples/sample.mp3',626,'samples/sample.mp3',757,1,'2017-06-25 10:43:28','2017-06-25 10:42:51','2017-06-25 10:43:28',2,NULL),

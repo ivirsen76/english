@@ -25,7 +25,7 @@ test('Should render title', async t => {
     await t.expect(Title.innerText).contains('Базы')
 })
 
-test('Should add all 8 new words', async t => {
+test('Should add all 7 new words', async t => {
     await t.navigateTo(url('/bases'))
     await t.click(StudentBookLink)
     await t.click(ChapterLink2)
@@ -33,7 +33,7 @@ test('Should add all 8 new words', async t => {
 
     await t.click(StudentBookLink)
     await t.click(ChapterLink1)
-    await t.expect(NewWordsCounter.innerText).contains('8')
+    await t.expect(NewWordsCounter.innerText).contains('7')
     await t.expect(Table.innerText).contains('Новое?')
     await t.expect(Table.innerText).contains('calendar')
     await t.expect(Table.innerText).contains('календарь')
@@ -41,7 +41,7 @@ test('Should add all 8 new words', async t => {
     await t.click(AddCardsButton)
     await t.expect(Alert.innerText).contains('Все новые слова добавлены')
 
-    await t.expect(await getNumRecords('cards', { userId: 2 })).eql(16)
+    await t.expect(await getNumRecords('cards', { userId: 2 })).eql(15)
     await t
         .expect(
             await getNumRecords('cards', {

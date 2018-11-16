@@ -9,7 +9,7 @@ describe('getBaseCardsToAdd()', () => {
                 },
                 base: {
                     cards: [
-                        { id: 4, text: 'Calendar (another)' },
+                        { id: 4, text: 'Calendar (another).' },
                         { id: 5, text: 'foo' },
                         { id: 6, text: 'bar' },
                         { id: 7, text: 'calendar ' },

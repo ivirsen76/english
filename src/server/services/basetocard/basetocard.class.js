@@ -17,11 +17,17 @@ class Service {
         const basecardService = this.app.getService('basecards')
         const currentBase = (await baseService.get(baseId)).dataValues
 
+        const simplify = string =>
+            stripBrackets(string)
+                .toLowerCase()
+                .replace(/\./gi, '')
+                .trim()
+
         const existingTexts = (await cardService.find({ query: { userId } })).data.map(item =>
-            stripBrackets(item.text)
+            simplify(item.text)
         )
         const newCards = (await basecardService.find({ query: { baseId } })).data
-            .filter(item => !existingTexts.includes(stripBrackets(item.text)))
+            .filter(item => !existingTexts.includes(simplify(item.text)))
             .map(item => ({
                 label: currentBase.label || '',
                 ..._pick(item, [
