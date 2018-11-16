@@ -278,6 +278,8 @@ export default handleActions(
                     ...list,
                     {
                         arrangeChildren: 'list',
+                        info: '',
+                        price: 0,
                         ...element,
                         id: state.newId,
                         parentId,

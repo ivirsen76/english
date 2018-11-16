@@ -306,6 +306,8 @@ describe('addElement()', () => {
                     position: 1,
                     type: 'folder',
                     arrangeChildren: 'list',
+                    info: '',
+                    price: 0,
                 },
             ],
             newId: 1000000001,
