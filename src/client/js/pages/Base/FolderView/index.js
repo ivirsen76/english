@@ -135,22 +135,24 @@ export default class Component extends React.Component {
                                     </div>
                                     {values.isMain && (
                                         <div>
-                                            <Field
-                                                name="price"
-                                                component={SemanticInput}
-                                                label="Стоимость"
-                                                showErrorImmediately
-                                            />
+                                            <div className="two fields">
+                                                <Field
+                                                    name="price"
+                                                    component={SemanticInput}
+                                                    label="Стоимость"
+                                                    showErrorImmediately
+                                                />
+                                                <Field
+                                                    name="label"
+                                                    component={SemanticInput}
+                                                    label="Label"
+                                                />
+                                            </div>
                                             <Field
                                                 name="info"
                                                 component={SemanticTextarea}
                                                 label="Информация"
                                                 style={{ height: '5em', minHeight: '5em' }}
-                                            />
-                                            <Field
-                                                name="label"
-                                                component={SemanticInput}
-                                                label="Label"
                                             />
                                             <div className="field">
                                                 {isNew ? (
