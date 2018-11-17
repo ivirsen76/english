@@ -115,6 +115,7 @@ export default class Component extends React.Component {
                                     <div
                                         className="fields"
                                         style={{
+                                            alignItems: 'center',
                                             ...(!values.isMain && { marginBottom: '0' }),
                                         }}
                                     >
@@ -135,7 +136,7 @@ export default class Component extends React.Component {
                                     </div>
                                     {values.isMain && (
                                         <div>
-                                            <div className="two fields">
+                                            <div className="fields">
                                                 <Field
                                                     name="price"
                                                     component={SemanticInput}
