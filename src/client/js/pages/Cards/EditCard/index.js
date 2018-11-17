@@ -29,7 +29,7 @@ export default class Component extends React.Component {
         const trigger = this.props.trigger || (
             <button
                 id={`updateCardButton${this.props.cardId}`}
-                className="ui green compact mini icon button"
+                className="ui compact mini icon button"
             >
                 <IconPencil />
             </button>
