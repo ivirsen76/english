@@ -171,7 +171,9 @@ export default class Component extends React.Component {
                                                             accept="image/*"
                                                             style={{ display: 'none' }}
                                                             onChange={this.uploadImage}
-                                                            ref={elem => (this.file = elem)}
+                                                            ref={elem => {
+                                                                this.file = elem
+                                                            }}
                                                         />
                                                         <button
                                                             className={`compact ui ${this.state

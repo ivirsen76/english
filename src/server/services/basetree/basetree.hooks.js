@@ -1,5 +1,5 @@
-const { hasRole } = require('../../hooks')
 const auth = require('feathers-authentication').hooks
+const { hasRole } = require('../../hooks')
 
 module.exports = {
     before: {

@@ -20,7 +20,7 @@ export default class Component extends React.Component {
         try {
             const card = await this.props.addCard(values)
             notification('Card has been added')
-            this.setState({ count: this.state.count + 1 })
+            this.setState(state => ({ count: state.count + 1 }))
             playCard(card)
         } catch (errors) {
             throw errors

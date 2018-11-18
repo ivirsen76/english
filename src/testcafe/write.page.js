@@ -27,7 +27,7 @@ test('Should show no cards message', async t => {
     await runQuery('DELETE FROM cards')
 
     // Reload the page just to update the data in redux
-    await t.eval(() => location.reload(true))
+    await t.eval(() => window.location.reload(true))
     await t.click(Selector('#globalPlayButton'))
 
     await t.expect(Body.innerText).contains('Слов для написания нет')
