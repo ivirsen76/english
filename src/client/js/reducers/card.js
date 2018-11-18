@@ -17,6 +17,11 @@ import { stripBrackets } from 'server/utils.js'
 
 export const persistedKeys = ['rememberParams']
 export const maxWriteAttempts = 3
+export const statuses = [
+    { label: 'новая', value: 0 },
+    { label: 'запомнил', value: 1 },
+    { label: 'написал', value: 2 },
+]
 
 export const acceptedFields = [
     'id',

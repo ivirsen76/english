@@ -6,6 +6,7 @@ import EditCard from '../EditCard'
 import DeleteCard from '../DeleteCard'
 import AudioLink from 'client/js/components/AudioLink'
 import { removeMeta } from 'client/js/utils/text.js'
+import { statuses } from 'client/js/reducers/card.js'
 import style from './style.module.scss'
 
 export const Cards = ({ data, deleteCard, updateCard }) => {
@@ -44,6 +45,20 @@ export const Cards = ({ data, deleteCard, updateCard }) => {
             label: 'Метка',
             filter: true,
             sort: true,
+        },
+        {
+            name: 'status',
+            label: 'Статус',
+            filter: true,
+            filterSettings: {
+                type: 'selectbox',
+                options: statuses,
+            },
+            sort: true,
+            render: (value, row) => {
+                const status = statuses.find(item => item.value === row.status)
+                return status ? status.label : statuses[0].label
+            },
         },
         {
             name: 'createdAt',

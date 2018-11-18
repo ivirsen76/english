@@ -42,7 +42,7 @@
         "@ieremeev/loader": "^1.2.2",
         "@ieremeev/notification": "^2.0.6",
         "@ieremeev/semantic-ui": "^1.0.2",
-        "@ieremeev/table": "^2.4.1",
+        "@ieremeev/table": "^2.4.2",
         "@ieremeev/tree": "^1.0.6",
         "aws-sdk": "^2.54.0",
         "babel-polyfill": "^6.23.0",
