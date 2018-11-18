@@ -83,6 +83,7 @@ class ShowBase extends React.Component {
                                 <div className="ui warning message">Все карточки уже добавлены</div>
                             )}
                             <button
+                                type="button"
                                 id="addCardsFromBaseButton"
                                 className={classnames(
                                     'ui',

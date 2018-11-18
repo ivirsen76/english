@@ -153,6 +153,7 @@ class Component extends React.Component {
                                             </div>
                                             <div>
                                                 <button
+                                                    type="button"
                                                     id="saveButton"
                                                     onClick={this.props.saveBaseTree}
                                                     className={`fluid compact ui ${

@@ -27,6 +27,7 @@ export default class Component extends React.Component {
     render() {
         const trigger = (
             <button
+                type="button"
                 className="ui green compact mini icon button"
                 id={`updateCardButton${this.props.id}`}
             >

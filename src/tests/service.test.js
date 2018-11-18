@@ -1,5 +1,7 @@
 // Testing rest API
 const supertest = require('supertest')
+const fs = require('fs-extra')
+const path = require('path')
 const app = require('../server/app')
 const { getPath } = require('../server/media.js')
 const {
@@ -9,8 +11,6 @@ const {
     getRecord,
     runQuery,
 } = require('../testcafe/db/utils.js')
-const fs = require('fs-extra')
-const path = require('path')
 
 let server
 let request

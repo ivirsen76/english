@@ -13,7 +13,7 @@ export default class PlayButton extends React.Component {
         let classname = classnames('ui', 'icon', { disabled: this.props.disabled }, 'button')
 
         return (
-            <button className={classname} onClick={this.props.onClick}>
+            <button type="button" className={classname} onClick={this.props.onClick}>
                 <IconPlay />
             </button>
         )

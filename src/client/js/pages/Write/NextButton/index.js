@@ -9,7 +9,11 @@ export default class NextButton extends React.Component {
 
     render() {
         return (
-            <button className="huge circular ui icon button" onClick={this.props.goNext}>
+            <button
+                type="button"
+                className="huge circular ui icon button"
+                onClick={this.props.goNext}
+            >
                 <IconArrowRight />
             </button>
         )

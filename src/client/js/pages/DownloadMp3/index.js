@@ -23,6 +23,7 @@ class Component extends React.Component {
             <div>
                 <h2>Download MP3</h2>
                 <button
+                    type="button"
                     className={classnames(
                         'ui',
                         { loading: this.state.loading },

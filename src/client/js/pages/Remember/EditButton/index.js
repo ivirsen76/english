@@ -11,7 +11,7 @@ export default class EditButton extends React.Component {
 
     render() {
         const trigger = (
-            <button className="ui tiny green icon button">
+            <button type="button" className="ui tiny green icon button">
                 <IconPencil />
             </button>
         )

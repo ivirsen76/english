@@ -28,6 +28,7 @@ export default class Component extends React.Component {
     render() {
         const trigger = this.props.trigger || (
             <button
+                type="button"
                 id={`updateCardButton${this.props.cardId}`}
                 className="ui compact mini icon button"
             >

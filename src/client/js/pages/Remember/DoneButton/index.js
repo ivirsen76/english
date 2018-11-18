@@ -8,7 +8,7 @@ export default class DoneButton extends React.Component {
 
     render() {
         return (
-            <button className="ui button" onClick={this.props.onClick}>
+            <button type="button" className="ui button" onClick={this.props.onClick}>
                 Запомнил!
             </button>
         )

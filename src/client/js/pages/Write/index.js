@@ -128,6 +128,7 @@ class Component extends React.Component {
                         <div className={style.buttonWrapper}>
                             <NextButton goNext={this.goNext} />
                             <button
+                                type="button"
                                 className="huge circular ui icon button"
                                 onClick={this.playSound}
                             >

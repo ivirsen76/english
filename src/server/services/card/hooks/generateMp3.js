@@ -3,9 +3,9 @@ const temp = require('temp')
 const fs = require('fs-extra')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
+const AWS = require('aws-sdk')
 const { lameCommand, mediainfoCommand } = require('../../../utils.js')
 const { getPath, getBaseFilename } = require('../../../media.js')
-const AWS = require('aws-sdk')
 
 const polly = new AWS.Polly()
 const voices = {

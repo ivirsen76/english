@@ -30,7 +30,7 @@ const getFileContent = async filename => {
     const fullFilename = getPath(filename)
 
     if (await fs.exists(fullFilename)) {
-        return await fs.readFile(fullFilename)
+        return fs.readFile(fullFilename)
     }
 
     return ''

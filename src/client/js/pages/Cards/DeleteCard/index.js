@@ -15,6 +15,7 @@ export default class Component extends React.Component {
     render() {
         return (
             <button
+                type="button"
                 className="ui compact mini icon button"
                 id={`deleteCardButton${this.props.id}`}
                 onClick={this.onClick}
