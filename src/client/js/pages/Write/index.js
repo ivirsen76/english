@@ -12,13 +12,13 @@ import {
 import { preload, play } from 'client/js/utils/mp3.js'
 import { getMediaUrl } from 'client/js/utils/media.js'
 import Counter from 'client/js/pages/Remember/Counter'
+import { removeMeta, isTextEqual } from 'client/js/utils/text.js'
+import IconPlay from '@ieremeev/icons/play4'
+import { stripBrackets } from 'server/utils.js'
 import InputField from './InputField'
 import DiffResult from './DiffResult'
 import NextButton from './NextButton'
-import { removeMeta, isTextEqual } from 'client/js/utils/text.js'
 import style from './index.module.scss'
-import IconPlay from '@ieremeev/icons/play4'
-import { stripBrackets } from 'server/utils.js'
 
 class Component extends React.Component {
     static propTypes = {

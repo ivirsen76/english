@@ -1,6 +1,6 @@
-const app = require('../server/app.js')
 const colors = require('colors/safe')
 const inquirer = require('inquirer')
+const app = require('../server/app.js')
 
 const getAnswers = () =>
     inquirer.prompt([

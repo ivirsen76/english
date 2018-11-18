@@ -1,15 +1,15 @@
-const hooks = require('./hooks')
 const shuffle = require('lodash/shuffle')
 const pick = require('lodash/pick')
 const fs = require('fs-extra')
 const temp = require('temp')
 const template = require('string-template')
 const exec = require('child-process-promise').exec
-const { lameCommand } = require('../../utils.js')
-const { getFileContent, getPath, getBaseFilename } = require('../../media.js')
 const md5 = require('md5')
 const AWS = require('aws-sdk')
 const { GeneralError, MethodNotAllowed } = require('feathers-errors')
+const { getFileContent, getPath, getBaseFilename } = require('../../media.js')
+const { lameCommand } = require('../../utils.js')
+const hooks = require('./hooks')
 
 const minPause = 500
 const maxPause = 5000

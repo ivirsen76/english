@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Modal } from 'semantic-ui-react'
 import notification from '@ieremeev/notification'
-import Form from './form'
 import playCard from 'client/js/helpers/playCard.js'
+import Form from './form'
 
 export default class Component extends React.Component {
     static propTypes = {

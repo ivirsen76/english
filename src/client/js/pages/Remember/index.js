@@ -26,6 +26,7 @@ import {
     updateCard,
     deleteCard,
 } from 'client/js/reducers/card'
+import { removeMeta } from 'client/js/utils/text.js'
 import Counter from './Counter'
 import EditButton from './EditButton'
 import NextButton from './NextButton'
@@ -37,7 +38,6 @@ import SwitchButton from './SwitchButton'
 import GoNextPanel from './GoNextPanel'
 import Label from './label.js'
 import Panel from './Panel'
-import { removeMeta } from 'client/js/utils/text.js'
 import style from './index.module.scss'
 
 class RememberPage extends React.Component {

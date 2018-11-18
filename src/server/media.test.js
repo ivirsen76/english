@@ -1,5 +1,5 @@
-import { getPath, removeFile, getFileContent } from './media.js'
 import fs from 'fs-extra'
+import { getPath, removeFile, getFileContent } from './media.js'
 
 describe('removeFile()', () => {
     it('Should create and remove file', async () => {

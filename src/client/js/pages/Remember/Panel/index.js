@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import style from './style.module.scss'
 import { getMediaUrl } from 'client/js/utils/media.js'
 import { play } from 'client/js/utils/mp3.js'
+import style from './style.module.scss'
 import SoundIcon from './SoundIcon.js'
 
 export default class Component extends React.Component {

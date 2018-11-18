@@ -19,14 +19,14 @@ import {
 } from 'client/js/selectors/base'
 import { connect } from 'react-redux'
 import Loader from '@ieremeev/loader'
-import FolderView from './FolderView'
-import CardsView from './CardsView'
 import Tree from '@ieremeev/tree'
 import _pick from 'lodash/pick'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
-import Element from './Element'
 import IconCross from '@ieremeev/icons/cross'
+import Element from './Element'
+import CardsView from './CardsView'
+import FolderView from './FolderView'
 import style from './style.module.css'
 
 class Component extends React.Component {

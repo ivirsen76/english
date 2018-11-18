@@ -1,8 +1,8 @@
 import { Selector } from 'testcafe'
+import { ReactSelector } from 'testcafe-react-selectors'
 import { studentUser } from './roles.js'
 import { restoreDb, restoreSamples, getNumRecords, getRecord } from './db/utils.js'
 import { url } from './config.js'
-import { ReactSelector } from 'testcafe-react-selectors'
 import { isAudioPlaying } from './helpers.js'
 
 fixture('Cards page')

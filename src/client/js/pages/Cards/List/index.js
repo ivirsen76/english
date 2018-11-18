@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Table from '@ieremeev/table'
 import format from 'date-fns/format'
-import EditCard from '../EditCard'
-import DeleteCard from '../DeleteCard'
 import AudioLink from 'client/js/components/AudioLink'
 import { removeMeta } from 'client/js/utils/text.js'
 import { statuses } from 'client/js/reducers/card.js'
+import DeleteCard from '../DeleteCard'
+import EditCard from '../EditCard'
 import style from './style.module.scss'
 
 export const Cards = ({ data, deleteCard, updateCard }) => {

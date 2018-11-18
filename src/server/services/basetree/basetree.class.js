@@ -1,9 +1,9 @@
-const { getUpdates } = require('./utils.js')
 const _omit = require('lodash/omit')
-const { addFile, removeFile } = require('../../media.js')
 const { BadRequest } = require('feathers-errors')
 const sharp = require('sharp')
 const md5 = require('md5')
+const { addFile, removeFile } = require('../../media.js')
+const { getUpdates } = require('./utils.js')
 
 class Service {
     setup(app) {

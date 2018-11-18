@@ -6,9 +6,9 @@ import { getSortedList } from 'client/js/selectors/base'
 import { connect } from 'react-redux'
 import Loader from '@ieremeev/loader'
 import { Link } from 'react-router-dom'
-import CardsView from './CardsView'
 import BaseTree from 'client/js/components/BaseTree'
 import { isLoggedIn } from 'client/js/utils/auth.js'
+import CardsView from './CardsView'
 import style from './style.module.css'
 
 class Component extends React.Component {

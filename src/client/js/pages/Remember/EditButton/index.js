@@ -8,6 +8,7 @@ export default class EditButton extends React.Component {
         card: PropTypes.object,
         updateCard: PropTypes.func,
     }
+
     render() {
         const trigger = (
             <button className="ui tiny green icon button">

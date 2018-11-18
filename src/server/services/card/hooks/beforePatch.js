@@ -1,6 +1,6 @@
+const _pick = require('lodash/pick')
 const generateMp3 = require('./generateMp3')
 const removeMp3 = require('./removeMp3')
-const _pick = require('lodash/pick')
 const { stripBrackets } = require('../../../utils.js')
 
 module.exports = options => async hook => {

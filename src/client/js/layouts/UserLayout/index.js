@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getCardTotal, getRememberTotalCards, getWriteTotalCards } from 'client/js/selectors/card'
 import { loadCards } from 'client/js/reducers/card'
-import SideMenu from './SideMenu'
 import LogoBar from 'client/js/components/LogoBar'
 import NavBar from 'client/js/components/NavBar'
 import Loader from '@ieremeev/loader'
+import SideMenu from './SideMenu'
 
 class Component extends React.Component {
     static propTypes = {

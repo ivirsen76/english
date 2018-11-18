@@ -1,6 +1,6 @@
 // Testing rest API
-const app = require('../server/app')
 const supertest = require('supertest')
+const app = require('../server/app')
 const { getPath } = require('../server/media.js')
 const {
     restoreDb,
