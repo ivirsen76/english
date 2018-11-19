@@ -30,11 +30,17 @@ const start = async () => {
         await setCurrentUserFromToken()
     }
 
-    const Root = DragDropContext(HTML5Backend)(() => (
-        <App store={store}>
-            <Routes />
-        </App>
-    ))
+    const Root = DragDropContext(HTML5Backend)(
+        class extends React.Component {
+            render() {
+                return (
+                    <App store={store}>
+                        <Routes />
+                    </App>
+                )
+            }
+        }
+    )
 
     ReactDOM.render(<Root />, document.getElementById('app'))
 }
