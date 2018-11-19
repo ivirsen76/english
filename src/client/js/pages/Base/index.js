@@ -24,6 +24,7 @@ import _pick from 'lodash/pick'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import IconCross from '@ieremeev/icons/cross'
+import IconFolder from '@ieremeev/icons/folder'
 import Element from './Element'
 import CardsView from './CardsView'
 import FolderView from './FolderView'
@@ -82,7 +83,7 @@ class Component extends React.Component {
                         {updatedIds.includes(element.id) && (
                             <div className={style.mark + ' ' + style.dirty} title="Updated" />
                         )}
-                        {element.type === 'folder' && <i className="ui folder icon" />}
+                        {element.type === 'folder' && <IconFolder spaceRight />}
                         {element.title}
                         <div className={style.actions}>
                             {!this.props.protectedIds.includes(element.id) && (
