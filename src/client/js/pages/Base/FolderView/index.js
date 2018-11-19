@@ -86,7 +86,7 @@ export default class Component extends React.Component {
                         }}
                         onClick={this.props.toggleShowBaseSettings}
                     >
-                        Settings{' '}
+                        Settings
                         <i className={`caret ${showBaseSettings ? 'down' : 'left'} icon`} />
                     </h3>
                     {showBaseSettings && (
