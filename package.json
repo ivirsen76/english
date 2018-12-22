@@ -98,7 +98,7 @@
         "winston": "^2.3.1"
     },
     "devDependencies": {
-        "@ieremeev/app": "^3.2.19",
+        "@ieremeev/app": "^3.2.21",
         "babel-core": "^7.0.0-bridge.0",
         "inquirer": "^6.2.0",
         "shipit-cli": "4.1.1",
