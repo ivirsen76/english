@@ -13,7 +13,6 @@ const {
     IE_DB_PASSWORD,
     IE_ALLOW_RESTORING_DB,
 } = process.env
-const dumpPath = path.join(__dirname, 'dump.sql')
 
 const connectionConfig = {
     host: IE_DB_HOSTNAME,
@@ -22,16 +21,17 @@ const connectionConfig = {
     database: IE_DB_NAME,
 }
 
-const command = `mysql -h ${IE_DB_HOSTNAME} -u ${IE_DB_USERNAME} --password=${IE_DB_PASSWORD} ${
-    IE_DB_NAME
-} < ${dumpPath}`
-
 if (!IE_ALLOW_RESTORING_DB) {
     throw new Error('Cannot change DB on production')
 }
 
 module.exports = {
     restoreDb: () => {
+        const dumpPath = path.join(__dirname, 'dump.sql')
+        const command = `mysql -h ${IE_DB_HOSTNAME} -u ${IE_DB_USERNAME} --password=${
+            IE_DB_PASSWORD
+        } ${IE_DB_NAME} < ${dumpPath}`
+
         execSync(command, { stdio: 'ignore' })
     },
     restoreSamples: () => {
