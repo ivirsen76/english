@@ -66,7 +66,11 @@ module.exports = {
             const connection = mysql.createConnection(connectionConfig)
             connection.connect()
             connection.query(query, (error, results, fields) => {
-                resolve(results[0].cnt)
+                if (error) {
+                    reject(new Error(error.message))
+                } else {
+                    resolve(results[0].cnt)
+                }
             })
             connection.end()
         })
