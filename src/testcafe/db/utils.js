@@ -20,6 +20,7 @@ const connectionConfig = {
     password: IE_DB_PASSWORD,
     database: IE_DB_NAME,
 }
+const dumpPath = path.join(__dirname, 'dump.sql')
 
 if (!IE_ALLOW_RESTORING_DB) {
     throw new Error('Cannot change DB on production')
@@ -27,13 +28,28 @@ if (!IE_ALLOW_RESTORING_DB) {
 
 module.exports = {
     restoreDb: () => {
-        const dumpPath = path.join(__dirname, 'dump.sql')
         const command = `mysql -h ${IE_DB_HOSTNAME} -u ${IE_DB_USERNAME} --password=${
             IE_DB_PASSWORD
         } ${IE_DB_NAME} < ${dumpPath}`
 
         execSync(command, { stdio: 'ignore' })
     },
+    generateDump: async () => {
+        let dump = execSync(
+            `mysqldump -h ${IE_DB_HOSTNAME} -u ${IE_DB_USERNAME} --password=${IE_DB_PASSWORD} ${
+                IE_DB_NAME
+            } --skip-comments --extended-insert=false`
+        ).toString()
+
+        // Add empty lines
+        dump = dump.replace(/(DROP TABLE IF EXISTS)/gi, '\n\n\n$1')
+
+        // Remove auto increment
+        dump = dump.replace(/ AUTO_INCREMENT=[0-9]+ /gi, ' ')
+
+        fs.writeFileSync(dumpPath, dump)
+    },
+
     restoreSamples: () => {
         const src = path.join(__dirname, 'sample.mp3')
         const dest = path.join(__dirname, '../../../media/samples', 'sample.mp3')
