@@ -1,9 +1,11 @@
 .wrapper {
     padding-top: 0.5em;
     display: flex;
+    margin-bottom: -0.3em;
 }
 .logo {
-    width: 286px;
+    width: 326px;
     height: 60px;
     background: url('./logo.png');
+    background-size: 326px 60px;
 }
