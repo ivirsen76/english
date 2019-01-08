@@ -11,8 +11,8 @@ module.exports = shipit => {
             ignores: ['.git', 'node_modules', 'build'],
         },
         production: {
-            deployTo: '/home/admin/sites/word-word',
-            servers: 'admin@199.192.26.100',
+            deployTo: '/home/ivirsen/sites/word-word.club',
+            servers: 'ivirsen@142.93.56.238',
         },
     })
 
