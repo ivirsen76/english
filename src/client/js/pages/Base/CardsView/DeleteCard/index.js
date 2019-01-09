@@ -19,7 +19,7 @@ export default class Component extends React.Component {
             <button
                 type="button"
                 id={`deleteCardButton${this.props.id}`}
-                className="ui red compact mini icon button"
+                className="ui compact mini icon button"
                 onClick={this.onClick}
             >
                 <IconCross />
