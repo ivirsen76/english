@@ -1,5 +1,5 @@
 import React from 'react'
-import books from './books.png'
+import books from './bases.png'
 import style from './style.module.css'
 
 export default class Component extends React.Component {
@@ -30,7 +30,10 @@ export default class Component extends React.Component {
                                 на популярных учебниках.
                             </div>
                             <div className={style.button}>
-                                <button type="button" className="circular ui compact big secondary button">
+                                <button
+                                    type="button"
+                                    className="circular ui compact big secondary button"
+                                >
                                     Список баз
                                 </button>
                             </div>
@@ -45,7 +48,10 @@ export default class Component extends React.Component {
                                 озвучены - транскрипция не нужна.
                             </div>
                             <div className={style.button}>
-                                <button type="button" className="circular ui compact big secondary button">
+                                <button
+                                    type="button"
+                                    className="circular ui compact big secondary button"
+                                >
                                     Демо
                                 </button>
                             </div>
@@ -60,7 +66,10 @@ export default class Component extends React.Component {
                                 и закрепите слова в памяти еще раз.
                             </div>
                             <div className={style.button}>
-                                <button type="button" className="circular ui compact big secondary button">
+                                <button
+                                    type="button"
+                                    className="circular ui compact big secondary button"
+                                >
                                     Демо
                                 </button>
                             </div>
