@@ -21,7 +21,7 @@ describe('Pages', () => {
 
     it('should check some image', async () => {
         await request
-            .get('/logo-3254c39614bc43d5f03eebf607256350.png')
+            .get('/logo-daeb72570163e0d5d9c8514d0798138c.png')
             .expect('Cache-Control', /max-age=604800/)
             .expect('Content-Type', /image\/png/)
             .expect('X-Served-By', /^cache-/)
