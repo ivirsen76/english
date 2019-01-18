@@ -5,7 +5,10 @@ const { stripBrackets } = require('../../../utils.js')
 module.exports = options => async hook => {
     try {
         const id = hook.id
-        const text = hook.data.text.trim()
+        const text = hook.data.text
+            .trim()
+            .replace(/’/g, "'")
+            .replace(/–/g, '-')
         const translate = hook.data.translate.trim()
         const { dataValues: currentData } = await hook.service.get(id)
 

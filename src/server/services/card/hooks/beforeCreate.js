@@ -3,10 +3,13 @@ const { stripBrackets } = require('../../../utils.js')
 
 module.exports = options => async hook => {
     try {
-        const { text, translate, userId } = hook.data
+        let { text, translate, userId } = hook.data
 
-        hook.data.text = text.trim()
-        hook.data.translate = translate.trim()
+        text = text
+            .trim()
+            .replace(/’/g, "'")
+            .replace(/–/g, '-')
+        translate = translate.trim()
 
         if (process.env.NODE_ENV !== 'test') {
             const stripedText = stripBrackets(text)
@@ -24,6 +27,8 @@ module.exports = options => async hook => {
             })
         }
 
+        hook.data.text = text
+        hook.data.translate = translate
         hook.data.statusUpdatedAt = new Date()
     } catch (err) {
         console.error(err)

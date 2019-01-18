@@ -1,7 +1,14 @@
 import { Selector, ClientFunction } from 'testcafe'
 import { ReactSelector } from 'testcafe-react-selectors'
 import { adminUser } from './roles.js'
-import { restoreDb, restoreSamples, getRecord, getNumRecords, runQuery } from './db/utils.js'
+import {
+    restoreDb,
+    restoreSamples,
+    getRecord,
+    getNumRecords,
+    runQuery,
+    expectRecordToExist,
+} from './db/utils.js'
 import { url } from './config.js'
 import { isAudioPlaying } from './helpers.js'
 
@@ -192,6 +199,19 @@ test('Should trim spaces before adding', async t => {
         .eql(1)
 })
 
+test('Should add card with duplicate symbols and replace them', async t => {
+    await t.navigateTo(url('/user/base/2'))
+
+    await t.click(AddCardButton)
+    await t.typeText('input[name=text]', 'Diane – she’s so generous.', { paste: true })
+    await t.typeText('input[name=translate]', 'символ', { paste: true })
+
+    await t.click(AddCardSubmitButton)
+    await t.expect(Alert.innerText).contains('has been added')
+
+    await expectRecordToExist('basecards', { text: "Diane - she's so generous." })
+})
+
 test('Should show validation error when adding a card', async t => {
     await t.navigateTo(url('/user/base/2'))
 
@@ -275,6 +295,20 @@ test('Should update card', async t => {
     await t.expect(record.ukSoundLength).lt(2000)
     await t.expect(record.usSoundLength).lt(2000)
     await t.expect(record.ruSoundLength).lt(2000)
+})
+
+test('Should update card and replace duplicate characters', async t => {
+    await t.navigateTo(url('/user/base/2'))
+
+    await t.click(Selector('#updateCardButton1'))
+    await t.typeText('input[name=text]', 'Diane – she’s so generous.', {
+        paste: true,
+        replace: true,
+    })
+
+    await t.click(UpdateCardSubmitButton)
+    await t.expect(Alert.innerText).contains('has been updated')
+    await expectRecordToExist('basecards', { text: "Diane - she's so generous." })
 })
 
 test('Should audio playing on word clicking', async t => {

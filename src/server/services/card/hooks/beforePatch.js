@@ -18,7 +18,10 @@ module.exports = options => async hook => {
         ])
 
         const { status, writeRightAttempts } = hook.data
-        const text = hook.data.text.trim()
+        const text = hook.data.text
+            .trim()
+            .replace(/’/g, "'")
+            .replace(/–/g, '-')
         const translate = hook.data.translate.trim()
 
         // save trimmed values

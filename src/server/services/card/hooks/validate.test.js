@@ -27,6 +27,7 @@ describe('validate', () => {
         validText('Normal text (с чем нибудь русским в скобках)')
         validText('S`tressed word')
         validText("I'm Normal-text, with: that. Whay? Hey! next; (с чем нибудь русским в скобках)")
+        validText('Diane – she’s so generous.')
     })
 
     it('Should return translate error', () => {

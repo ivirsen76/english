@@ -1,7 +1,13 @@
 import { Selector } from 'testcafe'
 import { ReactSelector } from 'testcafe-react-selectors'
 import { studentUser } from './roles.js'
-import { restoreDb, restoreSamples, getNumRecords, getRecord } from './db/utils.js'
+import {
+    restoreDb,
+    restoreSamples,
+    getNumRecords,
+    getRecord,
+    expectRecordToExist,
+} from './db/utils.js'
 import { url } from './config.js'
 import { isAudioPlaying } from './helpers.js'
 
@@ -81,6 +87,20 @@ test('Should add card', async t => {
     await t.expect(record.ruSoundLength).lt(2000)
 })
 
+test('Should add card with duplicate symbols and replace them', async t => {
+    const text = 'Diane – she’s so generous.'
+    const translate = 'символ'
+
+    await t.click(AddCardButton)
+    await t.typeText(TextInput, text, { paste: true })
+    await t.typeText(TranslateInput, translate, { paste: true })
+
+    await t.click(AddCardSubmitButton)
+    await t.expect(Alert.innerText).contains('has been added')
+
+    await expectRecordToExist('cards', { text: "Diane - she's so generous." })
+})
+
 test('Should strip spaces when adding card', async t => {
     await t.click(AddCardButton)
     await t.typeText(TextInput, ' new card ', { paste: true })
@@ -148,6 +168,14 @@ test('Should strip spaces when updating card', async t => {
             })
         )
         .eql(1)
+})
+
+test('Should replace duplicate symbols', async t => {
+    await t.click(Selector('#updateCardButton19'))
+    await t.typeText(TextInput, 'Diane – she’s so generous.', { replace: true, paste: true })
+    await t.click(UpdateCardSubmitButton)
+
+    await expectRecordToExist('cards', { text: "Diane - she's so generous." })
 })
 
 test('Should delete card', async t => {

@@ -102,6 +102,7 @@
     "devDependencies": {
         "@ieremeev/app": "^3.3.1",
         "babel-core": "^7.0.0-bridge.0",
+        "expect": "^23.6.0",
         "inquirer": "^6.2.0",
         "shipit-cli": "4.1.1",
         "shipit-deploy": "4.1.1",

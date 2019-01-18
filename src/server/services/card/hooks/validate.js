@@ -21,7 +21,7 @@ const validate = values => {
 
         if (text === '') {
             errors.text = errorMessages.noText
-        } else if (!/^[\s\da-zA-Z.,\-!?;:'`"]+$/.test(text)) {
+        } else if (!/^[\s\da-zA-Z.,\-–!?;:'`’"]+$/.test(text)) {
             errors.text = errorMessages.invalidText
         }
     }

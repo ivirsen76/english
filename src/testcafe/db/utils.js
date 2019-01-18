@@ -7,6 +7,7 @@ const _pick = require('lodash/pick')
 const _map = require('lodash/map')
 const path = require('path')
 const { ExternalAssertionLibraryError } = require('testcafe/lib/errors/test-run')
+const expect = require('expect')
 
 const {
     IE_DB_NAME,
