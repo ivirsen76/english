@@ -98,7 +98,7 @@ export default class Component extends React.Component {
                             voluptas quas ad tempora inventore aliquam cupiditate pariatur! Tempora
                             consectetur, molestias commodi illu praesentium aut quia.
                         </p>
-                        <AudioLink text="Sound example" audioUrl="samples/sample.mp3" />
+                        <AudioLink text="Sound example" audioUrl="sample.mp3" />
                     </div>
                 </div>
             </div>

@@ -14,27 +14,6 @@ describe('Pages', () => {
             .get('/')
             .expect('Cache-Control', /private, no-store/)
             .expect('Content-Type', /text\/html; charset=UTF-8/)
-            .expect('X-Served-By', /^cache-/)
-            .expect(checkOrigin)
-            .expect(200)
-    })
-
-    it('should check some image', async () => {
-        await request
-            .get('/logo-daeb72570163e0d5d9c8514d0798138c.png')
-            .expect('Cache-Control', /max-age=604800/)
-            .expect('Content-Type', /image\/png/)
-            .expect('X-Served-By', /^cache-/)
-            .expect(checkOrigin)
-            .expect(200)
-    })
-
-    it('should check some sound', async () => {
-        await request
-            .get('/media/sample.mp3')
-            .expect('Cache-Control', /max-age=604800/)
-            .expect('Content-Type', /audio\/mpeg/)
-            .expect('X-Served-By', /^cache-/)
             .expect(checkOrigin)
             .expect(200)
     })
@@ -60,7 +39,6 @@ describe('Pages', () => {
             .get('/api/bases')
             .expect('Cache-Control', /private, no-store/)
             .expect('Content-Type', /application\/json/)
-            .expect('X-Served-By', /^cache-/)
             .expect(checkOrigin)
             .expect(200)
     })
@@ -70,7 +48,6 @@ describe('Pages', () => {
             .get('/somewrongurl')
             .expect('Cache-Control', /private, no-store/)
             .expect('Content-Type', /text\/html/)
-            .expect('X-Served-By', /^cache-/)
             .expect(checkOrigin)
             .expect(200)
     })
