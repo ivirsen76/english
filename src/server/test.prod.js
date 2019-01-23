@@ -1,7 +1,7 @@
 // Testing production HTTP requests
 const supertest = require('supertest')
 
-const request = supertest('http://www.word-word.club')
+const request = supertest('https://www.word-word.club')
 
 const checkOrigin = response => {
     const headers = Object.keys(response.header).map(item => item.toLowerCase())
@@ -96,18 +96,32 @@ describe('Media', () => {
 })
 
 describe('Responses', () => {
-    it('should check redirection', async () => {
+    it('should check redirection from http', async () => {
         await supertest('http://word-word.club')
             .get('/')
-            .expect('Location', /http:\/\/www.word-word.club/)
-            .expect(302)
+            .expect('Location', /https:\/\/www.word-word.club/)
+            .expect(301)
     })
 
-    it('should not found a wrong subdomain', () => {
-        supertest('http://wwww.word-word.club')
+    it('should check redirection from http and www', async () => {
+        await supertest('http://www.word-word.club')
             .get('/')
-            .end((err, res) => {
-                expect(err.errno).toBe('ENOTFOUND')
+            .expect('Location', /https:\/\/www.word-word.club/)
+            .expect(301)
+    })
+
+    it('should check redirection from https', async () => {
+        await supertest('https://word-word.club')
+            .get('/')
+            .expect('Location', /https:\/\/www.word-word.club/)
+            .expect(301)
+    })
+
+    it('should not found a wrong subdomain', async () => {
+        await supertest('http://wrong.word-word.club')
+            .get('/')
+            .then(response => {
+                expect(response.res.statusCode).toBe(404)
             })
     })
 })

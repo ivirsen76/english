@@ -36,7 +36,7 @@
     },
     "dependencies": {
         "@ieremeev/axios": "^1.1.2",
-        "@ieremeev/boilerplate": "^3.1.0",
+        "@ieremeev/boilerplate": "^3.1.1",
         "@ieremeev/button": "^2.0.3",
         "@ieremeev/formik": "^1.5.1",
         "@ieremeev/hidden-block": "^1.0.3",
@@ -100,7 +100,7 @@
         "winston": "^2.3.1"
     },
     "devDependencies": {
-        "@ieremeev/app": "^3.3.2",
+        "@ieremeev/app": "^3.3.3",
         "babel-core": "^7.0.0-bridge.0",
         "expect": "^23.6.0",
         "inquirer": "^6.2.0",

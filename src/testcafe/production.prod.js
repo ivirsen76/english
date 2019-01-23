@@ -4,7 +4,7 @@ fixture('Production tests')
 
 const isSentry = ClientFunction(() => window.__SENTRY__)
 const isShuffleCards = ClientFunction(() => window.ieremeev.check.shuffleCards)
-const url = (path = '') => `http://www.word-word.club${path}`
+const url = (path = '') => `https://www.word-word.club${path}`
 
 // Selectors
 const TitleH1 = Selector('h1')
