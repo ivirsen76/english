@@ -1,6 +1,6 @@
 import React from 'react'
 import AudioLink from 'client/js/components/AudioLink'
-import books from './bases.png'
+import books from './books.png'
 import style from './style.module.css'
 
 export default class Component extends React.Component {

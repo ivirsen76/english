@@ -34,7 +34,6 @@ if (process.env.IE_CORS_ORIGIN) {
 app
     .use((req, res, next) => {
         if (/\.(css|js|jpg|png|gif|svg|ttf|eot|woff|woff2|mp3)$/.test(req.url)) {
-            res.setHeader('Surrogate-Control', `max-age=${365 * 24 * 3600}`)
             res.setHeader('Cache-Control', `max-age=${7 * 24 * 3600}`)
         } else {
             res.setHeader('Cache-Control', 'private, no-store')
