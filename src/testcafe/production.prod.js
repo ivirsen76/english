@@ -21,6 +21,14 @@ const checkAsset = async (t, assetUrl, type) => {
         .expect(200)
 }
 
+const checkGzip = async assetUrl => {
+    const parsedUrl = new URL(assetUrl)
+    await request
+        .get(parsedUrl.pathname)
+        .expect('content-encoding', 'gzip')
+        .expect(200)
+}
+
 // Selectors
 const TitleH1 = Selector('h1')
 const TitleH2 = Selector('h2')
@@ -31,28 +39,49 @@ test('Should render home page', async t => {
     await t.expect(TitleH1.innerText).contains('Слова')
 })
 
-test('Should get image on home page from CDN', async t => {
-    await t.navigateTo(url())
+// Check assets
+;(() => {
+    test('Should get image on home page from CDN', async t => {
+        await t.navigateTo(url())
 
-    const imageUrl = await Selector('img[alt=books]').getAttribute('src')
-    await checkAsset(t, imageUrl, /image\/png/)
-})
+        const imageUrl = await Selector('img[alt=books]').getAttribute('src')
+        await checkAsset(t, imageUrl, /image\/png/)
+    })
 
-test('Should get base images from CDN', async t => {
-    await t.navigateTo(url('/bases'))
+    test('Should get base images from CDN', async t => {
+        await t.navigateTo(url('/bases'))
 
-    const imageUrl = await Selector('img[alt=Elementary]').getAttribute('src')
-    await checkAsset(t, imageUrl, /image\/jpeg/)
-})
+        const imageUrl = await Selector('img[alt=Elementary]').getAttribute('src')
+        await checkAsset(t, imageUrl, /image\/jpeg/)
+    })
 
-test('Should get some sound from CDN', async t => {
-    await t.navigateTo(url())
+    test('Should get some sound from CDN', async t => {
+        await t.navigateTo(url())
 
-    const soundUrl = await Selector('a')
-        .withText('Sound example')
-        .getAttribute('href')
-    await checkAsset(t, soundUrl, /audio\/mpeg/)
-})
+        const soundUrl = await Selector('a')
+            .withText('Sound example')
+            .getAttribute('href')
+        await checkAsset(t, soundUrl, /audio\/mpeg/)
+    })
+
+    test('Should check that CSS is coming with GZIP', async t => {
+        await t.navigateTo(url())
+
+        const cssUrl = await Selector('head')
+            .find('link[rel=stylesheet]')
+            .getAttribute('href')
+        await checkAsset(t, cssUrl, /text\/css/)
+        await checkGzip(cssUrl)
+    })
+
+    test('Should check that JS is coming with GZIP', async t => {
+        await t.navigateTo(url())
+
+        const jsUrl = await Selector('script[type="text/javascript"]').getAttribute('src')
+        await checkAsset(t, jsUrl, /application\/javascript/)
+        await checkGzip(jsUrl)
+    })
+})()
 
 test('Should check wrong mp3 page', async t => {
     await t.navigateTo(url('/media/somewrong.mp3'))
