@@ -20,7 +20,7 @@ export default class Component extends React.Component {
         return (
             <div>
                 {audioUrl ? (
-                    <a href="" onClick={this.play}>
+                    <a href={getMediaUrl(audioUrl)} onClick={this.play}>
                         {text}
                     </a>
                 ) : (
