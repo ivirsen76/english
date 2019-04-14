@@ -1,4 +1,4 @@
-import { Selector, ClientFunction, ReactSelector } from '@ieremeev/app/testcafe'
+import { Selector, ClientFunction, ReactSelector, url } from '@ieremeev/app/testcafe'
 import {
     restoreDb,
     restoreSamples,
@@ -8,7 +8,6 @@ import {
     expectRecordToExist,
 } from '@ieremeev/app/db'
 import { adminUser } from './roles.js'
-import { url } from './config.js'
 import { isAudioPlaying } from './helpers.js'
 
 fixture('Bases page')
