@@ -1,8 +1,6 @@
-import { Selector } from 'testcafe'
-import { ReactSelector } from 'testcafe-react-selectors'
+import { Selector, ReactSelector, url } from '@ieremeev/app/testcafe'
+import { restoreDb, getNumRecords } from '@ieremeev/app/db'
 import { studentUser } from './roles.js'
-import { restoreDb, getNumRecords } from './db/utils.js'
-import { url } from './config.js'
 
 fixture('Base browser for students').beforeEach(async t => {
     restoreDb()

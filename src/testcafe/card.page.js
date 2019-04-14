@@ -1,5 +1,4 @@
-import { Selector } from 'testcafe'
-import { ReactSelector } from 'testcafe-react-selectors'
+import { Selector, ReactSelector } from '@ieremeev/app/testcafe'
 import { studentUser } from './roles.js'
 import {
     restoreDb,
@@ -7,7 +6,7 @@ import {
     getNumRecords,
     getRecord,
     expectRecordToExist,
-} from './db/utils.js'
+} from '@ieremeev/app/db'
 import { url } from './config.js'
 import { isAudioPlaying } from './helpers.js'
 

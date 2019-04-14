@@ -1,6 +1,5 @@
-import { Selector } from 'testcafe'
-import { restoreDb } from './db/utils.js'
-import { url } from './config.js'
+import { Selector, url } from '@ieremeev/app/testcafe'
+import { restoreDb } from '@ieremeev/app/db'
 
 fixture('Login and Logout').beforeEach(async t => {
     restoreDb()

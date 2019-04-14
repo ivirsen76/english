@@ -1,6 +1,4 @@
-import { Selector, ClientFunction } from 'testcafe'
-import { ReactSelector } from 'testcafe-react-selectors'
-import { adminUser } from './roles.js'
+import { Selector, ClientFunction, ReactSelector } from '@ieremeev/app/testcafe'
 import {
     restoreDb,
     restoreSamples,
@@ -8,7 +6,8 @@ import {
     getNumRecords,
     runQuery,
     expectRecordToExist,
-} from './db/utils.js'
+} from '@ieremeev/app/db'
+import { adminUser } from './roles.js'
 import { url } from './config.js'
 import { isAudioPlaying } from './helpers.js'
 

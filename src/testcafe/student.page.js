@@ -1,7 +1,6 @@
-import { Selector } from 'testcafe'
+import { Selector, url } from '@ieremeev/app/testcafe'
+import { restoreDb } from '@ieremeev/app/db'
 import { studentUser } from './roles.js'
-import { restoreDb } from './db/utils.js'
-import { url } from './config.js'
 
 fixture('Student interface').beforeEach(async t => {
     restoreDb()

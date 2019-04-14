@@ -1,8 +1,6 @@
-import { Selector } from 'testcafe'
-import { ReactSelector } from 'testcafe-react-selectors'
+import { Selector, ReactSelector, url } from '@ieremeev/app/testcafe'
+import { restoreDb, restoreSamples, runQuery, getRecord } from '@ieremeev/app/db'
 import { studentUser } from './roles.js'
-import { restoreDb, restoreSamples, runQuery, getRecord } from './db/utils.js'
-import { url } from './config.js'
 import { isAudioPlaying } from './helpers.js'
 
 fixture('Write page').beforeEach(async t => {

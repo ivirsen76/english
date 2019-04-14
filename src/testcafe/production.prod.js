@@ -1,5 +1,5 @@
-import { Selector, ClientFunction } from 'testcafe'
-import supertest from 'supertest'
+import { Selector, ClientFunction } from '@ieremeev/app/testcafe'
+import supertest from '@ieremeev/app/supertest'
 
 fixture('Production tests')
 

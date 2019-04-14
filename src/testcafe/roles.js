@@ -1,5 +1,4 @@
-import { Role } from 'testcafe'
-import { url } from './config.js'
+import { Role, url } from '@ieremeev/app/testcafe'
 
 export const adminUser = Role(url('/login'), async t => {
     await t

@@ -1,7 +1,5 @@
-import { Selector } from 'testcafe'
-import { ReactSelector } from 'testcafe-react-selectors'
-import { restoreDb } from './db/utils.js'
-import { url } from './config.js'
+import { Selector, ReactSelector, url } from '@ieremeev/app/testcafe'
+import { restoreDb } from '@ieremeev/app/db'
 
 fixture('Base browser for guests').beforeEach(async t => {
     restoreDb()
