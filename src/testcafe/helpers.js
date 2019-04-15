@@ -10,8 +10,8 @@ export const isAudioPlaying = ClientFunction(() => {
 })
 
 export const restoreSamples = () => {
-    const src = path.join(__dirname, 'sample.mp3')
-    const dest = path.join(__dirname, '../../../media/samples', 'sample.mp3')
+    const src = path.join(__dirname, 'db', 'sample.mp3')
+    const dest = path.join(__dirname, '../../media/samples', 'sample.mp3')
 
     fs.copyFileSync(src, dest)
 }

@@ -1,14 +1,13 @@
 import { Selector, ClientFunction, ReactSelector, url } from '@ieremeev/app/testcafe'
 import {
     restoreDb,
-    restoreSamples,
     getRecord,
     getNumRecords,
     runQuery,
     expectRecordToExist,
 } from '@ieremeev/app/db'
 import { adminUser } from './roles.js'
-import { isAudioPlaying } from './helpers.js'
+import { restoreSamples, isAudioPlaying } from './helpers.js'
 
 fixture('Bases page')
     .beforeEach(async t => {

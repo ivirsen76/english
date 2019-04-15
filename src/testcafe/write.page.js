@@ -1,7 +1,7 @@
 import { Selector, ReactSelector, url } from '@ieremeev/app/testcafe'
-import { restoreDb, restoreSamples, runQuery, getRecord } from '@ieremeev/app/db'
+import { restoreDb, runQuery, getRecord } from '@ieremeev/app/db'
 import { studentUser } from './roles.js'
-import { isAudioPlaying } from './helpers.js'
+import { restoreSamples, isAudioPlaying } from './helpers.js'
 
 fixture('Write page').beforeEach(async t => {
     restoreDb()

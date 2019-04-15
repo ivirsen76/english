@@ -1,14 +1,7 @@
-import { Selector, ReactSelector } from '@ieremeev/app/testcafe'
+import { Selector, ReactSelector, url } from '@ieremeev/app/testcafe'
+import { restoreDb, getNumRecords, getRecord, expectRecordToExist } from '@ieremeev/app/db'
 import { studentUser } from './roles.js'
-import {
-    restoreDb,
-    restoreSamples,
-    getNumRecords,
-    getRecord,
-    expectRecordToExist,
-} from '@ieremeev/app/db'
-import { url } from './config.js'
-import { isAudioPlaying } from './helpers.js'
+import { restoreSamples, isAudioPlaying } from './helpers.js'
 
 fixture('Cards page')
     .beforeEach(async t => {
