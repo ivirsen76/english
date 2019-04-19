@@ -96,7 +96,7 @@
         "winston": "^2.3.1"
     },
     "devDependencies": {
-        "@ieremeev/app": "^4.0.1",
+        "@ieremeev/app": "^4.1.0",
         "inquirer": "^6.2.0",
         "shipit-cli": "4.1.1",
         "shipit-deploy": "4.1.1",
