@@ -1,0 +1,6 @@
+{
+    "src": "src/testcafe/**/*.page.js",
+    "browsers": "chrome:headless --autoplay-policy=no-user-gesture-required",
+    "skipJsErrors": true,
+    "selectorTimeout": 3000
+}

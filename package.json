@@ -14,7 +14,7 @@
         "format": "ieremeev-app-format",
         "test": "ieremeev-app-test --watch",
         "test:prod": "jest -c='{\"testMatch\":[\"**/?(*.)prod.js\"]}' src/server/test.prod.js",
-        "testcafe": "testcafe chrome:headless -e 'src/testcafe/**/*.page.js'",
+        "testcafe": "testcafe",
         "testcafe:dev": "ieremeev-app-testcafe-develop",
         "testcafe:prod": "testcafe chrome:headless 'src/testcafe/**/*.prod.js'",
         "db:restore": "ieremeev-app-restore-db",
