@@ -9,6 +9,8 @@ jobs:
     docker:
       - image: circleci/node:10.9.0-browsers
       - image: circleci/mysql:5.7.23-ram
+        environment:
+          MYSQL_ROOT_PASSWORD: password
 
     working_directory: ~/repo
 
