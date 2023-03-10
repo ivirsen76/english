@@ -15,7 +15,6 @@ import Counter from 'client/js/pages/Remember/Counter'
 import { removeMeta, isTextEqual } from 'client/js/utils/text.js'
 import IconPlay from '@ieremeev/icons/play4'
 import { stripBrackets } from 'server/utils.js'
-import InputField from './InputField'
 import DiffResult from './DiffResult'
 import NextButton from './NextButton'
 import style from './index.module.scss'
@@ -38,6 +37,8 @@ class Component extends React.Component {
     state = {
         height: null,
     }
+
+    inputRef = null
 
     componentWillMount() {
         document.addEventListener('keydown', this.handleEnterKey)
@@ -93,6 +94,10 @@ class Component extends React.Component {
         if (currentCard.usSoundFile) {
             play(getMediaUrl(currentCard.usSoundFile))
         }
+
+        if (this.inputRef) {
+            this.inputRef.focus()
+        }
     }
 
     goNext = e => {
@@ -137,10 +142,17 @@ class Component extends React.Component {
                         </div>
                         {!isChecked ? (
                             <div>
-                                <InputField
+                                <textarea
+                                    ref={e => {
+                                        this.inputRef = e
+                                    }}
+                                    type="text"
+                                    className={style.input}
                                     value={input}
-                                    onChange={this.props.updateWriteInput}
-                                    height={this.state.height}
+                                    onChange={e => this.props.updateWriteInput(e.target.value)}
+                                    style={{ height: this.state.height }}
+                                    autoFocus
+                                    spellCheck={false}
                                 />
                                 <div style={{ height: 0, overflow: 'hidden' }}>
                                     <div
