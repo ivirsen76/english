@@ -29,6 +29,7 @@ module.exports = options => async hook => {
 
         hook.data.text = text
         hook.data.translate = translate
+        hook.data.status = 1 // for Masha
         hook.data.statusUpdatedAt = new Date()
     } catch (err) {
         console.error(err)
